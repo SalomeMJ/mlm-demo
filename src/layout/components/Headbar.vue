@@ -54,7 +54,7 @@ export default {
   }
   li >>> .el-submenu__title{
     padding: 0;
-    span {      
+    span {
       font-size: 14px;
       font-family: PingFangSC-Semibold, PingFang SC;
       font-weight: 600;
