@@ -1,0 +1,157 @@
+@charset "utf-8";
+//系统颜色以及背景合集
+.red{
+  background:#FE6C60 ;
+}
+.yellow{
+  background-color: #FFC146;
+}
+.blue{
+  background:#40CAC0 ;
+}
+.error{
+  background:#ff7474 ;
+}
+.success{
+  background:#3ebf77 ;
+}
+.doing{
+  background: #00a0e9;
+}
+.waiting{
+  background: #fd9454;
+}
+.errorColor{
+  color:#ff7474 ;
+}
+.successColor{
+  color:#3ebf77 ;
+}
+.doingColor{
+  color: #00a0e9;
+}
+.waitingColor{
+  color: #fd9454;
+}
+.whiteColor{
+  color: #fff;
+}
+.chamcha_blue{
+  color:#00a0e9 !important;
+}
+.ruleSetLogRed,.ruleSetLogRed:hover{
+  background:#fee9e6 !important;
+}
+.ruleSetLogBlue,.ruleSetLogBlue:hover{
+  background:#d9f1fd !important;
+}
+.greenBgc{
+  background-color: #E4F5FD !important;
+}
+.ruleLibraryAddDelete{
+  color:#B0B7BB;
+}
+.addRuleColor > td{
+  color:rgba(0,0,0,0.26) !important;
+}
+.chosen-disabled.chosen-container-single{
+  opacity: 1 !important;
+  a.chosen-single{
+    background-color: #eee !important; ;
+  }
+}
+.bg-grey-0{
+  background-color: #f8f8f8;
+}
+.bg-black-0{
+  background-color: #333;
+}
+.bg-black-1{
+  background-color: #666;
+}
+.bg-black-2{
+  background-color: #999;
+}
+.bg-black-3{
+  background-color: #eee;
+}
+.bg-black-4{
+  background-color: #f6f6f6;
+}
+.text-blue-1{
+  color:#009E57;
+}
+.text-orange-0{
+  color: #FBB221;
+}
+.text-blue-0{
+  color: #00A0E9;
+}
+.text-black-0{
+  color:#000;
+}
+.text-black-1{
+  color:#38424c;
+}
+.text-grey-0{
+  color: #333333;
+}
+.text-grey-1{
+  color: #666666;
+}
+.text-grey-2{
+  color: #999999;
+}
+.text-yellow-0{
+  color:#ffa200;
+}
+//触发
+.active-top{
+  background:rgba(255,255,255,1) !important;
+  border-top:2px solid #00A0E9 !important;
+  color:#00A0E9 !important;
+  border-bottom:none !important;
+}
+//渐变色
+.bg-blue-gradient-right{
+  background-image: -webkit-linear-gradient(left top,#a7b3e8, #6998ea);
+  background-image: -moz-linear-gradient(bottom right,#a7b3e8, #6998ea);
+  background-image: -o-linear-gradient(bottom right,#a7b3e8, #6998ea);
+  background-image: -ms-linear-gradient(bottom right,#a7b3e8, #6998ea);
+  background-image: linear-gradient(to bottom right,#a7b3e8, #6998ea);
+}
+.bg-green-gradient-right{
+  background-image: -webkit-linear-gradient(left top,#58c1e4, #05c5cf);
+  background-image: -moz-linear-gradient(bottom right,#58c1e4, #05c5cf);
+  background-image: -o-linear-gradient(bottom right,#58c1e4, #05c5cf);
+  background-image: -ms-linear-gradient(bottom right,#58c1e4, #05c5cf);
+  background-image: linear-gradient(to bottom right,#58c1e4, #05c5cf);
+}
+.bg-red-gradient-right{
+  background-image: -webkit-linear-gradient(left top,#f7a18e, #f6756a);
+  background-image: -moz-linear-gradient(bottom right,#f7a18e, #f6756a);
+  background-image: -o-linear-gradient(bottom right,#f7a18e, #f6756a);
+  background-image: -ms-linear-gradient(bottom right,#f7a18e, #f6756a);
+  background-image: linear-gradient(to bottom right,#f7a18e, #f6756a);
+}
+.bg-orange-gradient-right{
+  background-image: -webkit-linear-gradient(left top,#f5ca73, #ffb75e);
+  background-image: -moz-linear-gradient(bottom right,#f5ca73, #ffb75e);
+  background-image: -o-linear-gradient(bottom right,#f5ca73, #ffb75e);
+  background-image: -ms-linear-gradient(bottom right,#f5ca73, #ffb75e);
+  background-image: linear-gradient(to bottom right,#f5ca73, #ffb75e);
+}
+.bg-blask-gradient-right{
+  background-image: -webkit-linear-gradient(left top,#a5acb2, #495968);
+  background-image: -moz-linear-gradient(bottom right,#a5acb2, #495968);
+  background-image: -o-linear-gradient(bottom right,#a5acb2, #495968);
+  background-image: -ms-linear-gradient(bottom right,#a5acb2, #495968);
+  background-image: linear-gradient(to bottom right,#a5acb2, #495968);
+}
+.bg-purple-gradient-right{
+  background-image: -webkit-linear-gradient(left top,#E076A0, #EC81AB);
+  background-image: -moz-linear-gradient(bottom right,#E076A0, #EC81AB);
+  background-image: -o-linear-gradient(bottom right,#E076A0, #EC81AB);
+  background-image: -ms-linear-gradient(bottom right,#E076A0, #EC81AB);
+  background-image: linear-gradient(to bottom right,#E076A0, #EC81AB);
+}
