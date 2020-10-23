@@ -1,0 +1,26 @@
+.el-input--medium .el-input__inner {
+  height: 32px;
+  line-height: 32px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding-left: 10px;
+}
+.el-input--prefix,.el-input--prefix::-webkit-input-placeholder{
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+}
+input.el-range-input,input.el-range-input::-webkit-input-placeholder {
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+}
+.el-input--medium {
+  .el-input__prefix {
+    left: auto;
+    right:0;
+  }
+}

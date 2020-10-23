@@ -100,8 +100,11 @@ export default {
       top: 0;
     }
   }
-  .app-main{
+  .el-main{
     padding: 0;
+  }
+  .app-main{
+    padding: 20px;
     overflow: hidden;
   }
   .fixed-header {

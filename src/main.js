@@ -14,6 +14,7 @@ import '@/styles/system-color-bgc.scss'
 import '@/styles/system-icon.scss'
 import '@/styles/global.scss'
 import '@/styles/table.scss'
+import '@/styles/sel-ipt.scss'
 
 import App from './App'
 import store from './store'

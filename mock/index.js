@@ -5,39 +5,16 @@ import user from './user'
 import activation from './activation'
 import role from './role'
 import nav from './nav/index.js'
-import modelStability from './model-stability/index.js'
-import modelRule from './model-stability/model-rule.js'
-import modelCen from './model-stability/model-cen.js'
-import modelApproval from './model-stability/model-approval.js'
-import modelLoan from './model-stability/model-loan.js'
-import modelStrategy from './model-stability/model-strategy.js'
-import scoreOverview from './model-stability/score-overview.js'
-import featureAnalysis from './model-stability/feature-analysis.js'
-import approvalResult from './model-stability/approval-result.js'
-import modelResult from './model-stability/model-result.js'
-import ruleAnalysis from './model-stability/rule-analysis.js'
+import projectLibrary from './project-library/index'
 import article from './article'
 import search from './remote-search'
-// import personalReport from './model/personal-report/personal-report'
-// import model from './model'
-// import trainReport from './model/train-report/train-report.js'
 
 const mocks = [
   ...user,
   ...activation,
   ...role,
   nav,
-  modelStability,
-  modelRule,
-  modelCen,
-  modelApproval,
-  modelLoan,
-  modelStrategy,
-  scoreOverview,
-  featureAnalysis,
-  approvalResult,
-  modelResult,
-  ruleAnalysis,
+  projectLibrary,
   ...article,
   ...search,
   ...search
