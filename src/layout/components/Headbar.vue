@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :span="22">
-      <div class="grid-content bg-purple inline-block">模型管理平台</div>
+      <div class="grid-content bg-purple inline-block"><i class="icon iconfont iconnan" /></div>
     </el-col>
     <el-col :span="2">
       <i class="icon iconfont iconxiaolingdang fs-22 mr-20" />
@@ -28,7 +28,8 @@ export default {
 
   },
   data() {
-    return { }
+    return {
+    }
   },
   computed: {
   },

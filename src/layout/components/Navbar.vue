@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <span id="place" />
-    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" :collapse="isCollapse">
+    <el-menu :default-active="defaultActive" class="el-menu-vertical-demo" :collapse="isCollapse">
       <router-link v-for="(item, index) in linkList" :key="index" :to="item.path">
         <el-menu-item :index="index.toString()">
           <i class="icon iconfont" :class="item.icon" /><span>{{ item.name }}</span>
@@ -20,11 +20,12 @@ export default {
     return {
       isCollapse: false,
       linkList: [
-        { path: '/model-market', icon: 'iconmonititor', name: '模型大盘' },
-        { path: '/nuclearsign-center', icon: 'iconmonititor', name: '核签中心' },
-        { path: '/project-library', icon: 'iconmonititor', name: '项目库' },
-        { path: '/model-library', icon: 'iconmonititor', name: '模型库' }
-      ]
+        { path: '/model-market', icon: 'iconmonititor', name: '大盘' },
+        { path: '/nuclearsign-center', icon: 'iconrule', name: '核签' },
+        { path: '/project-library', icon: 'iconapplication', name: '项目' },
+        { path: '/model-library', icon: 'iconsand', name: '模型' }
+      ],
+      defaultActive: null
     }
   },
   methods: {
@@ -33,6 +34,17 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath)
+    },
+    activeMenu() {
+      const route = this.$route
+      const { meta, path } = route
+      // if set path, the sidebar will highlight the path you set
+      if (meta.activeMenu) {
+        this.defaultActive = meta.activeMenu
+        return meta.activeMenu
+      }
+      this.defaultActive = path
+      return path
     }
   }
 }
@@ -40,9 +52,24 @@ export default {
 
 <style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+    width: 60px;
+    padding-left: 5px;
+    padding-right: 5px;
     min-height: 400px;
     background: #272B32;
+    .el-menu-item{
+      width: 50px;
+      height: 58px;
+      border-radius: 5px;
+      padding: 0 !important;
+      text-align: center;
+      span{
+        display: block;
+      }
+    }
+    .el-menu-item.is-active{
+      background:#00a0e9;
+    }
   }
   .el-menu-vertical-demo{
      background-color: transparent;
@@ -62,12 +89,11 @@ export default {
   }
   .el-menu-item >>> i{
     font-weight: normal;
-    margin-right: 20px;
     margin-top: 5px;
+    font-size: 16px;
   }
   .router-link-active .el-menu-item{
     background: #00A0E9;
-    border-radius: 66px 0px 0px 66px;
   }
   .router-link-active .el-menu-item >>>span,.router-link-active .el-menu-item >>>i{
     color: rgba(255,255,255,1);

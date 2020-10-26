@@ -6,6 +6,8 @@ import activation from './activation'
 import role from './role'
 import nav from './nav/index.js'
 import projectLibrary from './project-library/index'
+import projectDetail from './project-library/detail'
+import assetPool from './model-asset/asset-pool'
 import article from './article'
 import search from './remote-search'
 
@@ -15,6 +17,8 @@ const mocks = [
   ...role,
   nav,
   projectLibrary,
+  projectDetail,
+  assetPool,
   ...article,
   ...search,
   ...search

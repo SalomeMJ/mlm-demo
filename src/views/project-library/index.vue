@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="position:relative;height:100%;">
     <div class="conHead">
       <picker-time />
       <el-select v-model="value" placeholder="请选择">
@@ -17,7 +17,7 @@
       />
     </div>
     <div class="conCen mt-20">
-      <div v-for="(item, index) in projectList" :key="index" class="conItem">
+      <div v-for="(item, index) in projectList" :key="index" class="conItem" @click="enterProject(item)">
         <div class="item-top">
           <span class="fs-16 fw-bold text-grey-0 ver-middle">{{ item.projectName }}</span>
           <i class="icon iconfont iconxiangqing doingColor pull-right cursor-pointer fs-20  ver-middle" />
@@ -28,7 +28,7 @@
             <el-tag v-if="item.projectPrimary" type="warning">私有</el-tag>
           </div>
           <div class="item-cen-cen fs-12 fw-400 text-grey-0">
-            msssss
+            {{ item.projectDesc }}
           </div>
           <div class="item-bottom fs-12 fw-400 text-grey-3">
             <div class="pull-left">
@@ -42,28 +42,59 @@
         </div>
       </div>
     </div>
+    <div v-if="detail" style="position:absolute;top:0;width:100%;height:100%;">
+      <router-view />
+    </div>
+
   </div>
 </template>
 
 <script>
 import PickerTime from '@/components/PickerTime/index'
-import { getProjectLibrary } from '@/api/projectLibrary'
+import { getProjectLibrary } from '@/api/project-library/projectLibrary'
 
 export default {
-  name: 'ProjectLibrary',
+  name: 'ProjectList',
   components: { PickerTime },
   data() {
     return {
-      options: [{
-        value: '1',
-        label: '公开'
-      }, {
-        value: '2',
-        label: '私有'
-      }],
-      value: '1',
+      options: [
+        {
+          value: '',
+          label: '全部'
+        }, {
+          value: false,
+          label: '公开'
+        }, {
+          value: true,
+          label: '私有'
+        }],
+      value: '',
       input: '',
-      projectList: []
+      projectList: [],
+      detail: false
+    }
+  },
+  watch: {
+    'value': function(newVal, oldVal) {
+      const arr = []
+      for (const item of this.totalProject) {
+        if (item.projectPrimary === newVal) {
+          arr.push(item)
+        }
+      }
+      this.projectList = newVal === '' ? this.totalProject : arr
+    },
+    'input': function(newVal, oldVal) {
+      // const arr = []
+      // for (const item of this.totalProject) {
+      //   console.log(Object.keys(item))
+      //   if (Object.values(item).indexOf(newVal) >= 0) {
+      //     arr.push(item)
+      //   }
+      // }
+      // console.log(arr)
+      // this.projectList = newVal === '' ? this.totalProject : arr
     }
   },
   created() {
@@ -74,8 +105,13 @@ export default {
   methods: {
     getProjectList() {
       getProjectLibrary().then((res) => {
+        this.totalProject = res.data.projectList
         this.projectList = res.data.projectList
       })
+    },
+    enterProject(item) {
+      this.detail = true
+      this.$router.push({ path: '/project-library/project-detail', query: { projectName: item.projectName }})
     }
   }
 }
@@ -102,7 +138,6 @@ export default {
       width: 100%;
       height: 150px;
       background: #FFFFFF;
-      box-shadow: 0px 0px 9px 5px rgba(171, 183, 195, 0.5);
       border-radius: 5px;
       padding: 10px;
       position: relative;
@@ -116,6 +151,10 @@ export default {
         font-weight: 400;
         color: #999999;
       }
+    }
+    div.conItem:hover{
+      box-shadow: 0px 0px 9px 5px rgba(171, 183, 195, 0.5);
+      cursor: pointer;
     }
   }
  </style>

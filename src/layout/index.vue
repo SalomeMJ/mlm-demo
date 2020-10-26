@@ -6,7 +6,7 @@
           <Headbar />
         </el-header>
         <el-container>
-          <el-aside width="200px" padding="0px">
+          <el-aside width="66px" padding="0px">
             <navbar @updateTitles="updateTitle" />
           </el-aside>
           <el-main>
@@ -139,7 +139,7 @@ export default {
     padding-top: 0;
   }
   .el-header >>> .grid-content.inline-block{
-    width: 200px;
+    width: 66px;
     height: 60px;
     background: #272B31;
     box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.5);
@@ -163,29 +163,29 @@ export default {
     color: #333;
     box-shadow: 0 4px 10px rgba(0,0,0,.1);
   }
-  .app-main >>> .el-tabs__header{
-    padding: 28px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
-    border-bottom-left-radius: 10px;
-     border-bottom-right-radius: 10px;
-     .el-tabs__item{
-       width: 240px;
-       height: 32px;
-       line-height: 32px;
-       text-align: center;
-     }
-     .is-active{
-       color:#fff;
-     }
-     .el-tabs__active-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      background-color: #00a0e9;
-      width: 240px;
-      z-index: 0;
-    }
-  }
+  // .app-main >>> .el-tabs__header{
+    // padding: 28px;
+    // background-color: #fff;
+    // box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    // border-bottom-left-radius: 10px;
+    //  border-bottom-right-radius: 10px;
+    //  .el-tabs__item{
+    //    width: 240px;
+    //    height: 32px;
+    //    line-height: 32px;
+    //    text-align: center;
+    //  }
+    //  .is-active{
+    //    color:#fff;
+    //  }
+    //  .el-tabs__active-bar {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   height: 100%;
+    //   background-color: #00a0e9;
+    //   width: 240px;
+    //   z-index: 0;
+    // }
+  // }
 </style>

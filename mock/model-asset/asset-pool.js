@@ -1,8 +1,8 @@
-const dataList = {
+const assetPool = {
   status: 200,
   message: 'success',
   data: {
-    'modelRule|11': [
+    'assetPool|11': [
       {
         'id|+1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
         'name|+1': ['Trigger_strategy_2_Model_PSI', 'Trigger_tactics_003_model_PSI', 'Trigger_tactics_001_model_PSI', 'Trigger_tactics_003_ruleset_B', 'Trigger_tactics_003_ruleset_A', 'Trigger_tactics_003_model_AVG', 'Trigger_tactics_003_model_A', 'Trigger_tactics_001_model_C', 'Trigger_tactics_001_ruleset_B', 'Trigger_Tactics_001_rule', 'Trigger_strategy_2_Model'],
@@ -28,14 +28,13 @@ const dataList = {
     ]
   }
 }
-
 export default {
-  url: '/monitor/model-rule',
+  url: '/asset-pool',
   type: 'get',
   response: response => {
     return {
       code: 200,
-      data: dataList
+      data: assetPool
     }
   }
 }

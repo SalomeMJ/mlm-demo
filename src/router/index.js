@@ -91,8 +91,22 @@ export const constantRoutes = [
         path: 'project-library',
         component: () => import('@/views/project-library'),
         name: 'ProjectLibrary',
-        meta: { title: 'project-library', affix: true, activeMenu: '/project-library' }
+        meta: { title: 'project-library', affix: true, activeMenu: '/project-library' },
+        children: [
+          {
+            path: 'project-detail',
+            component: () => import('@/views/project-library/project-detail'),
+            name: 'ProjectDetail',
+            meta: { title: 'project-detail', affix: true, activeMenu: '/project-library' }
+          }
+        ]
       },
+      // {
+      //   path: 'project-detail',
+      //   component: () => import('@/views/project-library/project-detail'),
+      //   name: 'ProjectDetail',
+      //   meta: { title: 'project-detail', affix: true, activeMenu: '/project-detail' }
+      // },
       {
         path: 'model-library',
         component: () => import('@/views/model-library'),

@@ -43,27 +43,27 @@ export default {
   text-align: center;
   margin-top: 20%;
 }
-.el-tabs--card>.el-tabs__header .el-tabs__nav{
-  background:rgba(246,246,246,1);
-  border:1px solid rgba(238,238,238,1);
-  color:rgba(51,51,51,1);
-  border-radius:5px 0px 0px 5px;
-  height:28px;
-  line-height: 28px;
-}
-.el-tabs__item{
-  line-height: 28px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 220px;
-  overflow: hidden;
-  word-break: keep-all;
-  text-align: center;
-}
-.el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
-  color:rgba(255,255,255,1);
-  background:rgba(66,133,226,1);
-  }
+// .el-tabs--card>.el-tabs__header .el-tabs__nav{
+//   background:rgba(246,246,246,1);
+//   border:1px solid rgba(238,238,238,1);
+//   color:rgba(51,51,51,1);
+//   border-radius:5px 0px 0px 5px;
+//   height:28px;
+//   line-height: 28px;
+// }
+// .el-tabs__item{
+//   line-height: 28px;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   width: 220px;
+//   overflow: hidden;
+//   word-break: keep-all;
+//   text-align: center;
+// }
+// .el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
+//   color:rgba(255,255,255,1);
+//   background:rgba(66,133,226,1);
+//   }
 .container{
   border-radius:10px;
 }
