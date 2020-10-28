@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h100">
     <div class="conHead">
       <picker-time />
       <el-input
@@ -22,8 +22,11 @@
       >
         <template v-for="(item,index) in headArr">
           <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
-            <template scope="scope">
-              <span v-if="index!=7">
+            <template slot-scope="scope">
+              <span v-if="index!=7&&item.prop!='modelName'">
+                {{ scope.row[item.prop] }}
+              </span>
+              <span v-if="index!=7&&item.prop=='modelName'" @click="enterModelRecord(scope.row)">
                 {{ scope.row[item.prop] }}
               </span>
               <span v-if="index==7">
@@ -52,6 +55,10 @@ export default {
   name: 'TabTwo',
   components: { PickerTime, PagiNation },
   props: {
+    projectName: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {
@@ -67,14 +74,12 @@ export default {
         hidden: false
       },
       headArr: [
-        { label: '预警名称', prop: 'name', sortable: true },
-        { label: '执行次数', prop: 'operateTime', sortable: true },
-        { label: '触发次数', prop: 'touchTime', sortable: true },
-        { label: '预警等级', prop: 'level', sortable: true },
-        { label: '执行周期', prop: 'runTime', sortable: true },
-        { label: '操作人', prop: 'operator', sortable: true },
-        { label: '预警更新时间', prop: 'updateTime', sortable: true },
-        { label: '操作', prop: 'operate', sortable: false }
+        { label: '模型编号', prop: 'modelNo', sortable: false },
+        { label: '模型名称', prop: 'modelName', sortable: false },
+        { label: '修改时间', prop: 'updateTime', sortable: false },
+        { label: '所属模型组', prop: 'modelGroup', sortable: false },
+        { label: '验证事件数量', prop: 'validationEventNum', sortable: false },
+        { label: '正在使用事件数量', prop: 'useEventNum', sortable: false }
       ],
       tableData: [],
       totalData: []
@@ -118,6 +123,11 @@ export default {
     },
     initDirective(x) {
       this.currpage = x
+    },
+    // 模型记录
+    enterModelRecord(params) {
+      console.log(this.projectName)
+      this.$router.push({ path: './model-record', query: { modelName: params.modelName, projectName: this.projectName }})
     }
   }
 
@@ -150,6 +160,22 @@ export default {
     height: 32px;
     right:110px;
   }
+}
+.conCen{
+  height: calc(100% - 52px);
+border-radius: 5px;
+border: 1px solid #D9D9D9;
+>>> .el-table__fixed::before,>>> .el-table::before{
+  display: none;
+}
+>>> td:nth-child(2) .cell span{
+  cursor: pointer;
+}
+>>> td:nth-child(2) .cell span,>>> td:nth-child(4) .cell span{
+  color:#00a0e9;
+  text-decoration: underline;
+}
+background-color: #fff;
 }
 
 </style>

@@ -82,3 +82,31 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+button.el-button.el-button--primary.el-button--medium{
+  width: 88px;
+  height: 32px;
+  background: #00A0E9;
+  border-radius: 2px;
+  padding: 0;
+  line-height: 32px;
+}
+button.el-button.el-button--primary.el-button--medium:hover{
+  opacity: 0.8;
+}
+button.el-button--primary.el-button--medium.is-plain {
+  width: 102px;
+  height: 32px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  border: 1px solid #00A0E9;
+  line-height: 32px;
+  padding: 0;
+  color:#00A0E9;
+}
+button.el-button--primary.el-button--medium.is-plain:hover{
+  background-color: #00a0e9;
+  color:#fff;
+}
+.el-table::before,.el-table__fixed::before{display: none;}
+
+

@@ -8,6 +8,9 @@ import nav from './nav/index.js'
 import projectLibrary from './project-library/index'
 import projectDetail from './project-library/detail'
 import assetPool from './model-asset/asset-pool'
+import developRecord from './project-library/model-record/develop-record'
+import usingRecord from './project-library/model-record/using-record'
+import valitationRecord from './project-library/model-record/validation-record'
 import article from './article'
 import search from './remote-search'
 
@@ -19,6 +22,9 @@ const mocks = [
   projectLibrary,
   projectDetail,
   assetPool,
+  developRecord,
+  usingRecord,
+  valitationRecord,
   ...article,
   ...search,
   ...search

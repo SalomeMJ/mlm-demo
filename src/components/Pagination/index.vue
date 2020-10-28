@@ -42,12 +42,55 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .pagination-container {
+  width: 100%;
   background: #fff;
   padding: 32px 16px;
   margin: 0;
   text-align: right;
+  position: absolute;
+  bottom:0;
+  padding-left: 20px;
+  padding-right: 20px;
+ >>> .btn-prev {
+    position: absolute;
+    left: 20px;
+    width: 32px;
+height: 32px;
+background: #FFFFFF;
+border-radius: 2px;
+border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+  >>> .el-pager{
+    position: absolute;
+    left: 65px;
+    li{
+      width: 32px;
+      margin-left: 10px;
+height: 32px;
+background: #FFFFFF;
+border-radius: 2px;
+border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+    li:first-child{
+      margin-left: 0;
+    }
+    li.active{
+      border-color:#1890FF;
+      color:#1890FF;
+    }
+  }
+  >>> .btn-next{
+    position: absolute;
+    left: 140px;
+    width: 32px;
+height: 32px;
+background: #FFFFFF;
+border-radius: 2px;
+border: 1px solid rgba(0, 0, 0, 0.15);
+margin-left:20px ;
+  }
 }
 .pagination-container.hidden {
   display: none;

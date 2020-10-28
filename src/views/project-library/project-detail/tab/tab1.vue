@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="projectDetaiMsg!=null" class="content">
+    <div class="content">
       <div class="projectCon">
         <div class="con-head grid-two">
           <div>
@@ -189,7 +189,6 @@ export default {
       this.warningData = this.projectDetail.warningData
       // 使用时间触发预警统计
       const seriesData = []
-      // console.log(this.projectDetail)
       for (const item of this.projectDetail.touchTimesLine.echartsData) {
         this.lineChart.timeRange.push(item.time)
         seriesData.push(item.num)

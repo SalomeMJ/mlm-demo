@@ -12,9 +12,9 @@
     </div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="项目工作台" name="first" />
-      <tab1 v-if="activeName=='first'" :project-detail="projectDetail" />
+      <tab1 v-if="activeName=='first'&&flag" :project-detail="projectDetail" />
       <el-tab-pane label="模型资产池" name="second" />
-      <tab2 v-if="activeName=='second'" />
+      <tab2 v-if="activeName=='second'" :project-name="projectName" />
       <el-tab-pane label="预警触发" name="third" />
       <tab3 v-if="activeName=='third'" />
       <el-tab-pane label="使用事件" name="fourth" />
@@ -40,9 +40,11 @@ export default {
   data() {
     return {
       activeName: 'first',
+      projectName: '',
       projectOptions: [],
       values: '',
-      projectDetail: {}
+      projectDetail: {},
+      flag: false
     }
   },
   created() {
@@ -52,11 +54,13 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      console.log(tab, event)
+      // console.log(tab, event)
     },
     getDetail() {
+      this.projectName = window.location.hash.replace('#/project-library/project-detail?projectName=', '')
       getProjectDetail().then((res) => {
         this.projectDetail = res.data
+        this.flag = true
       })
       getProjectLibrary().then((res) => {
         this.projectOptions = []
@@ -64,7 +68,7 @@ export default {
           this.projectOptions.push(
             {
               value: item.projectName,
-              label: item.id
+              label: item.projectId
             }
           )
         }

@@ -5,7 +5,7 @@ const projectLibrary = {
     'projectList|5': [
       {
         'projectId|+1': [1, 2, 3, 4, 5],
-        'projectName|+1': ['name', 'name', 'name', 'name', 'name'],
+        'projectName|+1': ['name1', 'name2', 'name3', 'name4', 'name5'],
         'projectPrimary|+1': [true, true, false, true, false],
         'projectDesc|+1': ['name', 'name', 'name', 'name', 'name'],
         'projectNum|+1': [123, 123, 123, 123, 123],
