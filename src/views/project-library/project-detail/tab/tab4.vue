@@ -130,7 +130,7 @@ export default {
     background: #FFFFFF;
     border-radius: 2px;
     position: absolute;
-    right:260px;
+    right:138px;
     top:0;
   }
   >>> button{
