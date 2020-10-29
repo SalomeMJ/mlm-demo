@@ -20,13 +20,13 @@
                 {{ scope.row[item.prop] }}
               </span>
               <span v-if="index===tableContainer.headArr.length-1&&tableContainer.detail">
-                <i class="icon iconfont icongray-toright doingColor" />
+                <i class="icon iconfont icongray-toright doingColor" @click="enterDetail(index, scope.row)" />
               </span>
             </template>
           </el-table-column>
         </template>
       </el-table>
-      <p class="doingColor cursor-pointer fs-14">查看更多</p>
+      <p class="doingColor cursor-pointer fs-14" @click="enterTab(tableContainer.name)">查看更多</p>
     </div>
   </div>
 </template>
@@ -52,6 +52,12 @@ export default {
   methods: {
     handleCurrentChange(cpage) {
       this.currpage = cpage
+    },
+    enterDetail(index, row) {
+      this.$emit('enterDetail', { index: index, params: row })
+    },
+    enterTab(name) {
+      this.$emit('activeTab', name)
     }
   }
 

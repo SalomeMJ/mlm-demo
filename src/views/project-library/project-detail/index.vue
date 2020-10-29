@@ -1,5 +1,5 @@
 <template>
-  <div class="h100">
+  <div class="h100 coverParentView">
     <div class="project-select">
       <el-select v-model="values" class="ml-20 w-200" placeholder="请选择">
         <el-option
@@ -12,7 +12,7 @@
     </div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="项目工作台" name="first" />
-      <tab1 v-if="activeName=='first'&&flag" :project-detail="projectDetail" />
+      <tab1 v-if="activeName=='first'&&flag" :project-detail="projectDetail" @activeName="getactiveName" @enterDetail="getenterDetail" />
       <el-tab-pane label="模型资产池" name="second" />
       <tab2 v-if="activeName=='second'" :project-name="projectName" />
       <el-tab-pane label="预警触发" name="third" />
@@ -33,6 +33,7 @@ import Tab4 from './tab/tab4'
 import Tab5 from './tab/tab5'
 import { getProjectDetail } from '@/api/project-library/project-detail'
 import { getProjectLibrary } from '@/api/project-library/projectLibrary'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'ProjectDetail',
@@ -57,7 +58,7 @@ export default {
       // console.log(tab, event)
     },
     getDetail() {
-      this.projectName = window.location.hash.replace('#/project-library/project-detail?projectName=', '')
+      this.projectName = getUrlParams().projectName
       getProjectDetail().then((res) => {
         this.projectDetail = res.data
         this.flag = true
@@ -73,6 +74,22 @@ export default {
           )
         }
       })
+    },
+    getenterDetail(e) {
+      if (e.index === 3) {
+        this.$router.push({ path: './model-record', query: { modelName: e.params.name, projectName: getUrlParams().projectName }})
+      } else if (e.index === 5) {
+        console.log(e)
+      }
+    },
+    getactiveName(e) {
+      if (e === '模型资产池') {
+        this.activeName = 'second'
+      } else if (e === '使用事件') {
+        this.activeName = 'fourth'
+      } else {
+        this.activeName = 'five'
+      }
     }
   }
 }

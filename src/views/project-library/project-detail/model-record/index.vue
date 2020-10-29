@@ -1,6 +1,6 @@
 <template>
-  <div class="h100 bg-white border-radius-5">
-    <head-title :title="'项目库>'+$route.query.projectName+'>模型资产池>'+$route.query.modelName" :back="back" :src="src" />
+  <div class="h100 bg-white border-radius-5 coverParentView">
+    <head-title :title="'项目库>'+$route.query.projectName+'>模型资产池>'+$route.query.modelName" :back="back" :src="src" :query="query" />
     <div class="conCen">
       <div class="modelMsg">
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
@@ -32,6 +32,7 @@ import HeadTitle from '@/components/HeadTitle'
 import DevelopRecord from './develop-record'
 import ValidationRecord from './validation-record'
 import UsingRecord from './using-record'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'ModelRecord',
@@ -40,12 +41,14 @@ export default {
     return {
       back: true,
       src: '/project-library/project-detail',
+      query: null,
       activeName: 'first'
     }
   },
   created() {
   },
   mounted() {
+    this.query = { projectName: getUrlParams().projectName }
   },
   methods: {
     handleClick(tab, event) {

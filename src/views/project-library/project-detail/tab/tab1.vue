@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="content">
+    <div v-if="projectDetaiMsg" class="content">
       <div class="projectCon">
         <div class="con-head grid-two">
           <div>
-            <span class="fs-18 fw-bold text-grey-0 mr-20 ver-middle">{{ projectDetaiMsg.projectName }}</span>
+            <span class="fs-18 fw-bold text-grey-0 mr-20 ver-middle">{{ $route.query.projectName }}</span>
             <el-tag v-if="!projectDetaiMsg.projectPrimary">公开</el-tag>
             <el-tag v-if="projectDetaiMsg.projectPrimary" type="warning">私有</el-tag>
             <p class="fs-12 text-grey-2 fw-400 h-32 lh-32" style="display:block;text-align:left;">{{ projectDetaiMsg.projectDesc }}</p>
@@ -70,7 +70,7 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <div class="grid-content bg-white">
-              <table-container style="background:#eee;" :table-container="modelContainer" />
+              <table-container style="background:#eee;" :table-container="modelContainer" @activeTab="getActiveTab" @enterDetail="getenterDetail" />
             </div>
           </el-col>
           <el-col :span="10">
@@ -89,12 +89,12 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <div class="grid-content bg-white">
-              <table-container style="background:#eee;" :table-container="useEvents" />
+              <table-container style="background:#eee;" :table-container="useEvents" @activeTab="getActiveTab" />
             </div>
           </el-col>
           <el-col :span="10">
             <div class="grid-content bg-white">
-              <table-container style="background:#eee;" :table-container="validationContainer" />
+              <table-container style="background:#eee;" :table-container="validationContainer" @activeTab="getActiveTab" />
             </div>
           </el-col>
         </el-row>
@@ -230,6 +230,12 @@ export default {
       this.useEvents.tableData = this.projectDetail.useEvents
       // 验证数据
       this.validationContainer.tableData = this.projectDetail.validationData
+    },
+    getenterDetail(e) {
+      this.$emit('enterDetail', e)
+    },
+    getActiveTab(e) {
+      this.$emit('activeName', e)
     }
   }
 

@@ -20,7 +20,7 @@
       <div v-for="(item, index) in projectList" :key="index" class="conItem" @click="enterProject(item)">
         <div class="item-top">
           <span class="fs-16 fw-bold text-grey-0 ver-middle">{{ item.projectName }}</span>
-          <i class="icon iconfont iconxiangqing doingColor pull-right cursor-pointer fs-20  ver-middle" />
+          <!-- <i class="icon iconfont iconxiangqing doingColor pull-right cursor-pointer fs-20  ver-middle" /> -->
         </div>
         <div class="item-cen">
           <div class="item-cen-top mt-10 mb-10">
@@ -42,9 +42,7 @@
         </div>
       </div>
     </div>
-    <div style="position:absolute;top:0;width:100%;height:100%;">
-      <router-view />
-    </div>
+    <router-view />
 
   </div>
 </template>
@@ -71,8 +69,7 @@ export default {
         }],
       value: '',
       input: '',
-      projectList: [],
-      detail: false
+      projectList: []
     }
   },
   watch: {
@@ -110,7 +107,6 @@ export default {
       })
     },
     enterProject(item) {
-      this.detail = true
       this.$router.push({ path: '/project-library/project-detail', query: { projectName: item.projectName }})
     }
   }
@@ -131,7 +127,7 @@ export default {
   }
   .conCen{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 319px);
+    grid-template-columns: repeat(auto-fit, 346px);
     grid-gap:20px 20px;
     // border:1px solid red;
     div.conItem{

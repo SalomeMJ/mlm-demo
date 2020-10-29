@@ -2,7 +2,7 @@
   <div id="headStyle">
     <span class="line mr-10 ver-middle" />
     <span class="fs-16 fw-bold tet-grey-0 ver-middle">{{ title }}</span>
-    <i v-if="back" class="icon iconfont iconhead-back pull-right cursor-pointer mr-20 fs-18 doingColor mt-10" @click="goBack()" />
+    <i v-if="back" class="icon iconfont iconhead-back pull-right cursor-pointer mr-20 fs-18 doingColor" @click="goBack()" />
   </div>
 </template>
 
@@ -21,6 +21,10 @@ export default {
     src: {
       type: String,
       default: ''
+    },
+    query: {
+      type: Object,
+      default: () => {}
     }
   },
   data() {
@@ -32,7 +36,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push({ path: this.src, query: { projectName: this.projectName }})
+      this.$router.push({ path: this.src, query: this.query })
     }
   }
 }

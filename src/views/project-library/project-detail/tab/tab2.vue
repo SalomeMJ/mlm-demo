@@ -126,7 +126,6 @@ export default {
     },
     // 模型记录
     enterModelRecord(params) {
-      console.log(this.projectName)
       this.$router.push({ path: './model-record', query: { modelName: params.modelName, projectName: this.projectName }})
     }
   }
