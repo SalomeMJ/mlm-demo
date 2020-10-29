@@ -21,7 +21,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==4||index==5?'right':'left'" fixed>
             <template slot-scope="scope">
               <span v-if="index!=7&&item.prop!='modelName'">
                 {{ scope.row[item.prop] }}
@@ -68,7 +68,6 @@ export default {
         page: 1,
         limit: 10,
         pageSizes: [1, 5, 10, 100],
-        layout: 'total, sizes, prev, pager, next',
         background: false,
         autoScroll: false,
         hidden: false

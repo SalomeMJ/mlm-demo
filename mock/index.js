@@ -11,6 +11,9 @@ import assetPool from './model-asset/asset-pool'
 import developRecord from './project-library/model-record/develop-record'
 import usingRecord from './project-library/model-record/using-record'
 import valitationRecord from './project-library/model-record/validation-record'
+import validationData from './project-library/validation-data/validation-data'
+import usingData from './project-library/using-event/using-event'
+import warningRule from './project-library/warning-rule/warning-rule'
 import article from './article'
 import search from './remote-search'
 
@@ -25,6 +28,9 @@ const mocks = [
   developRecord,
   usingRecord,
   valitationRecord,
+  validationData,
+  usingData,
+  warningRule,
   ...article,
   ...search,
   ...search

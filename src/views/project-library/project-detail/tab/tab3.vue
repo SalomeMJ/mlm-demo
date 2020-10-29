@@ -45,7 +45,7 @@
 </template>
 <script>
 import PickerTime from '@/components/PickerTime/index'
-import { getAssetPool } from '@/api/model-asset/asset-pool'
+import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
 import PagiNation from '@/components/Pagination/index'
 
 export default {
@@ -61,18 +61,17 @@ export default {
         page: 1,
         limit: 10,
         pageSizes: [1, 5, 10, 100],
-        layout: 'total, sizes, prev, pager, next',
         background: false,
         autoScroll: false,
         hidden: false
       },
       headArr: [
-        { label: '模型编号', prop: 'modelNo', sortable: false },
+        { label: '规则编号', prop: 'ruleNo', sortable: false },
+        { label: '规则名称', prop: 'ruleName', sortable: false },
+        { label: '检测事件名称', prop: 'detectionRuleName', sortable: false },
         { label: '模型名称', prop: 'modelName', sortable: false },
-        { label: '修改时间', prop: 'updateTime', sortable: false },
-        { label: '所属模型组', prop: 'modelGroup', sortable: false },
-        { label: '验证事件数量', prop: 'validationEventNum', sortable: false },
-        { label: '正在使用事件数量', prop: 'useEventNum', sortable: false }
+        { label: '状态', prop: 'status', sortable: false },
+        { label: '生效时间', prop: 'effectTime', sortable: false }
       ],
       tableData: [],
       totalData: []
@@ -109,8 +108,8 @@ export default {
       }
     },
     initData() {
-      getAssetPool(this.currpage).then((response) => {
-        this.tableData = response.data.assetPool
+      getWarningRule().then((response) => {
+        this.tableData = response.data.ruleList
         this.totalData = this.tableData
       })
     },
@@ -159,7 +158,7 @@ border: 1px solid #D9D9D9;
 >>> td:nth-child(2) .cell span{
   cursor: pointer;
 }
->>> td:nth-child(2) .cell span,>>> td:nth-child(4) .cell span{
+>>> td:nth-child(2) .cell span,>>> td:nth-child(3) .cell span,>>> td:nth-child(4) .cell span{
   color:#00a0e9;
   text-decoration: underline;
   cursor: pointer;

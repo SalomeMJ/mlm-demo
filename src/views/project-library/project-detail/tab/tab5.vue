@@ -7,7 +7,7 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary">上传验证数据</el-button>
+      <el-button type="primary">新建使用事件</el-button>
     </div>
     <div class="conCen mt-20">
       <el-table
@@ -20,19 +20,20 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==0||index==1||index==2?'left':'right'" fixed>
             <template slot-scope="scope">
-              <span v-if="index!=7">
+              <span>
                 {{ scope.row[item.prop] }}
+                <i v-if="item.prop==''" class="icon iconfont iconxiazai doingColor pl-5" style="display:inline-block;" />
               </span>
-              <span v-if="index==7">
+              <!-- <span v-if="index==7">
                 <span v-show="scope.row.levoperateel.invalid" class="errorColor"> 失效</span>
                 <i v-show="scope.row.levoperateel.invalid" class="icon iconfont iconeye icon-f20 doingColor" />
                 <i class="icon iconfont icontable-edit icon-f20" :class="{ 'doingColor':!scope.row.levoperateel.enabled,'text-grey-0':scope.row.levoperateel.enabled }" />
                 <el-switch
                   v-model="scope.row.levoperateel.enabled"
                 />
-              </span>
+              </span> -->
             </template>
           </el-table-column>
         </template>
@@ -44,7 +45,7 @@
 </template>
 <script>
 import PickerTime from '@/components/PickerTime/index'
-import { getAssetPool } from '@/api/model-asset/asset-pool'
+import { getValidationData } from '@/api/project-library/validation-data/validation-data'
 import PagiNation from '@/components/Pagination/index'
 
 export default {
@@ -60,18 +61,20 @@ export default {
         page: 1,
         limit: 10,
         pageSizes: [1, 5, 10, 100],
-        layout: 'total, sizes, prev, pager, next',
         background: false,
         autoScroll: false,
         hidden: false
       },
       headArr: [
-        { label: '模型编号', prop: 'modelNo', sortable: false },
-        { label: '模型名称', prop: 'modelName', sortable: false },
-        { label: '修改时间', prop: 'updateTime', sortable: false },
-        { label: '所属模型组', prop: 'modelGroup', sortable: false },
-        { label: '验证事件数量', prop: 'validationEventNum', sortable: false },
-        { label: '正在使用事件数量', prop: 'useEventNum', sortable: false }
+        { label: '验证数据编号', prop: 'validationNo', sortable: false },
+        { label: '验证数据名称', prop: 'validationName', sortable: false },
+        { label: '时间范围', prop: 'timeRange', sortable: false },
+        { label: '总客户数', prop: 'totalCustomerNum', sortable: false },
+        { label: '好客户数', prop: 'goodCustomerNum', sortable: false },
+        { label: '坏客户数', prop: 'badCustomerNum', sortable: false },
+        { label: '好坏客户比例', prop: 'rate', sortable: false },
+        { label: '拒绝客户数', prop: 'refuseCustomerNum', sortable: false },
+        { label: '操作', prop: '', sortable: false }
       ],
       tableData: [],
       totalData: []
@@ -108,8 +111,8 @@ export default {
       }
     },
     initData() {
-      getAssetPool(this.currpage).then((response) => {
-        this.tableData = response.data.assetPool
+      getValidationData().then((response) => {
+        this.tableData = response.data.validationDatas
         this.totalData = this.tableData
       })
     },
@@ -152,13 +155,21 @@ export default {
   height: calc(100% - 52px);
 border-radius: 5px;
 border: 1px solid #D9D9D9;
+// >>> .el-table{
+//   th:nth-child(7){
+//     text-indent: 5em;
+//   }
+//   td:nth-child(7){
+//     text-indent: 8em;
+//   }
+// }
 >>> .el-table__fixed::before,>>> .el-table::before{
   display: none;
 }
->>> td:nth-child(2) .cell span,>>> td:nth-child(4) .cell span{
-  color:#00a0e9;
-  text-decoration: underline;
-}
+// >>> td:nth-child(2) .cell span,>>> td:nth-child(1) .cell span{
+//   color:#00a0e9;
+//   text-decoration: underline;
+// }
 background-color: #fff;
 }
 

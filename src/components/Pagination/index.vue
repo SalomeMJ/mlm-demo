@@ -4,7 +4,7 @@
       :background="paginationData.background"
       :current-page.sync="paginationData.currentPage"
       :page-size.sync="paginationData.pageSize"
-      :layout="paginationData.layout"
+      layout="prev, pager, next, total, sizes"
       :page-sizes="paginationData.pageSizes"
       :total="paginationData.total"
       v-bind="$attrs"
@@ -48,30 +48,27 @@ export default {
   background: #fff;
   padding: 32px 16px;
   margin: 0;
-  text-align: right;
+  // text-align: right;
   position: absolute;
   bottom:0;
   padding-left: 20px;
   padding-right: 20px;
  >>> .btn-prev {
-    position: absolute;
-    left: 20px;
     width: 32px;
-height: 32px;
-background: #FFFFFF;
-border-radius: 2px;
-border: 1px solid rgba(0, 0, 0, 0.15);
+    height: 32px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
   }
   >>> .el-pager{
-    position: absolute;
-    left: 65px;
+    margin-left: 10px;
     li{
       width: 32px;
       margin-left: 10px;
-height: 32px;
-background: #FFFFFF;
-border-radius: 2px;
-border: 1px solid rgba(0, 0, 0, 0.15);
+      height: 32px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
     }
     li:first-child{
       margin-left: 0;
@@ -82,14 +79,20 @@ border: 1px solid rgba(0, 0, 0, 0.15);
     }
   }
   >>> .btn-next{
-    position: absolute;
-    left: 140px;
     width: 32px;
-height: 32px;
-background: #FFFFFF;
-border-radius: 2px;
-border: 1px solid rgba(0, 0, 0, 0.15);
-margin-left:20px ;
+    height: 32px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin-left:10px ;
+  }
+  >>> span.el-pagination__sizes{
+    position: absolute;
+    right: 10px;
+  }
+  >>> span.el-pagination__total{
+    position: absolute;
+    right: 132px;
   }
 }
 .pagination-container.hidden {

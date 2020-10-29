@@ -20,7 +20,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index!=4?'left':'right'" fixed>
             <template slot-scope="scope">
               <span v-if="index!=7">
                 {{ scope.row[item.prop] }}
@@ -44,7 +44,7 @@
 </template>
 <script>
 import PickerTime from '@/components/PickerTime/index'
-import { getAssetPool } from '@/api/model-asset/asset-pool'
+import { getUsingEvent } from '@/api/project-library/using-event/using-event'
 import PagiNation from '@/components/Pagination/index'
 
 export default {
@@ -60,18 +60,17 @@ export default {
         page: 1,
         limit: 10,
         pageSizes: [1, 5, 10, 100],
-        layout: 'total, sizes, prev, pager, next',
         background: false,
         autoScroll: false,
         hidden: false
       },
       headArr: [
-        { label: '模型编号', prop: 'modelNo', sortable: false },
-        { label: '模型名称', prop: 'modelName', sortable: false },
-        { label: '修改时间', prop: 'updateTime', sortable: false },
-        { label: '所属模型组', prop: 'modelGroup', sortable: false },
-        { label: '验证事件数量', prop: 'validationEventNum', sortable: false },
-        { label: '正在使用事件数量', prop: 'useEventNum', sortable: false }
+        { label: '事件名称', prop: 'eventName', sortable: false },
+        { label: '使用模型', prop: 'useModel', sortable: false },
+        { label: '负责人', prop: 'head', sortable: false },
+        { label: '状态', prop: 'status', sortable: false },
+        { label: '预警触发次数', prop: 'touchTime', sortable: false },
+        { label: '生效时间', prop: 'effectTime', sortable: false }
       ],
       tableData: [],
       totalData: []
@@ -108,8 +107,8 @@ export default {
       }
     },
     initData() {
-      getAssetPool(this.currpage).then((response) => {
-        this.tableData = response.data.assetPool
+      getUsingEvent().then((response) => {
+        this.tableData = response.data.usingEvents
         this.totalData = this.tableData
       })
     },
@@ -155,7 +154,7 @@ border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{
   display: none;
 }
->>> td:nth-child(2) .cell span,>>> td:nth-child(4) .cell span{
+>>> td:nth-child(2) .cell span,>>> td:nth-child(1) .cell span{
   color:#00a0e9;
   text-decoration: underline;
 }
