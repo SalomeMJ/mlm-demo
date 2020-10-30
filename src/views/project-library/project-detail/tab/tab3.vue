@@ -7,8 +7,7 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary" class="mr-20" plain>指标管理</el-button>
-      <el-button type="primary">新建预警规则</el-button>
+      <el-button type="primary" @click="addEvent()">新建使用事件</el-button>
     </div>
     <div class="conCen mt-20">
       <el-table
@@ -21,18 +20,16 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index!=4?'left':'right'" fixed>
             <template slot-scope="scope">
-              <span v-if="index!=7">
+              <span v-if="index==0" @click="enterEvent(scope.row)">
                 {{ scope.row[item.prop] }}
               </span>
-              <span v-if="index==7">
-                <span v-show="scope.row.levoperateel.invalid" class="errorColor"> 失效</span>
-                <i v-show="scope.row.levoperateel.invalid" class="icon iconfont iconeye icon-f20 doingColor" />
-                <i class="icon iconfont icontable-edit icon-f20" :class="{ 'doingColor':!scope.row.levoperateel.enabled,'text-grey-0':scope.row.levoperateel.enabled }" />
-                <el-switch
-                  v-model="scope.row.levoperateel.enabled"
-                />
+              <span v-if="index==1" @click="enterModelDetail(scope.row)">
+                {{ scope.row[item.prop] }}
+              </span>
+              <span v-if="index!=0&&index!=1">
+                {{ scope.row[item.prop] }}
               </span>
             </template>
           </el-table-column>
@@ -40,13 +37,13 @@
       </el-table>
       <pagi-nation :pagination-data="paginationData" class="pull-right" @pagination="pageChange" />
     </div>
-
   </div>
 </template>
 <script>
 import PickerTime from '@/components/PickerTime/index'
-import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
+import { getUsingEvent } from '@/api/project-library/using-event/using-event'
 import PagiNation from '@/components/Pagination/index'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'TabTwo',
@@ -66,11 +63,11 @@ export default {
         hidden: false
       },
       headArr: [
-        { label: '规则编号', prop: 'ruleNo', sortable: false },
-        { label: '规则名称', prop: 'ruleName', sortable: false },
-        { label: '检测事件名称', prop: 'detectionRuleName', sortable: false },
-        { label: '模型名称', prop: 'modelName', sortable: false },
+        { label: '事件名称', prop: 'eventName', sortable: false },
+        { label: '使用模型', prop: 'useModel', sortable: false },
+        { label: '负责人', prop: 'head', sortable: false },
         { label: '状态', prop: 'status', sortable: false },
+        { label: '预警触发次数', prop: 'touchTime', sortable: false },
         { label: '生效时间', prop: 'effectTime', sortable: false }
       ],
       tableData: [],
@@ -108,13 +105,22 @@ export default {
       }
     },
     initData() {
-      getWarningRule().then((response) => {
-        this.tableData = response.data.ruleList
+      getUsingEvent().then((response) => {
+        this.tableData = response.data.usingEvents
         this.totalData = this.tableData
       })
     },
     initDirective(x) {
       this.currpage = x
+    },
+    enterModelDetail(params) {
+      this.$router.push({ path: './model-record', query: { modelName: params.useModel, projectName: getUrlParams().projectName }})
+    },
+    enterEvent(params) {
+      this.$router.push({ path: './using-detail', query: { eventName: params.eventName, projectName: getUrlParams().projectName, action: params.status }})
+    },
+    addEvent() {
+      this.$router.push({ path: './using-detail', query: { eventName: null, projectName: getUrlParams().projectName, action: 'add' }})
     }
   }
 
@@ -131,7 +137,7 @@ export default {
     background: #FFFFFF;
     border-radius: 2px;
     position: absolute;
-    right:260px;
+    right:138px;
     top:0;
   }
   >>> button{
@@ -155,10 +161,7 @@ border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{
   display: none;
 }
->>> td:nth-child(2) .cell span{
-  cursor: pointer;
-}
->>> td:nth-child(2) .cell span,>>> td:nth-child(3) .cell span,>>> td:nth-child(4) .cell span{
+>>> td:nth-child(2) .cell span,>>> td:nth-child(1) .cell span{
   color:#00a0e9;
   text-decoration: underline;
   cursor: pointer;

@@ -7,8 +7,8 @@
       align="right"
       unlink-panels
       range-separator="⇀"
-      start-placeholder="2019-12-11 09:30:05"
-      end-placeholder="2019-12-19 10:51:37"
+      start-placeholder="2020.01.20"
+      end-placeholder="2020.10.31"
       :picker-options="pickerOptions"
       value-format="yyyy-MM-dd HH:mm:ss"
       format="yyyy-MM-dd HH:mm:ss"
@@ -69,7 +69,7 @@ export default {
         }]
       },
       value1: '',
-      value2: ''
+      value2: '2020.01.20-2020.10.31'
     }
   }
 }

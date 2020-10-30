@@ -13,6 +13,8 @@ import usingRecord from './project-library/model-record/using-record'
 import valitationRecord from './project-library/model-record/validation-record'
 import validationData from './project-library/validation-data/validation-data'
 import usingData from './project-library/using-event/using-event'
+import eventWarningRule from './project-library/using-event/warning-rule'
+import eventSituation from './project-library/using-event/event-situation'
 import warningRule from './project-library/warning-rule/warning-rule'
 import article from './article'
 import search from './remote-search'
@@ -30,6 +32,8 @@ const mocks = [
   valitationRecord,
   validationData,
   usingData,
+  eventWarningRule,
+  eventSituation,
   warningRule,
   ...article,
   ...search,

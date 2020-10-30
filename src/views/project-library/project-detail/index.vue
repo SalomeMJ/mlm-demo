@@ -15,11 +15,11 @@
       <tab1 v-if="activeName=='first'&&flag" :project-detail="projectDetail" @activeName="getactiveName" @enterDetail="getenterDetail" />
       <el-tab-pane label="模型资产池" name="second" />
       <tab2 v-if="activeName=='second'" :project-name="projectName" />
-      <el-tab-pane label="预警触发" name="third" />
+      <el-tab-pane label="使用事件" name="third" />
       <tab3 v-if="activeName=='third'" />
-      <el-tab-pane label="使用事件" name="fourth" />
+      <el-tab-pane label="预警规则" name="fourth" />
       <tab4 v-if="activeName=='fourth'" />
-      <el-tab-pane label="验证数据" name="five" />
+      <el-tab-pane label="模型验证" name="five" />
       <tab5 v-if="activeName=='five'" />
     </el-tabs>
   </div>

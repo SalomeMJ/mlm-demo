@@ -104,6 +104,12 @@ export const constantRoutes = [
             component: () => import('@/views/project-library/project-detail/model-record'),
             name: 'ModelRecord',
             meta: { title: 'model-record', affix: true, activeMenu: '/project-library' }
+          },
+          {
+            path: 'using-detail',
+            component: () => import('@/views/project-library/project-detail/using-event'),
+            name: 'UsingDetail',
+            meta: { title: 'using-detail', affix: true, activeMenu: '/project-library' }
           }
         ]
       },

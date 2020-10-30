@@ -1,30 +1,35 @@
 <template>
-  <div class="h100">
-    <div class="conHead">
-      <picker-time />
+  <div class="tabCon pb-20 mt-5">
+    <picker-time />
+    <span class="pull-right">
       <el-input
         v-model="input"
-        placeholder="请输入搜索关键字"
+        placeholder="请输入关键字搜索"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary" class="mr-20" plain>指标管理</el-button>
-      <el-button type="primary">新建预警规则</el-button>
-    </div>
-    <div class="conCen mt-20">
+    </span>
+    <div class="mt-20" style="height:74%;">
       <el-table
         v-if="tableData.length!=0"
         class="system-table"
         :data="tableData"
         style="width: 100%"
-        height="71%"
+        height="100%"
         :default-sort="{prop: 'name', order: 'descending'}"
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :style="{'width':index==1?'10%':''}" :sortable="item.sortable" :label="item.label" :align="index!=1&&index!=2?'left':'right'" fixed>
             <template slot-scope="scope">
-              <span>
+              <span v-if="index!=3">
                 {{ scope.row[item.prop] }}
+              </span>
+              <span v-if="index==3" :style="{'color':scope.row[item.prop]=='轻微'?'#FFC800':'#FF7700'}">
+                {{ scope.row[item.prop] }}
+              </span>
+              <span v-if="index==7">
+                <i class="icon iconfont iconDetail doingColor" style="display:inline-block;margin-right:20px;" />
+                <i class="icon iconfont iconDelete errorColor" />
               </span>
             </template>
           </el-table-column>
@@ -32,16 +37,15 @@
       </el-table>
       <pagi-nation :pagination-data="paginationData" class="pull-right" @pagination="pageChange" />
     </div>
-
   </div>
 </template>
 <script>
 import PickerTime from '@/components/PickerTime/index'
-import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
 import PagiNation from '@/components/Pagination/index'
+import { getEventWarning } from '@/api/project-library/using-event/warning-rule'
 
 export default {
-  name: 'TabTwo',
+  name: 'TabOne',
   components: { PickerTime, PagiNation },
   props: {
   },
@@ -58,12 +62,14 @@ export default {
         hidden: false
       },
       headArr: [
-        { label: '规则编号', prop: 'ruleNo', sortable: false },
-        { label: '规则名称', prop: 'ruleName', sortable: false },
-        { label: '检测事件名称', prop: 'detectionRuleName', sortable: false },
-        { label: '模型名称', prop: 'modelName', sortable: false },
-        { label: '状态', prop: 'status', sortable: false },
-        { label: '生效时间', prop: 'effectTime', sortable: false }
+        { label: '预警名称', prop: 'warningName', sortable: false },
+        { label: '执行次数', prop: 'runTimes', sortable: false },
+        { label: '触发次数', prop: 'touchTimes', sortable: false },
+        { label: '预警等级', prop: 'warningLevel', sortable: false },
+        { label: '执行周期', prop: 'runRange', sortable: false },
+        { label: '操作人', prop: 'operator', sortable: false },
+        { label: '预警更新时间', prop: 'updateTime', sortable: false },
+        { label: '操作', prop: '', sortable: false }
       ],
       tableData: [],
       totalData: []
@@ -100,8 +106,8 @@ export default {
       }
     },
     initData() {
-      getWarningRule().then((response) => {
-        this.tableData = response.data.ruleList
+      getEventWarning().then((response) => {
+        this.tableData = response.data.warningRule
         this.totalData = this.tableData
       })
     },
@@ -113,49 +119,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.conHead{
-  height: 32px;
-  width: 100%;
-  position: relative;
-  >>> .el-input{
-    width: 160px;
-    height: 32px;
-    background: #FFFFFF;
-    border-radius: 2px;
+.tabCon{
+  height: 94%;
+}
+.pagination-container {
+    width: 99%;
+    background: #fff;
+    padding: 23px 12px;
+    margin: 0;
     position: absolute;
-    right:260px;
-    top:0;
-  }
-  >>> button{
-    position: absolute;
-  }
-  >>> button.el-button--primary.el-button--medium{
-    width: 110px;
-    height: 32px;
-    right:0;
-  }
-  >>> button.el-button--primary.el-button--medium.is-plain{
-    width: 110px;
-    height: 32px;
-    right:110px;
-  }
+    bottom: 7px;
+    right: 0;
 }
-.conCen{
-  height: calc(100% - 52px);
-border-radius: 5px;
-border: 1px solid #D9D9D9;
->>> .el-table__fixed::before,>>> .el-table::before{
-  display: none;
-}
->>> td:nth-child(2) .cell span{
-  cursor: pointer;
-}
->>> td:nth-child(2) .cell span,>>> td:nth-child(3) .cell span,>>> td:nth-child(4) .cell span{
-  color:#00a0e9;
-  text-decoration: underline;
-  cursor: pointer;
-}
-background-color: #fff;
-}
-
 </style>

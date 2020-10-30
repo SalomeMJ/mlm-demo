@@ -9,7 +9,7 @@ export function getUrlParams() {
   const arr = args[1].split('&')
   for (const item of arr) {
     const arg = item.split('=')
-    obj[arg[0]] = arg[1]
+    obj[arg[0]] = decodeURI(arg[1])
   }
   return obj
 }
