@@ -1,11 +1,11 @@
 <template>
-  <div class="h100">
+  <div class="table-container">
     <el-table
       v-if="tableData.length!=0"
       class="system-table"
       :data="tableData"
-      style="width: 100%"
-      height="87%"
+      style="width: 100%;"
+      height="80%"
       :default-sort="{prop: 'name', order: 'descending'}"
       @selection-change="handleCurrentChange"
     >
@@ -47,8 +47,8 @@ export default {
         hidden: false
       },
       headArr: [
-        { label: '事件编号', prop: 'evenNo', sortable: false },
-        { label: '事件名称', prop: 'evenName', sortable: false },
+        { label: '事件编号', prop: 'eventNo', sortable: false },
+        { label: '事件名称', prop: 'eventName', sortable: false },
         { label: '负责人', prop: 'head', sortable: false },
         { label: '状态', prop: 'statu', sortable: false },
         { label: '验证时间', prop: 'validationTime', sortable: false },
@@ -106,4 +106,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
  </style>

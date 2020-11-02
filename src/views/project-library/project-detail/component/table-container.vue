@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid-top">
-      <span class="fs-14 fw-bold text-gret-0">{{ tableContainer.name }}{{ tableContainer.tableData.length }}）</span>
+      <span class="fs-14 fw-bold text-gret-0">{{ tableContainer.name }}({{ tableContainer.tableData.length }}）</span>
     </div>
     <div class="grid-center mt-10">
       <el-table

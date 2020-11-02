@@ -12,7 +12,7 @@
     </div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="项目工作台" name="first" />
-      <tab1 v-if="activeName=='first'&&flag" :project-detail="projectDetail" @activeName="getactiveName" @enterDetail="getenterDetail" />
+      <tab1 v-if="activeName=='first'&&flag" :project-detail="projectDetail" @enterDetail="getenterDetail" />
       <el-tab-pane label="模型资产池" name="second" />
       <tab2 v-if="activeName=='second'" :project-name="projectName" />
       <el-tab-pane label="使用事件" name="third" />
@@ -40,7 +40,7 @@ export default {
   components: { Tab1, Tab2, Tab3, Tab4, Tab5 },
   data() {
     return {
-      activeName: 'first',
+      activeName: null,
       projectName: '',
       projectOptions: [],
       values: '',
@@ -52,10 +52,12 @@ export default {
   },
   mounted() {
     this.getDetail()
+    this.getactiveName(Number(localStorage.getItem('activeTab')))
+    localStorage.removeItem('activeTab')
   },
   methods: {
     handleClick(tab, event) {
-      // console.log(tab, event)
+      localStorage.setItem('activeTab', tab.index)
     },
     getDetail() {
       this.projectName = getUrlParams().projectName
@@ -79,15 +81,24 @@ export default {
       if (e.index === 3) {
         this.$router.push({ path: './model-record', query: { modelName: e.params.name, projectName: getUrlParams().projectName }})
       } else if (e.index === 5) {
-        console.log(e)
+        // console.log(e)
       }
     },
     getactiveName(e) {
-      if (e === '模型资产池') {
+      // console.log(e)
+      if (e === null || e === 0) {
+        this.activeName = 'first'
+      }
+      if (e === 1) {
         this.activeName = 'second'
-      } else if (e === '使用事件') {
+      }
+      if (e === 2) {
+        this.activeName = 'third'
+      }
+      if (e === 3) {
         this.activeName = 'fourth'
-      } else {
+      }
+      if (e === 4) {
         this.activeName = 'five'
       }
     }

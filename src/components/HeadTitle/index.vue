@@ -25,6 +25,10 @@ export default {
     query: {
       type: Object,
       default: () => {}
+    },
+    backActive: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -36,6 +40,7 @@ export default {
   },
   methods: {
     goBack() {
+      this.$emit('backActive', this.backActive)
       this.$router.push({ path: this.src, query: this.query })
     }
   }

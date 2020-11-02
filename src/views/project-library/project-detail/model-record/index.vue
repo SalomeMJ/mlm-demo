@@ -1,8 +1,8 @@
 <template>
-  <div class="h100 bg-white border-radius-5 coverParentView">
+  <div class="h100 border-radius-5 coverParentView">
     <head-title :title="'项目库>'+$route.query.projectName+'>模型资产池>'+$route.query.modelName" :back="back" :src="src" :query="query" />
-    <div class="conCen">
-      <div class="modelMsg">
+    <div class="conCen ">
+      <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
         <el-button class="pull-right" type="primary">导出模型</el-button>
         <p class="fs-12 fw-400 text-grey-2">121234123412341234123434</p>
@@ -14,7 +14,7 @@
       <div class="model-record mt-20 fs-14">
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
           <el-tab-pane label="模型开发记录" name="first" />
-          <develop-record v-if="activeName=='first'" class="h100" />
+          <develop-record v-if="activeName=='first'" />
           <el-tab-pane label="模型验证记录" name="second" />
           <validation-record v-if="activeName=='second'" />
           <el-tab-pane label="模型使用记录" name="third" />
@@ -53,6 +53,9 @@ export default {
   methods: {
     handleClick(tab, event) {
       // console.log(tab, event);
+    },
+    getActiveTab(e) {
+      this.activeName = e
     }
   }
 }
@@ -62,22 +65,34 @@ export default {
 .conCen{
   width: 100%;
   height: calc(100% - 42px);
-  padding:20px 30px;
+  // padding:20px 30px;
+  background:#eee;
   .modelMsg{
     width: 100%;
-    height: 88px;
+    height: 105px;
     background: #F6F6F6;
-    border-radius: 5px;
-    border: 1px solid #D9D9D9;
-    padding:10px 15px
+    border-radius: 0 0 5px 5px;
+    padding:20px 30px;
+    p{
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
   }
   .model-record{
     height: 85%;
+    background: #FFFFFF;
+    border-radius: 5px;
+  }
+  >>> .pagination-container{
+   width: 100%;
+    padding: 32px 20px;
   }
   >>> .el-tabs{
     height: 100%;
     .el-tabs__content{
-      height: 95%;
+      height: 88%;
+    border: 1px solid #D9D9D9;
+    margin: 20px 30px;
     }
   }
   >>> .el-tabs__nav{

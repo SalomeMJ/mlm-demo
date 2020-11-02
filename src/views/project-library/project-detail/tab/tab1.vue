@@ -11,7 +11,7 @@
           </div>
           <div class="rightItem">
             <p v-for="(item, index) in projectDetaiMsg.projectData" :key="index">
-              <span class="circle"><i class="iconfont icon" :class="item.icon" /></span>
+              <span class="circle mt-5"><i class="iconfont icon" :class="item.icon" /></span>
               <span class="fs-16 text-grey-0 fw-400 num">{{ item.value }}</span>
               <span class="fs-16 text-grey-0 fw-400 num mt-5">{{ item.name }}</span>
             </p>
@@ -105,6 +105,9 @@
 <script>
 import LineChart from '@/components/Echats/LineChart'
 import TableContainer from '../component/table-container'
+import { getAssetPool } from '@/api/model-asset/asset-pool'
+import { getUsingEvent } from '@/api/project-library/using-event/using-event'
+import { getValidationData } from '@/api/project-library/validation-data/validation-data'
 
 export default {
   name: 'TabOne',
@@ -133,8 +136,8 @@ export default {
         name: '模型资产池',
         detail: true,
         headArr: [
-          { label: '编号', prop: 'number', sortable: false },
-          { label: '名称', prop: 'name', sortable: false },
+          { label: '模型编号', prop: 'modelNo', sortable: false },
+          { label: '模型名称', prop: 'modelName', sortable: false },
           { label: '修改时间', prop: 'updateTime', sortable: false },
           { label: '负责人', prop: 'head', sortable: false }
         ],
@@ -144,7 +147,7 @@ export default {
         name: '使用事件',
         detail: true,
         headArr: [
-          { label: '名称', prop: 'number', sortable: false },
+          { label: '名称', prop: 'eventName', sortable: false },
           { label: '状态', prop: 'status', sortable: false },
           { label: '触发预警次数', prop: 'touchTimes', sortable: false },
           { label: '生效时间', prop: 'effectTime', sortable: false },
@@ -156,10 +159,10 @@ export default {
         name: '验证数据',
         detail: false,
         headArr: [
-          { label: '编号', prop: 'number', sortable: false },
-          { label: '名称', prop: 'name', sortable: false },
+          { label: '编号', prop: 'validationNo', sortable: false },
+          { label: '名称', prop: 'validationName', sortable: false },
           { label: '时间范围', prop: 'timeRange', sortable: false },
-          { label: '好坏比例', prop: 'badGoodRate', sortable: false }
+          { label: '好坏比例', prop: 'rate', sortable: false }
         ],
         tableData: []
       },
@@ -223,13 +226,19 @@ export default {
         }
       ]
       // 模型池
-      this.modelContainer.tableData = this.projectDetail.modelData
+      getAssetPool(this.currpage).then((response) => {
+        this.modelContainer.tableData = response.data.assetPool
+      })
       // 进行中任务
       this.doingMasks = this.projectDetail.doingMasks
       // 使用事件
-      this.useEvents.tableData = this.projectDetail.useEvents
+      getUsingEvent().then((response) => {
+        this.useEvents.tableData = response.data.usingEvents
+      })
       // 验证数据
-      this.validationContainer.tableData = this.projectDetail.validationData
+      getValidationData().then((response) => {
+        this.validationContainer.tableData = response.data.validationDatas
+      })
     },
     getenterDetail(e) {
       this.$emit('enterDetail', e)
@@ -279,7 +288,7 @@ padding: 20px;
     span.num{
           display: block;
     position: relative;
-    margin-top: -22%;
+    margin-top: -17%;
     margin-left: 50%;
     }
     }
@@ -346,9 +355,9 @@ padding: 20px;
   .content >>> .el-step__head{
     width: 94%;
   }
-  .content >>> .el-step.is-horizontal .el-step__line{
-    // margin-right: 10px !important;
-  }
+  // .content >>> .el-step.is-horizontal .el-step__line{
+  //   // margin-right: 10px !important;
+  // }
   .content >>> .el-step.is-horizontal {
       flex-basis:24% !important;
   }
