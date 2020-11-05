@@ -125,6 +125,9 @@ export default {
     display: inline-block;
     width: 100%;
     height: 100%;
+    >>> .el-tabs__nav-scroll::after{
+      display: none;
+    }
     >>> .el-tabs__header {
       padding: 0;
       position: fixed;

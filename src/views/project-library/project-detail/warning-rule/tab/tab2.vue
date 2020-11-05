@@ -7,8 +7,6 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary" class="mr-20" plain>指标管理</el-button>
-      <el-button type="primary" @click="addWarningRule()">新建预警规则</el-button>
     </div>
     <div class="conCen mt-20">
       <el-table
@@ -21,18 +19,9 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==1?'right':'left'" fixed>
             <template slot-scope="scope">
-              <span v-if="index!=1&&index!=2&&index!=3">
-                {{ scope.row[item.prop] }}
-              </span>
-              <span v-if="index==1" @click="editWarningRule(scope.row)">
-                {{ scope.row[item.prop] }}
-              </span>
-              <span v-if="index==2" @click="enterEvent(scope.row)">
-                {{ scope.row[item.prop] }}
-              </span>
-              <span v-if="index==3" @click="enterModelDetail(scope.row)">
+              <span>
                 {{ scope.row[item.prop] }}
               </span>
             </template>
@@ -46,15 +35,12 @@
 </template>
 <script>
 import PickerTime from '@/components/PickerTime/index'
-import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
-import { getUrlParams } from '@/utils/getUrlParams'
+import { getTouchRecord } from '@/api/project-library/warning-rule/touch-record'
 import PagiNation from '@/components/Pagination/index'
 
 export default {
-  name: 'TabTwo',
+  name: 'WarningTwo',
   components: { PickerTime, PagiNation },
-  props: {
-  },
   data() {
     return {
       input: '',
@@ -68,12 +54,8 @@ export default {
         hidden: false
       },
       headArr: [
-        { label: '规则编号', prop: 'ruleNo', sortable: false },
-        { label: '规则名称', prop: 'ruleName', sortable: false },
-        { label: '检测事件名称', prop: 'detectionRuleName', sortable: false },
-        { label: '模型名称', prop: 'modelName', sortable: false },
-        { label: '状态', prop: 'status', sortable: false },
-        { label: '生效时间', prop: 'effectTime', sortable: false }
+        { label: '执行时间', prop: 'executeTime', sortable: false },
+        { label: '预警值', prop: 'executeResult', sortable: false }
       ],
       tableData: [],
       totalData: []
@@ -110,25 +92,18 @@ export default {
       }
     },
     initData() {
-      getWarningRule().then((response) => {
-        this.tableData = response.data.ruleList
+      getTouchRecord(this.currpage).then((response) => {
+        console.log(response)
+        this.tableData = response.data.results
         this.totalData = this.tableData
       })
     },
     initDirective(x) {
       this.currpage = x
     },
-    enterModelDetail(params) {
-      this.$router.push({ path: './model-record', query: { modelName: params.modelName, projectName: getUrlParams().projectName }})
-    },
-    enterEvent(params) {
-      this.$router.push({ path: './using-detail', query: { eventName: params.detectionRuleName, projectName: getUrlParams().projectName, action: '生效中' }})
-    },
-    addWarningRule() {
-      this.$router.push({ path: './warning-rule', query: { projectName: getUrlParams().projectName, action: 'add' }})
-    },
-    editWarningRule(params) {
-      this.$router.push({ path: './warning-rule', query: { projectName: getUrlParams().projectName, ruleName: params.ruleName, action: params.status === 3 ? 'scan' : 'edit' }})
+    // 模型记录
+    enterModelRecord(params) {
+      this.$router.push({ path: './model-record', query: { modelName: params.modelName, projectName: this.projectName }})
     }
   }
 
@@ -145,21 +120,8 @@ export default {
     background: #FFFFFF;
     border-radius: 2px;
     position: absolute;
-    right:260px;
+    right:0px;
     top:0;
-  }
-  >>> button{
-    position: absolute;
-  }
-  >>> button.el-button--primary.el-button--medium{
-    width: 110px;
-    height: 32px;
-    right:0;
-  }
-  >>> button.el-button--primary.el-button--medium.is-plain{
-    width: 110px;
-    height: 32px;
-    right:110px;
   }
 }
 .conCen{
@@ -169,14 +131,13 @@ border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{
   display: none;
 }
->>> td:nth-child(2) .cell span{
-  cursor: pointer;
-}
->>> td:nth-child(2) .cell span,>>> td:nth-child(3) .cell span,>>> td:nth-child(4) .cell span{
-  color:#00a0e9;
-  text-decoration: underline;
-  cursor: pointer;
-}
+// >>> td:nth-child(2) .cell span{
+//   cursor: pointer;
+// }
+// >>> td:nth-child(2) .cell span,>>> td:nth-child(4) .cell span{
+//   color:#00a0e9;
+//   text-decoration: underline;
+// }
 background-color: #fff;
 }
 

@@ -60,14 +60,6 @@ export default {
     margin-right: 10px;
   }
 }
-.text-grey-opacity-86{
-color:rgba(0,0,0,0.86)
-}
-.must-write::before{
-  content: '* ';
-  color: #FF4D4F;
-  vertical-align: middle;
-}
 .conCen{
   width: 100%;
   height: calc(100% - 105px);

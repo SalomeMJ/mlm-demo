@@ -116,7 +116,19 @@ export const constantRoutes = [
             component: () => import('@/views/project-library/project-detail/using-event'),
             name: 'UsingDetail',
             meta: { title: 'using-detail', affix: true, activeMenu: '/project-library' }
+          },
+          {
+            path: 'warning-rule',
+            component: () => import('@/views/project-library/project-detail/warning-rule'),
+            name: 'WarningRule',
+            meta: { title: 'warning-rule', affix: true, activeMenu: '/project-library' }
           }
+          // {
+          //   path: 'warningrule-detail',
+          //   component: () => import('@/views/project-library/project-detail/warning-rule'),
+          //   name: 'ComplateRuleDetail',
+          //   meta: { title: 'warning-rule', affix: true, activeMenu: '/project-library' }
+          // }
         ]
       },
       // {

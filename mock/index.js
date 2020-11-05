@@ -28,6 +28,9 @@ import usingData from './project-library/using-event/using-event'
 import eventWarningRule from './project-library/using-event/warning-rule'
 import eventSituation from './project-library/using-event/event-situation'
 import warningRule from './project-library/warning-rule/warning-rule'
+import warningRuledetail from './project-library/warning-rule/warning-ruledetail'
+import touchRecord from './project-library/warning-rule/touch-record'
+import operation from './project-library/warning-rule/operation'
 import article from './article'
 import search from './remote-search'
 
@@ -59,6 +62,9 @@ const mocks = [
   eventWarningRule,
   eventSituation,
   warningRule,
+  warningRuledetail,
+  touchRecord,
+  operation,
   ...article,
   ...search,
   ...search
