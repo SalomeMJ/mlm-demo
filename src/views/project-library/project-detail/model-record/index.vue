@@ -16,6 +16,7 @@
           <el-tab-pane label="模型开发记录" name="first" />
           <develop-record v-if="activeName=='first'" />
           <el-tab-pane label="模型验证记录" name="second" />
+          <span v-if="activeName=='second'" class="addValidationEvent" @click="addValidationEvent()">新建验证事件</span>
           <validation-record v-if="activeName=='second'" />
           <el-tab-pane label="模型使用记录" name="third" />
           <using-record v-if="activeName=='third'" />
@@ -42,7 +43,14 @@ export default {
       back: true,
       src: '/project-library/project-detail',
       query: null,
-      activeName: 'first'
+      activeName: 'first',
+      child: [
+        { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },
+        { name: '验证模型', mustWrite: true, type: 'select', value: '' },
+        { name: '选择验证方式', mustWrite: true, type: 'select', value: '' },
+        { name: '负责人', mustWrite: true, type: 'select', value: '' },
+        { name: '上传数据', mustWrite: true, type: 'select', value: '' }
+      ]
     }
   },
   created() {
@@ -56,6 +64,18 @@ export default {
     },
     getActiveTab(e) {
       this.activeName = e
+    },
+    addValidationEvent() {
+      this.$msgBox.showMsgBox({
+        title: '新建验证事件',
+        content: '',
+        contentData: this.child,
+        isShowInput: true
+      }).then(async(val) => {
+        // ...
+      }).catch(() => {
+        // ...
+      })
     }
   }
 }
@@ -119,5 +139,16 @@ export default {
       background-color: #fff;
     }
   }
+}
+.addValidationEvent{
+  border: none;
+  background: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  position: fixed;
+  top: 255px;
+  height: 20px;
+  right: 50px;
+  color:#00a0e9;
 }
  </style>

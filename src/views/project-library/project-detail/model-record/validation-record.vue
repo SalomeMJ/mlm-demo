@@ -17,19 +17,21 @@
             </span>
             <span v-if="index==7">
               {{ scope.row[item.prop] }}
-              <i class="icon iconfont icontoright icon-f20 doingColor" />
+              <i class="icon iconfont icontoright icon-f20 doingColor" @click="enterDetail(scope.row)" />
             </span>
           </template>
         </el-table-column>
       </template>
     </el-table>
     <pagi-nation :pagination-data="paginationData" class="pull-right" @pagination="pageChange" />
+    <router-view />
   </div>
 </template>
 
 <script>
 import { getValidationRecord } from '@/api/project-library/model-record/validation-record'
 import PagiNation from '@/components/Pagination/index'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'ValidationRecord',
@@ -100,6 +102,9 @@ export default {
     },
     initDirective(x) {
       this.currpage = x
+    },
+    enterDetail(params) {
+      this.$router.push({ path: './validation-detail', query: { modelName: getUrlParams().modelName, eventName: params.eventName, projectName: getUrlParams().projectName }})
     }
   }
 }

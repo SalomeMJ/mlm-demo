@@ -51,9 +51,9 @@ export default {
       this.setOptions(this.lineChart)
     },
     setOptions(lineChart) {
-      if (this.lineChart.timeRange.length === 0 || this.lineChart.title === undefined ||
+      if (this.lineChart.timeRange === [] || this.lineChart.title === undefined ||
        this.lineChart.yName === undefined || this.lineChart.yInterval === undefined ||
-       this.lineChart.yAxis === null ||
+       this.lineChart.yAxis === null || this.lineChart.xType === null ||
         this.lineChart.legend.length === 0 || this.lineChart.series.length === 0) return
 
       this.chart.setOption({
@@ -68,8 +68,8 @@ export default {
         },
         xAxis: {
           data: lineChart.timeRange,
+          type: lineChart.xType,
           show: true,
-          type: 'category',
           axisLine: {
             lineStyle: {
               color: 'rgba(0,0,0,0.56)'

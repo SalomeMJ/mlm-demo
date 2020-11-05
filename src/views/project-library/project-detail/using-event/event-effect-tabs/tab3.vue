@@ -118,11 +118,11 @@ color:rgba(0,0,0,0.86)
           background: #F6F6F6;
           border-radius: 3px;
           border: 1px solid #D1D1D1;
-          box-shadow: none;       
-font-size: 14px;
-font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;
-color: #333333;
+          box-shadow: none;
+          font-size: 14px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #333333;
         }
       }
     }

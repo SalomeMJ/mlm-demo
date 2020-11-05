@@ -6,10 +6,16 @@
       height: 32px;
       font-size: 12px;
       font-weight: 700;
+      table-layout: auto;
       tr{
         th{
           background-color: #f0f0f0;
           padding:2px 0;
+          // .cell{
+          //   overflow: hidden;
+          //   text-overflow: ellipsis;
+          //   white-space: nowrap;
+          // }
         }
       }
     }
@@ -36,6 +42,11 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         padding: 6px 0 !important;
+        // .cell{
+        //   overflow: hidden;
+        //   text-overflow: ellipsis;
+        //   white-space: nowrap;
+        // }
       }
       th:last-child,td:last-child{
         text-align: right;

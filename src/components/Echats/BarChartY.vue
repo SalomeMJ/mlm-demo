@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     initChart() {
-      if (this.barChat.interval === undefined || this.barChat.series.length === 0 || this.barChat.headList === null || this.barChat.timeRange.length === 0 || this.barChat.title === undefined) return
+      if (this.barChat.title === undefined || this.barChat.series.length === 0 || this.barChat.legend.length === 0 || this.barChat.yData === null) return
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({
@@ -60,54 +60,48 @@ export default {
         },
         tooltip: {
           trigger: 'axis',
-          axisPointer: { // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          axisPointer: {
+            type: 'shadow'
           }
         },
         legend: {
-          data: this.barChat.headList,
-          bottom: 0
+          data: this.barChat.legend, bottom: 'bottom'
         },
-        dataZoom: this.barChat.dataZoom,
         grid: {
-          top: 54,
-          left: '2%',
-          right: '2%',
-          bottom: '13%',
-          containLabel: true
+          top: 30,
+          y: 30,
+          bottom: 50,
+          'right': 30,
+          'left': 55
         },
-        xAxis: [{
+        xAxis: {
+          type: 'value',
+          show: false,
+          boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+
           type: 'category',
-          show: this.barChat.xShow,
-          data: this.barChat.timeRange,
-          axisLine: {
+          data: this.barChat.yData,
+          axisLabel: this.barChat.axisLabel,
+          axisLine: { // y轴
+            show: false,
             lineStyle: {
-              color: 'rgba(0,0,0,1)'
+              color: 'rgba(0,0,0,0.45)',
+              width: 1,
+              type: 'solid'
             }
+
+          },
+          axisTick: { // y轴刻度线
+            show: false
+          },
+          splitLine: {
+            show: false
           }
-        }],
-        yAxis: [
-          {
-            name: this.barChat.yName,
-            type: 'value',
-            data: this.barChat.yData,
-            interval: this.barChat.interval,
-            axisLine: {
-              lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
-              }
-            },
-            axisLabel: {
-              textStyle: {
-                color: 'rgba(0,0,0,0.86)'
-              }
-            },
-            textStyle: {
-              fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
-            }
-          }
-        ],
+          // ,
+          // z: 10
+        },
         series: this.barChat.series
       })
     }

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import MessageBox from './components/MsgBox/index'
 
 import Cookies from 'js-cookie'
 
@@ -13,6 +14,7 @@ import '@/styles/system_icon_size.scss'
 import '@/styles/system-color-bgc.scss'
 import '@/styles/system-icon.scss'
 import '@/styles/global.scss'
+import '@/styles/system.scss'
 import '@/styles/table.scss'
 import '@/styles/sel-ipt.scss'
 
@@ -38,7 +40,7 @@ import * as filters from './filters' // global filters
 //   const { mockXHR } = require('../mock')
 //   mockXHR()
 // }
-
+Vue.use(MessageBox)
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium' // set element-ui default size
   // locale: enLang // 如果使用中文，无需设置，请删除

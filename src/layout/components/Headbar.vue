@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :span="22">
-      <div class="grid-content bg-purple inline-block"><i class="icon iconfont iconnan" /></div>
+      <div class="grid-content bg-purple inline-block"><i class="icon iconfont icon1207-zhongying-slogan-fanbai1" style="font-size:22px;" /></div>
     </el-col>
     <el-col :span="2">
       <i class="icon iconfont iconxiaolingdang fs-22 mr-20" />

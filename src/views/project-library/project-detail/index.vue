@@ -1,7 +1,7 @@
 <template>
   <div class="h100 coverParentView">
     <div class="project-select">
-      <el-select v-model="values" class="ml-20 w-200" placeholder="请选择">
+      <el-select v-model="values" class="ml-20 w-200" placeholder="请选择" @change="changeProject">
         <el-option
           v-for="item in projectOptions"
           :key="item.value"
@@ -70,19 +70,25 @@ export default {
         for (const item of res.data.projectList) {
           this.projectOptions.push(
             {
-              value: item.projectName,
-              label: item.projectId
+              value: item.projectId,
+              label: item.projectName
             }
           )
         }
+        this.values = this.projectOptions[0].label
       })
     },
+    changeProject() {
+      this.projectName = this.projectOptions[this.values - 1].label
+      console.log(this.projectName)
+    },
     getenterDetail(e) {
-      if (e.index === 3) {
-        this.$router.push({ path: './model-record', query: { modelName: e.params.name, projectName: getUrlParams().projectName }})
-      } else if (e.index === 5) {
-        // console.log(e)
-      }
+      this.$router.push({ path: './model-record', query: { modelName: e.params.name, projectName: this.projectName }})
+      // if (e.index === 3) {
+      //   this.$router.push({ path: './model-record', query: { modelName: e.params.name, projectName: this.projectName }})
+      // } else if (e.index === 5) {
+      //   // console.log(e)
+      // }
     },
     getactiveName(e) {
       // console.log(e)

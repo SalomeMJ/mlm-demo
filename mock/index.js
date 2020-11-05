@@ -12,6 +12,18 @@ import developRecord from './project-library/model-record/develop-record'
 import usingRecord from './project-library/model-record/using-record'
 import valitationRecord from './project-library/model-record/validation-record'
 import validationData from './project-library/validation-data/validation-data'
+import validationDetail from './project-library/validation-data/validation-detail'
+import validationScore from './project-library/validation-data/validation-score'
+import modelResult from './project-library/validation-data/model-result'
+import approvalMatch from './project-library/validation-data/approval-match'
+import scoreOverview from './project-library/validation-data/score-overview'
+import featureAnalysis from './project-library/validation-data/feature-analysis'
+import featureImportance from './project-library/validation-data/feature-importance'
+import cutoffbad from './project-library/validation-data/cutoff-bad'
+import dataSample from './project-library/validation-data/data-sample'
+import datasetDetail from './project-library/validation-data/detaset-detail'
+import modelDetail from './project-library/validation-data/model-detail'
+import univariate from './project-library/validation-data/univariate'
 import usingData from './project-library/using-event/using-event'
 import eventWarningRule from './project-library/using-event/warning-rule'
 import eventSituation from './project-library/using-event/event-situation'
@@ -31,6 +43,18 @@ const mocks = [
   usingRecord,
   valitationRecord,
   validationData,
+  validationDetail,
+  validationScore,
+  modelResult,
+  approvalMatch,
+  scoreOverview,
+  featureAnalysis,
+  featureImportance,
+  cutoffbad,
+  dataSample,
+  datasetDetail,
+  modelDetail,
+  univariate,
   usingData,
   eventWarningRule,
   eventSituation,
