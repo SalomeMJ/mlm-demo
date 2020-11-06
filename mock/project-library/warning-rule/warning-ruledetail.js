@@ -65,7 +65,7 @@ const warningRuledetail = {
   }
 }
 export default {
-  url: '/warning-rule-detail',
+  url: '/rule-detail',
   type: 'get',
   response: response => {
     return {

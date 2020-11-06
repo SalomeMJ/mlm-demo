@@ -7,7 +7,7 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary" class="mr-20" plain>指标管理</el-button>
+      <!-- <el-button type="primary" class="mr-20" plain>指标管理</el-button> -->
       <el-button type="primary" @click="addWarningRule()">新建预警规则</el-button>
     </div>
     <div class="conCen mt-20">
@@ -119,16 +119,16 @@ export default {
       this.currpage = x
     },
     enterModelDetail(params) {
-      this.$router.push({ path: './model-record', query: { modelName: params.modelName, projectName: getUrlParams().projectName }})
+      this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, projectName: getUrlParams().projectName }})
     },
     enterEvent(params) {
-      this.$router.push({ path: './using-detail', query: { eventName: params.detectionRuleName, projectName: getUrlParams().projectName, action: '生效中' }})
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.detectionRuleName, projectName: getUrlParams().projectName, action: '生效中' }})
     },
     addWarningRule() {
-      this.$router.push({ path: './warning-rule', query: { projectName: getUrlParams().projectName, action: 'add' }})
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, action: 'add' }})
     },
     editWarningRule(params) {
-      this.$router.push({ path: './warning-rule', query: { projectName: getUrlParams().projectName, ruleName: params.ruleName, action: params.status === 3 ? 'scan' : 'edit' }})
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, ruleName: params.ruleName, action: params.status === 3 ? 'scan' : 'edit' }})
     }
   }
 
@@ -145,7 +145,7 @@ export default {
     background: #FFFFFF;
     border-radius: 2px;
     position: absolute;
-    right:260px;
+    right:130px;
     top:0;
   }
   >>> button{

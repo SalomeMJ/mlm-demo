@@ -38,7 +38,7 @@
     </div>
     <div class="bg-white pt-20 border-radius-5 approval">
       <span class=" fs-14 fw-bold text-grey-opacity-86 mb-20">审批配置</span>
-      <el-timeline class="p-20">
+      <el-timeline class="p-20 times">
         <el-timeline-item v-for="(item, index) in timeList" :key="index" :icon="item.icon" :timestamp="item.timestamp" :color="item.color" placement="top">
           <el-card>
             <p v-for="(child, ind) in item.content" :key="ind" class="fs-14" :class="{'pb-10':ind!==child.length-1?true:false}">
@@ -403,6 +403,12 @@ border-radius: 2px;
 opacity: 0.39;
 border: 1px solid #00A0E9;
 }
+>>> .times >>> .el-timeline-item__node--normal {
+    left: -9px;
+    width: 26px;
+    height: 26px;
+    top: -6px;
+  }
 .approval{
   >>>.el-card{
   .el-card__body{

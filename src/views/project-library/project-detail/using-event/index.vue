@@ -1,7 +1,7 @@
 <template>
   <div class="h100  border-radius-5 coverParentView">
     <head-title :title="'使用事件>'+($route.query.eventName==null?'新建事件':$route.query.eventName)" :back="back" :src="src" :query="query" />
-    <event-addedit v-if="action=='add'||action=='配置中'||action=='审核中'" />
+    <event-addedit v-if="action=='add'||action=='配置中'||action=='生效审核中'" />
     <event-effect v-if="action=='生效中'" />
   </div>
 </template>
@@ -94,5 +94,8 @@ export default {
     }
 
   }
+}
+.coverParentView{
+  background-color: #eee;
 }
  </style>

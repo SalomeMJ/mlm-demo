@@ -37,7 +37,7 @@ import Tab1 from './tab/tab1'
 import Tab2 from './tab/tab2'
 import Tab3 from './tab/tab3'
 import Tab4 from './tab/tab4'
-// import { getUrlParams } from '@/utils/getUrlParams'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'ComplateRuleDetail',
@@ -54,6 +54,7 @@ export default {
   created() {
   },
   mounted() {
+    this.query = { projectName: getUrlParams().projectName }
   },
   methods: {
     handleClick(tab, event) {

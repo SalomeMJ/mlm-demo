@@ -5,21 +5,21 @@
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
         <el-button class="pull-right" type="primary">导出模型</el-button>
-        <p class="fs-12 fw-400 text-grey-2">121234123412341234123434</p>
+        <p class="fs-12 fw-400 text-grey-2">用于贷前审批</p>
         <p class="fs-12 fw-400 text-grey-2">
-          <span>模型开发负责人：123</span>
+          <span>模型开发负责人：黎簇</span>
           <span class="ml-20">模型注册时间：2020.08.09-12:00:09</span>
         </p>
       </div>
       <div class="model-record mt-20 fs-14">
-        <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+        <el-tabs v-model="activeTab" type="card" @tab-click="handleClick">
           <el-tab-pane label="模型开发记录" name="first" />
-          <develop-record v-if="activeName=='first'" />
+          <develop-record v-if="activeTab=='first'" />
           <el-tab-pane label="模型验证记录" name="second" />
-          <span v-if="activeName=='second'" class="addValidationEvent" @click="addValidationEvent()">新建验证事件</span>
-          <validation-record v-if="activeName=='second'" />
+          <span v-if="activeTab=='second'" class="addValidationEvent" @click="addValidationEvent()">新建验证事件</span>
+          <validation-record v-if="activeTab=='second'" />
           <el-tab-pane label="模型使用记录" name="third" />
-          <using-record v-if="activeName=='third'" />
+          <using-record v-if="activeTab=='third'" />
           <el-tab-pane label="模型操作日志" name="fourth" />
           <el-tab-pane label="模型文档库" name="five" />
         </el-tabs>
@@ -43,7 +43,7 @@ export default {
       back: true,
       src: '/project-library/project-detail',
       query: null,
-      activeName: 'first',
+      activeTab: 'first',
       child: [
         { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },
         { name: '验证模型', mustWrite: true, type: 'select', value: '' },
@@ -111,7 +111,7 @@ export default {
     height: 100%;
     .el-tabs__content{
       height: 88%;
-    border: 1px solid #D9D9D9;
+    // border: 1px solid #D9D9D9;
     margin: 20px 30px;
     }
   }

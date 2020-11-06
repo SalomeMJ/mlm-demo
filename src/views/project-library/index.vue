@@ -81,18 +81,18 @@ export default {
         }
       }
       this.projectList = newVal === '' ? this.totalProject : arr
-    },
-    'input': function(newVal, oldVal) {
-      // const arr = []
-      // for (const item of this.totalProject) {
-      //   console.log(Object.keys(item))
-      //   if (Object.values(item).indexOf(newVal) >= 0) {
-      //     arr.push(item)
-      //   }
-      // }
-      // console.log(arr)
-      // this.projectList = newVal === '' ? this.totalProject : arr
     }
+    // 'input': function(newVal, oldVal) {
+    //   // const arr = []
+    //   // for (const item of this.totalProject) {
+    //   //   console.log(Object.keys(item))
+    //   //   if (Object.values(item).indexOf(newVal) >= 0) {
+    //   //     arr.push(item)
+    //   //   }
+    //   // }
+    //   // console.log(arr)
+    //   // this.projectList = newVal === '' ? this.totalProject : arr
+    // }
   },
   created() {
   },
@@ -107,6 +107,7 @@ export default {
       })
     },
     enterProject(item) {
+      localStorage.setItem('activeTab', 0)
       this.$router.push({ path: '/project-library/project-detail', query: { projectName: item.projectName }})
     }
   }

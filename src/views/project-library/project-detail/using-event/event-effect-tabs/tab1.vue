@@ -41,6 +41,7 @@ export default {
             height: '250px',
             timeRange: [],
             interval: 250,
+            xShow: true,
             yName: '',
             series: []
           }
@@ -55,6 +56,7 @@ export default {
             height: '250px',
             timeRange: [],
             interval: 250,
+            xShow: true,
             yName: '',
             series: []
           }
@@ -76,7 +78,7 @@ export default {
         }
         this.chartList[0].barOptions.series = [
           {
-            name: '开发样本',
+            name: '',
             color: '#00A0E9',
             type: 'bar',
             barWidth: 40,
@@ -91,7 +93,7 @@ export default {
         }
         this.chartList[1].barOptions.series = [
           {
-            name: '开发样本',
+            name: '',
             color: '#00A0E9',
             type: 'bar',
             barWidth: 40,

@@ -52,7 +52,7 @@ export default {
         { label: '事件编号', prop: 'eventNo', sortable: false },
         { label: '事件名称', prop: 'eventName', sortable: false },
         { label: '负责人', prop: 'head', sortable: false },
-        { label: '状态', prop: 'statu', sortable: false },
+        { label: '状态', prop: 'status', sortable: false },
         { label: '验证时间', prop: 'validationTime', sortable: false },
         { label: 'K-S', prop: 'K-S', sortable: false },
         { label: 'AUC', prop: 'AUC', sortable: false },
@@ -104,12 +104,15 @@ export default {
       this.currpage = x
     },
     enterDetail(params) {
-      this.$router.push({ path: './validation-detail', query: { modelName: getUrlParams().modelName, eventName: params.eventName, projectName: getUrlParams().projectName }})
+      this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, eventName: params.eventName, projectName: getUrlParams().projectName }})
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.table-container {
+  border: 1px solid #D9D9D9;
+  height: 100%;
+}
  </style>

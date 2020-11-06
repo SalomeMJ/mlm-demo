@@ -71,38 +71,18 @@
     </div>
     <div class="bg-white p-20 border-radius-5 approval">
       <span class=" fs-14 fw-bold text-grey-opacity-86 mb-20">审批配置</span>
-      <el-timeline>
-        <el-timeline-item timestamp="直接上级" placement="top">
-          <el-card>
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/12 20:46</p>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="指定审批人" placement="top">
-          <el-card>
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/3 20:46</p>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="抄送人" placement="top">
-          <el-card>
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/2 20:46</p>
-          </el-card>
-        </el-timeline-item>
-      </el-timeline>
+      <time-line :time-list="timeList" />
     </div>
 
   </div>
 </template>
 
 <script>
-// import HeadTitle from '@/components/HeadTitle'
-// import { getUrlParams } from '@/utils/getUrlParams'
+import TimeLine from '@/components/TimeLine'
 
 export default {
   name: 'AddRule',
-  // components: { HeadTitle },
+  components: { TimeLine },
   data() {
     return {
       useEvent: '',
@@ -198,6 +178,41 @@ export default {
         },
         {
           name: '审批类别', mustWrite: false, type: 'input', disabled: true
+        }
+      ],
+      timeList: [
+        {
+          content: [
+            {
+              con: '王盟',
+              desc: '已同意-2020.08.15-12:00:00'
+            },
+            {
+              con: '于和伟',
+              desc: '已同意-2020.08.17-12:00:00'
+            }
+          ],
+          packUp: false,
+          timestamp: '直接上级',
+          color: '#00a0e9',
+          icon: 'el-icon-s-check'
+        },
+        {
+          content: [{
+            con: '田雨',
+            desc: '已同意-2020.08.20-12:00:00'
+          }],
+          packUp: true,
+          timestamp: '指定审批人',
+          color: '#00a0e9',
+          icon: 'el-icon-s-check'
+        },
+        {
+          content: [],
+          packUp: true,
+          timestamp: '抄送人',
+          color: '#00a0e9',
+          icon: 'el-icon-s-promotion'
         }
       ]
     }

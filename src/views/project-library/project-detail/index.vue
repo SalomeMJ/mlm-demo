@@ -12,7 +12,7 @@
     </div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="项目工作台" name="first" />
-      <tab1 v-if="activeName=='first'&&flag" :project-detail="projectDetail" @enterDetail="getenterDetail" />
+      <tab1 v-if="activeName=='first'&&flag&&projectDetail!={}" :project-detail="projectDetail" @enterDetail="getenterDetail" @activeName="getactiveName" />
       <el-tab-pane label="模型资产池" name="second" />
       <tab2 v-if="activeName=='second'" :project-name="projectName" />
       <el-tab-pane label="使用事件" name="third" />
@@ -22,6 +22,10 @@
       <el-tab-pane label="模型验证" name="five" />
       <tab5 v-if="activeName=='five'" />
     </el-tabs>
+    <!-- <div v-if="routerActive"> -->
+    <router-view />
+    <!-- </div> -->
+
   </div>
 </template>
 
@@ -45,7 +49,8 @@ export default {
       projectOptions: [],
       values: '',
       projectDetail: {},
-      flag: false
+      flag: false,
+      isShow: false
     }
   },
   created() {
@@ -53,11 +58,12 @@ export default {
   mounted() {
     this.getDetail()
     this.getactiveName(Number(localStorage.getItem('activeTab')))
-    localStorage.removeItem('activeTab')
+    // localStorage.removeItem('activeTab')
   },
   methods: {
     handleClick(tab, event) {
       localStorage.setItem('activeTab', tab.index)
+      this.$router.push({ path: '/project-library/project-detail', query: { projectName: this.projectName }})
     },
     getDetail() {
       this.projectName = getUrlParams().projectName
@@ -80,18 +86,17 @@ export default {
     },
     changeProject() {
       this.projectName = this.projectOptions[this.values - 1].label
-      console.log(this.projectName)
+      this.activeName = 'first'
+      localStorage.setItem('activeTab', 0)
+      this.$router.push({ path: '/project-library/project-detail', query: { projectName: this.projectName }})
     },
     getenterDetail(e) {
-      this.$router.push({ path: './model-record', query: { modelName: e.params.name, projectName: this.projectName }})
-      // if (e.index === 3) {
-      //   this.$router.push({ path: './model-record', query: { modelName: e.params.name, projectName: this.projectName }})
-      // } else if (e.index === 5) {
-      //   // console.log(e)
-      // }
+      this.activeName = 'second'
+      localStorage.setItem('activeTab', 1)
+      this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: e.params.name, projectName: this.projectName }})
     },
     getactiveName(e) {
-      // console.log(e)
+      localStorage.setItem('activeTab', e)
       if (e === null || e === 0) {
         this.activeName = 'first'
       }
@@ -140,6 +145,12 @@ export default {
       overflow-y: auto;
       position: relative;
       background: #eee;
+    }
+    >>> .el-tabs__nav-wrap::after{
+      display: none;
+    }
+    >>> .el-tabs__item {
+      height: 53px;
     }
   }
  </style>

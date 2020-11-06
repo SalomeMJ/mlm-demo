@@ -1,5 +1,5 @@
 <template>
-  <div class="h100">
+  <div class="h100 table-container">
     <el-table
       v-if="tableData.length!=0"
       class="system-table"
@@ -104,4 +104,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.table-container {
+  border: 1px solid #D9D9D9;
+  height: 100%;
+}
  </style>

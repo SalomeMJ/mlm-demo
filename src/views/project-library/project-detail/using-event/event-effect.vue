@@ -3,23 +3,23 @@
     <div class="conTop pl-30 pt-20 pr-30 pb-20 bg-white">
       <div>
         <span class="fs-14 fw-400">使用事件名称：</span>
-        <span class="value">123</span>
+        <span class="value">{{ eventName }}</span>
       </div>
       <div>
         <span class="fs-14 fw-400">使用事件描述：</span>
-        <span class="value">123</span>
+        <span class="value">用于贷前审批</span>
       </div>
       <div>
         <span class="fs-14 fw-400">当前状态</span>
-        <span class="value">123</span>
+        <span class="value">{{ action }}</span>
       </div>
       <div class="mt-20">
         <span class="fs-14 fw-400">使用模型：</span>
-        <span class="value">123</span>
+        <span class="value">{{ modelName }}</span>
       </div>
       <div class="mt-20">
         <span class="fs-14 fw-400">模型文档：</span>
-        <span class="value">123</span>
+        <span class="value">DataSet.csv</span>
       </div>
     </div>
     <div class="conMiddle bg-white">
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-// import { getUrlParams } from '@/utils/getUrlParams'
+import { getUrlParams } from '@/utils/getUrlParams'
 import Tab1 from './event-effect-tabs/tab1'
 import Tab2 from './event-effect-tabs/tab2'
 import Tab3 from './event-effect-tabs/tab3'
@@ -49,12 +49,18 @@ export default {
   components: { Tab1, Tab2, Tab3 },
   data() {
     return {
-      activeName: 'first'
+      activeName: 'first',
+      eventName: null,
+      action: null,
+      modelName: null
     }
   },
   created() {
   },
   mounted() {
+    this.action = getUrlParams().action
+    this.modelName = getUrlParams().modelName
+    this.eventName = getUrlParams().eventName
   },
   methods: {
     handleClick(tab, event) {

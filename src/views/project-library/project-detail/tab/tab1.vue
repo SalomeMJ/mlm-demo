@@ -105,9 +105,6 @@
 <script>
 import LineChart from '@/components/Echats/LineChart'
 import TableContainer from '../component/table-container'
-import { getAssetPool } from '@/api/model-asset/asset-pool'
-import { getUsingEvent } from '@/api/project-library/using-event/using-event'
-import { getValidationData } from '@/api/project-library/validation-data/validation-data'
 
 export default {
   name: 'TabOne',
@@ -136,8 +133,8 @@ export default {
         name: '模型资产池',
         detail: true,
         headArr: [
-          { label: '模型编号', prop: 'modelNo', sortable: false },
-          { label: '模型名称', prop: 'modelName', sortable: false },
+          { label: '模型编号', prop: 'number', sortable: false },
+          { label: '模型名称', prop: 'name', sortable: false },
           { label: '修改时间', prop: 'updateTime', sortable: false },
           { label: '负责人', prop: 'head', sortable: false }
         ],
@@ -147,7 +144,7 @@ export default {
         name: '使用事件',
         detail: true,
         headArr: [
-          { label: '名称', prop: 'eventName', sortable: false },
+          { label: '名称', prop: 'name', sortable: false },
           { label: '状态', prop: 'status', sortable: false },
           { label: '触发预警次数', prop: 'touchTimes', sortable: false },
           { label: '生效时间', prop: 'effectTime', sortable: false },
@@ -159,10 +156,10 @@ export default {
         name: '验证数据',
         detail: false,
         headArr: [
-          { label: '编号', prop: 'validationNo', sortable: false },
-          { label: '名称', prop: 'validationName', sortable: false },
+          { label: '编号', prop: 'number', sortable: false },
+          { label: '名称', prop: 'name', sortable: false },
           { label: '时间范围', prop: 'timeRange', sortable: false },
-          { label: '好坏比例', prop: 'rate', sortable: false }
+          { label: '好坏比例', prop: 'badGoodRate', sortable: false }
         ],
         tableData: []
       },
@@ -180,7 +177,8 @@ export default {
         yName: '',
         yAxis: null,
         series: []
-      }
+      },
+      activeTabIndex: 0
     }
   },
   mounted() {
@@ -226,25 +224,28 @@ export default {
         }
       ]
       // 模型池
-      getAssetPool(this.currpage).then((response) => {
-        this.modelContainer.tableData = response.data.assetPool
-      })
+      this.modelContainer.tableData = this.projectDetail.modelData
       // 进行中任务
       this.doingMasks = this.projectDetail.doingMasks
       // 使用事件
-      getUsingEvent().then((response) => {
-        this.useEvents.tableData = response.data.usingEvents
-      })
+      this.useEvents.tableData = this.projectDetail.useEvents
       // 验证数据
-      getValidationData().then((response) => {
-        this.validationContainer.tableData = response.data.validationDatas
-      })
+      this.validationContainer.tableData = this.projectDetail.validationData
     },
     getenterDetail(e) {
       this.$emit('enterDetail', e)
     },
     getActiveTab(e) {
-      this.$emit('activeName', e)
+      if (e === '模型资产池') {
+        this.activeTabIndex = 1
+      }
+      if (e === '使用事件') {
+        this.activeTabIndex = 2
+      }
+      if (e === '验证数据') {
+        this.activeTabIndex = 4
+      }
+      this.$emit('activeName', this.activeTabIndex)
     }
   }
 

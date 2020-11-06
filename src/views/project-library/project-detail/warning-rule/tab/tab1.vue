@@ -16,7 +16,7 @@ export default {
         title: '上海地区申请通过率',
         chartName: 'lineOptions',
         width: '100%',
-        height: '265px',
+        height: '510px',
         legend: [''],
         timeRange: [],
         yInterval: 10,
@@ -32,70 +32,68 @@ export default {
   methods: {
     getDetail() {
       getWarningRuleDetail().then((res) => {
-        console.log(res)
-        // res.data = res.data.results
-        // if (res.data.runCounts === null) res.data.runCounts = 0
-        // if (res.data.triggeNumber === null) res.data.triggeNumber = 0
-        // // const title2 = '执行次数：' + res.data.runCounts + '    触发次数：' + res.data.triggeNumber
-        // const datax = []
-        // const datay = []
-        // let max = res.data.value * 2
-        // for (const item of res.data.rulePerformanceList) {
-        //   datax.push(item.executeTime)
-        //   datay.push(item.executeResult)
-        //   if (max < item.executeResult) {
-        //     max = item.executeResult
-        //   }
-        // }
-        // this.lineChart.timeRange = datax
+        res.data = res.data.results
+        if (res.data.runCounts === null) res.data.runCounts = 0
+        if (res.data.triggeNumber === null) res.data.triggeNumber = 0
+        const datax = []
+        const datay = []
+        let max = res.data.value * 2
+        for (const item of res.data.rulePerformanceList) {
+          datax.push(item.executeTime)
+          datay.push(item.executeResult)
+          if (max < item.executeResult) {
+            max = item.executeResult
+          }
+        }
+        this.lineChart.timeRange = datax
 
-        // this.lineChart.yAxis = {
-        //   type: 'value',
-        //   show: true,
-        //   axisLine: {
-        //     show: false
-        //   },
-        //   min: 0,
-        //   max: Math.ceil(max),
-        //   interval: Math.ceil(max),
-        //   axisLabel: {
-        //     textStyle: {
-        //       color: 'rgba(0,0,0,0.56)'
-        //     }
+        this.lineChart.yAxis = {
+          type: 'value',
+          show: true,
+          axisLine: {
+            show: false
+          },
+          min: 0,
+          max: Math.ceil(max),
+          interval: Math.ceil(max),
+          axisLabel: {
+            textStyle: {
+              color: 'rgba(0,0,0,0.56)'
+            }
 
-        //   }
-        // }
-        // this.lineChart.series = [{
-        //   data: datay,
-        //   type: 'line',
-        //   symbolSize: 8,
-        //   markLine: {
-        //     symbol: 'none',
-        //     label: {
-        //       position: 'start'
-        //     },
-        //     data: [{
-        //       silent: true,
-        //       lineStyle: {
-        //         type: 'dashed',
-        //         color: '#FA3934',
-        //         width: 1
-        //       },
-        //       yAxis: res.data.value
-        //     }],
-        //     tooltip: {
-        //       show: false
-        //     },
-        //     precision: 1,
-        //     emphasis: {
-        //       lineStyle: {
-        //         type: 'dashed',
-        //         color: '#FA3934',
-        //         width: 1
-        //       }
-        //     }
-        //   }
-        // }]
+          }
+        }
+        this.lineChart.series = [{
+          data: datay,
+          type: 'line',
+          symbolSize: 8,
+          markLine: {
+            symbol: 'none',
+            label: {
+              position: 'start'
+            },
+            data: [{
+              silent: true,
+              lineStyle: {
+                type: 'dashed',
+                color: '#FA3934',
+                width: 1
+              },
+              yAxis: res.data.value
+            }],
+            tooltip: {
+              show: false
+            },
+            precision: 1,
+            emphasis: {
+              lineStyle: {
+                type: 'dashed',
+                color: '#FA3934',
+                width: 1
+              }
+            }
+          }
+        }]
       })
     }
   }

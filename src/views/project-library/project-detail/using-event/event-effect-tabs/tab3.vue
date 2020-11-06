@@ -20,43 +20,52 @@
     <div class="conItem mb-20">
       <p class="title fs-14 fw-bold text-grey-opacity-86">审批流程</p>
       <div class="conDetail pt-20">
-        <el-timeline>
-          <el-timeline-item timestamp="直接上级" placement="top">
-            <el-card>
-              <h4>更新 Github 模板</h4>
-              <p>王小虎 提交于 2018/4/12 20:46</p>
-            </el-card>
-          </el-timeline-item>
-          <el-timeline-item timestamp="指定审批人" placement="top">
-            <el-card>
-              <h4>更新 Github 模板</h4>
-              <p>王小虎 提交于 2018/4/3 20:46</p>
-            </el-card>
-          </el-timeline-item>
-          <el-timeline-item timestamp="抄送人" placement="top">
-            <el-card>
-              <h4>更新 Github 模板</h4>
-              <p>王小虎 提交于 2018/4/2 20:46</p>
-            </el-card>
-          </el-timeline-item>
-        </el-timeline>
+        <time-line :time-list="timeList" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import { getUrlParams } from '@/utils/getUrlParams'
+import TimeLine from '@/components/TimeLine'
 
 export default {
   name: 'EventAddEdit',
-  components: { },
+  components: { TimeLine },
   data() {
     return {
       condetail: [
-        { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '' },
-        { name: '验证记录', mustWrite: false, type: 'select', icon: 'iconeye1', value: '' },
-        { name: '生效时间', mustWrite: true, type: 'time', icon: 'iconxiazai', value: '' }
+        { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '黎簇' },
+        { name: '验证记录', mustWrite: false, type: 'select', icon: 'iconeye1', value: '验证事件V11、验证事件V10' },
+        { name: '生效时间', mustWrite: true, type: 'time', icon: 'iconxiazai', value: '2020.09.01-12:00:00' }
+      ],
+      timeList: [
+        {
+          content: [
+            {
+              con: '王盟',
+              desc: '已同意-2020.08.15-12:00:00'
+            },
+            {
+              con: '于和伟',
+              desc: '已同意-2020.08.17-12:00:00'
+            }
+          ],
+          packUp: false,
+          timestamp: '直接上级',
+          color: '#00a0e9',
+          icon: 'el-icon-s-check'
+        },
+        {
+          content: [{
+            con: '田雨',
+            desc: '已同意-2020.08.20-12:00:00'
+          }],
+          packUp: true,
+          timestamp: '指定审批人',
+          color: '#00a0e9',
+          icon: 'el-icon-s-check'
+        }
       ]
     }
   },
@@ -112,19 +121,19 @@ color:rgba(0,0,0,0.86)
       i.iconxiazai{
         margin-left: 5px;
       }
-      >>> .el-timeline-item__content{
-        width: 31%;
-        .el-card{
-          background: #F6F6F6;
-          border-radius: 3px;
-          border: 1px solid #D1D1D1;
-          box-shadow: none;
-          font-size: 14px;
-          font-family: PingFangSC-Regular, PingFang SC;
-          font-weight: 400;
-          color: #333333;
-        }
-      }
+      // >>> .el-timeline-item__content{
+      //   width: 31%;
+      //   .el-card{
+      //     background: #F6F6F6;
+      //     border-radius: 3px;
+      //     border: 1px solid #D1D1D1;
+      //     box-shadow: none;
+      //     font-size: 14px;
+      //     font-family: PingFangSC-Regular, PingFang SC;
+      //     font-weight: 400;
+      //     color: #333333;
+      //   }
+      // }
     }
 
   }

@@ -59,9 +59,9 @@ export default {
   data() {
     return {
       back: true,
-      src: '/project-library/model-record',
+      src: '/project-library/project-detail/model-record',
       query: null,
-      activeName: 'first',
+      activeName: 'second',
       dataDetail: [
         { name: '数据集名称', value: 'DataSet' },
         { name: '时间范围', value: '123' },

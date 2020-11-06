@@ -1,9 +1,9 @@
 <template>
   <el-row>
-    <el-col :span="22">
+    <el-col :span="20">
       <div class="grid-content bg-purple inline-block"><i class="icon iconfont icon1207-zhongying-slogan-fanbai1" style="font-size:22px;" /></div>
     </el-col>
-    <el-col :span="2">
+    <el-col :span="4">
       <i class="icon iconfont iconxiaolingdang fs-22 mr-20" />
       <i class="icon iconfont iconedit mr-20" />
       <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     },
     async logout() {
       await this.$store.dispatch('user/logout')
@@ -48,7 +48,10 @@ export default {
   .el-menu-demo{
     display: inline-block;
     vertical-align: middle;
-    width: 44%;
+    width: 67px;
+  }
+  .el-col-4{
+    text-align: right;
   }
   i{
     vertical-align: middle;

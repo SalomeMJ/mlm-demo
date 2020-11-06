@@ -50,7 +50,7 @@ export default {
   margin: 0;
   // text-align: right;
   position: absolute;
-  bottom:0;
+  bottom:1px;
   padding-left: 20px;
   padding-right: 20px;
  >>> .btn-prev {

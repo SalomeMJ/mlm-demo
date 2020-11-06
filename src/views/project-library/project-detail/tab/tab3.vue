@@ -114,13 +114,13 @@ export default {
       this.currpage = x
     },
     enterModelDetail(params) {
-      this.$router.push({ path: './model-record', query: { modelName: params.useModel, projectName: getUrlParams().projectName }})
+      this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.useModel, projectName: getUrlParams().projectName }})
     },
     enterEvent(params) {
-      this.$router.push({ path: './using-detail', query: { eventName: params.eventName, projectName: getUrlParams().projectName, action: params.status }})
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.eventName, modelName: params.useModel, projectName: getUrlParams().projectName, action: params.status }})
     },
     addEvent() {
-      this.$router.push({ path: './using-detail', query: { eventName: null, projectName: getUrlParams().projectName, action: 'add' }})
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: null, projectName: getUrlParams().projectName, action: 'add' }})
     }
   }
 

@@ -19,7 +19,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :style="{'width':index==1?'10%':''}" :sortable="item.sortable" :label="item.label" :align="index!=1&&index!=2?'left':'right'" fixed>
+          <el-table-column :key="index" :prop="item.prop" :style="{'width':index==1?'10%':''}" :sortable="item.sortable" :label="item.label" :align="index==0?'left':'right'" fixed>
             <template slot-scope="scope">
               <span v-if="index!=3">
                 {{ scope.row[item.prop] }}

@@ -2,18 +2,106 @@ const warningRule = {
   status: 200,
   message: 'success',
   data: {
-    'warningRule|11': [
-      {
-        'id|+1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-        'warningName|+1': ['MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813'],
-        'runTimes|+1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-        'touchTimes|+1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-        'warningLevel|+1': ['一般', '轻微', '一般', '一般', '一般', '一般', '轻微', '轻微', '轻微', '轻微', '轻微'],
-        'runRange|+1': ['MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813'],
-        'operator|+1': ['MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813', 'MTS2813'],
-        'updateTime|+1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-      }
-    ]
+    'warningRule': [{
+      'id': 1,
+      'warningName': 'Trigger_01',
+      'runTimes': 0,
+      'touchTimes': 0,
+      'warningLevel': '一般',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 2,
+      'warningName': 'Trigger_02',
+      'runTimes': 2,
+      'touchTimes': 2,
+      'warningLevel': '轻微',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 3,
+      'warningName': 'Trigger_03',
+      'runTimes': 4,
+      'touchTimes': 4,
+      'warningLevel': '严重',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 4,
+      'warningName': 'Trigger_04',
+      'runTimes': 6,
+      'touchTimes': 6,
+      'warningLevel': '一般',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 5,
+      'warningName': 'Trigger_05',
+      'runTimes': 5,
+      'touchTimes': 5,
+      'warningLevel': '轻微',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 6,
+      'warningName': 'Trigger_06',
+      'runTimes': 6,
+      'touchTimes': 6,
+      'warningLevel': '一般',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 7,
+      'warningName': 'Trigger_07',
+      'runTimes': 7,
+      'touchTimes': 7,
+      'warningLevel': '轻微',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 8,
+      'warningName': 'Trigger_08',
+      'runTimes': 5,
+      'touchTimes': 5,
+      'warningLevel': '严重',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 9,
+      'warningName': 'Trigger_09',
+      'runTimes': 9,
+      'touchTimes': 9,
+      'warningLevel': '轻微',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 10,
+      'warningName': 'Trigger_10',
+      'runTimes': 10,
+      'touchTimes': 10,
+      'warningLevel': '一般',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }, {
+      'id': 11,
+      'warningName': 'Trigger_11',
+      'runTimes': 11,
+      'touchTimes': 11,
+      'warningLevel': '轻微',
+      'runRange': '1天',
+      'operator': '黎簇',
+      'updateTime': '2020.10.11-12:00:00'
+    }]
   }
 }
 export default {

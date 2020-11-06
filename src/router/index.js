@@ -97,38 +97,34 @@ export const constantRoutes = [
             path: 'project-detail',
             component: () => import('@/views/project-library/project-detail'),
             name: 'ProjectDetail',
-            meta: { title: 'project-detail', affix: true, activeMenu: '/project-library' }
-          },
-          {
-            path: 'model-record',
-            component: () => import('@/views/project-library/project-detail/model-record'),
-            name: 'ModelRecord',
-            meta: { title: 'model-record', affix: true, activeMenu: '/project-library' }
-          },
-          {
-            path: 'validation-detail',
-            component: () => import('@/views/project-library/project-detail/validation-detail'),
-            name: 'ValidationDetail',
-            meta: { title: 'validation-detail', affix: true, activeMenu: '/project-library' }
-          },
-          {
-            path: 'using-detail',
-            component: () => import('@/views/project-library/project-detail/using-event'),
-            name: 'UsingDetail',
-            meta: { title: 'using-detail', affix: true, activeMenu: '/project-library' }
-          },
-          {
-            path: 'warning-rule',
-            component: () => import('@/views/project-library/project-detail/warning-rule'),
-            name: 'WarningRule',
-            meta: { title: 'warning-rule', affix: true, activeMenu: '/project-library' }
+            meta: { title: 'project-detail', affix: true, activeMenu: '/project-library' },
+            children: [
+              {
+                path: 'model-record',
+                component: () => import('@/views/project-library/project-detail/model-record'),
+                name: 'ModelRecord',
+                meta: { title: 'model-record', affix: true, activeMenu: '/project-library' }
+              },
+              {
+                path: 'validation-detail',
+                component: () => import('@/views/project-library/project-detail/validation-detail'),
+                name: 'ValidationDetail',
+                meta: { title: 'validation-detail', affix: true, activeMenu: '/project-library' }
+              },
+              {
+                path: 'using-detail',
+                component: () => import('@/views/project-library/project-detail/using-event'),
+                name: 'UsingDetail',
+                meta: { title: 'using-detail', affix: true, activeMenu: '/project-library' }
+              },
+              {
+                path: 'warning-rule',
+                component: () => import('@/views/project-library/project-detail/warning-rule'),
+                name: 'WarningRule',
+                meta: { title: 'warning-rule', affix: true, activeMenu: '/project-library' }
+              }
+            ]
           }
-          // {
-          //   path: 'warningrule-detail',
-          //   component: () => import('@/views/project-library/project-detail/warning-rule'),
-          //   name: 'ComplateRuleDetail',
-          //   meta: { title: 'warning-rule', affix: true, activeMenu: '/project-library' }
-          // }
         ]
       },
       // {
