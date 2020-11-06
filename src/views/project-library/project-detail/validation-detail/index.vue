@@ -1,13 +1,13 @@
 <template>
   <div class="h100 border-radius-5 coverParentView">
-    <head-title :title="'使用事件>'+$route.query.eventName+'>'+$route.query.modelName" :back="back" :src="src" :query="query" />
+    <head-title :title="'验证事件>'+$route.query.eventName+'>'+$route.query.modelName" :back="back" :src="src" :query="query" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
         <el-tag class="ml-20" type="primary">PMML</el-tag>
-        <p class="fs-12 fw-400 text-grey-2">121234123412341234123434</p>
+        <p class="fs-12 fw-400 text-grey-2">用于贷前审批</p>
         <p class="fs-12 fw-400 text-grey-2">
-          <span>模型开发负责人：123</span>
+          <span>模型开发负责人：黎簇</span>
           <span class="ml-20">模型注册时间：2020.08.09-12:00:09</span>
         </p>
         <div class="dataDetail mt-5">
@@ -61,7 +61,7 @@ export default {
       back: true,
       src: '/project-library/project-detail/model-record',
       query: null,
-      activeName: 'second',
+      activeName: 'first',
       dataDetail: [
         { name: '数据集名称', value: 'DataSet' },
         { name: '时间范围', value: '123' },

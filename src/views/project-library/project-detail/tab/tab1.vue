@@ -7,7 +7,7 @@
             <span class="fs-18 fw-bold text-grey-0 mr-20 ver-middle">{{ $route.query.projectName }}</span>
             <el-tag v-if="!projectDetaiMsg.projectPrimary">公开</el-tag>
             <el-tag v-if="projectDetaiMsg.projectPrimary" type="warning">私有</el-tag>
-            <p class="fs-12 text-grey-2 fw-400 h-32 lh-32" style="display:block;text-align:left;">{{ projectDetaiMsg.projectDesc }}</p>
+            <p class="fs-12 text-grey-2 fw-400 h-32 lh-32" style="display:block;text-align:left;">用于贷前审批</p>
           </div>
           <div class="rightItem">
             <p v-for="(item, index) in projectDetaiMsg.projectData" :key="index">
@@ -32,7 +32,7 @@
             <div class="grid-content bg-purple">
               <div class="grid-top">
                 <span class="fs-14 fw-bold text-gret-0">预警</span>
-                <span class="doingColor fs-14 pull-right cursor-pointer">查看更多</span>
+                <span class="doingColor fs-14 pull-right cursor-pointer" @click="enterWarningRule()">查看更多</span>
               </div>
               <div class="grid-center mt-20">
                 <p v-for="(item, index) in warningData.waningItem" :key="index">
@@ -76,10 +76,10 @@
           <el-col :span="10">
             <div class="grid-content bg-white" style="background:#eee !important;">
               <div class="grid-top" style="background:#eee;">
-                <span class="fs-14 fw-bold text-gret-0">进行中人物（{{ doingMasks.length }}）</span>
+                <span class="fs-14 fw-bold text-gret-0">进行中任务（{{ doingMasks.length }}）</span>
               </div>
               <div class="grid-center p-20 mt-10 bg-white">
-                <p v-for="(item, index) in doingMasks" :key="index" class="doingColor fs-14" style="text-align:left;text-indent:0;">{{ item.mask }}</p>
+                <p v-for="(item, index) in doingMasks" :key="index" class="doingColor fs-14 cursor-pointer" style="text-align:left;text-indent:0;" @click="enterEventDetai(item)">{{ item.mask }}</p>
               </div>
             </div>
           </el-col>
@@ -105,7 +105,7 @@
 <script>
 import LineChart from '@/components/Echats/LineChart'
 import TableContainer from '../component/table-container'
-
+import { getUrlParams } from '@/utils/getUrlParams'
 export default {
   name: 'TabOne',
   components: { LineChart, TableContainer },
@@ -117,17 +117,7 @@ export default {
   },
   data() {
     return {
-      options: [
-        {
-          value: '',
-          label: '全部'
-        }, {
-          value: false,
-          label: '公开'
-        }, {
-          value: true,
-          label: '私有'
-        }],
+      options: [],
       value: '',
       modelContainer: {
         name: '模型资产池',
@@ -229,6 +219,13 @@ export default {
       this.doingMasks = this.projectDetail.doingMasks
       // 使用事件
       this.useEvents.tableData = this.projectDetail.useEvents
+      this.options = []
+      for (const item of this.useEvents.tableData) {
+        this.options.push(
+          { label: item.name, value: item.name }
+        )
+      }
+      this.value = this.options[0].label
       // 验证数据
       this.validationContainer.tableData = this.projectDetail.validationData
     },
@@ -246,6 +243,13 @@ export default {
         this.activeTabIndex = 4
       }
       this.$emit('activeName', this.activeTabIndex)
+    },
+    enterWarningRule() {
+      this.$emit('activeName', 3)
+    },
+    enterEventDetai(params) {
+      this.$emit('activeName', 2)
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.eventName, modelName: params.useModel, projectName: getUrlParams().projectName, action: params.status }})
     }
   }
 
@@ -339,6 +343,9 @@ padding: 20px;
     grid-template-columns: 1.43fr 1fr;
     grid-column-gap: 20px;
   }
+  .content >>> .el-step__line{
+    height:1px;
+  }
   .content >>> .el-step__main {
     background: #fff;
     margin-top: -30px;
@@ -356,9 +363,9 @@ padding: 20px;
   .content >>> .el-step__head{
     width: 94%;
   }
-  // .content >>> .el-step.is-horizontal .el-step__line{
-  //   // margin-right: 10px !important;
-  // }
+  .content >>> .el-step__icon.is-text{
+    border:1px solid;
+  }
   .content >>> .el-step.is-horizontal {
       flex-basis:24% !important;
   }

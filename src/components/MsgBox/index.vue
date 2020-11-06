@@ -112,7 +112,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 99;
+    z-index: 999;
     .message-content{
       width: 480px;
       height: 402px;

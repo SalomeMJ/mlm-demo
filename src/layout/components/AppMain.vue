@@ -32,6 +32,7 @@ export default {
     overflow-x: hidden;
     background-color: RGBA(255, 255, 255, 1);
     padding: 20px;
+    padding-right: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }

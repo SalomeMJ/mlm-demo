@@ -116,6 +116,7 @@ export default {
         height: '465px',
         timeRange: [],
         interval: 15,
+        xShow: true,
         yName: '占比',
         series: []
       },
@@ -133,6 +134,7 @@ export default {
         width: '100%',
         height: '188px',
         interval: 20,
+        xShow: true,
         timeRange: [],
         yName: '占比',
         series: []

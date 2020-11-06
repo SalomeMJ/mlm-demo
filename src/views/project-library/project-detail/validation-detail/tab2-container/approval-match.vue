@@ -19,6 +19,7 @@ export default {
         width: '100%',
         height: '465px',
         interval: 20,
+        xShow: true,
         timeRange: [],
         yName: '占比',
         xName: '分数段',

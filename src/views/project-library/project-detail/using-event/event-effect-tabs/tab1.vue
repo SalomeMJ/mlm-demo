@@ -87,7 +87,7 @@ export default {
         ]
         // 分数趋势
         const seriesData1 = []
-        for (const item of res.data.situationList.trainData) {
+        for (const item of res.data.situationList.actualData) {
           this.chartList[1].barOptions.timeRange.push(item.range)
           seriesData1.push(Number(item.ratio.replace('%', '')))
         }

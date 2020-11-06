@@ -399,7 +399,7 @@ export default {
     top: 84px;
     left: -28px;
     font-size: 14px;;
-    opacity: 0.39;
+    // opacity: 0.39;
     cursor: pointer;
   }
   .divider {

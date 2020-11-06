@@ -46,7 +46,7 @@ export default {
   },
   watch: {
     'tableContainers': function(newVal, oldVal) {
-      console.log(newVal)
+      // console.log(newVal)
     }
   },
   methods: {
@@ -55,6 +55,7 @@ export default {
     },
     enterDetail(index, row) {
       this.$emit('enterDetail', { index: index, params: row })
+      console.log(row)
     },
     enterTab(name) {
       this.$emit('activeTab', name)
@@ -83,5 +84,8 @@ export default {
           font-size:14px !important;
           vertical-align: middle;
         }
+      }
+      .el-table >>> table{
+        cursor: pointer;
       }
 </style>

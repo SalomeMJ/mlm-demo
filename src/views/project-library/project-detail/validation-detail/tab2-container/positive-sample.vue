@@ -18,6 +18,7 @@ export default {
         headList: ['正样本', '负样本'],
         width: '100%',
         height: '465px',
+        xShow: true,
         interval: 3,
         timeRange: [],
         yName: '占比',
