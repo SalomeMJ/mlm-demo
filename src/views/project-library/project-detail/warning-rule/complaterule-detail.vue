@@ -58,7 +58,6 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      // console.log(tab, event);
     }
   }
 }
@@ -87,7 +86,6 @@ export default {
 .conCen{
   width: 100%;
   height: 82%;
-  // padding:20px 30px;
   background:#eee;
   .modelMsg{
     width: 100%;
@@ -96,7 +94,6 @@ export default {
     border-radius: 0 0 5px 5px;
     padding:20px 30px;
     p{
-      // margin-bottom: 10px;
       margin-top: 10px;
     }
     p.warningMsg{
@@ -107,7 +104,6 @@ export default {
         display: inline-block;
         width: 100%;
         margin-top: 10px;
-        // margin-bottom: 10px;
       }
       span:nth-child(5){
         grid-column-start: 1;
@@ -128,7 +124,6 @@ export default {
     height: 100%;
     .el-tabs__content{
       height: 88%;
-    // border: 1px solid #D9D9D9;
     margin: 20px 30px;
     }
   }

@@ -41,20 +41,6 @@ export default {
           pointData.push([parseFloat(FPR[item]).toFixed(4), TPR[item]])
         }
         this.lineChart.timeRange = [0.2, 0.4, 0.6, 0.8, 1]
-        // this.lineChart.xAxis = {
-        //   name: '假正率(FPR)',
-        //   nameLocation: 'center', nameGap: '30',
-        //   nameTextStyle: {
-        //     fontSize: 16
-        //   },
-        //   type: 'value',
-        //   boundaryGap: false,
-        //   axisLine: {
-        //     lineStyle: {
-        //       color: '#5f5f5f'
-        //     }
-        //   }
-        // }
         this.lineChart.yAxis = {
           name: '真正率(TPR)',
           nameLocation: 'center', nameGap: '30',
@@ -66,7 +52,11 @@ export default {
             lineStyle: {
               color: '#5f5f5f'
             }
-          }
+          },
+          splitLine: {
+            show: false
+          },
+          splitArea: { show: false }
         }
         this.lineChart.series = [{
           data: pointData,

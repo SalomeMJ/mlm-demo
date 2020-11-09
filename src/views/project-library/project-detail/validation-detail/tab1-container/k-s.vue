@@ -45,14 +45,15 @@ export default {
         this.lineChart.timeRange = tile_Fixed
         this.lineChart.yAxis = {
           type: 'value',
-          splitLine: {
-            show: false
-          },
           axisLine: {
             lineStyle: {
               color: '#5f5f5f'
             }
           },
+          splitLine: {
+            show: false
+          },
+          splitArea: { show: false },
           name: 'CumSum',
           nameLocation: 'middle',
           offset: 0,

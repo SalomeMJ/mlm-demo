@@ -61,7 +61,11 @@ export default {
               color: 'rgba(0,0,0,0.56)'
             }
 
-          }
+          },
+          splitLine: {
+            show: false
+          },
+          splitArea: { show: false }
         }
         this.lineChart.series = [{
           data: datay,

@@ -17,16 +17,16 @@
         <div class="msgItem mt-10">
           <div v-for="(item, index) in msgDetail" :key="index">
             <span class="must-write fs-14 fw-400 text-grey-opacity-86">{{ item.name }}：</span>
-            <el-input v-if="item.type=='input'" v-model="ruleName" placeholder="请选择" disabled />
-            <el-select v-if="item.type!='input'||item.name=='执行周期'" v-model="item.value" placeholder="请选择" disabled>
-              <el-option
+            <el-input v-if="item.type=='input'" v-model="item.value" placeholder="请选择" disabled />
+            <el-select v-if="item.type!='input'||item.name=='执行周期'" v-model="item.values" placeholder="请选择" disabled>
+              <!-- <el-option
                 v-for="items in item.options"
                 :key="items.value"
                 :label="items.label"
                 :value="items.values"
-              />
+              /> -->
             </el-select>
-            <i class="icon iconfont" :class="[item.icon, item.color]" />
+            <!-- <i class="icon iconfont" :class="[item.icon, item.color]" /> -->
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
             </el-select>
             <el-input v-if="child.type=='all'" v-model="child.value2" placeholder="请填写数字" disabled />
           </div>
-          <i class="icon iconfont iconDelete errorColor" />
+          <!-- <i class="icon iconfont iconDelete errorColor" /> -->
         </div>
         <div ref="divider" class="divider">
           <el-divider direction="vertical" />
@@ -85,7 +85,7 @@ export default {
   components: { TimeLine },
   data() {
     return {
-      useEvent: '',
+      useEvent: '易速贷申请',
       options: [
         {
           value: '',
@@ -98,8 +98,8 @@ export default {
           label: '私有'
         }],
       msgDetail: [
-        { name: '预警名称', type: 'input', icon: '', value: '' },
-        { name: '预警等级', type: 'select', icon: '', value: '', values: '', options: [
+        { name: '预警名称', type: 'input', icon: '', value: 'Trigger_8' },
+        { name: '预警等级', type: 'select', icon: '', values: '一般', options: [
           {
             value: '1',
             label: '一般'
@@ -110,10 +110,10 @@ export default {
             value: '3',
             label: '严重'
           }] },
-        { name: '执行周期', type: 'input', icon: '', value: '', values: '', options: [
+        { name: '执行周期', type: 'input', icon: '', value: '1', values: '天', options: [
           {
             value: '1',
-            label: '日'
+            label: '天'
           }, {
             value: '2',
             label: '周'
@@ -124,15 +124,15 @@ export default {
             value: '4',
             label: '年'
           }] },
-        { name: '开始执行周期', type: 'input', icon: 'iconHistory', color: 'text-grey-3', value: '' },
-        { name: '预警人员', type: 'input', icon: 'iconPlus', color: 'doingColor', value: '', alerMsg: '灰色表示相关人员无相应权限，请联系系统管理员' },
-        { name: '预警提醒', type: 'input', icon: '', value: '' }
+        { name: '开始执行周期', type: 'input', icon: 'iconHistory', color: 'text-grey-3', value: '2020.10.10-12:00:00' },
+        { name: '预警人员', type: 'input', icon: 'iconPlus', color: 'doingColor', value: '于和伟、王盟', alerMsg: '灰色表示相关人员无相应权限，请联系系统管理员' },
+        { name: '预警提醒', type: 'input', icon: '', value: '无' }
       ],
-      ruleName: '',
+      ruleName: 'Trigger_8',
       ruleCondition: 'And',
       ruleExpression: [
         [
-          { name: '类别选择', type: 'select', icon: '', value: '', options: [
+          { name: '类别选择', type: 'select', icon: '', value: '模型-特征', options: [
             {
               value: '1',
               label: '一般'
@@ -143,7 +143,7 @@ export default {
               value: '3',
               label: '严重'
             }] },
-          { name: '指标选择', type: 'select', icon: '', value: '', values: '', options: [
+          { name: '指标选择', type: 'select', icon: '', value: '上海地区宝马故障率', values: '', options: [
             {
               value: '1',
               label: '一般'
@@ -154,8 +154,8 @@ export default {
               value: '3',
               label: '严重'
             }] },
-          { name: '指标描述', type: 'input' },
-          { name: '指定对象', type: 'input' },
+          { name: '指标描述', type: 'input', value: '上海地区宝马故障率' },
+          { name: '指定对象', type: 'input', value: '易速贷申请' },
           { name: '表达式', type: 'all', logic: [
             {
               value: '1',
@@ -166,7 +166,7 @@ export default {
             }, {
               value: '3',
               label: '='
-            }], value1: '', value2: '' }
+            }], value: '指标1', value1: '>', value2: '97' }
         ]
       ],
       approvalList: [
@@ -206,13 +206,6 @@ export default {
           timestamp: '指定审批人',
           color: '#00a0e9',
           icon: 'el-icon-s-check'
-        },
-        {
-          content: [],
-          packUp: true,
-          timestamp: '抄送人',
-          color: '#00a0e9',
-          icon: 'el-icon-s-promotion'
         }
       ]
     }
@@ -295,8 +288,6 @@ export default {
       display: inline-block;
       width: 100%;
       height: 32px;
-      // margin-bottom: 20px;
-      // border:1px solid red;
       >>> .el-input{
         width: calc(100% - 90px);
       }
@@ -389,7 +380,7 @@ export default {
         margin-left: -6px;
       }
       >>> .el-input:first-child{
-        width: 46%;
+        width: 100%;
         margin: 0;
       }
     }
@@ -399,15 +390,17 @@ export default {
     top: 84px;
     left: -28px;
     font-size: 14px;;
-    // opacity: 0.39;
+    opacity: 0.39;
     cursor: pointer;
   }
   .divider {
     position: absolute;
     top: 59px;
+    opacity: 0.39;
     .el-divider--vertical{
       height: 100%;
-      background-color: #979797;
+      // background-color: #979797;
+      border:1px dashed #979797;
     }
   }
   .ruleExpression::before{

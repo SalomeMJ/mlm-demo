@@ -74,7 +74,7 @@ export default {
         {
           name: '审批配置',
           child: [
-            { name: '审批流', mustWrite: true, type: 'select', icon: '', value: '', disabled: false, options: ['审批流一号', '审批流二号', '审批流三号'] },
+            { name: '审批流', mustWrite: true, type: 'select', icon: '', value: '审批流一号', disabled: false, options: ['审批流一号', '审批流二号', '审批流三号'] },
             { name: '审批负责人', mustWrite: false, type: 'input', icon: '', value: '王盟；于和伟', disabled: false },
             { name: '审批类别', mustWrite: false, type: 'input', icon: '', value: '会签', disabled: false }
           ]
@@ -138,11 +138,13 @@ export default {
       }
       if (getUrlParams().action === '配置中' || getUrlParams().action === '生效审核中') {
         this.condetail[0].child[0].value = getUrlParams().eventName
-        this.condetail[0].child[1].value = '黎簇'
+        this.condetail[0].child[1].value = '用于贷前审批'
         this.condetail[0].child[2].value = '黎簇'
         this.condetail[1].child[0].value = getUrlParams().modelName
         if (getUrlParams().action === '生效审核中') {
           this.condetail.splice(2, 1)
+          this.condetail[1].child[1].value = '验证事件V11、验证事件V10'
+          this.condetail[1].child[2].value = 'DataSet.csv'
         }
       }
     },

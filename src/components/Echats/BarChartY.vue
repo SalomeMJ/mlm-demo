@@ -98,9 +98,8 @@ export default {
           },
           splitLine: {
             show: false
-          }
-          // ,
-          // z: 10
+          },
+          splitArea: { show: false }
         },
         series: this.barChat.series
       })

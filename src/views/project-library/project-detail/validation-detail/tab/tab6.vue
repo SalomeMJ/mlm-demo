@@ -154,7 +154,6 @@ export default {
           this.tableData = [
             { type: '连续型', number: this.featureList[index].count, mean: this.featureList[index].mean.toFixed(4), variance: this.featureList[index].std.toFixed(4), min: this.featureList[index].min, max: this.featureList[index].max, Q1: this.featureList[index].quantile25, Q2: this.featureList[index].quantile50, Q3: this.featureList[index].quantile75 }
           ]
-          console.log(this.tableData)
           getModelDetail().then((response) => {
             const res = response.data
             let data = []
@@ -190,7 +189,8 @@ export default {
               },
               splitLine: {
                 show: false
-              }
+              },
+              splitArea: { show: false }
             }
             this.lineChart.series = [{
               data: goodData,

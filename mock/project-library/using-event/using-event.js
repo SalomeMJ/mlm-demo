@@ -19,7 +19,6 @@ export default {
   url: '/using-event',
   type: 'get',
   response: response => {
-    console.log(response)
     return {
       code: 200,
       data: usingEvent

@@ -20,6 +20,7 @@ import scoreOverview from './project-library/validation-data/score-overview'
 import featureAnalysis from './project-library/validation-data/feature-analysis'
 import featureImportance from './project-library/validation-data/feature-importance'
 import cutoffbad from './project-library/validation-data/cutoff-bad'
+import cutoffgood from './project-library/validation-data/cutoff-good'
 import dataSample from './project-library/validation-data/data-sample'
 import datasetDetail from './project-library/validation-data/detaset-detail'
 import modelDetail from './project-library/validation-data/model-detail'
@@ -54,6 +55,7 @@ const mocks = [
   featureAnalysis,
   featureImportance,
   cutoffbad,
+  cutoffgood,
   dataSample,
   datasetDetail,
   modelDetail,

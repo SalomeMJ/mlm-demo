@@ -79,7 +79,7 @@
                 <span class="fs-14 fw-bold text-gret-0">进行中任务（{{ doingMasks.length }}）</span>
               </div>
               <div class="grid-center p-20 mt-10 bg-white">
-                <p v-for="(item, index) in doingMasks" :key="index" class="doingColor fs-14 cursor-pointer" style="text-align:left;text-indent:0;" @click="enterEventDetai(item)">{{ item.mask }}</p>
+                <p v-for="(item, index) in doingMasks" :key="index" class="doingColor fs-14 cursor-pointer" style="text-align:left;text-indent:0;" @click="enterEventDetai(item)">{{ item.mask }}“{{ item.eventName }}”{{ item.desc }}</p>
               </div>
             </div>
           </el-col>
@@ -202,7 +202,11 @@ export default {
         textStyle: {
           fontSize: 12,
           color: 'rgba(0,0,0,0.56)'
-        }
+        },
+        splitLine: {
+          show: false
+        },
+        splitArea: { show: false }
       }
       this.lineChart.series = [
         {

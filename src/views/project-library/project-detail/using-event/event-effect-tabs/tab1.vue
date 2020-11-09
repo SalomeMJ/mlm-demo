@@ -1,9 +1,9 @@
 <template>
   <div class="tabCon pb-20 mt-5">
     <p class="tabTop mb-20">
-      <span class="fs-14 fw-400 text-grey-0">总上线时长：123</span>
-      <span class="fs-14 fw-400 text-grey-0">总请求次数：123</span>
-      <span class="fs-14 fw-400 text-grey-0">平均响应时长：123</span>
+      <span class="fs-14 fw-400 text-grey-0">总上线时长：105天5小时</span>
+      <span class="fs-14 fw-400 text-grey-0">总请求次数：10034</span>
+      <span class="fs-14 fw-400 text-grey-0">平均响应时长：1.2s</span>
     </p>
     <div v-for="(item, index) in chartList" :key="index" class="tabItem mb-20 p-20">
       <div class="mb-20">

@@ -105,7 +105,11 @@ export default {
             textStyle: {
               fontSize: 12,
               color: 'rgba(0,0,0,0.86)'
-            }
+            },
+            splitLine: {
+              show: false
+            },
+            splitArea: { show: false }
           }
         ],
         series: this.barChat.series

@@ -117,6 +117,9 @@ button.el-button--primary.el-button--medium.is-plain:hover{
   background-color: #00a0e9;
   color:#fff;
 }
+button.el-button.el-button--primary.el-button--medium.is-disabled{
+  background:#8cc8ff;
+}
 .el-table::before,.el-table__fixed::before{display: none;}
 
 .el-tabs__item.is-top{

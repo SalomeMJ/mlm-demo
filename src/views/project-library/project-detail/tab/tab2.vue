@@ -169,7 +169,7 @@ border: 1px solid #D9D9D9;
 >>> td:nth-child(2) .cell span{
   cursor: pointer;
 }
->>> td:nth-child(2) .cell span,>>> td:nth-child(4) .cell span{
+>>> td:nth-child(2) .cell span{
   color:#00a0e9;
   text-decoration: underline;
 }

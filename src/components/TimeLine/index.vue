@@ -16,8 +16,6 @@
 </template>
 
 <script>
-// import { getUrlParams } from '@/utils/getUrlParams'
-// import PickerTime from '@/components/PickerTime'
 
 export default {
   name: 'TimeLine',
@@ -27,65 +25,8 @@ export default {
       default: () => []
     }
   },
-  // components: { PickerTime },
   data() {
     return {
-      // condetail: [
-      //   {
-      //     name: '信息填写',
-      //     child: [
-      //       { name: '使用事件名称', mustWrite: true, type: 'input', icon: '', value: '', disabled: false },
-      //       { name: '使用事件描述', mustWrite: false, type: 'textarea', icon: '', value: '', disabled: false },
-      //       { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false }
-      //     ]
-      //   },
-      //   {
-      //     name: '使用事件配置',
-      //     child: [
-      //       { name: '使用模型', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['易速贷申请', '自营车审批', '新车审批', '二手车预审批', '易速贷反欺诈', '易速贷反欺诈2.0', '自营车预审批', '新车预审批', '新车催收', '二手车审批', '二手车审批2.0'] },
-      //       { name: '验证记录', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['验证事件V11', '验证事件V10', '验证事件V9', '验证事件V8', '验证事件V7', '验证事件V6', '验证事件V5', '验证事件V4', '验证事件V3', '验证事件V2', '验证事件V1'] },
-      //       { name: '模型文档', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['DataSet.csv', 'Feature.xlsx', 'Algorithm.docx', 'Test.docx'] },
-      //       { name: '发布模型文档', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', disabled: false },
-      //       { name: '使用时间生效时间', mustWrite: true, type: 'time', icon: '', disabled: false }
-      //     ]
-      //   },
-      //   {
-      //     name: '审批配置',
-      //     child: [
-      //       { name: '审批流', mustWrite: true, type: 'select', icon: '', value: '', disabled: false, options: ['审批流一号', '审批流二号', '审批流三号'] },
-      //       { name: '审批负责人', mustWrite: false, type: 'input', icon: '', value: '王盟；于和伟', disabled: false },
-      //       { name: '审批类别', mustWrite: false, type: 'input', icon: '', value: '会签', disabled: false }
-      //     ]
-      //   }
-      // ],
-      // timeList: [
-      //   {
-      //     content: [
-      //       {
-      //         con: '王盟',
-      //         desc: '已同意-2020.08.15-12:00:00'
-      //       },
-      //       {
-      //         con: '于和伟',
-      //         desc: '已同意-2020.08.17-12:00:00'
-      //       }
-      //     ],
-      //     packUp: false,
-      //     timestamp: '直接上级',
-      //     color: '#00a0e9',
-      //     icon: 'el-icon-s-check'
-      //   },
-      //   {
-      //     content: [{
-      //       con: '田雨',
-      //       desc: '已同意-2020.08.20-12:00:00'
-      //     }],
-      //     packUp: true,
-      //     timestamp: '指定审批人',
-      //     color: '#00a0e9',
-      //     icon: 'el-icon-s-check'
-      //   }
-      // ]
     }
   },
   created() {
@@ -103,10 +44,10 @@ export default {
 <style lang="scss" scoped>
 .approval{
   >>>.el-card{
+    border: 1px solid #D1D1D1;
   .el-card__body{
 background: #F6F6F6;
 border-radius: 3px;
-border: 1px solid #D1D1D1;
 p{
   margin: 0;
   padding: 0;
@@ -123,7 +64,7 @@ p{
 i.iconShangsanjiao,i.iconXiasanjiao{
     position: absolute;
     top: 1px;
-    left: 6%;
+    left: 100px;
     cursor: pointer;
     font-size: 18px;
     color:#999;

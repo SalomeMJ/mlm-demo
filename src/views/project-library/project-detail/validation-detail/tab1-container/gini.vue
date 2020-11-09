@@ -43,14 +43,15 @@ export default {
         this.lineChart.timeRange = [0.2, 0.4, 0.6, 0.8, 1]
         this.lineChart.yAxis = {
           type: 'value',
-          splitLine: {
-            show: false
-          },
           axisLine: {
             lineStyle: {
               color: '#5f5f5f'
             }
           },
+          splitLine: {
+            show: false
+          },
+          splitArea: { show: false },
           name: 'CumSum',
           nameLocation: 'middle',
           offset: 0,

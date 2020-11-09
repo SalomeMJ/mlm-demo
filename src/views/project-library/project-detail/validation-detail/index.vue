@@ -64,12 +64,12 @@ export default {
       activeName: 'first',
       dataDetail: [
         { name: '数据集名称', value: 'DataSet' },
-        { name: '时间范围', value: '123' },
-        { name: '总客户数', value: '123' },
-        { name: '好客户数', value: '124' },
-        { name: '坏客户数', value: '123' },
-        { name: '拒绝客户数', value: '123' },
-        { name: '好坏客户比例', value: '123' }
+        { name: '时间范围', value: '2020.08.09-12:00:09' },
+        { name: '总客户数', value: '16651' },
+        { name: '好客户数', value: '5598' },
+        { name: '坏客户数', value: '232' },
+        { name: '拒绝客户数', value: '10821' },
+        { name: '好坏客户比例', value: '24:1' }
       ]
     }
   },

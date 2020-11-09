@@ -92,7 +92,7 @@ export default {
       background: #F6F6F6;
       border-radius: 2px;
       border: 1px solid rgba(0, 0, 0, 0.15);
-      width: 80%;
+      width: calc(100% - 110px);
       font-size: 14px;
       font-family: PingFangSC-Regular, PingFang SC;
       font-weight: 400;

@@ -2,27 +2,24 @@
   <div class="tabContainer">
     <el-tabs v-model="activeTab" :tab-position="tabPosition" class="h100 left-tab" @tab-click="handleClick">
       <el-tab-pane label="分数分布" name="first" />
-      <div v-if="activeTab=='first'&&activeIndex=='0'">
-        <el-table
-          v-if="tableData.length!=0"
-          class="system-table"
-          :data="tableData"
-          style="width: 100%"
-          height="100%"
-          @selection-change="handleCurrentChange"
-        >
-          <template v-for="(item,index) in headArr">
-            <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
-              <template slot-scope="scope">
-                <span>
-                  {{ scope.row[item.prop] }}
-                </span>
-              </template>
-            </el-table-column>
-          </template>
-        </el-table>
-      </div>
-      <!-- <el-tables v-if="activeTab=='first'&&activeIndex=='0'" :table-data="tableData" :head-arr="headArr" /> -->
+      <el-table
+        v-if="tableData.length!=0&&activeTab=='first'&&activeIndex=='0'"
+        class="system-table"
+        :data="tableData"
+        style="width: 100%"
+        height="100%"
+        @selection-change="handleCurrentChange"
+      >
+        <template v-for="(item,index) in headArr">
+          <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
+            <template slot-scope="scope">
+              <span>
+                {{ scope.row[item.prop] }}
+              </span>
+            </template>
+          </el-table-column>
+        </template>
+      </el-table>
       <el-tab-pane label="正负样本分布" name="second" />
       <positive-sample v-if="activeTab=='second'" />
       <el-tab-pane label="lift曲线" name="third" />
@@ -30,49 +27,43 @@
       <el-tab-pane label="审批匹配度" name="four" />
       <approval-match v-if="activeTab=='four'" />
       <el-tab-pane label="逾期转化率" name="five" />
-      <div v-if="activeTab=='five'&&activeIndex=='4'">
-        <el-table
-          v-if="tableData.length!=0"
-          class="system-table"
-          :data="tableData"
-          style="width: 100%"
-          height="100%"
-          @selection-change="handleCurrentChange"
-        >
-          <template v-for="(item,index) in headArr">
-            <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
-              <template slot-scope="scope">
-                <span>
-                  {{ scope.row[item.prop] }}
-                </span>
-              </template>
-            </el-table-column>
-          </template>
-        </el-table>
-      </div>
-      <!-- <el-table v-if="activeTab=='five'&&activeIndex=='4'" :table-data="tableData" :head-arr="headArr" /> -->
+      <el-table
+        v-if="tableData.length!=0&&activeTab=='five'&&activeIndex=='4'"
+        class="system-table"
+        :data="tableData"
+        style="width: 100%"
+        height="100%"
+        @selection-change="handleCurrentChange"
+      >
+        <template v-for="(item,index) in headArr">
+          <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
+            <template slot-scope="scope">
+              <span>
+                {{ scope.row[item.prop] }}
+              </span>
+            </template>
+          </el-table-column>
+        </template>
+      </el-table>
       <el-tab-pane label="逾期分布" name="six" />
-      <div v-if="activeTab=='six'&&activeIndex=='5'">
-        <el-table
-          v-if="tableData.length!=0"
-          class="system-table"
-          :data="tableData"
-          style="width: 100%"
-          height="100%"
-          @selection-change="handleCurrentChange"
-        >
-          <template v-for="(item,index) in headArr">
-            <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
-              <template slot-scope="scope">
-                <span>
-                  {{ scope.row[item.prop] }}
-                </span>
-              </template>
-            </el-table-column>
-          </template>
-        </el-table>
-      </div>
-      <!-- <el-table v-if="activeTab=='six'&&activeIndex=='5'" :table-data="tableData" :head-arr="headArr" /> -->
+      <el-table
+        v-if="tableData.length!=0&&activeTab=='six'&&activeIndex=='5'"
+        class="system-table"
+        :data="tableData"
+        style="width: 100%"
+        height="100%"
+        @selection-change="handleCurrentChange"
+      >
+        <template v-for="(item,index) in headArr">
+          <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
+            <template slot-scope="scope">
+              <span>
+                {{ scope.row[item.prop] }}
+              </span>
+            </template>
+          </el-table-column>
+        </template>
+      </el-table>
     </el-tabs>
   </div>
 </template>
