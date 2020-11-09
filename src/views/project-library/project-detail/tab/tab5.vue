@@ -7,7 +7,7 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary">新建使用事件</el-button>
+      <el-button type="primary">上传验证数据</el-button>
     </div>
     <div class="conCen mt-20">
       <el-table
@@ -20,20 +20,12 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==0||index==1||index==2?'left':'right'" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==0||index==1||index==2?'left':'right'" show-overflow-tooltip fixed>
             <template slot-scope="scope">
               <span>
                 {{ scope.row[item.prop] }}
                 <i v-if="item.prop==''" class="icon iconfont iconxiazai doingColor pl-5" style="display:inline-block;" />
               </span>
-              <!-- <span v-if="index==7">
-                <span v-show="scope.row.levoperateel.invalid" class="errorColor"> 失效</span>
-                <i v-show="scope.row.levoperateel.invalid" class="icon iconfont iconeye icon-f20 doingColor" />
-                <i class="icon iconfont icontable-edit icon-f20" :class="{ 'doingColor':!scope.row.levoperateel.enabled,'text-grey-0':scope.row.levoperateel.enabled }" />
-                <el-switch
-                  v-model="scope.row.levoperateel.enabled"
-                />
-              </span> -->
             </template>
           </el-table-column>
         </template>

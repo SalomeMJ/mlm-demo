@@ -53,7 +53,6 @@ export default {
     height: 42px;
     line-height: 42px;
     background: #F6F6F6;
-    border-radius: 5px 5px 0px 0px;
     .line{
       display:inline-block;
       width:10px;

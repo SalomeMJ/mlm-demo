@@ -123,9 +123,10 @@ export default {
   text-align: center;
   line-height: 70px;
   button{
-    width: 100px;
+    width: 100px !important;
     height: 32px;
     margin-right: 10px;
+    padding: 0;
   }
 }
  </style>

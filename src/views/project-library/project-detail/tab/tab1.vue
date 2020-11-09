@@ -12,8 +12,10 @@
           <div class="rightItem">
             <p v-for="(item, index) in projectDetaiMsg.projectData" :key="index">
               <span class="circle mt-5"><i class="iconfont icon" :class="item.icon" /></span>
-              <span class="fs-16 text-grey-0 fw-400 num">{{ item.value }}</span>
-              <span class="fs-16 text-grey-0 fw-400 num mt-5">{{ item.name }}</span>
+              <span class="right">
+                <span class="fs-16 text-grey-0 fw-400 num">{{ item.value }}</span>
+                <span class="fs-16 text-grey-0 fw-400 num mt-5">{{ item.name }}</span>
+              </span>
             </p>
           </div>
         </div>
@@ -294,12 +296,17 @@ padding: 20px;
         font-size: 22px;
       }
     }
-    span.num{
+    span.right{
+        display: inline-block;
+        width:40px;
+        height: 46px;
+        margin-top: 10px;
+        text-align: center;
+        vertical-align: top;
+        span{
           display: block;
-    position: relative;
-    margin-top: -17%;
-    margin-left: 50%;
-    }
+        }
+      }
     }
     .grid-center{
       display: grid;
@@ -374,7 +381,7 @@ padding: 20px;
       flex-basis:24% !important;
   }
   .content >>> .el-step.is-horizontal:last-child{
-    flex-basis:6% !important;
+    flex-basis:9% !important;
     max-width:none;
   }
   .el-col {

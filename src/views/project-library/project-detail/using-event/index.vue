@@ -28,7 +28,6 @@ export default {
   },
   mounted() {
     this.query = { projectName: getUrlParams().projectName }
-    console.log(getUrlParams().action)
     this.action = getUrlParams().action
   },
   methods: {
@@ -43,23 +42,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.footer{
-  height: 64px;
-  background: #FFFFFF;
-  box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.16);
-  width: 95.5%;
-  position: fixed;
-  bottom: 0;
-  z-index: 9;
-  left: 66px;
-  text-align: center;
-  line-height: 70px;
-  button{
-    width: 80px;
-    height: 32px;
-    margin-right: 10px;
-  }
-}
 .conCen{
   width: 100%;
   height: calc(100% - 105px);

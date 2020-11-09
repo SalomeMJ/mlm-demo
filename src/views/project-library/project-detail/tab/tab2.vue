@@ -21,7 +21,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==4||index==5?'right':'left'" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==4||index==5?'right':'left'" show-overflow-tooltip fixed>
             <template slot-scope="scope">
               <span v-if="index!=7&&item.prop!='modelName'">
                 {{ scope.row[item.prop] }}
@@ -115,7 +115,7 @@ export default {
       }
     },
     initData() {
-      getAssetPool(this.currpage).then((response) => {
+      getAssetPool().then((response) => {
         this.tableData = response.data.assetPool
         this.totalData = this.tableData
       })

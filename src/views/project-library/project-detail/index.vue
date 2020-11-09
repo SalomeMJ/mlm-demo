@@ -19,7 +19,7 @@
       <tab3 v-if="activeName=='third'" />
       <el-tab-pane label="预警规则" name="fourth" />
       <tab4 v-if="activeName=='fourth'" />
-      <el-tab-pane label="模型验证" name="five" />
+      <el-tab-pane label="验证数据" name="five" />
       <tab5 v-if="activeName=='five'" />
     </el-tabs>
     <!-- <div v-if="routerActive"> -->

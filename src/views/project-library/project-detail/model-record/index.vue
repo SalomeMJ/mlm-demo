@@ -34,6 +34,7 @@ import DevelopRecord from './develop-record'
 import ValidationRecord from './validation-record'
 import UsingRecord from './using-record'
 import { getUrlParams } from '@/utils/getUrlParams'
+import { getAssetPool } from '@/api/model-asset/asset-pool'
 
 export default {
   name: 'ModelRecord',
@@ -46,10 +47,10 @@ export default {
       activeTab: 'first',
       child: [
         { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },
-        { name: '验证模型', mustWrite: true, type: 'select', value: '' },
-        { name: '选择验证方式', mustWrite: true, type: 'select', value: '' },
-        { name: '负责人', mustWrite: true, type: 'select', value: '' },
-        { name: '上传数据', mustWrite: true, type: 'select', value: '' }
+        { name: '验证模型', mustWrite: true, type: 'select', value: '易速贷申请', options: ['易速贷申请', '自营车审批', '新车审批'] },
+        { name: '选择验证方式', mustWrite: true, type: 'select', value: '上传数据', options: ['上传数据'] },
+        { name: '负责人', mustWrite: true, type: 'select', value: '黎簇', options: ['黎簇', '王盟', '于和伟'] },
+        { name: '上传数据', mustWrite: true, type: 'input', value: '' }
       ]
     }
   },
@@ -57,6 +58,11 @@ export default {
   },
   mounted() {
     this.query = { projectName: getUrlParams().projectName }
+    getAssetPool().then((response) => {
+      for (const item of response.data.assetPool) {
+        this.child[1].options.push(item.modelName)
+      }
+    })
   },
   methods: {
     handleClick(tab, event) {
@@ -72,7 +78,7 @@ export default {
         contentData: this.child,
         isShowInput: true
       }).then(async(val) => {
-        // ...
+        this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, eventName: val[0].value, projectName: getUrlParams().projectName }})
       }).catch(() => {
         // ...
       })

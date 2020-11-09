@@ -3,7 +3,7 @@
     <div class="bg-white p-20 mb-20 border-bottom-left-radius border-bottom-right-radius">
       <p class="mb-20">
         <span class="must-write fs-14 fw-400 text-grey-opacity-86">监控使用事件：</span>
-        <el-select v-model="useEvent" placeholder="请选择" disabled>
+        <el-select v-model="useEvent" placeholder="请选择" :disabled="canEdit">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -17,31 +17,31 @@
         <div class="msgItem mt-10">
           <div v-for="(item, index) in msgDetail" :key="index">
             <span class="must-write fs-14 fw-400 text-grey-opacity-86">{{ item.name }}：</span>
-            <el-input v-if="item.type=='input'" v-model="item.value" placeholder="请选择" disabled />
-            <el-select v-if="item.type!='input'||item.name=='执行周期'" v-model="item.values" placeholder="请选择" disabled>
-              <!-- <el-option
+            <el-input v-if="item.type=='input'" v-model="item.value" placeholder="请选择" :disabled="canEdit" />
+            <el-select v-if="item.type!='input'||item.name=='执行周期'" v-model="item.values" placeholder="请选择" :disabled="canEdit">
+              <el-option
                 v-for="items in item.options"
                 :key="items.value"
                 :label="items.label"
                 :value="items.values"
-              /> -->
+              />
             </el-select>
-            <!-- <i class="icon iconfont" :class="[item.icon, item.color]" /> -->
+            <i v-if="!canEdit" class="icon iconfont" :class="[item.icon, item.color]" />
           </div>
         </div>
       </div>
       <div class="mt-20 pos-relative">
         <p class="fs-14 fw-bold text-grey-opacity-86 mb-10">预警规则表达式</p>
-        <el-select v-model="ruleCondition" class="mr-20" disabled>
+        <el-select v-model="ruleCondition" class="mr-20" :disabled="canEdit">
           <el-option value="And">And</el-option>
           <el-option value="Or">Or</el-option>
         </el-select>
-        <el-button type="primary" class="cursor-pointer" plain>添加指标</el-button>
+        <el-button type="primary" class="cursor-pointer" :style="{'opacity':!canEdit?'1':'0.39'}" plain @click="addIndicators()">添加指标</el-button>
         <div v-for="(item, index) in ruleExpression" :key="index" class="mt-20 ruleExpression">
           <div v-for="(child, ind) in item" :key="ind" :class="{'mt-20':ind==3||ind==4}">
             <span class="fs-14 fw-400 text-grey-opacity-86" :class="ind!=2?'must-write':''">{{ child.name }}：</span>
-            <el-input v-if="child.type=='input'" v-model="child.value" :type="ind==2?'textarea':'input'" :placeholder="ind==2?'选择指标后，指标描述自动填充':'请选择'" disabled resize="none" :class="{'disable-ipt':ind==2}" />
-            <el-select v-if="child.type=='select'" v-model="child.value" placeholder="请选择" disabled>
+            <el-input v-if="child.type=='input'" v-model="child.value" :type="ind==2?'textarea':'input'" :placeholder="ind==2?'选择指标后，指标描述自动填充':'请选择'" :disabled="canEdit" resize="none" :class="{'disable-ipt':ind==2}" />
+            <el-select v-if="child.type=='select'" v-model="child.value" placeholder="请选择" :disabled="canEdit">
               <el-option
                 v-for="items in child.options"
                 :key="items.value"
@@ -49,19 +49,18 @@
                 :value="items.values"
               />
             </el-select>
-            <el-input v-if="child.type=='all'" v-model="child.value" placeholder="自动填充为选择的指标" disabled />
-            <el-select v-if="child.type=='all'" v-model="child.value1" placeholder="请选择" disabled>
+            <el-input v-if="child.type=='all'" v-model="child.value" placeholder="自动填充为选择的指标" :disabled="canEdit" />
+            <el-select v-if="child.type=='all'" v-model="child.value1" placeholder="请选择" :disabled="canEdit">
               <el-option
                 v-for="items in child.logic"
                 :key="items.value"
-                disabled
                 :label="items.label"
                 :value="items.values"
               />
             </el-select>
-            <el-input v-if="child.type=='all'" v-model="child.value2" placeholder="请填写数字" disabled />
+            <el-input v-if="child.type=='all'" v-model="child.value2" placeholder="请填写数字" :disabled="canEdit" />
           </div>
-          <!-- <i class="icon iconfont iconDelete errorColor" /> -->
+          <i v-if="!canEdit" class="icon iconfont iconDelete errorColor" :style="{'opacity':!canEdit?'1':'0.39'}" />
         </div>
         <div ref="divider" class="divider">
           <el-divider direction="vertical" />
@@ -79,12 +78,14 @@
 
 <script>
 import TimeLine from '@/components/TimeLine'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'AddRule',
   components: { TimeLine },
   data() {
     return {
+      canEdit: true,
       useEvent: '易速贷申请',
       options: [
         {
@@ -218,52 +219,58 @@ export default {
   created() {
   },
   mounted() {
-    this.$refs.divider.style.height = '124px'
+    this.initData()
   },
   methods: {
     addIndicators() {
-      this.ruleExpression.push(
-        [
-          { name: '类别选择', type: 'select', icon: '', value: '', options: [
-            {
-              value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
-            }] },
-          { name: '指标选择', type: 'select', icon: '', value: '', values: '', options: [
-            {
-              value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
-            }] },
-          { name: '指标描述', type: 'input' },
-          { name: '指定对象', type: 'input' },
-          { name: '表达式', type: 'all', logic: [
-            {
-              value: '1',
-              label: '>'
-            }, {
-              value: '2',
-              label: '<'
-            }, {
-              value: '3',
-              label: '='
-            }], value1: '', value2: '' }
-        ]
-      )
+      if (!this.canEdit) {
+        this.ruleExpression.push(
+          [
+            { name: '类别选择', type: 'select', icon: '', value: '', options: [
+              {
+                value: '1',
+                label: '一般'
+              }, {
+                value: '2',
+                label: '轻微'
+              }, {
+                value: '3',
+                label: '严重'
+              }] },
+            { name: '指标选择', type: 'select', icon: '', value: '', values: '', options: [
+              {
+                value: '1',
+                label: '一般'
+              }, {
+                value: '2',
+                label: '轻微'
+              }, {
+                value: '3',
+                label: '严重'
+              }] },
+            { name: '指标描述', type: 'input' },
+            { name: '指定对象', type: 'input' },
+            { name: '表达式', type: 'all', logic: [
+              {
+                value: '1',
+                label: '>'
+              }, {
+                value: '2',
+                label: '<'
+              }, {
+                value: '3',
+                label: '='
+              }], value1: '', value2: '' }
+          ]
+        )
+      }
     },
     delIndicators(index) {
       this.ruleExpression.splice(index, 1)
+    },
+    initData() {
+      this.canEdit = getUrlParams().action !== '配置中'
+      this.$refs.divider.style.height = '124px'
     }
   }
 }

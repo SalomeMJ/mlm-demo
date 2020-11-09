@@ -19,7 +19,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :style="{'width':index==1?'10%':''}" :sortable="item.sortable" :label="item.label" :align="index==0?'left':'right'" fixed>
+          <el-table-column :key="index" :prop="item.prop" :style="{'width':index==1?'10%':''}" :sortable="item.sortable" :label="item.label" :align="index==0?'left':'right'" show-overflow-tooltip fixed>
             <template slot-scope="scope">
               <span v-if="index!=3">
                 {{ scope.row[item.prop] }}
@@ -28,7 +28,7 @@
                 {{ scope.row[item.prop] }}
               </span>
               <span v-if="index==7">
-                <i class="icon iconfont iconDetail doingColor" style="display:inline-block;margin-right:20px;" />
+                <i class="icon iconfont iconDetail doingColor" style="display:inline-block;margin-right:20px;" @click="editWarningRule(scope.row)" />
                 <i class="icon iconfont iconDelete errorColor" />
               </span>
             </template>
@@ -43,6 +43,7 @@
 import PickerTime from '@/components/PickerTime/index'
 import PagiNation from '@/components/Pagination/index'
 import { getEventWarning } from '@/api/project-library/using-event/warning-rule'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'TabOne',
@@ -113,6 +114,9 @@ export default {
     },
     initDirective(x) {
       this.currpage = x
+    },
+    editWarningRule(params) {
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, modelName: getUrlParams().modelName, ruleName: params.warningName, action: 'scan' }})
     }
   }
 

@@ -10,7 +10,7 @@
       @selection-change="handleCurrentChange"
     >
       <template v-for="(item,index) in headArr">
-        <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+        <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" show-overflow-tooltip fixed>
           <template slot-scope="scope">
             <span v-if="index!=7">
               {{ scope.row[item.prop] }}

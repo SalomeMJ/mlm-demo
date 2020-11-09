@@ -18,7 +18,6 @@ export default {
   url: '/using-record',
   type: 'get',
   response: response => {
-    console.log(response)
     return {
       code: 200,
       data: projectDetail

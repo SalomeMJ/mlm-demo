@@ -116,7 +116,6 @@ export default {
   url: '/project-detail',
   type: 'get',
   response: response => {
-    console.log(response)
     return {
       code: 200,
       data: projectDetail

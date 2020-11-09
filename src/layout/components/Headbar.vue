@@ -4,8 +4,8 @@
       <div class="grid-content bg-purple inline-block"><i class="icon iconfont icon1207-zhongying-slogan-fanbai1" style="font-size:22px;" /></div>
     </el-col>
     <el-col :span="4">
-      <i class="icon iconfont iconxiaolingdang fs-22 mr-20" />
-      <i class="icon iconfont iconedit mr-20" />
+      <i class="icon iconfont iconxiaolingdang fs-22 mr-20 fw-bold" />
+      <i class="icon iconfont iconedit mr-20 fw-bold" />
       <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-submenu index="1">
           <template slot="title">

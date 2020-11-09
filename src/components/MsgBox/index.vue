@@ -8,10 +8,16 @@
       </div>
       <!-- <div class="content" v-html="content" /> -->
       <div class="content">
-        <p v-for="(item, ind) in child" :key="ind">
+        <p v-for="(item, ind) in contentData" :key="ind">
           <span class="fs-14 fw-400 text-grey-opacity-86" :class="{'must-write':item.mustWrite}">{{ item.name }}：</span>
           <el-input v-if="item.type=='input'" v-model="item.value" />
-          <el-select v-if="item.type=='select'" v-model="item.value" />
+          <el-select v-if="item.type=='select'" v-model="item.value">
+            <el-option
+              v-for="(ite, index) in item.options"
+              :key="index"
+              :value="ite"
+            />
+          </el-select>
         </p>
       </div>
       <div class="btn-group">
@@ -32,6 +38,10 @@ export default {
     content: {
       type: String,
       default: '这是弹框内容'
+    },
+    contentData: {
+      type: Array,
+      default: () => []
     },
     isShowCancelBtn: {
       type: Boolean,
@@ -55,14 +65,7 @@ export default {
       isShowMessageBox: false,
       resolve: '',
       reject: '',
-      promise: '', // 保存promise对象,
-      child: [
-        { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },
-        { name: '验证模型', mustWrite: true, type: 'select', value: '' },
-        { name: '选择验证方式', mustWrite: true, type: 'select', value: '' },
-        { name: '负责人', mustWrite: true, type: 'select', value: '' },
-        { name: '上传数据', mustWrite: true, type: 'select', value: '' }
-      ]
+      promise: ''
     }
   },
   methods: {
@@ -70,7 +73,7 @@ export default {
     confirm: function() {
       this.isShowMessageBox = false
       if (this.isShowInput) {
-        this.resolve(this.inputValue)
+        this.resolve(this.contentData)
       } else {
         this.resolve('confirm')
       }

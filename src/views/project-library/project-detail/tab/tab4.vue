@@ -21,7 +21,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" show-overflow-tooltip fixed>
             <template slot-scope="scope">
               <span v-if="index!=1&&index!=2&&index!=3">
                 {{ scope.row[item.prop] }}
@@ -128,7 +128,7 @@ export default {
       this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, action: 'add' }})
     },
     editWarningRule(params) {
-      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, ruleName: params.ruleName, action: params.status === 3 ? 'scan' : 'edit' }})
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, ruleName: params.ruleName, action: params.status }})
     }
   }
 

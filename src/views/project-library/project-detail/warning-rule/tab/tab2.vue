@@ -19,7 +19,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==1?'right':'left'" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==1?'right':'left'" show-overflow-tooltip fixed>
             <template slot-scope="scope">
               <span>
                 {{ scope.row[item.prop] }}
@@ -93,7 +93,6 @@ export default {
     },
     initData() {
       getTouchRecord(this.currpage).then((response) => {
-        console.log(response)
         this.tableData = response.data.results
         this.totalData = this.tableData
       })

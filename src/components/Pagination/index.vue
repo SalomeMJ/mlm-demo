@@ -3,7 +3,7 @@
     <el-pagination
       :background="paginationData.background"
       :current-page.sync="paginationData.currentPage"
-      :page-size.sync="paginationData.pageSize"
+      :page-size.sync="paginationData.limit"
       layout="prev, pager, next, total, sizes"
       :page-sizes="paginationData.pageSizes"
       :total="paginationData.total"
@@ -33,7 +33,7 @@ export default {
       }
     },
     handleCurrentChange(val) {
-      this.$emit('pagination', { page: val, limit: this.paginationData.pageSize })
+      this.$emit('pagination', { page: val, limit: this.paginationData.limit })
       if (this.paginationData.autoScroll) {
         scrollTo(0, 800)
       }

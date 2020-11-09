@@ -5,13 +5,13 @@
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">预警名称：{{ $route.query.ruleName }}</span>
         <span class="pull-right fw-bold fs-16 normal">预警等级：一般</span>
-        <p class="fs-14 fw-400 text-grey-2">预警提醒：111</p>
+        <p class="fs-14 fw-400 text-grey-2">预警提醒：无</p>
         <p class="fs-14 fw-400 text-grey-1 warningMsg">
-          <span>监控使用事件：1</span>
-          <span class="ml-20">使用模型：</span>
-          <span>开始执行时间：</span>
-          <span class="ml-20">最近操作事件：.08.09-12:00:09</span>
-          <span>预警人员：</span>
+          <span>监控使用事件：易速贷申请</span>
+          <span class="ml-20">使用模型：{{ $route.query.modelName }}</span>
+          <span>开始执行时间：2020.10.10-12:00:00</span>
+          <span class="ml-20">最近操作事件：易速贷申请</span>
+          <span>预警人员：于和伟、王盟</span>
         </p>
 
       </div>
@@ -76,7 +76,7 @@ export default {
   text-align: center;
   line-height: 70px;
   button{
-    width: 100px;
+    width: 100px !important;
     height: 32px;
     margin-right: 10px;
     text-align: center;

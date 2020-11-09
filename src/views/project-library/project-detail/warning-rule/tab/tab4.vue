@@ -38,17 +38,7 @@
     </div>
     <div class="bg-white pt-20 border-radius-5 approval">
       <span class=" fs-14 fw-bold text-grey-opacity-86 mb-20">审批配置</span>
-      <el-timeline class="p-20 times">
-        <el-timeline-item v-for="(item, index) in timeList" :key="index" :icon="item.icon" :timestamp="item.timestamp" :color="item.color" placement="top">
-          <el-card>
-            <p v-for="(child, ind) in item.content" :key="ind" class="fs-14" :class="{'pb-10':ind!==child.length-1?true:false}">
-              <i class="icon iconfont iconicon-duihao doingColor fs-14 mr-5" />
-              <span class="fw-400">{{ child.con }}</span>
-              <span class="ml-10" style="color:#999">({{ child.desc }})</span>
-            </p>
-          </el-card>
-        </el-timeline-item>
-      </el-timeline>
+      <time-line :time-list="timeList" />
     </div>
 
   </div>
@@ -56,11 +46,11 @@
 
 <script>
 // import HeadTitle from '@/components/HeadTitle'
-// import { getUrlParams } from '@/utils/getUrlParams'
+import TimeLine from '@/components/TimeLine'
 
 export default {
   name: 'WarningFour',
-  // components: { HeadTitle },
+  components: { TimeLine },
   data() {
     return {
       useEvent: '',
@@ -110,7 +100,7 @@ export default {
       ruleCondition: 'And',
       ruleExpression: [
         [
-          { name: '类别选择', type: 'select', icon: '', value: '', options: [
+          { name: '类别选择', type: 'select', icon: '', value: '模型-特征', options: [
             {
               value: '1',
               label: '一般'
@@ -121,7 +111,7 @@ export default {
               value: '3',
               label: '严重'
             }] },
-          { name: '指标选择', type: 'select', icon: '', value: '', values: '', options: [
+          { name: '指标选择', type: 'select', icon: '', value: '上海地区宝马故障率', values: '', options: [
             {
               value: '1',
               label: '一般'
@@ -132,8 +122,8 @@ export default {
               value: '3',
               label: '严重'
             }] },
-          { name: '指标描述', type: 'input' },
-          { name: '指定对象', type: 'input' },
+          { name: '指标描述', type: 'input', value: '上海地区宝马故障率' },
+          { name: '指定对象', type: 'input', value: '易速贷申请' },
           { name: '表达式', type: 'all', logic: [
             {
               value: '1',
@@ -144,7 +134,7 @@ export default {
             }, {
               value: '3',
               label: '='
-            }], value1: '', value2: '' }
+            }], value: '指标1', value1: '>', value2: '97' }
         ]
       ],
       approvalList: [
@@ -162,29 +152,28 @@ export default {
         {
           content: [
             {
-              con: '阿达西',
-              desc: '已同意。2020.08.09-12:00:00'
+              con: '王盟',
+              desc: '已同意-2020.08.15-12:00:00'
             },
             {
-              con: '阿达西',
-              desc: '已同意。2020.08.09-12:00:00'
+              con: '于和伟',
+              desc: '已同意-2020.08.17-12:00:00'
             }
           ],
-          timestamp: '直接上级.已同意（2/2）',
+          packUp: false,
+          timestamp: '直接上级',
           color: '#00a0e9',
-          icon: 'iconshenpi'
+          icon: 'el-icon-s-check'
         },
         {
-          content: [],
-          timestamp: '指定审批人.已同意',
+          content: [{
+            con: '田雨',
+            desc: '已同意-2020.08.20-12:00:00'
+          }],
+          packUp: true,
+          timestamp: '指定审批人',
           color: '#00a0e9',
-          icon: 'iconshenpi'
-        },
-        {
-          content: [],
-          timestamp: '抄送人.已抄送',
-          color: '#00a0e9',
-          icon: 'icon__cc'
+          icon: 'el-icon-s-check'
         }
       ]
     }
@@ -200,50 +189,6 @@ export default {
     this.$refs.divider.style.height = '124px'
   },
   methods: {
-    addIndicators() {
-      this.ruleExpression.push(
-        [
-          { name: '类别选择', type: 'select', icon: '', value: '', options: [
-            {
-              value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
-            }] },
-          { name: '指标选择', type: 'select', icon: '', value: '', values: '', options: [
-            {
-              value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
-            }] },
-          { name: '指标描述', type: 'input' },
-          { name: '指定对象', type: 'input' },
-          { name: '表达式', type: 'all', logic: [
-            {
-              value: '1',
-              label: '>'
-            }, {
-              value: '2',
-              label: '<'
-            }, {
-              value: '3',
-              label: '='
-            }], value1: '', value2: '' }
-        ]
-      )
-    },
-    delIndicators(index) {
-      this.ruleExpression.splice(index, 1)
-    }
   }
 }
 </script>
@@ -361,7 +306,7 @@ export default {
         margin-left: -6px;
       }
       >>> .el-input:first-child{
-        width: 46%;
+        width: 100%;
         margin: 0;
       }
     }
@@ -379,7 +324,8 @@ export default {
     top: 59px;
     .el-divider--vertical{
       height: 100%;
-      background-color: #979797;
+      border:1px dashed #979797;
+      opacity: 0.39;
     }
   }
   .ruleExpression::before{
@@ -411,10 +357,10 @@ border: 1px solid #00A0E9;
   }
 .approval{
   >>>.el-card{
+    border: 1px solid #D1D1D1;
   .el-card__body{
 background: #F6F6F6;
 border-radius: 3px;
-border: 1px solid #D1D1D1;
 p{
   margin: 0;
   padding: 0;

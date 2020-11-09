@@ -149,7 +149,7 @@ export default {
       }
     },
     goBack() {
-      this.$router.push({ path: this.src, query: getUrlParams().projectName })
+      this.$router.push({ path: '/project-library/project-detail', query: getUrlParams().projectName })
     }
   }
 }
@@ -168,9 +168,10 @@ export default {
   text-align: center;
   line-height: 70px;
   button{
-    width: 80px;
+    width: 80px !important;
     height: 32px;
     margin-right: 10px;
+    padding: 0;
   }
 }
 .conCen{

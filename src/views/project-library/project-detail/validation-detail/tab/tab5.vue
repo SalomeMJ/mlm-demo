@@ -56,7 +56,7 @@
           @selection-change="handleCurrentChange"
         >
           <template v-for="(item,index) in headArr">
-            <el-table-column :key="index" :prop="item.prop" :style="{'width':index==1?'10%':''}" :sortable="item.sortable" :label="item.label" :align="index==0?'left':'right'" fixed>
+            <el-table-column :key="index" :prop="item.prop" :style="{'width':index==1?'10%':''}" :sortable="item.sortable" :label="item.label" :align="index==0?'left':'right'" show-overflow-tooltip fixed>
               <template slot-scope="scope">
                 <!-- <span v-if="scope.row['bgc']" style="background:rgba(255, 162, 0, 0.3)">
                   {{ scope.row[item.prop] }}

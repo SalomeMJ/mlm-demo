@@ -20,7 +20,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index!=4?'left':'right'" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index!=4?'left':'right'" show-overflow-tooltip fixed>
             <template slot-scope="scope">
               <span v-if="index==0" @click="enterEvent(scope.row)">
                 {{ scope.row[item.prop] }}

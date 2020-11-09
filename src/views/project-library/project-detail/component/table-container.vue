@@ -14,7 +14,7 @@
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in tableContainer.headArr">
-          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" fixed>
+          <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" show-overflow-tooltip fixed>
             <template scope="scope">
               <span>
                 {{ scope.row[item.prop] }}
@@ -55,7 +55,6 @@ export default {
     },
     enterDetail(index, row) {
       this.$emit('enterDetail', { index: index, params: row })
-      console.log(row)
     },
     enterTab(name) {
       this.$emit('activeTab', name)

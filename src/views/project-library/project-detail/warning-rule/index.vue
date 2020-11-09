@@ -1,18 +1,18 @@
 <template>
   <div class="h100  border-radius-5 coverParentView">
     <head-title :title="'预警规则>预警规则详情'" :back="back" :src="src" :query="query" />
-    <add-rule v-if="$route.query.action=='add'" />
-    <rule-detail v-if="$route.query.action=='edit'" />
-    <complate-rule-detail v-if="$route.query.action=='scan'" />
+    <add-rule v-if="$route.query.ruleName==null" />
+    <rule-detail v-if="$route.query.action=='生效审核中'||$route.query.action=='配置中'" />
+    <complate-rule-detail v-if="$route.query.action=='生效中'" />
     <div class="footer">
-      <div v-if="$route.query.action=='scan'">
+      <div v-if="$route.query.action=='生效中'">
         <el-button type="danger" plain>终止该事件</el-button>
       </div>
-      <div v-if="$route.query.ruleName!=null&&$route.query.action=='edit'">
+      <div v-if="$route.query.ruleName!=null&&$route.query.action=='生效审核中'">
         <el-button type="danger" plain>撤销</el-button>
         <el-button type="primary">催办</el-button>
       </div>
-      <div v-if="$route.query.ruleName==null||$route.query.action!='edit'">
+      <div v-if="$route.query.ruleName==null||$route.query.action=='配置中'">
         <el-button type="primary" plain @click="goBack()">取消</el-button>
         <el-button type="primary">提交审核</el-button>
       </div>
@@ -43,7 +43,6 @@ export default {
   },
   mounted() {
     this.query = { projectName: getUrlParams().projectName }
-    console.log(getUrlParams().action)
     this.action = getUrlParams().action
   },
   methods: {
@@ -65,12 +64,12 @@ export default {
   width: 95.5%;
   position: fixed;
   bottom: 0;
-  z-index: 9;
+  z-index: 999;
   left: 66px;
   text-align: center;
   line-height: 70px;
   button{
-    width: 100px;
+    width: 100px !important;
     height: 32px;
     margin-right: 10px;
     text-align: center;
