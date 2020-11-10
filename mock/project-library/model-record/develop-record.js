@@ -3,7 +3,7 @@ const developRecord = {
   message: 'success',
   data: {
     'developDataset': 'DataSet.csv',
-    'developFeature': 'Feature.xls',
+    'developFeature': 'Feature.xlsx',
     'developAlgorithm': 'Algorithm.docx',
     'developTest': 'Test.docx'
   }
