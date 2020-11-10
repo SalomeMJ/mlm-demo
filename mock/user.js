@@ -1,3 +1,4 @@
+import qs from 'qs'
 
 const tokens = {
   admin: {
@@ -30,7 +31,7 @@ export default [
     url: '/login',
     type: 'post',
     response: config => {
-      const { p_username } = config.body
+      const { p_username } = qs.parse(config.body)
       const token = tokens[p_username]
       console.log(!tokens[p_username])
       // mock error
