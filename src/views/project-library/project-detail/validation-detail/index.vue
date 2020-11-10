@@ -140,7 +140,7 @@ export default {
     height: 100%;
     background-color: #f8f8f8;
     .el-tabs__content{
-      height: 94%;
+      height: 100%;
     }
     .el-tabs__header{
       margin: 0;

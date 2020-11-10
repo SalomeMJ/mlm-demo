@@ -5,7 +5,7 @@
         <span class="must-write fs-14 fw-400 text-grey-opacity-86">监控使用事件：</span>
         <el-select v-model="useEvent" placeholder="请选择" :disabled="canEdit">
           <el-option
-            v-for="item in options"
+            v-for="item in ruleList"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -79,6 +79,7 @@
 <script>
 import TimeLine from '@/components/TimeLine'
 import { getUrlParams } from '@/utils/getUrlParams'
+import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
 
 export default {
   name: 'AddRule',
@@ -87,17 +88,9 @@ export default {
     return {
       canEdit: true,
       useEvent: '易速贷申请',
-      options: [
-        {
-          value: '',
-          label: '全部'
-        }, {
-          value: false,
-          label: '公开'
-        }, {
-          value: true,
-          label: '私有'
-        }],
+      ruleList: [
+        { value: '', label: '全部' }
+      ],
       msgDetail: [
         { name: '预警名称', type: 'input', icon: '', value: 'Trigger_8' },
         { name: '预警等级', type: 'select', icon: '', values: '一般', options: [
@@ -136,24 +129,12 @@ export default {
           { name: '类别选择', type: 'select', icon: '', value: '模型-特征', options: [
             {
               value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
+              label: '模型-特征'
             }] },
           { name: '指标选择', type: 'select', icon: '', value: '上海地区宝马故障率', values: '', options: [
             {
               value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
+              label: '上海地区宝马故障率'
             }] },
           { name: '指标描述', type: 'input', value: '上海地区宝马故障率' },
           { name: '指定对象', type: 'input', value: '易速贷申请' },
@@ -169,17 +150,6 @@ export default {
               label: '='
             }], value: '指标1', value1: '>', value2: '97' }
         ]
-      ],
-      approvalList: [
-        {
-          name: '审批流', mustWrite: true, type: 'select', disabled: false
-        },
-        {
-          name: '审批负责人', mustWrite: false, type: 'input', disabled: true
-        },
-        {
-          name: '审批类别', mustWrite: false, type: 'input', disabled: true
-        }
       ],
       timeList: [
         {
@@ -271,6 +241,11 @@ export default {
     initData() {
       this.canEdit = getUrlParams().action !== '配置中'
       this.$refs.divider.style.height = '124px'
+      getWarningRule().then((res) => {
+        for (const item of res.data.ruleList) {
+          this.ruleList.push({ value: item.id, label: item.ruleName })
+        }
+      })
     }
   }
 }

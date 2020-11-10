@@ -72,7 +72,7 @@ export default {
 
 <style lang="scss" scoped>
 .effectCon{
-   height: 81%;
+   height: 100%;
   background-color: #eee;
   .conTop{
     border-radius: 0 0 5px 5px;
@@ -103,11 +103,12 @@ export default {
   .conMiddle{
     border-radius: 5px;
     margin-top: 20px;
-    height:calc(100% - 92px);
+    height:calc(100% - 192px);
     >>> .el-tabs .el-tabs__content{
       height: 93%;
       overflow-y: auto;
       padding: 0px 30px;
+      margin-bottom: 0;
     }
   }
 }

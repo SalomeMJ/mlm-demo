@@ -193,6 +193,7 @@ export default {
           font-size: 14px;
           font-weight: 400;
           cursor: pointer;
+          margin-top: 0;
         }
         button.btn-default{
             border:1px solid rgba(0, 0, 0, 0.15);

@@ -569,7 +569,7 @@ const validationScore = {
           'M3OversdueRate': '0.00%'
         },
         {
-          'score': 'total',
+          'score': '合计',
           'customer': '5830 ',
           'M1OverdueNum': '200',
           'M1Inversion': '3.43%',
@@ -870,7 +870,7 @@ const validationScore = {
           'M3ArreareRate': '0.00%'
         },
         {
-          'score': 'total',
+          'score': '合计',
           'approvalNum': '1701 ',
           'approvalRate': '100.00%',
           'noArrearsNum': '1632 ',

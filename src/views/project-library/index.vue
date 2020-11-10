@@ -20,7 +20,6 @@
       <div v-for="(item, index) in projectList" :key="index" class="conItem" @click="enterProject(item)">
         <div class="item-top">
           <span class="fs-16 fw-bold text-grey-0 ver-middle">{{ item.projectName }}</span>
-          <!-- <i class="icon iconfont iconxiangqing doingColor pull-right cursor-pointer fs-20  ver-middle" /> -->
         </div>
         <div class="item-cen">
           <div class="item-cen-top mt-10 mb-10">
@@ -108,7 +107,7 @@ export default {
     },
     enterProject(item) {
       localStorage.setItem('activeTab', 0)
-      this.$router.push({ path: '/project-library/project-detail', query: { projectName: item.projectName }})
+      this.$router.push({ path: '/project-library/project-detail', query: { projectName: item.projectName, projectPrimary: item.projectPrimary }})
     }
   }
 }

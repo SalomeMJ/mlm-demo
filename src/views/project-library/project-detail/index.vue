@@ -12,7 +12,7 @@
     </div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="项目工作台" name="first" />
-      <tab1 v-if="activeName=='first'&&flag&&projectDetail!={}" :project-detail="projectDetail" @enterDetail="getenterDetail" @activeName="getactiveName" />
+      <tab1 v-if="activeName=='first'&&flag&&projectDetail!={}" :project-detail="projectDetail" @enterDetail="getenterDetail" @activeName="getactiveName" @eventDetail="geteventDetail" />
       <el-tab-pane label="模型资产池" name="second" />
       <tab2 v-if="activeName=='second'" :project-name="projectName" />
       <el-tab-pane label="使用事件" name="third" />
@@ -94,6 +94,11 @@ export default {
       this.activeName = 'second'
       localStorage.setItem('activeTab', 1)
       this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: e.params.name, projectName: this.projectName }})
+    },
+    geteventDetail(e) {
+      this.activeName = 'third'
+      localStorage.setItem('activeTab', 2)
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: e.params.name, modelName: e.params.useModel, projectName: getUrlParams().projectName, action: e.params.status }})
     },
     getactiveName(e) {
       localStorage.setItem('activeTab', e)

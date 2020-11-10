@@ -5,8 +5,8 @@
         <div class="con-head grid-two">
           <div>
             <span class="fs-18 fw-bold text-grey-0 mr-20 ver-middle">{{ $route.query.projectName }}</span>
-            <el-tag v-if="!projectDetaiMsg.projectPrimary">公开</el-tag>
-            <el-tag v-if="projectDetaiMsg.projectPrimary" type="warning">私有</el-tag>
+            <el-tag v-if="!$route.query.projectPrimary">公开</el-tag>
+            <el-tag v-if="$route.query.projectPrimary" type="warning">私有</el-tag>
             <p class="fs-12 text-grey-2 fw-400 h-32 lh-32" style="display:block;text-align:left;">用于贷前审批</p>
           </div>
           <div class="rightItem">
@@ -91,7 +91,7 @@
         <el-row :gutter="20">
           <el-col :span="14">
             <div class="grid-content bg-white">
-              <table-container style="background:#eee;" :table-container="useEvents" @activeTab="getActiveTab" />
+              <table-container style="background:#eee;" :table-container="useEvents" @activeTab="getActiveTab" @enterDetail="geteventDetail" />
             </div>
           </el-col>
           <el-col :span="10">
@@ -237,6 +237,9 @@ export default {
     },
     getenterDetail(e) {
       this.$emit('enterDetail', e)
+    },
+    geteventDetail(e) {
+      this.$emit('eventDetail', e)
     },
     getActiveTab(e) {
       if (e === '模型资产池') {

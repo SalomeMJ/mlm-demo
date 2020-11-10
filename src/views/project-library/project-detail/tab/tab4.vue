@@ -128,7 +128,7 @@ export default {
       this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, action: 'add' }})
     },
     editWarningRule(params) {
-      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, ruleName: params.ruleName, action: params.status }})
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, modelName: params.modelName, ruleName: params.ruleName, action: params.status }})
     }
   }
 

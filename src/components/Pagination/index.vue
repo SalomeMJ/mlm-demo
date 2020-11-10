@@ -44,11 +44,11 @@ export default {
 
 <style lang="scss" scoped>
 .pagination-container {
-  width: 100%;
+  width: calc(100% - 1px);
   background: #fff;
   padding: 32px 16px;
   margin: 0;
-  // text-align: right;
+  z-index:5;
   position: absolute;
   bottom:1px;
   padding-left: 20px;

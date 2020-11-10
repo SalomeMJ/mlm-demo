@@ -5,7 +5,7 @@
         <span class="must-write fs-14 fw-400 text-grey-opacity-86">监控使用事件：</span>
         <el-select v-model="useEvent" placeholder="请选择">
           <el-option
-            v-for="item in options"
+            v-for="item in ruleList"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -23,7 +23,7 @@
                 v-for="items in item.options"
                 :key="items.value"
                 :label="items.label"
-                :value="items.values"
+                :value="items.value"
               />
             </el-select>
             <i class="icon iconfont" :class="[item.icon, item.color]" />
@@ -46,16 +46,16 @@
                 v-for="items in child.options"
                 :key="items.value"
                 :label="items.label"
-                :value="items.values"
+                :value="items.value"
               />
             </el-select>
             <el-input v-if="child.type=='all'" v-model="child.value" placeholder="自动填充为选择的指标" disabled />
             <el-select v-if="child.type=='all'" v-model="child.value1" placeholder="请选择">
               <el-option
                 v-for="items in child.logic"
-                :key="items.value"
+                :key="items.label"
                 :label="items.label"
-                :value="items.values"
+                :value="items.value"
               />
             </el-select>
             <el-input v-if="child.type=='all'" v-model="child.value2" placeholder="请填写数字" />
@@ -76,9 +76,9 @@
         <el-select v-if="item.type!='input'" v-model="item.value">
           <el-option
             v-for="items in item.options"
-            :key="items.value"
-            :label="items.label"
-            :value="items.values"
+            :key="items"
+            :label="items"
+            :value="items"
           />
         </el-select>
       </p>
@@ -88,8 +88,7 @@
 </template>
 
 <script>
-// import HeadTitle from '@/components/HeadTitle'
-// import { getUrlParams } from '@/utils/getUrlParams'
+import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
 
 export default {
   name: 'AddRule',
@@ -97,17 +96,9 @@ export default {
   data() {
     return {
       useEvent: '',
-      options: [
-        {
-          value: '',
-          label: '全部'
-        }, {
-          value: false,
-          label: '公开'
-        }, {
-          value: true,
-          label: '私有'
-        }],
+      ruleList: [
+        { value: '', label: '全部' }
+      ],
       msgDetail: [
         { name: '预警名称', type: 'input', icon: '', value: '' },
         { name: '预警等级', type: 'select', icon: '', value: '', values: '', options: [
@@ -146,43 +137,31 @@ export default {
           { name: '类别选择', type: 'select', icon: '', value: '', options: [
             {
               value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
+              label: '模型-特征'
             }] },
           { name: '指标选择', type: 'select', icon: '', value: '', values: '', options: [
             {
               value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
+              label: '上海地区宝马故障率'
             }] },
           { name: '指标描述', type: 'input' },
           { name: '指定对象', type: 'input' },
           { name: '表达式', type: 'all', logic: [
             {
-              value: '1',
+              value: 1,
               label: '>'
             }, {
-              value: '2',
+              value: 2,
               label: '<'
             }, {
-              value: '3',
+              value: 3,
               label: '='
             }], value1: '', value2: '' }
         ]
       ],
       approvalList: [
         {
-          name: '审批流', mustWrite: true, type: 'select', disabled: false
+          name: '审批流', mustWrite: true, type: 'select', disabled: false, value: '', values: '', options: ['审批流一号']
         },
         {
           name: '审批负责人', mustWrite: false, type: 'input', disabled: true
@@ -201,33 +180,29 @@ export default {
   created() {
   },
   mounted() {
-    this.$refs.divider.style.height = '124px'
+    this.initData()
   },
   methods: {
+    initData() {
+      this.$refs.divider.style.height = '124px'
+      getWarningRule().then((res) => {
+        for (const item of res.data.ruleList) {
+          this.ruleList.push({ value: item.id, label: item.ruleName })
+        }
+      })
+    },
     addIndicators() {
       this.ruleExpression.push(
         [
-          { name: '类别选择', type: 'select', icon: '', value: '', options: [
+          { name: '类别选择', type: 'select', icon: '', value: '', values: '', options: [
             {
               value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
+              label: '模型-特征'
             }] },
           { name: '指标选择', type: 'select', icon: '', value: '', values: '', options: [
             {
               value: '1',
-              label: '一般'
-            }, {
-              value: '2',
-              label: '轻微'
-            }, {
-              value: '3',
-              label: '严重'
+              label: '上海地区宝马故障率'
             }] },
           { name: '指标描述', type: 'input' },
           { name: '指定对象', type: 'input' },
@@ -375,7 +350,7 @@ export default {
     top: 84px;
     left: -28px;
     font-size: 14px;;
-    opacity: 0.39;
+    // opacity: 0.39;
     cursor: pointer;
   }
   .divider {
@@ -383,7 +358,8 @@ export default {
     top: 59px;
     .el-divider--vertical{
       height: 100%;
-      background-color: #979797;
+      border:1px dashed #979797;
+      // background-color: #979797;
     }
   }
   .ruleExpression::before{
@@ -394,7 +370,7 @@ export default {
     position: absolute;
     top:104px;
     left:-40px;
-    opacity: 0.39;
+    // opacity: 0.39;
   }
   .approval{
 height: 248px;

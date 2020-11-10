@@ -50,6 +50,7 @@ export default {
             splitLine: {
               show: false
             },
+            splitArea: { show: false },
             axisLine: {
               lineStyle: {
                 color: '#5f5f5f'
@@ -65,6 +66,7 @@ export default {
             splitLine: {
               show: false
             },
+            splitArea: { show: false },
             axisLine: {
               lineStyle: {
                 color: '#5f5f5f'

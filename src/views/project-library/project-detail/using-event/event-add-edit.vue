@@ -149,7 +149,7 @@ export default {
       }
     },
     goBack() {
-      this.$router.push({ path: '/project-library/project-detail', query: getUrlParams().projectName })
+      this.$router.push({ path: '/project-library/project-detail', query: { projectName: getUrlParams().projectName }})
     }
   }
 }

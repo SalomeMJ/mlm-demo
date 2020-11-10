@@ -262,7 +262,7 @@ const scoreOverview = {
       { 'score': '(680, 690]', 'trainNum': '179', 'trainRate': '2.29%', 'checkNum': '110', 'checkRate': '1.89%', 'rateGap': '-0.0041 ', 'rateWeight': '-0.1949 ', 'PSI': '0.0008 ' },
       { 'score': '(690, 700]', 'trainNum': '87', 'trainRate': '1.11%', 'checkNum': '61', 'checkRate': '1.05%', 'rateGap': '-0.0007 ', 'rateWeight': '-0.0630 ', 'PSI': '0.0000 ' },
       { 'score': '(700,~)', 'trainNum': '25', 'trainRate': '0.32%', 'checkNum': '22', 'checkRate': '0.38%', 'rateGap': '0.0006 ', 'rateWeight': '0.1642 ', 'PSI': '0.0001 ' },
-      { 'score': 'total', 'trainNum': '7807', 'trainRate': '100.00%', 'checkNum': '5830', 'checkRate': '100.00%', 'rateGap': '/', 'rateWeight': '/', 'PSI': '0.0060 ' }
+      { 'score': '合计', 'trainNum': '7807', 'trainRate': '100.00%', 'checkNum': '5830', 'checkRate': '100.00%', 'rateGap': '/', 'rateWeight': '/', 'PSI': '0.0060 ' }
     ]
 
   }

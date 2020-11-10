@@ -17,7 +17,7 @@
             </span>
             <span v-if="index==5">
               {{ scope.row[item.prop] }}
-              <i class="icon iconfont icontoright icon-f20 doingColor" @click="enterEventDetail(scope.row)" />
+              <i class="icon iconfont icontoright icon-f20 doingColor" @click="enterDetail(scope.row)" />
             </span>
           </template>
         </el-table-column>
@@ -100,7 +100,7 @@ export default {
     initDirective(x) {
       this.currpage = x
     },
-    enterEventDetail(params) {
+    enterDetail(params) {
       this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.evenName, modelName: getUrlParams().modelName, projectName: getUrlParams().projectName, action: params.status }})
     }
   }

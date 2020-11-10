@@ -19,6 +19,7 @@
           <span v-if="activeTab=='second'" class="addValidationEvent" @click="addValidationEvent()">新建验证事件</span>
           <validation-record v-if="activeTab=='second'" />
           <el-tab-pane label="模型使用记录" name="third" />
+          <span v-if="activeTab=='third'" class="addValidationEvent" @click="addUsingEvent()">新建使用事件</span>
           <using-record v-if="activeTab=='third'" />
           <el-tab-pane label="模型操作日志" name="fourth" />
           <el-tab-pane label="模型文档库" name="five" />
@@ -82,6 +83,10 @@ export default {
       }).catch(() => {
         // ...
       })
+    },
+    addUsingEvent() {
+      localStorage.setItem('activeTab', 2)
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: null, projectName: getUrlParams().projectName, action: 'add' }})
     }
   }
 }
@@ -105,7 +110,7 @@ export default {
     }
   }
   .model-record{
-    height: 85%;
+    height: calc(100% - 125px);
     background: #FFFFFF;
     border-radius: 5px;
   }
@@ -116,9 +121,9 @@ export default {
   >>> .el-tabs{
     height: 100%;
     .el-tabs__content{
-      height: 88%;
-    // border: 1px solid #D9D9D9;
+          height: calc(100% - 72px);
     margin: 20px 30px;
+    overflow-y: auto;
     }
   }
   >>> .el-tabs__nav{

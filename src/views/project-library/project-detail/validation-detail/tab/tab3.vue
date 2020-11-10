@@ -1,32 +1,30 @@
 <template>
-  <div class="tabContainer">
+  <div class="tabContainer h100">
     <el-tabs v-model="activeTab" :tab-position="tabPosition" class="h100 left-tab" @tab-click="handleClick">
       <el-tab-pane label="评分分布" name="first" />
       <div v-if="activeTab=='first'&&activeIndex=='0'" class="p-20">
         <bar-chart :bar-chat="barOptions" />
       </div>
       <el-tab-pane label="PSI:0.0060" name="second" />
-      <div v-if="activeTab=='second'">
-        <el-table
-          v-if="tableData.length!=0"
-          class="system-table"
-          :data="tableData"
-          style="width: 100%"
-          height="100%"
-          @selection-change="handleCurrentChange"
-        >
-          <template v-for="(item,index) in headArr">
-            <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
-              <template slot-scope="scope">
-                <span>
-                  {{ scope.row[item.prop] }}
-                </span>
-              </template>
-            </el-table-column>
-          </template>
-        </el-table>
-      </div>
-      <!-- <el-table v-if="activeTab=='second'" :table-data="tableData" :head-arr="headArr" /> -->
+      <el-table
+        v-if="tableData.length!=0&&activeTab=='second'"
+        class="system-table"
+        :data="tableData"
+        style="width: 100%"
+        height="95%"
+        @selection-change="handleCurrentChange"
+      >
+        <template v-for="(item,index) in headArr">
+          <el-table-column :key="index" :prop="item.prop" :label="item.label" :align="index==0?'left':'right'">
+            <template slot-scope="scope">
+              <span>
+                {{ scope.row[item.prop] }}
+              </span>
+            </template>
+          </el-table-column>
+        </template>
+      </el-table>
+
       <el-tab-pane label="特征分布" name="third" />
       <div v-if="activeTab=='third'" class="p-20">
         <span class="fs-14 fw-bold text-gret-0">特征</span>
@@ -40,7 +38,7 @@
         </el-select>
         <bar-chart :bar-chat="barOptions1" />
         <el-table
-          v-if="tableData1.length!=0"
+          v-if="tableData1.length!=0&&activeTab=='third'"
           class="system-table"
           :data="tableData1"
           style="width: 100%"
@@ -57,7 +55,6 @@
             </el-table-column>
           </template>
         </el-table>
-        <!-- <el-table :table-data="tableData1" :head-arr="headArr1" /> -->
       </div>
     </el-tabs>
   </div>
