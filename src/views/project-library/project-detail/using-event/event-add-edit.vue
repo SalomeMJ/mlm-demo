@@ -1,7 +1,7 @@
 <template>
   <div class="h100">
     <div class="conCen">
-      <div class="bg-white mb-20 p-20-30">
+      <div class="bg-white p-20-30">
         <div v-for="(item, index) in condetail" :key="index" class="conItem mb-20">
           <p class="title fs-14 fw-bold text-grey-opacity-86">{{ item.name }}</p>
           <div class="conDetail">

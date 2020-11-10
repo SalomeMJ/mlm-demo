@@ -1,5 +1,5 @@
 
-import { isActive } from '@/api/activation'
+// import { isActive } from '@/api/activation'
 // import router, { resetRouter } from '@/router'
 
 const state = {
@@ -14,17 +14,17 @@ const mutations = {
 
 const actions = {
   // 激活状态
-  isActive({ commit }) {
-    return new Promise((resolve, reject) => {
-      isActive().then(response => {
-        const { data } = response
-        commit('SET_ACTIVE', data)
-        resolve(response)
-      }).catch(error => {
-        reject(error)
-      })
-    })
-  }
+  // isActive({ commit }) {
+  //   return new Promise((resolve, reject) => {
+  //     isActive().then(response => {
+  //       const { data } = response
+  //       commit('SET_ACTIVE', data)
+  //       resolve(response)
+  //     }).catch(error => {
+  //       reject(error)
+  //     })
+  //   })
+  // }
 }
 
 export default {

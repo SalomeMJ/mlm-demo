@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 import { param2Obj } from '../src/utils'
 
 import user from './user'
-import activation from './activation'
+// import activation from './activation'
 import role from './role'
 import nav from './nav/index.js'
 import projectLibrary from './project-library/index'
@@ -37,7 +37,7 @@ import search from './remote-search'
 
 const mocks = [
   ...user,
-  ...activation,
+  // ...activation,
   ...role,
   nav,
   projectLibrary,
@@ -96,9 +96,10 @@ export function mockXHR() {
       if (respond instanceof Function) {
         const { body, type, url } = options
         // https://expressjs.com/en/4x/api.html#req
+        // console.log(body)
         result = respond({
           method: type,
-          body: JSON.parse(body),
+          body: JSON.parse(JSON.stringify(body)),
           query: param2Obj(url)
         })
       } else {
