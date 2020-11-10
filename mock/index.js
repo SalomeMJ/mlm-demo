@@ -96,7 +96,6 @@ export function mockXHR() {
       if (respond instanceof Function) {
         const { body, type, url } = options
         // https://expressjs.com/en/4x/api.html#req
-        // console.log(body)
         result = respond({
           method: type,
           body: JSON.parse(JSON.stringify(body)),

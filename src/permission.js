@@ -9,9 +9,6 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
-  // const isActive = await store.dispatch('activation/isActive')
-  // // 判断是否激活
-  // if (isActive.status === '0') {
   //  判断是否登录
   const hasToken = getToken()
   if (hasToken) {
@@ -48,46 +45,6 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done()
     }
   }
-  // } else {
-  //   /* 没有激活报错，跳转激活页面*/
-  //   if (to.path === '/activation') {
-  //     next()
-  //     NProgress.done()
-  //   } else {
-  //     switch (isActive.status) {
-  //       case '1':
-  //         Message({
-  //           message: '激活码过期',
-  //           type: 'error',
-  //           duration: 3 * 1000
-  //         })
-  //         break
-  //       case '2':
-  //         Message({
-  //           message: 'mac地址错误',
-  //           type: 'error',
-  //           duration: 3 * 1000
-  //         })
-  //         break
-  //       case '3':
-  //         Message({
-  //           message: '激活码错误',
-  //           type: 'error',
-  //           duration: 3 * 1000
-  //         })
-  //         break
-  //       case '4':
-  //         Message({
-  //           message: '系统时间错误',
-  //           type: 'error',
-  //           duration: 3 * 1000
-  //         })
-  //         break
-  //     }
-  //     // next(`/activation?redirect=${to.path}`)
-  //     NProgress.done()
-  //   }
-  // }
 })
 
 router.afterEach(() => {

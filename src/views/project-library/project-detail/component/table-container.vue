@@ -15,7 +15,7 @@
       >
         <template v-for="(item,index) in tableContainer.headArr">
           <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" align="left" show-overflow-tooltip fixed>
-            <template scope="scope">
+            <template slot-scope="scope">
               <span>
                 {{ scope.row[item.prop] }}
               </span>

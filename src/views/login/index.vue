@@ -146,7 +146,6 @@ export default {
               } else {
                 this.$router.push({ path: '/', query: this.otherQuery })
                 this.loading = false
-                // this.$store.state.systemStatue.isOnline = true
               }
             })
             .catch(() => {
