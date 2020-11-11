@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
+import { getUsingEvent } from '@/api/project-library/using-event/using-event'
 
 export default {
   name: 'AddRule',
@@ -96,9 +96,7 @@ export default {
   data() {
     return {
       useEvent: '',
-      ruleList: [
-        { value: '', label: '全部' }
-      ],
+      ruleList: [],
       msgDetail: [
         { name: '预警名称', type: 'input', icon: '', value: '' },
         { name: '预警等级', type: 'select', icon: '', value: '', values: '', options: [
@@ -185,9 +183,9 @@ export default {
   methods: {
     initData() {
       this.$refs.divider.style.height = '124px'
-      getWarningRule().then((res) => {
-        for (const item of res.data.ruleList) {
-          this.ruleList.push({ value: item.id, label: item.ruleName })
+      getUsingEvent().then((res) => {
+        for (const item of res.data.usingEvents) {
+          this.ruleList.push({ value: item.id, label: item.eventName })
         }
       })
     },

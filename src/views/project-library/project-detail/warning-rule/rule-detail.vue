@@ -79,7 +79,7 @@
 <script>
 import TimeLine from '@/components/TimeLine'
 import { getUrlParams } from '@/utils/getUrlParams'
-import { getWarningRule } from '@/api/project-library/warning-rule/warning-rule'
+import { getUsingEvent } from '@/api/project-library/using-event/using-event'
 
 export default {
   name: 'AddRule',
@@ -88,9 +88,7 @@ export default {
     return {
       canEdit: true,
       useEvent: '易速贷申请',
-      ruleList: [
-        { value: '', label: '全部' }
-      ],
+      ruleList: [],
       msgDetail: [
         { name: '预警名称', type: 'input', icon: '', value: 'Trigger_8' },
         { name: '预警等级', type: 'select', icon: '', values: '一般', options: [
@@ -241,9 +239,9 @@ export default {
     initData() {
       this.canEdit = getUrlParams().action !== '配置中'
       this.$refs.divider.style.height = '124px'
-      getWarningRule().then((res) => {
-        for (const item of res.data.ruleList) {
-          this.ruleList.push({ value: item.id, label: item.ruleName })
+      getUsingEvent().then((res) => {
+        for (const item of res.data.usingEvents) {
+          this.ruleList.push({ value: item.id, label: item.eventName })
         }
       })
     }
