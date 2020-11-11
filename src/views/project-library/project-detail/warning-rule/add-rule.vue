@@ -158,15 +158,9 @@ export default {
         ]
       ],
       approvalList: [
-        {
-          name: '审批流', mustWrite: true, type: 'select', disabled: false, value: '审批流一号', options: ['审批流一号', '审批流二号', '审批流三号']
-        },
-        {
-          name: '审批负责人', mustWrite: false, type: 'input', disabled: true
-        },
-        {
-          name: '审批类别', mustWrite: false, type: 'input', disabled: true
-        }
+        { name: '审批流', mustWrite: true, type: 'select', icon: '', value: '审批流一号', disabled: false, options: ['审批流一号', '审批流二号', '审批流三号'] },
+        { name: '审批负责人', mustWrite: false, type: 'input', icon: '', value: '王盟；于和伟', disabled: false },
+        { name: '审批类别', mustWrite: false, type: 'input', icon: '', value: '会签', disabled: false }
       ]
     }
   },
