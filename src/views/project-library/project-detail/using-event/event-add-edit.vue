@@ -143,9 +143,9 @@ export default {
         this.condetail[1].child[0].value = getUrlParams().modelName
         if (getUrlParams().action === '生效审核中') {
           this.condetail.splice(2, 1)
-          this.condetail[1].child[1].value = '验证事件V11、验证事件V10'
-          this.condetail[1].child[2].value = 'DataSet.csv'
         }
+        this.condetail[1].child[1].value = '验证事件V11、验证事件V10'
+        this.condetail[1].child[2].value = 'DataSet.csv'
       }
     },
     goBack() {
