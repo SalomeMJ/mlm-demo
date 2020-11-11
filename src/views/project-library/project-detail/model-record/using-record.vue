@@ -2,7 +2,7 @@
   <div class="h100 table-container">
     <el-table
       v-if="tableData.length!=0"
-      class="system-table"
+      class="system-table  can-edit-table"
       :data="tableData"
       style="width: 100%"
       height="87%"

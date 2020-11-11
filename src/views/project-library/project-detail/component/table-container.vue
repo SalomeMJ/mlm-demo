@@ -7,6 +7,7 @@
       <el-table
         v-if="tableContainer.tableData.length!=0"
         class="system-table"
+        :class="{'can-edit-table':tableContainer.name!='验证数据'}"
         :data="tableContainer.tableData"
         style="width: 100%"
         height="172px"
