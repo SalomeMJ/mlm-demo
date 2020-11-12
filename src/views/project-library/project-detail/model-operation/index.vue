@@ -10,6 +10,7 @@
 import HeadTitle from '@/components/HeadTitle'
 import AddModel from './add-model'
 import ModelGroup from './model-group'
+import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'ModelOperation',
@@ -26,7 +27,7 @@ export default {
   created() {
   },
   mounted() {
-    // this.query = { projectName: getUrlParams().projectName }
+    this.query = { projectName: getUrlParams().projectName }
   },
   methods: {
   }

@@ -14,7 +14,7 @@
         }
         th:last-child{
           .cell{
-            padding-right: 0 !important;
+            padding-right: 20px !important;
           }
         }
       }
@@ -45,7 +45,9 @@
       }
       th:last-child,td:last-child{
         text-align: right;
-        padding-right: 10px !important;
+        .cell{
+          padding-right: 20px !important;
+        }
       }
       th:first-child,td:first-child{
        padding-left:20px !important;
@@ -66,7 +68,7 @@
       tr{
         th:last-child{
           .cell{
-            padding-right: 20px !important;
+            padding-right: 38px !important;
           }
         }
       }

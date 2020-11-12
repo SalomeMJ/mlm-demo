@@ -82,6 +82,9 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+button.el-button{
+  font-size: 14px !important;
+}
 button.el-button.el-button--primary.el-button--medium{
   width: 88px;
   height: 32px;

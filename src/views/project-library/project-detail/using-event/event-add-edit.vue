@@ -6,12 +6,12 @@
           <p class="title fs-14 fw-bold text-grey-opacity-86">{{ item.name }}</p>
           <div class="conDetail">
             <p v-for="(child, ind) in item.child" :key="ind">
-              <span class="fs-14 fw-400 text-grey-opacity-86" :class="{'must-write':child.mustWrite}">{{ child.name }}：</span>
+              <span class="fs-14 fw-400 text-grey-opacity-86" :class="{'must-write':child.mustWrite}" :style="{'margin-top':child.releaseNum==undefined?'0':'7px'}">{{ child.name }}：</span>
               <el-input v-if="child.type=='input'&&child.releaseNum==undefined" v-model="child.value" :disabled="child.disabled" />
               <span v-if="child.type=='input'&&child.releaseNum!=undefined" class="releaseContainer">
                 <div v-for="(release, i) in child.releaseNum" :key="i">
                   <el-input v-model="release.value" :class="{'mb-20':i!=child.releaseNum.length-1}" :disabled="child.disabled" />
-                  <i v-if="i != 0&&child.releaseNum.length!=1" class="icon iconfont iconDelete cursor-pointer errorColor ver-middle pull-right mt-5" @click="deleteRelease(child,i)" />
+                  <i v-if="i != 0&&child.releaseNum.length!=1" class="icon iconfont iconDelete cursor-pointer errorColor ver-middle pull-right mt-5 mr-10" @click="deleteRelease(child,i)" />
                 </div>
               </span>
               <el-input v-if="child.type=='textarea'" v-model="child.value" type="textarea" :disabled="child.disabled" :readonly="child.disabled" resize="none" />
@@ -187,12 +187,12 @@ export default {
   }
 }
 i.addIcon{
-    margin-left: -17px;
+    // margin-left: -17px;
     display: inline-block;
-    margin-top: 5px;
+    margin-top: 8px;
     vertical-align: top;
     font-size: 15px;
-
+margin-left: -30px;
 }
 .conCen{
   width: 100%;
@@ -235,13 +235,13 @@ padding: 20px 30px;
         text-align: right;
       }
       span.releaseContainer{
-        width: 29%;
+        width: 30%;
         vertical-align: top;
         // border:1px solid blue;
         text-align: left;
         .el-input,.el-select{
           display: inline-block;
-          width: calc(96% + 2px );
+          width: calc(93% + 2px );
         }
       }
     }

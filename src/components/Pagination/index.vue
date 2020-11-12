@@ -46,7 +46,7 @@ export default {
 .pagination-container {
   width: calc(100% - 1px);
   background: #fff;
-  padding: 0px 16px 50px 16px;
+  padding: 20px 20px 50px 20px;
   margin: 0;
   z-index:5;
   position: absolute;

@@ -6,12 +6,12 @@
           <p class="title fs-14 fw-bold text-grey-opacity-86">{{ item.name }}</p>
           <div class="conDetail">
             <p v-for="(child, ind) in item.child" :key="ind">
-              <span class="fs-14 fw-400 text-grey-opacity-86" :class="{'must-write':child.mustWrite}">{{ child.name }}：</span>
+              <span class="fs-14 fw-400 text-grey-opacity-86" :class="{'must-write':child.mustWrite}" :style="{'margin-top':child.releaseNum==undefined?'0':'7px'}">{{ child.name }}：</span>
               <el-input v-if="child.type=='input'&&child.releaseNum==undefined" v-model="child.value" :disabled="child.disabled" />
               <span v-if="child.type=='input'&&child.releaseNum!=undefined" class="releaseContainer">
                 <div v-for="(release, i) in child.releaseNum" :key="i">
                   <el-input v-model="release.value" :class="{'mb-20':i!=child.releaseNum.length-1}" :disabled="child.disabled" />
-                  <i v-if="i != 0&&child.releaseNum.length!=1" class="icon iconfont iconDelete cursor-pointer errorColor ver-middle pull-right mt-5" @click="deleteRelease(child,i)" />
+                  <i v-if="i != 0&&child.releaseNum.length!=1" class="icon iconfont iconDelete cursor-pointer errorColor ver-middle pull-right mt-5 mr-10" @click="deleteRelease(child,i)" />
                 </div>
               </span>
               <el-input v-if="child.type=='textarea'" v-model="child.value" type="textarea" :disabled="child.disabled" :readonly="child.disabled" resize="none" />
@@ -66,19 +66,19 @@ export default {
             { name: '模型描述', mustWrite: false, type: 'textarea', icon: '', value: '', disabled: false },
             { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false },
             { name: '模型注册渠道', mustWrite: true, type: 'select', icon: '', value: '', disabled: false },
-            { name: '所属模型组', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', value: '', disabled: false },
-            { name: '上传PMML文件', mustWrite: true, type: 'select', icon: '', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false },
+            { name: '所属模型组', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', value: '', releaseNum: [{ value: '' }], disabled: false },
+            { name: '上传PMML文件', mustWrite: true, type: 'input', icon: '', value: '', disabled: false },
             { name: '算法类型', mustWrite: true, type: 'select', icon: '', value: '', disabled: false },
-            { name: '上传模型文档', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false }
+            { name: '上传模型文档', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', value: '', releaseNum: [{ value: '' }], disabled: false }
           ]
         },
         {
           name: '模型开发信息',
           child: [
-            { name: '上传特征信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', disabled: false, options: ['易速贷申请', '自营车审批', '新车审批', '二手车预审批', '易速贷反欺诈', '易速贷反欺诈2.0', '自营车预审批', '新车预审批', '新车催收', '二手车审批', '二手车审批2.0'] },
-            { name: '上传数据信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', disabled: false, options: ['验证事件V11', '验证事件V10', '验证事件V9', '验证事件V8', '验证事件V7', '验证事件V6', '验证事件V5', '验证事件V4', '验证事件V3', '验证事件V2', '验证事件V1'] },
-            { name: '上传算法信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', disabled: false, options: ['DataSet.csv', 'Feature.xlsx', 'Algorithm.docx', 'Test.docx'] },
-            { name: '上传测试信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', releaseNum: [{ value: '' }], disabled: false }
+            { name: '上传特征信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', disabled: false, releaseNum: [{ value: '' }] },
+            { name: '上传数据信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', disabled: false, releaseNum: [{ value: '' }] },
+            { name: '上传算法信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', disabled: false, releaseNum: [{ value: '' }] },
+            { name: '上传测试信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', releaseNum: [{ value: '' }], disabled: false }
           ]
         }
       ],
@@ -188,7 +188,7 @@ i.addIcon{
     margin-top: 8px;
     vertical-align: top;
     font-size: 15px;
-
+margin-left: -30px;
 }
 .conCen{
   width: 100%;
@@ -232,13 +232,13 @@ padding: 20px 30px;
         text-align: right;
       }
       span.releaseContainer{
-        width: 29%;
+        width: 30%;
         vertical-align: top;
         // border:1px solid blue;
         text-align: left;
         .el-input,.el-select{
           display: inline-block;
-          width: calc(96% + 2px );
+          width: calc(93% + 2px );
         }
       }
     }
