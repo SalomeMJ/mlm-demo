@@ -102,6 +102,7 @@ export default {
       getAssetPool(this.currpage).then((response) => {
         this.tableData = response.data.assetPool
         this.totalData = this.tableData
+        this.pageChange({ page: 1, limit: 10 })
       })
     }
   }

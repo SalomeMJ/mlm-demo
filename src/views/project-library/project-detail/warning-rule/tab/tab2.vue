@@ -95,6 +95,7 @@ export default {
       getTouchRecord(this.currpage).then((response) => {
         this.tableData = response.data.results
         this.totalData = this.tableData
+        this.pageChange({ page: 1, limit: 10 })
       })
     },
     initDirective(x) {

@@ -90,6 +90,7 @@ export default {
       })
       getDataSample().then((response) => {
         this.tableData = response.data.results
+        this.pageChange({ page: 1, limit: 10 })
       })
     }
   }

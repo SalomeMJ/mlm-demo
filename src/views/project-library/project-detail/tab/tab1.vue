@@ -42,7 +42,7 @@
                   <span class="fs-20 fw-400 mt-10" :style="{'color':item.color}">{{ item.value }}</span>
                 </p>
               </div>
-              <div class="warningMsg p-10 overflow-y-auto mt-10">
+              <div class="warningMsg p-10 overflow-y-auto mt-5">
                 <p v-for="(item, index) in warningData.warningMsg" :key="index">
                   <span class="circle mr-10" :style="{'background-color':item.bgc}" />
                   <span class="fs-14 text-grey-0 w100 text-overflow-ellipsis">{{ item.msg }}</span>
@@ -293,7 +293,6 @@ padding: 20px;
       text-align: center;
       line-height: 46px;
       background: #F6F6F6;
-      border: 1px solid #D9D9D9;
       border-radius: 50%;
       i{
         font-size: 22px;
@@ -313,7 +312,7 @@ padding: 20px;
     }
     .grid-center{
       display: grid;
-      grid-template-columns: repeat(5,1fr);
+      grid-template-columns: 1fr 1.5fr 1.5fr 1fr;
       p{
         text-align: center;
         height: 50px;
@@ -331,7 +330,7 @@ padding: 20px;
     }
     .warningMsg{
       width: 100%;
-      height: 85px;
+      height: 90px;
       background: #f6f6f6;
       border-radius: 5px;
       overflow-y: auto;
@@ -345,7 +344,7 @@ padding: 20px;
         display: block;
         text-align: left;
         text-indent: 10px;
-        height: 25px;
+        height: 23px;
       }
     }
   }

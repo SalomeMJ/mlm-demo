@@ -108,6 +108,7 @@ export default {
       getUsingEvent().then((response) => {
         this.tableData = response.data.usingEvents
         this.totalData = this.tableData
+        this.pageChange({ page: 1, limit: 10 })
       })
     },
     initDirective(x) {
@@ -137,7 +138,7 @@ export default {
     background: #FFFFFF;
     border-radius: 2px;
     position: absolute;
-    right:138px;
+    right:130px;
     top:0;
   }
   >>> button{
