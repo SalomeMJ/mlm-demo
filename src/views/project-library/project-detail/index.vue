@@ -129,7 +129,7 @@ export default {
   left:80px;
 }
 .el-select >>> .el-input--medium .el-input__inner {
-      width: 130px;
+      width: 200px;
   }
   .el-tabs{
     display: inline-block;
@@ -142,7 +142,7 @@ export default {
       padding: 0;
       position: fixed;
       top: 7px;
-      left: 300px;
+      left: 400px;
     }
     >>> .el-tabs__content{
       height: 100%;

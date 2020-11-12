@@ -7,8 +7,8 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary" class="mr-20" plain>新建模型组</el-button>
-      <el-button type="primary">注册模型</el-button>
+      <el-button type="primary" class="mr-20" plain @click="dialogFormVisible = true">新建模型组</el-button>
+      <el-button type="primary" @click="registrtionModel()">注册模型</el-button>
     </div>
     <div class="conCen mt-20">
       <el-table
@@ -16,26 +16,20 @@
         class="system-table"
         :data="tableData"
         style="width: 100%"
-        height="71%"
         :default-sort="{prop: 'name', order: 'descending'}"
         @selection-change="handleCurrentChange"
       >
         <template v-for="(item,index) in headArr">
           <el-table-column :key="index" :prop="item.prop" :sortable="item.sortable" :label="item.label" :align="index==4||index==5?'right':'left'" show-overflow-tooltip fixed>
             <template slot-scope="scope">
-              <span v-if="index!=7&&item.prop!='modelName'">
+              <span v-if="item.prop!='modelName'&&item.prop!='modelGroup'">
                 {{ scope.row[item.prop] }}
               </span>
-              <span v-if="index!=7&&item.prop=='modelName'" @click="enterModelRecord(scope.row)">
+              <span v-if="item.prop=='modelName'" @click="enterModelRecord(scope.row)">
                 {{ scope.row[item.prop] }}
               </span>
-              <span v-if="index==7">
-                <span v-show="scope.row.levoperateel.invalid" class="errorColor"> 失效</span>
-                <i v-show="scope.row.levoperateel.invalid" class="icon iconfont iconeye icon-f20 doingColor" />
-                <i class="icon iconfont icontable-edit icon-f20" :class="{ 'doingColor':!scope.row.levoperateel.enabled,'text-grey-0':scope.row.levoperateel.enabled }" />
-                <el-switch
-                  v-model="scope.row.levoperateel.enabled"
-                />
+              <span v-if="item.prop=='modelGroup'" @click="enterModelGroup(scope.row)">
+                {{ scope.row[item.prop] }}
               </span>
             </template>
           </el-table-column>
@@ -43,7 +37,27 @@
       </el-table>
       <pagi-nation :pagination-data="paginationData" class="pull-right" @pagination="pageChange" />
     </div>
-
+    <el-dialog title="新建模型组" :visible.sync="dialogFormVisible" :modal-append-to-body="false">
+      <el-form :model="form">
+        <el-form-item label="模型组名称：" required :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off" placeholder="请输入" />
+        </el-form-item>
+        <el-form-item label="模型组描述：" :label-width="formLabelWidth">
+          <el-input v-model="form.desc" type="textarea" resize="none" placeholder="请输入" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="负责人：" required :label-width="formLabelWidth">
+          <el-select v-model="form.region" placeholder="请输入">
+            <el-option label="黎簇" value="黎簇" />
+            <el-option label="王盟" value="王盟" />
+            <el-option label="于和伟" value="于和伟" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -63,6 +77,7 @@ export default {
   data() {
     return {
       input: '',
+      dialogFormVisible: false,
       paginationData: {
         total: 11,
         page: 1,
@@ -81,7 +96,19 @@ export default {
         { label: '正在使用事件数量', prop: 'useEventNum', sortable: false }
       ],
       tableData: [],
-      totalData: []
+      totalData: [],
+      dialogTableVisible: false,
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      formLabelWidth: '120px'
     }
   },
   mounted() {
@@ -126,6 +153,16 @@ export default {
     // 模型记录
     enterModelRecord(params) {
       this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, projectName: this.projectName }})
+    },
+    // 模型组
+    enterModelGroup(params) {
+      localStorage.setItem('activeTab', 1)
+      this.$router.push({ path: '/project-library/project-detail/model-operation', query: { projectName: this.projectName, modelName: params.modelName, modelGroup: params.modelGroup }})
+    },
+    // 注册模型
+    registrtionModel() {
+      localStorage.setItem('activeTab', 1)
+      this.$router.push({ path: '/project-library/project-detail/model-operation', query: { projectName: this.projectName }})
     }
   }
 
@@ -160,20 +197,19 @@ export default {
   }
 }
 .conCen{
-  height: calc(100% - 52px);
+height: calc(100% - 52px);
 border-radius: 5px;
 border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{
   display: none;
 }
->>> td:nth-child(2) .cell span{
+>>> td:nth-child(2) .cell span,td:nth-child(4) .cell span{
   cursor: pointer;
 }
->>> td:nth-child(2) .cell span{
+>>> td:nth-child(2) .cell span,td:nth-child(4) .cell span{
   color:#00a0e9;
   text-decoration: underline;
 }
 background-color: #fff;
 }
-
 </style>

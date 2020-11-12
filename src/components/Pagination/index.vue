@@ -5,7 +5,7 @@
       :current-page.sync="paginationData.currentPage"
       :page-size.sync="paginationData.limit"
       layout="prev, pager, next, total, sizes"
-      :page-sizes="paginationData.pageSizes"
+      :page-sizes="[10, 20, 50]"
       :total="paginationData.total"
       v-bind="$attrs"
       @size-change="handleSizeChange"
@@ -46,7 +46,7 @@ export default {
 .pagination-container {
   width: calc(100% - 1px);
   background: #fff;
-  padding: 32px 16px;
+  padding: 0px 16px 50px 16px;
   margin: 0;
   z-index:5;
   position: absolute;

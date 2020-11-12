@@ -121,7 +121,7 @@ button.el-button.el-button--primary.el-button--medium.is-disabled{
   background:#8cc8ff;
 }
 .el-table::before,.el-table__fixed::before{display: none;}
-
+.el-table td{border:none;}
 .el-tabs__item.is-top{
   color:rgba(0,0,0,0.65);
 font-size: 14px;
@@ -170,4 +170,67 @@ font-weight: 400;
 }
 .el-tabs__nav-prev,.el-tabs__nav-next{
   display: none;
+}
+.el-dialog__wrapper{
+  background: rgba(0,0,0,0.3);
+  .el-dialog{
+    width: 480px;
+    height: 333px;
+    background: #FFFFFF;
+    box-shadow: 0px 12px 48px 16px rgba(0, 0, 0, 0.03), 0px 9px 28px 0px rgba(0, 0, 0, 0.05), 0px 6px 16px -8px rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    margin-top:calc(25% - 166px);
+    .el-dialog__header{
+      padding:0 20px 0 20px;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        border-bottom:1px solid rgba(0,0,0,0.06);
+        .el-dialog__title{  
+          font-size: 16px;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .el-dialog__headerbtn {
+          top: 10px;
+        }
+    }
+    .el-dialog__body{
+      padding: 30px;
+      .el-form {
+        .el-form-item {
+          .el-form-item__label{
+            font-size: 14px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.85);
+          }
+          .el-form-item__content{
+            .el-select{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .el-dialog__footer {
+      position: absolute;
+      bottom: 0;
+      text-align: right;
+      width: 100%;
+      border-top:1px solid rgba(0,0,0,0.06);
+      height: 52px;
+    // line-height: 52px;
+    padding-right: 20px;
+     button{
+      width: 65px;
+      height: 32px;
+      line-height: 32px;
+      padding: 0;
+      text-align: center;
+      border-radius: 2px;
+    }
+    }
+  }
 }

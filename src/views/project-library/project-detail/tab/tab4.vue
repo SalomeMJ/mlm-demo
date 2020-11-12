@@ -16,7 +16,7 @@
         class="system-table"
         :data="tableData"
         style="width: 100%"
-        height="71%"
+        height="80%"
         :default-sort="{prop: 'name', order: 'descending'}"
         @selection-change="handleCurrentChange"
       >

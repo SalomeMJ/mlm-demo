@@ -1,5 +1,5 @@
 <template>
-  <div class="h100">
+  <div class="h100 bg-white">
     <div class="conCen">
       <div class="bg-white p-20-30">
         <div v-for="(item, index) in condetail" :key="index" class="conItem mb-20">
@@ -60,29 +60,25 @@ export default {
     return {
       condetail: [
         {
-          name: '信息填写',
+          name: '模型基本信息',
           child: [
-            { name: '使用事件名称', mustWrite: true, type: 'input', icon: '', value: '', disabled: false },
-            { name: '使用事件描述', mustWrite: false, type: 'textarea', icon: '', value: '', disabled: false },
-            { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false }
+            { name: '模型名称', mustWrite: true, type: 'input', icon: '', value: '', disabled: false },
+            { name: '模型描述', mustWrite: false, type: 'textarea', icon: '', value: '', disabled: false },
+            { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false },
+            { name: '模型注册渠道', mustWrite: true, type: 'select', icon: '', value: '', disabled: false },
+            { name: '所属模型组', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', value: '', disabled: false },
+            { name: '上传PMML文件', mustWrite: true, type: 'select', icon: '', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false },
+            { name: '算法类型', mustWrite: true, type: 'select', icon: '', value: '', disabled: false },
+            { name: '上传模型文档', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false }
           ]
         },
         {
-          name: '使用事件配置',
+          name: '模型开发信息',
           child: [
-            { name: '使用模型', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['易速贷申请', '自营车审批', '新车审批', '二手车预审批', '易速贷反欺诈', '易速贷反欺诈2.0', '自营车预审批', '新车预审批', '新车催收', '二手车审批', '二手车审批2.0'] },
-            { name: '验证记录', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['验证事件V11', '验证事件V10', '验证事件V9', '验证事件V8', '验证事件V7', '验证事件V6', '验证事件V5', '验证事件V4', '验证事件V3', '验证事件V2', '验证事件V1'] },
-            { name: '模型文档', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['DataSet.csv', 'Feature.xlsx', 'Algorithm.docx', 'Test.docx'] },
-            { name: '发布模型文档', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', releaseNum: [{ value: '' }], disabled: false },
-            { name: '使用时间生效时间', mustWrite: true, type: 'time', icon: '', disabled: false }
-          ]
-        },
-        {
-          name: '审批配置',
-          child: [
-            { name: '审批流', mustWrite: true, type: 'select', icon: '', value: '审批流一号', disabled: false, options: ['审批流一号', '审批流二号', '审批流三号'] },
-            { name: '审批负责人', mustWrite: false, type: 'input', icon: '', value: '王盟；于和伟', disabled: false },
-            { name: '审批类别', mustWrite: false, type: 'input', icon: '', value: '会签', disabled: false }
+            { name: '上传特征信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', disabled: false, options: ['易速贷申请', '自营车审批', '新车审批', '二手车预审批', '易速贷反欺诈', '易速贷反欺诈2.0', '自营车预审批', '新车预审批', '新车催收', '二手车审批', '二手车审批2.0'] },
+            { name: '上传数据信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', disabled: false, options: ['验证事件V11', '验证事件V10', '验证事件V9', '验证事件V8', '验证事件V7', '验证事件V6', '验证事件V5', '验证事件V4', '验证事件V3', '验证事件V2', '验证事件V1'] },
+            { name: '上传算法信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', disabled: false, options: ['DataSet.csv', 'Feature.xlsx', 'Algorithm.docx', 'Test.docx'] },
+            { name: '上传测试信息', mustWrite: false, type: 'select', icon: 'iconstrategyPlus', releaseNum: [{ value: '' }], disabled: false }
           ]
         }
       ],
@@ -126,33 +122,33 @@ export default {
       // console.log(tab, event);
     },
     initData() {
-      for (const item of this.condetail) {
-        for (const child in item.child) {
-          item.child[child].disabled = false
-        }
-      }
-      if (getUrlParams().action === 'add' || getUrlParams().action === '配置中') {
-        this.condetail[2].child[1].disabled = true
-        this.condetail[2].child[2].disabled = true
-      } else {
-        this.condetail[1].child.splice(3, 1)
-        for (const item of this.condetail) {
-          for (const child in item.child) {
-            item.child[child].disabled = true
-          }
-        }
-      }
-      if (getUrlParams().action === '配置中' || getUrlParams().action === '生效审核中') {
-        this.condetail[0].child[0].value = getUrlParams().eventName
-        this.condetail[0].child[1].value = '用于贷前审批'
-        this.condetail[0].child[2].value = '黎簇'
-        this.condetail[1].child[0].value = getUrlParams().modelName
-        if (getUrlParams().action === '生效审核中') {
-          this.condetail.splice(2, 1)
-        }
-        this.condetail[1].child[1].value = '验证事件V11、验证事件V10'
-        this.condetail[1].child[2].value = 'DataSet.csv'
-      }
+      // for (const item of this.condetail) {
+      //   for (const child in item.child) {
+      //     item.child[child].disabled = false
+      //   }
+      // }
+      // if (getUrlParams().action === 'add' || getUrlParams().action === '配置中') {
+      //   this.condetail[2].child[1].disabled = true
+      //   this.condetail[2].child[2].disabled = true
+      // } else {
+      //   this.condetail[1].child.splice(3, 1)
+      //   for (const item of this.condetail) {
+      //     for (const child in item.child) {
+      //       item.child[child].disabled = true
+      //     }
+      //   }
+      // }
+      // if (getUrlParams().action === '配置中' || getUrlParams().action === '生效审核中') {
+      //   this.condetail[0].child[0].value = getUrlParams().eventName
+      //   this.condetail[0].child[1].value = '用于贷前审批'
+      //   this.condetail[0].child[2].value = '黎簇'
+      //   this.condetail[1].child[0].value = getUrlParams().modelName
+      //   if (getUrlParams().action === '生效审核中') {
+      //     this.condetail.splice(2, 1)
+      //   }
+      //   this.condetail[1].child[1].value = '验证事件V11、验证事件V10'
+      //   this.condetail[1].child[2].value = 'DataSet.csv'
+      // }
     },
     goBack() {
       this.$router.push({ path: '/project-library/project-detail', query: { projectName: getUrlParams().projectName }})
@@ -187,9 +183,9 @@ export default {
   }
 }
 i.addIcon{
-    margin-left: -17px;
+    // margin-left: -17px;
     display: inline-block;
-    margin-top: 5px;
+    margin-top: 8px;
     vertical-align: top;
     font-size: 15px;
 
@@ -229,9 +225,10 @@ padding: 20px 30px;
     p{
       margin-top: 20px;
       border:1px solid transparent;
+      padding-left: 30px;
       span{
         display: inline-block;
-        width: 160px;
+        width: 120px;
         text-align: right;
       }
       span.releaseContainer{

@@ -11,7 +11,7 @@
           </div>
           <div class="rightItem">
             <p v-for="(item, index) in projectDetaiMsg.projectData" :key="index">
-              <span class="circle mt-5"><i class="iconfont icon" :class="item.icon" /></span>
+              <span class="circle mt-5"><i class="iconfont icon fw-400" :style="{'font-weight':index==2?'600':'400'}" :class="item.icon" /></span>
               <span class="right">
                 <span class="fs-16 text-grey-0 fw-400 num">{{ item.value }}</span>
                 <span class="fs-16 text-grey-0 fw-400 num mt-5">{{ item.name }}</span>

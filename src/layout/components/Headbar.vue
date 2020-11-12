@@ -5,11 +5,11 @@
     </el-col>
     <el-col :span="4">
       <i class="icon iconfont iconxiaolingdang fs-22 mr-20 fw-bold" />
-      <i class="icon iconfont iconedit mr-20 fw-bold" />
+      <i class="icon iconfont iconedit mr-20 fs-22 fw-bold" />
       <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-submenu index="1">
           <template slot="title">
-            <i class="icon iconfont iconFemale" style="vertival-align:top;" />
+            <i class="icon iconfont iconnan" style="vertival-align:top;" />
             <span>admin</span>
           </template>
           <el-menu-item index="1-1" @click="logout()">退出</el-menu-item>

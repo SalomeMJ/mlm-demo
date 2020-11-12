@@ -6,7 +6,7 @@
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
         <el-button class="pull-right" type="primary">导出模型</el-button>
         <p class="fs-12 fw-400 text-grey-2">用于贷前审批</p>
-        <p class="fs-12 fw-400 text-grey-2">
+        <p class="fs-14 fw-400 text-grey-2">
           <span>模型开发负责人：黎簇</span>
           <span class="ml-20">模型注册时间：2020.08.09-12:00:09</span>
         </p>
