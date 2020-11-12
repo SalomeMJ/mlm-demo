@@ -15,7 +15,8 @@
         v-if="tableData.length!=0"
         class="system-table"
         :data="tableData"
-        style="width: 100%;max-height:80%"
+        style="width: 100%;"
+        height="80%"
         :default-sort="{prop: 'name', order: 'descending'}"
         @selection-change="handleCurrentChange"
       >
@@ -198,7 +199,6 @@ export default {
   }
 }
 .conCen{
-// max-height: calc(100% - 52px);
 height: calc(100% - 52px);
 border-radius: 5px;
 border: 1px solid #D9D9D9;
