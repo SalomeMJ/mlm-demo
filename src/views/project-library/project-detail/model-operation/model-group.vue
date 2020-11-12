@@ -146,6 +146,7 @@ export default {
       this.currpage = item.page
       this.pagesize = item.limit
       this.tableData = this.totalData.slice((this.currpage - 1) * this.pagesize, this.currpage * this.pagesize)
+      this.handleSelectionChange(this.multipleSelection)
     },
     dataFilter(val) {
       this.value = val
@@ -176,6 +177,7 @@ export default {
       }
     },
     handleSelectionChange(val) {
+      console.log(val)
       this.multipleSelection = val
     },
     initDirective(x) {
