@@ -38,7 +38,7 @@
       </el-table>
       <pagi-nation :pagination-data="paginationData" @pagination="pageChange" />
     </div>
-    <el-dialog title="新建模型组" :visible.sync="dialogFormVisible" :modal-append-to-body="false">
+    <el-dialog title="新建模型组" :visible.sync="dialogFormVisible" :modal-append-to-body="false" width="480">
       <el-form :model="form">
         <el-form-item label="模型组名称：" required :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off" placeholder="请输入" />

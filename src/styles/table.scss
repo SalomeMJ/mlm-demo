@@ -2,6 +2,7 @@
 
 .system-table{
   border-radius: 5px;
+  .el-table-column--selection .cell {padding: 0;}
   table{
      thead{
       height: 32px;
@@ -12,6 +13,11 @@
         th{
           background-color: #f0f0f0;
           padding:2px 0;
+          .cell{
+            color:#666;
+            font-size: 12px;
+            font-weight: 600;
+          }
         }
         th:last-child{
           .cell{
@@ -34,6 +40,15 @@
       tr:hover{
         td{
           background-color: #e5f5fd;
+        }
+      }
+      tr{
+        td{
+          .cell{
+            color:#333;
+            font-size: 14px;
+            font-weight: 400;
+          }
         }
       }
     }

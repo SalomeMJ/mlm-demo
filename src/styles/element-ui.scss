@@ -177,7 +177,7 @@ font-weight: 400;
 .el-dialog__wrapper{
   background: rgba(0,0,0,0.3);
   .el-dialog{
-    width: 480px;
+    // width: 480px;
     height: 333px;
     background: #FFFFFF;
     box-shadow: 0px 12px 48px 16px rgba(0, 0, 0, 0.03), 0px 9px 28px 0px rgba(0, 0, 0, 0.05), 0px 6px 16px -8px rgba(0, 0, 0, 0.08);
@@ -200,7 +200,7 @@ font-weight: 400;
         }
     }
     .el-dialog__body{
-      padding: 30px;
+      padding: 20px 20px 20px 20px;
       .el-form {
         .el-form-item {
           .el-form-item__label{
@@ -239,4 +239,11 @@ font-weight: 400;
 }
 .el-aside{
   border-radius: 0;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner,.el-checkbox__input.is-indeterminate .el-checkbox__inner{
+  background-color: #00a0e9;
+    border-color: #00a0e9;
+}
+.el-checkbox__inner:hover {
+  border-color: #00a0e9;
 }

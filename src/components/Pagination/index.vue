@@ -44,15 +44,16 @@ export default {
 
 <style lang="scss" scoped>
 .pagination-container {
-  width: calc(100% - 1px);
-  background: #fff;
-  padding: 20px 20px 50px 20px;
-  margin: 0;
-  z-index:5;
-  position: absolute;
-  bottom:1px;
-  padding-left: 20px;
-  padding-right: 20px;
+    width: calc(100% - 2px);
+    background: #fff;
+    padding: 20px 20px 10px 20px;
+    margin: 0;
+    z-index: 5;
+    position: absolute;
+    bottom: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
  >>> .btn-prev {
     width: 32px;
     height: 32px;

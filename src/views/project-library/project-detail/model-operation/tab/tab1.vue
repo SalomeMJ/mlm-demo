@@ -1,5 +1,5 @@
 <template>
-  <div class="h100 conCen">
+  <div class="h100 conCen bg-white">
     <el-table
       v-if="tableData.length!=0"
       class="system-table w100"
