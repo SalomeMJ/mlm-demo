@@ -153,6 +153,8 @@ font-weight: 400;
       background: #F6F6F6;
       line-height: 32px;
       border-top:1px solid #D9D9D9;
+      border-bottom:1px solid #D9D9D9;
+      padding: 0 !important;
     }
     .el-tabs__item:hover{
       color:#00a0e9;
@@ -246,4 +248,8 @@ font-weight: 400;
 }
 .el-checkbox__inner:hover {
   border-color: #00a0e9;
+}
+.el-tag{
+  height: 22px;
+  line-height: 22px;
 }

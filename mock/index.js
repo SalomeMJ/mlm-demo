@@ -32,6 +32,7 @@ import warningRule from './project-library/warning-rule/warning-rule'
 import warningRuledetail from './project-library/warning-rule/warning-ruledetail'
 import touchRecord from './project-library/warning-rule/touch-record'
 import operation from './project-library/warning-rule/operation'
+import nuclearList from './nuclearsign-center/nuclear-list'
 import article from './article'
 import search from './remote-search'
 
@@ -67,6 +68,7 @@ const mocks = [
   warningRuledetail,
   touchRecord,
   operation,
+  nuclearList,
   ...article,
   ...search,
   ...search
