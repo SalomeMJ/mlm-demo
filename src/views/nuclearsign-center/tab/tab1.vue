@@ -38,8 +38,8 @@
           <span class="doingColor fw-400 fs-14 pull-right mt-5 cursor-pointer">查看详情></span>
         </div>
         <div class="item-cen">
-          <div class="item-cen-cen fs-12 fw-400 text-grey-0">
-            {{ item.projectDesc }}
+          <div class="item-cen-cen fs-12 fw-400 text-grey-2 mt-15 letter-space-1">
+            {{ item.desc }}
           </div>
           <div class="item-bottom fs-12 fw-400 text-grey-3">
             <div class="pull-left iconContainer">
@@ -48,7 +48,7 @@
               <i class="icon iconfont iconchengyuan mr-5 ml-20" />1233
             </div>
             <div class="pull-right">
-              <i class="icon iconfont iconHistory mr-5 ver-middle" /><span class="ver-middle">1233</span>
+              <i class="icon iconfont iconHistory mr-5 ver-middle" /><span class="ver-middle text-align-right">{{ item.time }}</span>
             </div>
           </div>
         </div>
@@ -134,7 +134,8 @@ export default {
       margin-left: 20px;
       height: 100px;
       background: #FFFFFF;
-      box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.4);
+      border:1px solid #D9D9D9;
+      border-left:none;
       border-radius: 3px;
       padding: 10px;
       position: relative;
@@ -144,7 +145,7 @@ export default {
         height: 100px;
         border-radius: 3px;
         position: absolute;
-        top: 0px;
+        top: -1px;
         left: 0;
       }
       .iconContainer{
@@ -156,7 +157,7 @@ export default {
       .item-bottom{
         height: 20px;
         position: absolute;
-        width: 94%;
+        width: 95%;
         bottom: 10px;
         font-size: 12px;
         font-family: PingFangSC-Regular, PingFang SC;
@@ -165,7 +166,7 @@ export default {
       }
     }
     div.conItem:hover{
-      box-shadow: 0px 0px 9px 5px rgba(171, 183, 195, 0.5);
+      box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.4);
       cursor: pointer;
     }
   }
