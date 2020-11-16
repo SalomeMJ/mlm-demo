@@ -132,10 +132,10 @@ font-family: PingFangSC-Regular, PingFang SC;
 font-weight: 400;
 }
 .el-tabs__item.is-top.is-active{
-  color:#1890FF;
+  color:#00A0E9;
 }
 .el-tabs__item:hover {
-  color: #1890ff;
+  color: #00A0E9;
   cursor: pointer;
 }
 .el-input.is-disabled .el-input__inner,.el-textarea.is-disabled .el-textarea__inner{
@@ -182,6 +182,10 @@ font-weight: 400;
     }
   }
 }
+.el-tabs__nav-wrap::after{
+  width:1px;
+  background-color: #d9d9d9;
+}
 .el-input--medium .el-input__icon{
   line-height: 33px;
 }
@@ -194,7 +198,7 @@ font-weight: 400;
   display: none;
 }
 .el-dialog__wrapper{
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.2);
   .el-dialog{
     // width: 480px;
     height: 333px;

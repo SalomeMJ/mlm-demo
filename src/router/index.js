@@ -85,7 +85,15 @@ export const constantRoutes = [
         path: 'nuclearsign-center',
         component: () => import('@/views/nuclearsign-center'),
         name: 'NuclearsignCenter',
-        meta: { title: 'nuclearsign-center', affix: true, activeMenu: '/nuclearsign-center' }
+        meta: { title: 'nuclearsign-center', affix: true, activeMenu: '/nuclearsign-center' },
+        children: [
+          {
+            path: 'using-detail',
+            component: () => import('@/views/project-library/project-detail/using-event'),
+            name: 'UsingDetail',
+            meta: { title: 'using-detail', affix: true, activeMenu: '/nuclearsign-center' }
+          }
+        ]
       },
       {
         path: 'project-library',
@@ -143,7 +151,21 @@ export const constantRoutes = [
         path: 'model-library',
         component: () => import('@/views/model-library'),
         name: 'ModelLibrary',
-        meta: { title: 'model-library', affix: true, activeMenu: '/model-library' }
+        meta: { title: 'model-library', affix: true, activeMenu: '/model-library' },
+        children: [
+          {
+            path: 'model-record',
+            component: () => import('@/views/project-library/project-detail/model-record'),
+            name: 'ModelRecord',
+            meta: { title: 'model-record', affix: true, activeMenu: '/model-library' }
+          },
+          {
+            path: 'model-operation',
+            component: () => import('@/views/project-library/project-detail/model-operation'),
+            name: 'ModelOperation',
+            meta: { title: 'model-operation', affix: true, activeMenu: '/model-library' }
+          }
+        ]
       }
     ]
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="h100 border-radius-5 coverParentView">
-    <head-title :title="$route.query.eventName==undefined?'模型资产池>'+$route.query.modelGroup:'使用事件>'+$route.query.modelGroup" :back="back" :src="src" :query="query" />
+    <head-title :title="$route.query.projectName+'>'+title+$route.query.modelGroup" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelGroup }}</span>
@@ -77,11 +77,12 @@
 
 <script>
 import HeadTitle from '@/components/HeadTitle'
-import { getUrlParams } from '@/utils/getUrlParams'
+// import { getUrlParams } from '@/utils/getUrlParams'
 import { getAssetPool } from '@/api/model-asset/asset-pool'
 import Tab1 from './tab/tab1'
 import Tab2 from './tab/tab2'
 import PagiNation from '@/components/Pagination/index'
+import { getUrlParams } from '../../../../utils/getUrlParams'
 
 export default {
   name: 'ModelRecord',
@@ -89,9 +90,8 @@ export default {
   data() {
     return {
       back: true,
-      src: '/project-library/project-detail',
-      query: null,
       activeTab: 'first',
+      title: null,
       paginationData: {
         total: 11,
         page: 1,
@@ -129,7 +129,6 @@ export default {
   created() {
   },
   mounted() {
-    this.query = { projectName: getUrlParams().projectName }
     this.initData()
   },
   methods: {
@@ -161,6 +160,10 @@ export default {
       }
     },
     initData() {
+      this.title = getUrlParams().eventName === undefined ? '模型资产池>' : '使用事件>'
+      if (getUrlParams().title === '') {
+        this.title = ''
+      }
       getAssetPool().then((response) => {
         this.tableData = response.data.assetPool
         this.totalData = this.tableData

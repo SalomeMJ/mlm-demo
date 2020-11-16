@@ -2,7 +2,7 @@
   <div id="headStyle">
     <span class="line mr-10 ver-middle" />
     <span class="fs-16 fw-bold tet-grey-0 ver-middle">{{ title }}</span>
-    <i v-if="back" class="icon iconfont iconhead-back pull-right cursor-pointer mr-20 fs-18 doingColor" @click="goBack()" />
+    <i v-if="back" class="icon iconfont iconhead-back pull-right cursor-pointer mr-20 fs-18 doingColor" @click="goBack" />
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
   methods: {
     goBack() {
       this.$emit('backActive', this.backActive)
-      this.$router.push({ path: this.src, query: this.query })
+      this.$router.go(-1)
     }
   }
 }

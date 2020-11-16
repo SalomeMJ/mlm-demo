@@ -29,7 +29,10 @@
               <span v-if="item.prop=='modelName'" @click="enterModelRecord(scope.row)">
                 {{ scope.row[item.prop] }}
               </span>
-              <span v-if="item.prop=='modelGroup'" @click="enterModelGroup(scope.row)">
+              <span v-if="item.prop=='modelGroup'&&scope.row[item.prop]!='-'" @click="enterModelGroup(scope.row)">
+                {{ scope.row[item.prop] }}
+              </span>
+              <span v-if="item.prop=='modelGroup'&&scope.row[item.prop]=='-'" style="color:#333;text-decoration:none;cursor:default;">
                 {{ scope.row[item.prop] }}
               </span>
             </template>
@@ -154,7 +157,7 @@ export default {
     },
     // 模型记录
     enterModelRecord(params) {
-      this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, projectName: this.projectName }})
+      this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, title: '模型资产池', projectName: this.projectName }})
     },
     // 模型组
     enterModelGroup(params) {

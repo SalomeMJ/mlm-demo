@@ -1,6 +1,6 @@
 <template>
   <div class="h100 border-radius-5 coverParentView">
-    <head-title :title="'验证事件>'+$route.query.eventName+'>'+$route.query.modelName" :back="back" :src="src" :query="query" />
+    <head-title :title="$route.query.projectName+'>'+$route.query.title+'>'+$route.query.modelName+'>'+$route.query.eventName" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
@@ -44,7 +44,7 @@
 <script>
 // import { getValidationRecord } from '@/api/project-library/model-record/validation-record'
 import HeadTitle from '@/components/HeadTitle'
-import { getUrlParams } from '@/utils/getUrlParams'
+// import { getUrlParams } from '@/utils/getUrlParams'
 import Tab1 from './tab/tab1'
 import Tab2 from './tab/tab2'
 import Tab3 from './tab/tab3'
@@ -59,8 +59,6 @@ export default {
   data() {
     return {
       back: true,
-      src: '/project-library/project-detail/model-record',
-      query: null,
       activeName: 'first',
       dataDetail: [
         { name: '数据集名称', value: 'DataSet' },
@@ -76,7 +74,6 @@ export default {
   created() {
   },
   mounted() {
-    this.query = { projectName: getUrlParams().projectName, modelName: getUrlParams().modelName }
   },
   methods: {
     handleClick(e) {

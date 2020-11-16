@@ -1,6 +1,6 @@
 <template>
   <div class="h100  border-radius-5 coverParentView">
-    <head-title :title="'预警规则>预警规则详情'" :back="back" :src="src" :query="query" />
+    <head-title :title="$route.query.projectName+'>'+'预警规则>预警规则详情'" :back="back" />
     <add-rule v-if="$route.query.ruleName==null" />
     <rule-detail v-if="$route.query.action=='生效审核中'||$route.query.action=='配置中'" />
     <complate-rule-detail v-if="$route.query.action=='生效中'" />
@@ -33,8 +33,6 @@ export default {
   data() {
     return {
       back: true,
-      src: '/project-library/project-detail',
-      query: null,
       activeName: 'third',
       action: null
     }
@@ -42,7 +40,6 @@ export default {
   created() {
   },
   mounted() {
-    this.query = { projectName: getUrlParams().projectName }
     this.action = getUrlParams().action
   },
   methods: {

@@ -10,7 +10,15 @@
           :value="item.value"
         />
       </el-select>
-      <el-select v-model="value" placeholder="请选择">
+      <el-select v-model="value" class="mr-15" placeholder="请选择">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <el-select v-if="activeName!='first'" v-model="value" placeholder="请选择">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -25,7 +33,7 @@
       />
     </div>
     <div class="conCen">
-      <div v-for="(item, index) in nuclearList" :key="index" class="conItem mb-20 pt-10 pb-10 pl-20 pr-20" @click="enterProject(item)">
+      <div v-for="(item, index) in nuclearList" :key="index" class="conItem mb-20 pt-10 pb-10 pl-20 pr-20">
         <span class="border-right" :class="item.bgc" />
         <div class="item-top">
           <span class="fs-16 fw-bold text-grey-0 ver-middle mr-15">{{ item.eventName }}</span>
@@ -35,7 +43,9 @@
           <el-tag v-if="item.status=='审批中'" type="warning">审批中</el-tag>
           <el-tag v-if="item.status=='已拒绝'" type="danger">已拒绝</el-tag>
           <el-tag v-if="item.status=='已撤销'" type="info">已撤销</el-tag>
-          <span class="doingColor fw-400 fs-14 pull-right mt-5 cursor-pointer">查看详情></span>
+          <router-link :to="{path:'/nuclearsign-center/using-detail',query:{eventName:item.eventName, action: item.action, from: '/nuclearsign-center', title: title}}">
+            <span class="doingColor fw-400 fs-14 pull-right mt-5 cursor-pointer" @click="enterDetail(item)">查看详情></span>
+          </router-link>
         </div>
         <div class="item-cen">
           <div class="item-cen-cen fs-12 fw-400 text-grey-2 mt-15 letter-space-1">
@@ -83,7 +93,8 @@ export default {
         }],
       value: '',
       input: '',
-      nuclearList: []
+      nuclearList: [],
+      title: null
     }
   },
   mounted() {
@@ -91,6 +102,15 @@ export default {
   },
   methods: {
     initData() {
+      if (this.activeName === 'first') {
+        this.title = '我发起的'
+      }
+      if (this.activeName === 'second') {
+        this.title = '我核签的'
+      }
+      if (this.activeName === 'third') {
+        this.title = '我抄送的'
+      }
       getNuclearList().then((response) => {
         this.nuclearList = response.data.nuclearList
         for (const item of this.nuclearList) {
@@ -108,6 +128,9 @@ export default {
           }
         }
       })
+    },
+    enterDetail(params) {
+      console.log(params)
     }
   }
 

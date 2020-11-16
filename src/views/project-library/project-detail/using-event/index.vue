@@ -1,6 +1,6 @@
 <template>
   <div class="h100  border-radius-5 coverParentView">
-    <head-title :title="'使用事件>'+($route.query.eventName==null?'新建事件':$route.query.eventName)" :back="back" :src="src" :query="query" />
+    <head-title :title="$route.query.projectName!=undefined?($route.query.projectName+'>'):''+$route.query.title + '>'+($route.query.eventName==null?'新建事件':$route.query.eventName)" :back="back" />
     <event-addedit v-if="action=='add'||action=='配置中'||action=='生效审核中'" />
     <event-effect v-if="action=='生效中'" />
   </div>
@@ -18,8 +18,6 @@ export default {
   data() {
     return {
       back: true,
-      src: '/project-library/project-detail',
-      query: null,
       activeName: 'third',
       action: null
     }
@@ -27,7 +25,6 @@ export default {
   created() {
   },
   mounted() {
-    this.query = { projectName: getUrlParams().projectName }
     this.action = getUrlParams().action
   },
   methods: {
@@ -79,5 +76,6 @@ export default {
 }
 .coverParentView{
   background-color: #eee;
+  margin: 0;
 }
  </style>

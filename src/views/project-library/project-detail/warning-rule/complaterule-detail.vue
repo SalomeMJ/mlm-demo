@@ -1,6 +1,6 @@
 <template>
   <div class="h100  border-radius-5 coverParentView">
-    <head-title :title="'预警规则>预警规则详情'" :back="back" :src="src" :query="query" />
+    <head-title :title="'预警规则>预警规则详情'" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">预警名称：{{ $route.query.ruleName }}</span>
@@ -45,8 +45,6 @@ export default {
   data() {
     return {
       back: true,
-      src: '/project-library/project-detail',
-      query: null,
       activeName: 'first',
       action: null
     }
@@ -54,7 +52,6 @@ export default {
   created() {
   },
   mounted() {
-    this.query = { projectName: getUrlParams().projectName }
   },
   methods: {
     handleClick(tab, event) {

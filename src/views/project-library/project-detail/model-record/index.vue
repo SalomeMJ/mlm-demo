@@ -1,6 +1,6 @@
 <template>
   <div class="h100 border-radius-5 coverParentView">
-    <head-title :title="'项目库>'+$route.query.projectName+'>模型资产池>'+$route.query.modelName" :back="back" :src="src" :query="query" />
+    <head-title :title="$route.query.projectName+'>'+($route.query.title!=undefined?($route.query.title+'>'):(''))+$route.query.modelName" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
@@ -43,8 +43,6 @@ export default {
   data() {
     return {
       back: true,
-      src: '/project-library/project-detail',
-      query: null,
       activeTab: 'first',
       child: [
         { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },

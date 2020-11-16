@@ -1,28 +1,21 @@
 <template>
-  <div class=" coverParentView bg-white">
+  <div class="h100 bg-white pos-relative">
+    <router-view />
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
       <el-tab-pane label="我发起的" name="first" />
       <el-tab-pane label="我核签的" name="second" />
-      <!-- <tab2 v-if="activeName=='second'" /> -->
       <el-tab-pane label="抄送我的" name="third" />
-      <!-- <tab3 v-if="activeName=='third'" /> -->
-      <tab1 :active-name="activeName" />
+      <tab :active-name="activeName" />
     </el-tabs>
-
   </div>
 </template>
 
 <script>
-import Tab1 from './tab/tab1'
-import Tab2 from './tab/tab2'
-import Tab3 from './tab/tab3'
-// import { getProjectDetail } from '@/api/project-library/project-detail'
-// import { getProjectLibrary } from '@/api/project-library/projectLibrary'
-// import { getUrlParams } from '@/utils/getUrlParams'
+import Tab from './tab/tab1'
 
 export default {
   name: 'NuclearsignCenter',
-  components: { Tab1, Tab2, Tab3 },
+  components: { Tab },
   data() {
     return {
       activeName: 'first'

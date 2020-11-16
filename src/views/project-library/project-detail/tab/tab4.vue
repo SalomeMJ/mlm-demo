@@ -120,10 +120,10 @@ export default {
       this.currpage = x
     },
     enterModelDetail(params) {
-      this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, projectName: getUrlParams().projectName }})
+      this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, title: '预警规则', projectName: getUrlParams().projectName }})
     },
     enterEvent(params) {
-      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.detectionRuleName, projectName: getUrlParams().projectName, action: '生效中' }})
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.detectionRuleName, title: '预警规则', projectName: getUrlParams().projectName, action: '生效中' }})
     },
     addWarningRule() {
       this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, action: 'add' }})

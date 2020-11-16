@@ -105,7 +105,7 @@ export default {
       this.currpage = x
     },
     enterDetail(params) {
-      this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, eventName: params.eventName, projectName: getUrlParams().projectName }})
+      this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, title: '模型资产池', eventName: params.eventName, projectName: getUrlParams().projectName }})
     }
   }
 }
