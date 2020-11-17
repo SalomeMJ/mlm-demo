@@ -22,9 +22,21 @@
       <el-tab-pane label="验证数据" name="five" />
       <tab5 v-if="activeName=='five'" />
     </el-tabs>
-    <!-- <div v-if="routerActive"> -->
+    <div class="dropdown">
+      <el-dropdown :hide-on-click="false">
+        <span class="el-dropdown-link">
+          <i class="icon iconfont iconAdd doingColor" />
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item><span @click="addModel()">新建模型</span></el-dropdown-item>
+          <el-dropdown-item><span @click="addEvent()">新建使用事件</span></el-dropdown-item>
+          <el-dropdown-item><span @click="addWarningRule()">新建预警规则</span></el-dropdown-item>
+          <el-dropdown-item><span>上传验证数据</span></el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
+
     <router-view />
-    <!-- </div> -->
 
   </div>
 </template>
@@ -117,6 +129,18 @@ export default {
       if (e === 4) {
         this.activeName = 'five'
       }
+    },
+    addModel() {
+      localStorage.setItem('activeTab', 1)
+      this.$router.push({ path: '/project-library/project-detail/model-operation', query: { projectName: this.projectName }})
+    },
+    addWarningRule() {
+      localStorage.setItem('activeTab', 3)
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: this.projectName, action: 'add', title: '新建预警规则' }})
+    },
+    addEvent() {
+      localStorage.setItem('activeTab', 2)
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: null, title: '使用事件', projectName: this.projectName, action: 'add' }})
     }
   }
 }
@@ -156,6 +180,17 @@ export default {
     }
     >>> .el-tabs__item {
       height: 53px;
+    }
+  }
+  .dropdown{
+    position: fixed;
+    top:18px;
+    left:888px;
+    z-index: 9999;
+    cursor: pointer;
+    .el-dropdown-menu{
+      width: 150px;
+      top: 20px;
     }
   }
  </style>
