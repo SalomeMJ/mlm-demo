@@ -35,12 +35,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.coverParentView{
-  height:calc(100% - 40px);
-  width:calc(100% - 40px);
-  margin-top: 20px;
-  border-radius: 5px;
-}
+// .coverParentView{
+//   height:calc(100% - 40px);
+//   width:100%;
+//   margin-top: 20px;
+//   border-radius: 5px;
+// }
  .el-tabs{
     height: 100%;
     .el-tabs__content{

@@ -193,7 +193,7 @@ export default {
 <style lang="scss" scoped>
 .conCen{
   width: 100%;
-  height: calc(100% - 42px);
+  height: 94%;
   // padding:20px 30px;
   background:#eee;
   .modelMsg{

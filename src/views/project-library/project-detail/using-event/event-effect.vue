@@ -10,12 +10,12 @@
         <span class="value">用于贷前审批</span>
       </div>
       <div>
-        <span class="fs-14 fw-400">当前状态</span>
+        <span class="fs-14 fw-400">当前状态：</span>
         <span class="value">{{ action }}</span>
       </div>
       <div class="mt-20">
-        <span class="fs-14 fw-400">使用模型：</span>
-        <span class="value">{{ modelName }}</span>
+        <span class="fs-14 fw-400 ver-middle">使用模型：</span>
+        <span class="value ver-middle">{{ modelName }}</span>
       </div>
       <div class="mt-20">
         <span class="fs-14 fw-400">模型文档：</span>
@@ -103,7 +103,7 @@ export default {
   .conMiddle{
     border-radius: 5px;
     margin-top: 20px;
-    height:calc(100% - 192px);
+    height:calc(100% - 221px);
     >>> .el-tabs .el-tabs__content{
       height: 93%;
       overflow-y: auto;

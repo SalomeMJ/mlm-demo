@@ -121,7 +121,7 @@ export default {
       this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.eventName, modelName: params.useModel, title: '使用事件', projectName: getUrlParams().projectName, action: params.status }})
     },
     addEvent() {
-      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: null, projectName: getUrlParams().projectName, action: 'add' }})
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: null, title: '使用事件', projectName: getUrlParams().projectName, action: 'add' }})
     }
   }
 
@@ -156,7 +156,7 @@ export default {
   }
 }
 .conCen{
-  height: calc(100% - 52px);
+  height: 95%;
 border-radius: 5px;
 border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{

@@ -123,13 +123,13 @@ export default {
       this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, title: '预警规则', projectName: getUrlParams().projectName }})
     },
     enterEvent(params) {
-      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.detectionRuleName, title: '预警规则', projectName: getUrlParams().projectName, action: '生效中' }})
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.detectionRuleName, modelName: params.modelName, title: '预警规则', projectName: getUrlParams().projectName, action: '生效中' }})
     },
     addWarningRule() {
-      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, action: 'add' }})
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, action: 'add', title: '新建预警规则' }})
     },
     editWarningRule(params) {
-      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, modelName: params.modelName, ruleName: params.ruleName, action: params.status }})
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, modelName: params.modelName, ruleName: params.ruleName, action: params.status, title: params.ruleName }})
     }
   }
 
@@ -164,7 +164,7 @@ export default {
   }
 }
 .conCen{
-  height: calc(100% - 52px);
+  height:94%;
 border-radius: 5px;
 border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{

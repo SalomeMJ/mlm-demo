@@ -222,7 +222,7 @@ export default {
 <style lang="scss" scoped>
 .conCen{
   width: 100%;
-  height: calc(100% - 100px);
+  height: 94%;
   overflow-y: auto;
   background:#eee;
   .msgItem{

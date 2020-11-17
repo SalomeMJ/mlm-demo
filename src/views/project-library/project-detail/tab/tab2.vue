@@ -41,7 +41,7 @@
       </el-table>
       <pagi-nation :pagination-data="paginationData" @pagination="pageChange" />
     </div>
-    <el-dialog title="新建模型组" :visible.sync="dialogFormVisible" :modal-append-to-body="false" width="480">
+    <el-dialog title="新建模型组" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" width="480">
       <el-form :model="form">
         <el-form-item label="模型组名称：" required :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off" placeholder="请输入" />
@@ -202,7 +202,7 @@ export default {
   }
 }
 .conCen{
-height: calc(100% - 52px);
+height:94%;
 border-radius: 5px;
 border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{

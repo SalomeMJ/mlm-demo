@@ -2,25 +2,25 @@
   <div class="h100 pt-5">
     <div class="conHead pl-20 pr-20 pb-10">
       <picker-time />
-      <el-select v-model="value" class="mr-15 ml-5" placeholder="请选择">
+      <el-select v-model="status" class="mr-15 ml-5" placeholder="请选择">
         <el-option
-          v-for="item in options"
+          v-for="item in statusList"
           :key="item.value"
           :label="item.label"
           :value="item.value"
         />
       </el-select>
-      <el-select v-model="value" class="mr-15" placeholder="请选择">
+      <el-select v-model="eventType" class="mr-15" placeholder="请选择">
         <el-option
-          v-for="item in options"
+          v-for="item in eventTypes"
           :key="item.value"
           :label="item.label"
           :value="item.value"
         />
       </el-select>
-      <el-select v-if="activeName!='first'" v-model="value" placeholder="请选择">
+      <el-select v-if="activeName!='first'" v-model="submitOne" placeholder="请选择">
         <el-option
-          v-for="item in options"
+          v-for="item in submitOnes"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -37,8 +37,8 @@
         <span class="border-right" :class="item.bgc" />
         <div class="item-top">
           <span class="fs-16 fw-bold text-grey-0 ver-middle mr-15">{{ item.eventName }}</span>
-          <el-tag class="mr-5">使用事件</el-tag>
-          <el-tag class="mr-5">生效审核</el-tag>
+          <el-tag class="mr-5">{{ item.eventType }}</el-tag>
+          <el-tag class="mr-5">{{ item.checkType }}</el-tag>
           <el-tag v-if="item.status=='已通过'" type="success">已通过</el-tag>
           <el-tag v-if="item.status=='审批中'" type="warning">审批中</el-tag>
           <el-tag v-if="item.status=='已拒绝'" type="danger">已拒绝</el-tag>
@@ -53,12 +53,12 @@
           </div>
           <div class="item-bottom fs-12 fw-400 text-grey-3">
             <div class="pull-left iconContainer">
-              <i class="icon iconfont iconmodel mr-5" />1233
-              <i class="icon iconfont iconPlay mr-5 ml-20" />1233
-              <i class="icon iconfont iconchengyuan mr-5 ml-20" />1233
+              <i class="icon iconfont iconmodel mr-5 fs-18 ver-middle" />{{ item.modelMsg }}
+              <i class="icon iconfont iconPlay mr-5 fs-18 ml-20 ver-middle" />{{ item.effectTime }}
+              <i class="icon iconfont iconchengyuan fs-18 mr-5 ml-20 ver-middle" />{{ item.head }}
             </div>
             <div class="pull-right">
-              <i class="icon iconfont iconHistory mr-5 ver-middle" /><span class="ver-middle text-align-right">{{ item.time }}</span>
+              <i class="icon iconfont iconHistory fs-18 mr-5 ver-middle" /><span class="ver-middle text-align-right">{{ item.submitTime }}</span>
             </div>
           </div>
         </div>
@@ -80,19 +80,45 @@ export default {
   },
   data() {
     return {
-      options: [
+      statusList: [
         {
           value: '',
           label: '全部'
         }, {
-          value: false,
-          label: '公开'
+          value: 1,
+          label: '已通过'
         }, {
-          value: true,
-          label: '私有'
+          value: 2,
+          label: '审批中'
+        }, {
+          value: 3,
+          label: '已拒绝'
+        }, {
+          value: 4,
+          label: '已撤销'
         }],
-      value: '',
-      input: '',
+      status: '',
+      eventTypes: [
+        {
+          value: '',
+          label: '全部'
+        }, {
+          value: 1,
+          label: '使用事件'
+        }, {
+          value: 2,
+          label: '预警规则'
+        }],
+      eventType: '',
+      submitOnes: [
+        {
+          value: '',
+          label: '全部'
+        }, {
+          value: 1,
+          label: '黎簇'
+        }],
+      submitOne: '',
       nuclearList: [],
       title: null
     }
@@ -149,7 +175,7 @@ export default {
     vertical-align: middle;
   }
   .conCen{
-    height:calc(100% - 72px);
+    height:94%;
     padding-top: 10px;
     overflow-y: auto;
     div.conItem{
@@ -180,7 +206,7 @@ export default {
       .item-bottom{
         height: 20px;
         position: absolute;
-        width: 95%;
+        width: 98%;
         bottom: 10px;
         font-size: 12px;
         font-family: PingFangSC-Regular, PingFang SC;

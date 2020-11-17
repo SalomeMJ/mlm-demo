@@ -1,6 +1,6 @@
 <template>
   <div class="h100  border-radius-5 coverParentView">
-    <head-title :title="$route.query.projectName+'>'+'预警规则>预警规则详情'" :back="back" />
+    <head-title :title="$route.query.projectName+'>'+'预警规则>'+$route.query.title" :back="back" />
     <add-rule v-if="$route.query.ruleName==null" />
     <rule-detail v-if="$route.query.action=='生效审核中'||$route.query.action=='配置中'" />
     <complate-rule-detail v-if="$route.query.action=='生效中'" />

@@ -145,7 +145,7 @@ export default {
   }
 }
 .conCen{
-  height: calc(100% - 52px);
+  height: 94%;
 border-radius: 5px;
 border: 1px solid #D9D9D9;
 // >>> .el-table{

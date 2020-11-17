@@ -1,6 +1,6 @@
 <template>
   <div class="h100  border-radius-5 coverParentView">
-    <head-title :title="$route.query.projectName!=undefined?($route.query.projectName+'>'):''+$route.query.title + '>'+($route.query.eventName==null?'新建事件':$route.query.eventName)" :back="back" />
+    <head-title :title="($route.query.projectName!=undefined?($route.query.projectName+'>'):'')+$route.query.title + '>'+($route.query.eventName==null?'新建事件':$route.query.eventName)" :back="back" />
     <event-addedit v-if="action=='add'||action=='配置中'||action=='生效审核中'" />
     <event-effect v-if="action=='生效中'" />
   </div>
@@ -41,7 +41,7 @@ export default {
 <style lang="scss" scoped>
 .conCen{
   width: 100%;
-  height: calc(100% - 105px);
+  height: 94%;
   padding: 20px 30px;
   border-radius: 0 0 5px 5px;
   .conItem{

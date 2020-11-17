@@ -196,9 +196,10 @@ margin-left: -30px;
 }
 .conCen{
   width: 100%;
-  height: calc(100% - 105px);
+  height: 94%;
   border-radius: 0 0 5px 5px;
   overflow-y: auto;
+  padding-bottom: 20px;
   .p-20-30{
 padding: 20px 30px;
   }
