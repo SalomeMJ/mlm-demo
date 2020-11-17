@@ -7,6 +7,7 @@
             <span class="fs-18 fw-bold text-grey-0 mr-20 ver-middle">{{ $route.query.projectName }}</span>
             <el-tag v-if="!$route.query.projectPrimary">公开</el-tag>
             <el-tag v-if="$route.query.projectPrimary" type="warning">私有</el-tag>
+            <i class="icon iconfont iconedit doingColor fw-bold fs-18 ver-middle ml-10 cursor-pointer" />
             <p class="fs-12 text-grey-2 fw-400 h-32 lh-32" style="display:block;text-align:left;">用于贷前审批</p>
           </div>
           <div class="rightItem">
