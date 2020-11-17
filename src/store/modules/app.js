@@ -5,6 +5,7 @@ const state = {
     opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
     withoutAnimation: false
   },
+  system: Cookies.get('insystem') !== '0',
   device: 'desktop',
   size: Cookies.get('size') || 'medium'
 }
@@ -24,6 +25,18 @@ const mutations = {
     state.sidebar.opened = false
     state.sidebar.withoutAnimation = withoutAnimation
   },
+  TOGGLE_SYSTEM: (state) => {
+    state.system = !state.system
+    if (state.system) {
+      Cookies.set('insystem', 1)
+    } else {
+      Cookies.set('insystem', 0)
+    }
+  },
+  OUT_SYSTEM: () => {
+    Cookies.set('insystem', 0)
+    state.system = false
+  },
   TOGGLE_DEVICE: (state, device) => {
     state.device = device
   },
@@ -39,6 +52,9 @@ const actions = {
   },
   closeSideBar({ commit }, { withoutAnimation }) {
     commit('CLOSE_SIDEBAR', withoutAnimation)
+  },
+  toggleSystem({ commit }) {
+    commit('TOGGLE_SYSTEM')
   },
   toggleDevice({ commit }, device) {
     commit('TOGGLE_DEVICE', device)

@@ -1,5 +1,5 @@
 <template>
-  <div class="h100 bg-white pos-relative">
+  <div class="h100 bg-white border-radius-5 pos-relative">
     <router-view />
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
       <el-tab-pane label="我发起的" name="first" />

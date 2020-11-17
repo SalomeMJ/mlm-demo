@@ -274,3 +274,16 @@ font-weight: 400;
   height: 22px;
   line-height: 22px;
 }
+.el-switch__core{
+  height: 16px;
+}
+.el-switch.is-checked .el-switch__core::after {
+  width: 14px;
+  height: 14px;
+  top:0px;
+  margin-left: -15px;
+}
+.el-switch.is-checked .el-switch__core {
+  border-color: #00a0e9;
+  background-color: #00a0e9;
+}

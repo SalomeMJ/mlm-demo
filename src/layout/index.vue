@@ -3,11 +3,11 @@
     <div class="main-container">
       <el-container class="system-container" width="100%" height="100%">
         <el-header height="60px">
-          <Headbar />
+          <Headbar :system="system" @system="getSystem" />
         </el-header>
         <el-container>
           <el-aside width="66px" padding="0px">
-            <navbar @updateTitles="updateTitle" />
+            <navbar :system="system" @system="getSystem" />
           </el-aside>
           <el-main>
             <nav-title v-if="titles != 'Dashboard'" :titles="titles" />
@@ -42,19 +42,16 @@ export default {
       test: {
         data: 1,
         set: null
-      }
+      },
+      system: null
     }
   },
   computed: {
     ...mapState({
       sidebar: state => state.app.sidebar
     }),
-    // ...mapGetters([
-    //   'isOnline'
-    // ]),
     classObj() {
       return {
-        // hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
@@ -62,12 +59,10 @@ export default {
     }
   },
   mounted() {
+    this.system = this.$store.state.app.system
     this.getMenu()
   },
   methods: {
-    handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
-    },
     getMenu() {
       this.test.set = function(res) {
         this.test.data = res === undefined ? 1 : res
@@ -78,8 +73,8 @@ export default {
         this.titles = this.menu.name === 'Dashboard' ? this.menu[0].child[0].name : 'Dashboard'
       })
     },
-    updateTitle(e) {
-      this.titles = e
+    getSystem(e) {
+      this.system = e
     }
   }
 }

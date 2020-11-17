@@ -141,12 +141,6 @@ export const constantRoutes = [
           }
         ]
       },
-      // {
-      //   path: 'project-detail',
-      //   component: () => import('@/views/project-library/project-detail'),
-      //   name: 'ProjectDetail',
-      //   meta: { title: 'project-detail', affix: true, activeMenu: '/project-detail' }
-      // },
       {
         path: 'model-library',
         component: () => import('@/views/model-library'),
@@ -166,6 +160,12 @@ export const constantRoutes = [
             meta: { title: 'model-operation', affix: true, activeMenu: '/model-library' }
           }
         ]
+      },
+      {
+        path: 'system',
+        component: () => import('@/views/system'),
+        name: 'System',
+        meta: { title: 'system', affix: true, activeMenu: '' }
       }
     ]
   }

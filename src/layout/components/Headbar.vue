@@ -4,8 +4,8 @@
       <div class="grid-content bg-purple inline-block"><i class="icon iconfont icon1207-zhongying-slogan-fanbai1" style="font-size:22px;" /></div>
     </el-col>
     <el-col :span="4">
-      <i class="icon iconfont iconxiaolingdang fs-22 mr-20 fw-bold" />
-      <i class="icon iconfont iconedit mr-20 fs-22 fw-bold" />
+      <i class="icon iconfont iconxiaolingdang fs-22 mr-20 fw-bold cursor-pointer" :class="{'active':bell}" @click="activeBell" />
+      <i class="icon iconfont iconedit mr-20 fs-22 fw-bold cursor-pointer" :class="{'active':edit}" @click="goSystem" />
       <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-submenu index="1">
           <template slot="title">
@@ -20,18 +20,24 @@
 </template>
 
 <script>
-
 export default {
   name: 'Head',
   components: { },
   props: {
-
+    system: {
+      type: Boolean
+    }
   },
   data() {
     return {
+      bell: false,
+      edit: null
     }
   },
-  computed: {
+  watch: {
+    'system': function(newVal) {
+      this.edit = newVal
+    }
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -40,6 +46,19 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    goSystem() {
+      this.edit = !this.edit
+      this.bell = false
+      this.$store.commit('app/TOGGLE_SYSTEM', this.edit)
+      this.$emit('system', this.edit)
+      if (this.edit) {
+        this.$router.push({ path: '/system' })
+      }
+    },
+    activeBell() {
+      this.edit = false
+      this.bell = true
     }
   }
 }
@@ -55,6 +74,15 @@ export default {
   }
   i{
     vertical-align: middle;
+    display: inline-block;
+    height: 100%;
+    width: 28px;
+    text-align: center;
+    margin-top: -1px;
+  }
+  i.active{
+       color: #fff;
+       background-color: #00a0e9;
   }
   li >>> .el-submenu__title{
     padding: 0;

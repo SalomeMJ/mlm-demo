@@ -1,9 +1,9 @@
 <template>
   <div class="navbar">
     <span id="place" />
-    <el-menu :default-active="defaultActive" class="el-menu-vertical-demo" :collapse="isCollapse">
+    <el-menu :default-active="defaultActive" class="el-menu-vertical-demo" :class="{'outsystem':!system}" :collapse="isCollapse">
       <router-link v-for="(item, index) in linkList" :key="index" :to="item.path">
-        <el-menu-item :index="index.toString()">
+        <el-menu-item :index="index.toString()" @click="getItem(item)">
           <i class="icon iconfont" :class="item.icon" /><span>{{ item.name }}</span>
         </el-menu-item>
       </router-link>
@@ -15,6 +15,11 @@
 
 export default {
   components: {
+  },
+  props: {
+    system: {
+      type: Boolean
+    }
   },
   data() {
     return {
@@ -35,16 +40,9 @@ export default {
     handleClose(key, keyPath) {
       // console.log(key, keyPath)
     },
-    activeMenu() {
-      const route = this.$route
-      const { meta, path } = route
-      // if set path, the sidebar will highlight the path you set
-      if (meta.activeMenu) {
-        this.defaultActive = meta.activeMenu
-        return meta.activeMenu
-      }
-      this.defaultActive = path
-      return path
+    getItem(params) {
+      this.$store.commit('app/OUT_SYSTEM')
+      this.$emit('system', this.$store.state.app.system)
     }
   }
 }
@@ -67,7 +65,9 @@ export default {
         display: block;
       }
     }
-    .el-menu-item.is-active{
+  }
+  .outsystem{
+.el-menu-item.is-active{
       background:#00a0e9;
     }
   }
@@ -114,4 +114,5 @@ export default {
     width: 100%;
     height: 1px;
   }
+
 </style>
