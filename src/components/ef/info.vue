@@ -23,33 +23,33 @@
 </template>
 
 <script>
-    import 'codemirror/lib/codemirror.css'
-    import { codemirror } from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
+import { codemirror } from 'vue-codemirror'
 
-    require("codemirror/mode/javascript/javascript.js")
+require('codemirror/mode/javascript/javascript.js')
 
-    export default {
-        props: {
-            data: Object,
-        },
-        data() {
-            return {
-                dialogVisible: false,
-                flowJsonData: {},
-                options: {
-                    mode: {name: "javascript", json: true},
-                    lineNumbers: true
-                }
-            }
-        },
-        components: {
-            codemirror
-        },
-        methods: {
-            init() {
-                this.dialogVisible = true
-                this.flowJsonData = JSON.stringify(this.data, null, 4).toString()
+export default {
+    props: {
+        data: Object,
+    },
+    data() {
+        return {
+            dialogVisible: false,
+            flowJsonData: {},
+            options: {
+                mode: {name: "javascript", json: true},
+                lineNumbers: true
             }
         }
+    },
+    components: {
+        codemirror
+    },
+    methods: {
+        init() {
+            this.dialogVisible = true
+            this.flowJsonData = JSON.stringify(this.data, null, 4).toString()
+        }
     }
+}
 </script>

@@ -113,10 +113,10 @@ export default {
   created() {
   },
   mounted() {
-    this.jsPlumb = jsPlumb.jsPlumb.getInstance()
-    this.$nextTick(() => {
-      this.jsPlumbInit()
-    })
+    // this.jsPlumb = jsPlumb.jsPlumb.getInstance()
+    // this.$nextTick(() => {
+    //   this.jsPlumbInit()
+    // })
   },
   methods: {
     // 拖拽开始时触发
@@ -128,32 +128,32 @@ export default {
       this.createElement(evt, e, mousePosition)
     },
     // 初始化画布
-    jsPlumbInit() {
-      this.jsPlumb.ready(() => {
-        // 初始化节点
-        this.loadEasyFlow()
-      })
-    },
+    // jsPlumbInit() {
+    //   this.jsPlumb.ready(() => {
+    //     // 初始化节点
+    //     this.loadEasyFlow()
+    //   })
+    // },
     // 加载流程图
-    loadEasyFlow() {
-      // 初始化节点
-      for (const i in this.menuList) {
-        const node = this.menuList[i]
-        // 设置源点，可以拖出线连接其他节点
-        this.jsPlumb.makeSource(node.id, lodash.merge(this.jsplumbSourceOptions, {}))
-        // // 设置目标点，其他源点拖出的线可以连接该节点
-        this.jsPlumb.makeTarget(node.id, this.jsplumbTargetOptions)
-        if (!node.viewOnly) {
-          this.jsPlumb.draggable(node.id, {
-            containment: 'parent',
-            stop: function(el) {
-              // 拖拽节点结束后的对调
-              console.log('拖拽结束: ', el)
-            }
-          })
-        }
-      }
-    },
+    // loadEasyFlow() {
+    //   // 初始化节点
+    //   for (const i in this.menuList) {
+    //     const node = this.menuList[i]
+    //     // 设置源点，可以拖出线连接其他节点
+    //     this.jsPlumb.makeSource(node.id, lodash.merge(this.jsplumbSourceOptions, {}))
+    //     // // 设置目标点，其他源点拖出的线可以连接该节点
+    //     this.jsPlumb.makeTarget(node.id, this.jsplumbTargetOptions)
+    //     if (!node.viewOnly) {
+    //       this.jsPlumb.draggable(node.id, {
+    //         containment: 'parent',
+    //         stop: function(el) {
+    //           // 拖拽节点结束后的对调
+    //           console.log('拖拽结束: ', el)
+    //         }
+    //       })
+    //     }
+    //   }
+    // },
     // 返回唯一标识
     getUUID() {
       return Math.random().toString(36).substr(3, 10)

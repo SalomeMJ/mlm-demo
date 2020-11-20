@@ -36,6 +36,7 @@
 // import { jsPlumb } from 'jsplumb'
 // 使用修改后的jsplumb
 import jsPlumb from 'jsplumb'
+import { easyFlowMixin } from '@/components/ef/mixins'
 // import { easyFlowMixin } from '@/components/ef/mixins'
 import flowNode from '@/components/ef/node'
 import nodeMenu from '@/components/ef/node_menu'
@@ -101,7 +102,7 @@ export default {
     }
   },
   // 一些基础配置移动该文件中
-  //   mixins: [easyFlowMixin],
+  mixins: [easyFlowMixin],
   data() {
     return {
       // jsPlumb 实例
@@ -129,11 +130,12 @@ export default {
     }
   },
   mounted() {
+    console.log(jsPlumb.jsPlumb);
     // console.log(jsPlumb.jsPlumb.getInstance())
-
+    this.jsPlumb = jsPlumb.jsPlumb.getInstance()
     this.$nextTick(() => {
       // 默认加载流程A的数据、在这里可以根据具体的业务返回符合流程数据格式的数据即可
-      this.jsPlumb = jsPlumb.jsPlumb.getInstance()
+      // this.jsPlumb = jsPlumb.jsPlumb.getInstance()
       this.dataReload(getDataB())
     })
   },
@@ -472,7 +474,7 @@ export default {
         this.easyFlowVisible = true
         this.data = data
         this.$nextTick(() => {
-          this.jsPlumb = jsPlumb.getInstance()
+          this.jsPlumb = jsPlumb.jsPlumb.getInstance()
           this.$nextTick(() => {
             this.jsPlumbInit()
           })
