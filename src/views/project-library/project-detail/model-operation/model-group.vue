@@ -3,7 +3,7 @@
     <head-title :title="$route.query.projectName+'>'+title+$route.query.modelGroup" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
-        <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelGroup }}</span>
+        <span class="fs-16 text-grey-0 fw-bold">{{ $route.query.modelGroup }}</span>
         <p class="fs-12 fw-400 text-grey-2">用于贷前审批</p>
         <p class="fs-14 fw-400 text-grey-2">
           <span>模型数量：123</span>

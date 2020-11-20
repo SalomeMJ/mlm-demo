@@ -138,6 +138,32 @@ export const constantRoutes = [
                 meta: { title: 'warning-rule', affix: true, activeMenu: '/project-library' }
               }
             ]
+          },
+          {
+            path: 'project-configuration',
+            component: () => import('@/views/project-library/project-configuration'),
+            name: 'ProjectConfiguration',
+            meta: { title: 'project-configuration', affix: true, activeMenu: '/project-library' },
+            children: [
+              {
+                path: 'model-edit-template',
+                component: () => import('@/views/project-library/project-configuration/model-edit-tamplate'),
+                name: 'ModelEditTemplate',
+                meta: { title: 'model-edit-template', affix: true, activeMenu: '/project-library' }
+              },
+              {
+                path: 'workflow-edit',
+                component: () => import('@/views/project-library/project-configuration/workflow-edit'),
+                name: 'AddEditWorkflow',
+                meta: { title: 'model-edit-template', affix: true, activeMenu: '/project-library' }
+              },
+              {
+                path: 'field-edit',
+                component: () => import('@/views/project-library/project-configuration/field-edit'),
+                name: 'FieldEdit',
+                meta: { title: 'field-edit', affix: true, activeMenu: '/project-library' }
+              }
+            ]
           }
         ]
       },

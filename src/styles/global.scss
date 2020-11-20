@@ -11,6 +11,9 @@
 .bg-gray {
   background-color: #f8f8f8 !important;
 }
+.bg-f6{
+  background-color: #f6f6f6;
+}
 .block {
   display: block;
 }
@@ -1006,6 +1009,9 @@ select.form-control-styled{
 .bg-cyan-1{
   background-color: #40cac0;
 }
+.bg-cyan-2{
+  background-color: #30E9CA;
+}
 .bg-red-1{
   background-color: #ff6d60;
 }
@@ -1017,6 +1023,9 @@ select.form-control-styled{
 }
 .bg-yellow-2{
   background-color: rgba(255,162,0,0.2) !important;
+}
+.bg-yellow-3{
+  background-color: #FFBB2F !important;
 }
 .clear-both::after{
   content: "";
@@ -1113,6 +1122,15 @@ select.form-control-styled{
 .border-bottom-right-radius{
   border-bottom-right-radius: 3px;
 }
+.border-d9{
+  border:1px solid #d9d9d9;
+}
+.border-bottom-06{
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.border-bottom-d9{
+  border-bottom:1px solid #d9d9d9;
+}
 .activeTab{
   background-color: #00a0e9 !important;
   color:#fff !important;
@@ -1142,6 +1160,9 @@ select.form-control-styled{
 }
 .cursor-pointer{
   cursor: pointer;
+}
+.cursor-nodrop{
+  cursor: no-drop;
 }
 .coverParentView{
   position:absolute;top:0;width:100%;height:100%;z-index:999;

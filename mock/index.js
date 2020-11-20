@@ -35,6 +35,10 @@ import operation from './project-library/warning-rule/operation'
 import nuclearList from './nuclearsign-center/nuclear-list'
 import modelStrategy from './model-market/model-strategy'
 import approvalResult from './model-market/approval-result'
+import workflow from './project-library/project-configuration/workflow'
+import approvalflow from './project-library/project-configuration/approvalflow'
+import modelRegister from './project-library/project-configuration/model-register'
+import projectField from './project-library/project-configuration/project-field'
 import users from './system/user'
 import article from './article'
 import search from './remote-search'
@@ -74,6 +78,10 @@ const mocks = [
   nuclearList,
   modelStrategy,
   approvalResult,
+  workflow,
+  approvalflow,
+  modelRegister,
+  projectField,
   users,
   ...article,
   ...search,

@@ -3,7 +3,7 @@
     <head-title :title="$route.query.projectName+'>'+$route.query.title+'>'+$route.query.modelName+'>'+$route.query.eventName" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
-        <span class="fs-16 text-grey-0 fw-600">{{ $route.query.modelName }}</span>
+        <span class="fs-16 text-grey-0 fw-bold">{{ $route.query.modelName }}</span>
         <el-tag class="ml-20" type="primary">PMML</el-tag>
         <p class="fs-12 fw-400 text-grey-2">用于贷前审批</p>
         <p class="fs-12 fw-400 text-grey-2">

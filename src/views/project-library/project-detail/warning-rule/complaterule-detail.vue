@@ -3,7 +3,7 @@
     <head-title :title="'预警规则>预警规则详情'" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
-        <span class="fs-16 text-grey-0 fw-600">预警名称：{{ $route.query.ruleName }}</span>
+        <span class="fs-16 text-grey-0 fw-bold">预警名称：{{ $route.query.ruleName }}</span>
         <span class="pull-right fw-bold fs-16 normal">预警等级：一般</span>
         <p class="fs-14 fw-400 text-grey-2">预警提醒：无</p>
         <p class="fs-14 fw-400 text-grey-1 warningMsg">
