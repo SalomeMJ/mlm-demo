@@ -40,6 +40,10 @@ import approvalflow from './project-library/project-configuration/approvalflow'
 import modelRegister from './project-library/project-configuration/model-register'
 import projectField from './project-library/project-configuration/project-field'
 import users from './system/user'
+import roles from './system/role/role'
+import dataAttr from './system/data-attr'
+import dataMember from './system/data-member'
+import root from './system/root'
 import article from './article'
 import search from './remote-search'
 
@@ -83,6 +87,10 @@ const mocks = [
   modelRegister,
   projectField,
   users,
+  roles,
+  dataAttr,
+  dataMember,
+  root,
   ...article,
   ...search,
   ...search

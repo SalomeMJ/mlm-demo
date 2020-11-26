@@ -10,7 +10,7 @@
     <span v-if="node.name!=='开始'" class=" ef-node-left-ico flow-node-drag enticon" />
     <i v-if="node.name=='开始'" class="icon iconfont iconPlay fs-14" />
     <span v-if="node.name!='结束'&&node.name!='开始'" class="bg-yellow-3 fs-14 fw-bold">{{ node.iconText }}</span>
-    <i v-if="node.name=='结束'" class="icon iconfont iconcheck-all " style="font-size:14px;" />
+    <i v-if="node.name=='结束'" class="icon iconfont iconcheck-all" style="font-size:18px;color:#30E9CA;" />
     <span class="ef-node-text" :show-overflow-tooltip="true">{{ node.name }}</span>
     <i v-if="node.name!='开始'" class="icon iconfont iconDelete text-red-0 fs-14" />
     <span v-if="node.name!=='结束'" class=" ef-node-left-ico flow-node-drag outicon" />
@@ -81,7 +81,7 @@ export default {
   width: 174px;
   height: 44px;
   line-height: 44px;
-  text-align: center;
+  text-align: left;
   background: #FFFFFF;
   border-radius: 15px;
   margin-bottom: 30px;
@@ -92,13 +92,19 @@ export default {
     vertical-align: middle;
   }
   span{
-    margin-left: 10px;
+    // margin-left: 10px;
     margin-right: 10px;
+    width: auto;
+font-size: 14px;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #333333;
+line-height: 42px;
   }
   i:first-child{
     display: inline-block;
    color:#30E9CA;
-    font-size: 18px;
+    font-size: 20px;
     border-radius: 50%;
   }
   i.iconDelete{
@@ -123,25 +129,25 @@ export default {
     visibility: visible;
   }
 }
-.flow-elment:first-child{
-  // position: absolute;
-  margin-left:calc(50% - 87px);
-}
+// .flow-elment:first-child{
+//   // position: absolute;
+//   margin-left:calc(50% - 87px);
+// }
 .ef-node-left-ico{
     display: inline-block;
-    width:10px;
-    height:10px;
+    width:5px;
+    height:5px;
     border:1px solid #d7d7d7;
     border-radius: 50%;
     margin: 0 !important;
     position: absolute;
-    left:calc(50% - 5px);
+    left:50%;
     cursor: pointer;
 }
 .ef-node-left-ico.outicon{
-    bottom:-10px;
+    bottom:-5px;
 }
 .ef-node-left-ico.enticon{
-    top:-10px;
+    top:-5px;
 }
 </style>

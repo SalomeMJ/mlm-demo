@@ -1,7 +1,7 @@
 <template>
   <div class="h100 bg-white border-radius-5 pos-relative">
     <head-title title="系统管理配置" :back="back" />
-    <div class=" tabContainer pl-30 pr-30">
+    <div class=" tabContainer pl-30 pr-20">
       <el-tabs v-model="activeTab" type="card" :tab-position="tabPosition" class="h100 left-tab" @tab-click="handleClick">
         <el-tab-pane label="账号管理" name="0" />
         <tab1 v-if="activeTab=='0'" />
@@ -9,9 +9,9 @@
         <tab2 v-if="activeTab=='1'" />
         <el-tab-pane label="数据权限组" name="2" />
         <tab3 v-if="activeTab=='2'" />
-        <el-tab-pane label="数据属性列表" name="3" />
+        <el-tab-pane label="组织管理" name="3" />
         <tab4 v-if="activeTab=='3'" />
-        <el-tab-pane label="组织管理" name="4" />
+        <el-tab-pane label="数据属性列表" name="4" />
         <tab5 v-if="activeTab=='4'" />
         <el-tab-pane label="项目管理" name="5" />
         <tab6 v-if="activeTab=='5'" />
@@ -76,8 +76,8 @@ export default {
         cursor: pointer;
         box-sizing: border-box;
         width: 100%;
-        height: 30px !important;
-        line-height: 30px !important;
+        height: 42px !important;
+        line-height: 42px !important;
      background-color: #fff;
         margin-bottom: 15px;
         list-style: none;
@@ -89,8 +89,10 @@ export default {
         margin-bottom: none;
       }
       .el-tabs__item.is-active{
-        background: #00a0e9 !important;
-        color: #fff !important;
+       background: rgba(0,160,233,0.2) !important;
+        color: #00A0E9 !important;
+        font-weight: 600;
+        border-right:4px solid #00a0e9 !important;
       }
     }
 }

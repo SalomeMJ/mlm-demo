@@ -2,6 +2,10 @@
 *{
   list-style: none;
 }
+ul,p{
+margin: 0;
+padding: 0;
+}
 .bg-white {
   background-color: white !important;
 }
@@ -215,7 +219,9 @@
 .ml-10 {
   margin-left: 10px !important;
 }
-
+.ml-8 {
+  margin-left: 8px !important;
+}
 .ml-5 {
   margin-left: 5px !important;
 }
@@ -601,6 +607,10 @@
   width: 150px;
 }
 
+ .w-200 {
+  width: 200px;
+}
+
 .w-md, .w-240 {
   width: 200px;
 }
@@ -770,6 +780,12 @@ hr {
 }
 .h-32{
   height: 32px !important;
+}
+.h-42{
+  height: 42px !important;
+}
+.h-150{
+  height: 150px !important;
 }
 .h-500 {
   height: 500px !important;
@@ -962,8 +978,10 @@ hr {
   border-color: #FA4B3D;
 }
 .lh-32{
-  height: 32px;
   line-height: 32px;
+}
+.lh-42{
+  line-height: 42px;
 }
 input.form-control-styled{
   width: 160px;
@@ -1065,6 +1083,9 @@ select.form-control-styled{
 .fw-normal{
   font-weight: normal;
 }
+.letter-spacing-1{
+  letter-spacing: 1px;
+}
 .fs-12{
   font-size: 12px;
 }
@@ -1110,6 +1131,12 @@ select.form-control-styled{
 .border-radius-5{
   border-radius: 5px;
 }
+.border-radius-3{
+  border-radius: 3px;
+}
+.border-radius-2{
+  border-radius: 2px;
+}
 .border-top-left-radius{
   border-top-left-radius: 3px;
 }
@@ -1125,11 +1152,20 @@ select.form-control-styled{
 .border-d9{
   border:1px solid #d9d9d9;
 }
+.border-top-d9{
+  border-top:1px solid #d9d9d9!important;
+}
+.border-right-d9{
+  border-right:1px solid #d9d9d9;
+}
 .border-bottom-06{
   border-bottom:1px solid rgba(0,0,0,0.06);
 }
 .border-bottom-d9{
   border-bottom:1px solid #d9d9d9;
+}
+.border-top-none{
+  border-top:none;
 }
 .activeTab{
   background-color: #00a0e9 !important;
@@ -1193,4 +1229,23 @@ select.form-control-styled{
  }
  .text-align-right{
    text-align: right;
+ }
+ .text-decoration-underline{
+  text-decoration:underline;
+ }
+ .head-back{
+   display: inline-block;
+   
+   width: 44px;
+   border: 1px solid #00a0e9;
+   text-align: center;
+   height: 26px;
+   line-height: 26px;
+   border-radius: 13px;
+   color: #00a0e9;
+
+ }
+ .head-back:hover{
+   background-color: #00a0e9;
+   color:#fff;
  }

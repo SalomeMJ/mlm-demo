@@ -153,4 +153,19 @@ export default {
       cursor: pointer;
     }
   }
+  @media only screen and (min-width:1280px) and (max-width:1440px) {
+  .conCen{
+      grid-template-columns: repeat(auto-fit, 278px);
+    }
+  }
+    @media only screen and (min-width:1440px) and (max-width:1920px) {
+  .conCen{
+      grid-template-columns: repeat(auto-fit, 318px);
+    }
+  }
+     @media only screen and (min-width:1920px) {
+  .conCen{
+      grid-template-columns: repeat(auto-fit, 346px);
+    }
+  }
  </style>

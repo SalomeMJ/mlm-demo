@@ -4,7 +4,7 @@
       <div class="bg-white h100 pl-20 pt-20" style="width: 200px;border-right: 1px solid #d9d9d9;border-radius:5px 0 0 5px">
         <node-menu ref="nodeMenu" @addNode="addNode" />
       </div>
-      <div id="efContainer" ref="efContainer" v-flowDrag class="container">
+      <div id="efContainer" ref="efContainer" v-flowDrag class="container overflow-y-auto">
         <template v-for="node in data.nodeList">
           <flow-node
             :id="node.id"
@@ -20,7 +20,7 @@
         <!-- <div style="position:absolute;top: 2000px;left: 2000px;">&nbsp;</div> -->
       </div>
       <!-- 右侧表单 -->
-      <div style="width: 360px;border-left: 1px solid #dce3e8;background-color: #FBFBFB">
+      <div v-if="activeElement.type!=undefined" style="width: 360px;border-left: 1px solid #dce3e8;background-color: #FBFBFB">
         <flow-node-form ref="nodeForm" @setLineLabel="setLineLabel" @repaintEverything="repaintEverything" />
       </div>
     </div>
@@ -37,7 +37,6 @@
 // 使用修改后的jsplumb
 import jsPlumb from 'jsplumb'
 import { easyFlowMixin } from '@/components/ef/mixins'
-// import { easyFlowMixin } from '@/components/ef/mixins'
 import flowNode from '@/components/ef/node'
 import nodeMenu from '@/components/ef/node_menu'
 import FlowInfo from '@/components/ef/info'
@@ -45,21 +44,8 @@ import FlowHelp from '@/components/ef/help'
 import FlowNodeForm from './node_form'
 import lodash from 'lodash'
 import { getDataB } from './data_B'
-// 鼠标悬浮在端点上的样式
-const connectorPaintStyle = {
-  strokeWidth: 1,
-  stroke: '#00a0e9',
-  joinstyle: 'round',
-  outlineColor: 'white',
-  outlineWidth: 1
-}
-// 鼠标悬浮在连接线上的样式
-const connectorHoverStyle = {
-  strokeWidth: 1,
-  stroke: '#00a0e9',
-  outlineWidth: 1,
-  outlineColor: 'white'
-}
+import { getWorkflow } from './workflow'
+import { getUrlParams } from '@/utils/getUrlParams'
 export default {
   components: {
     flowNode, nodeMenu, FlowInfo, FlowNodeForm, FlowHelp
@@ -130,13 +116,14 @@ export default {
     }
   },
   mounted() {
-    console.log(jsPlumb.jsPlumb);
-    // console.log(jsPlumb.jsPlumb.getInstance())
     this.jsPlumb = jsPlumb.jsPlumb.getInstance()
     this.$nextTick(() => {
       // 默认加载流程A的数据、在这里可以根据具体的业务返回符合流程数据格式的数据即可
-      // this.jsPlumb = jsPlumb.jsPlumb.getInstance()
-      this.dataReload(getDataB())
+      if (getUrlParams().workflowName != null) {
+        this.dataReload(getWorkflow())
+      } else {
+        this.dataReload(getDataB())
+      }
     })
   },
   methods: {
@@ -203,7 +190,7 @@ export default {
             this.$message.error('不支持两个节点之间连线回环')
             return false
           }
-          this.$message.success('连接成功')
+          // this.$message.success('连接成功')
           return true
         })
 
@@ -247,8 +234,8 @@ export default {
           connector: line.connector ? line.connector : '',
           anchors: line.anchors ? line.anchors : undefined,
           // paintStyle: line.paintStyle ? line.paintStyle : undefined
-          paintStyle: { stroke: 'red', strokeWidth: 1 },
-          endpointStyle: { fill: 'red', outlineStroke: 'red', outlineWidth: 1 },
+          paintStyle: { stroke: '#CECECE', strokeWidth: 1 },
+          endpointStyle: { fill: '#CECECE', outlineStroke: '#CECECE', outlineWidth: 1 },
           overlays: [['Arrow', { width: 1, length: 1, location: 1 }]]
         }
         this.jsPlumb.connect(connParam, this.jsplumbConnectOptions)

@@ -9,22 +9,6 @@ const dataB = {
       top: '20px',
       ico: 'iconPlay'
     }
-  ],
-  lineList: [{
-    from: 'nodeA',
-    to: 'nodeB',
-    label: '条件A'
-  }, {
-    from: 'nodeA',
-    to: 'nodeC',
-    label: '条件B'
-  }, {
-    from: 'nodeB',
-    to: 'nodeD'
-  }, {
-    from: 'nodeC',
-    to: 'nodeD'
-  }
   ]
 }
 

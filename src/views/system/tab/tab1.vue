@@ -1,5 +1,5 @@
 <template>
-  <div class="h100 pl-30 pt-30 pb-30">
+  <div class="h100 p-10 pb-30 pt-20 pr-0">
     <div class="conHead">
       <span class="fs-18 fw-bold">账号管理</span>
       <el-input
@@ -7,7 +7,7 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary" @click="addUser()">新建账号</el-button>
+      <el-button type="primary" @click="editUser('新建')">新建账号</el-button>
     </div>
     <div class="conCen mt-20">
       <el-table
@@ -31,8 +31,9 @@
                   :width="28"
                 />
               </span>
-              <span v-if="item.prop=='operate'" @click="enterUser(scope.row)">
-                <i class="icon iconfont icontable-edit doingColor" style="font-size:20px;" />
+              <span v-if="item.prop=='operate'" @click="editUser('编辑', scope.row)">
+                <i class="icon iconfont icontable-edit doingColor display-inlineblock mr-20" style="font-size:20px;" />
+                <i class="icon iconfont iconDelete text-red-0" style="font-size:18px;" />
               </span>
             </template>
           </el-table-column>
@@ -40,16 +41,17 @@
       </el-table>
       <pagi-nation :pagination-data="paginationData" @pagination="pageChange" />
     </div>
-
+    <account-management v-if="edit" :edit-options="editOptions" @updateEdit="updateEdit" />
   </div>
 </template>
 <script>
 import PagiNation from '@/components/Pagination/index'
 import { getUser } from '@/api/system/user'
+import AccountManagement from '../account-management/index'
 
 export default {
   name: 'TabOne',
-  components: { PagiNation },
+  components: { PagiNation, AccountManagement },
   data() {
     return {
       input: '',
@@ -69,11 +71,13 @@ export default {
         { label: '身份', prop: 'identity', sortable: false },
         { label: '角色', prop: 'roleNames', sortable: false },
         { label: '数据权限组', prop: 'loanTypeGroupName', sortable: false },
-        { label: '是否启用', prop: 'activated', sortable: false },
+        { label: '启用', prop: 'activated', sortable: false },
         { label: '操作', prop: 'operate', sortable: false }
       ],
       tableData: [],
-      totalData: []
+      totalData: [],
+      edit: false,
+      editOptions: {}
     }
   },
   mounted() {
@@ -102,11 +106,16 @@ export default {
     initDirective(x) {
       this.currpage = x
     },
-    addUser() {
-
+    editUser(name, params) {
+      this.edit = true
+      this.editOptions = {
+        name: name + '账号',
+        params: params
+      }
+      // this.$router.push({ path: '/system/account-management', query: {}})
     },
-    enterUser(params) {
-      console.log(params)
+    updateEdit(e) {
+      this.edit = false
     }
   }
 
