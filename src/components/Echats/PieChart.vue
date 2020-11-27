@@ -62,7 +62,7 @@ export default {
       this.chart.setOption({
         tooltip: {
           trigger: 'item',
-          formatter: '{b}:<br/> 触发数量:{c}<br/>占比:{d}%'
+          formatter: '{b}: {c} ({d}%)'
         },
         color: this.pieChart.color,
         legend: this.pieChart.legend,

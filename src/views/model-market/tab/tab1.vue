@@ -1,77 +1,71 @@
 <template>
   <div class="h100 pt-5">
-    <div class="conHead pl-20 pr-20 pb-10">
-      <picker-time />
-      <el-select v-model="status" class="mr-15 ml-5" placeholder="请选择">
-        <el-option
-          v-for="item in statusList"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-select v-model="eventType" class="mr-15" placeholder="请选择">
-        <el-option
-          v-for="item in eventTypes"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-select v-if="activeName!='first'" v-model="submitOne" placeholder="请选择">
-        <el-option
-          v-for="item in submitOnes"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-input
-        v-model="input"
-        placeholder="请输入搜索关键字"
-        prefix-icon="el-icon-search"
-      />
+    <div class="modelTrace1 mb-20">
+      <div class="first-div">
+        <div class="bg-white border-radius-5 pt-20 pb-20 pl-20 pr-20">
+          <p class="fs-14 text-grey-2 fw-400 mb-20">模型在线数量</p>
+          <p class="fs-30 text-grey-0 fw-bold">63</p>
+          <i class="icon iconfont iconfengchao " />
+        </div>
+        <div class="bg-white border-radius-5 pt-15 pb-15 pl-30 pr-30">
+          <p class="mb-10">
+            <i class="icon iconfont iconguizeguanliquanjugongxiang mr-40" />
+            <span class="fs-14 text-grey-2 fw-400">预警规则数量</span>
+            <span class="fs-30 text-grey-0 fw-bold">11</span>
+          </p>
+          <p>
+            <i class="icon iconfont iconshijiangongdanguanli mr-40" />
+            <span class="fs-14 text-grey-2 fw-400">使用事件数量</span>
+            <span class="fs-30 text-grey-0 fw-bold">11</span>
+          </p>
+        </div>
+      </div>
+      <div class="bg-white border-radius-5 pt-15 pb-15 pl-20 pr-20">
+        <p class="fs-16 text-grey-0 fw-bold">预警规则触发情况</p>
+        <bar-chart :bar-chat="barOptions" />
+      </div>
+      <div class="bg-white border-radius-5 pt-10 pb-10 pl-20 pr-20">
+        <p class="fs-16 text-grey-0 fw-bold">使用事件状态分布</p>
+        <pie-chart :pie-chart="pieChart" :width="pieChart.width" :height="pieChart.height" />
+      </div>
     </div>
-    <div class="conCen">
-      <div v-for="(item, index) in nuclearList" :key="index" class="conItem mb-20 pt-10 pb-10 pl-20 pr-20">
-        <span class="border-right" :class="item.bgc" />
-        <div class="item-top">
-          <span class="fs-16 fw-bold text-grey-0 ver-middle mr-15">{{ item.eventName }}</span>
-          <el-tag class="mr-5">{{ item.eventType }}</el-tag>
-          <el-tag class="mr-5">{{ item.checkType }}</el-tag>
-          <el-tag v-if="item.status=='已通过'" type="success">已通过</el-tag>
-          <el-tag v-if="item.status=='审批中'" type="warning">审批中</el-tag>
-          <el-tag v-if="item.status=='已拒绝'" type="danger">已拒绝</el-tag>
-          <el-tag v-if="item.status=='已撤销'" type="info">已撤销</el-tag>
-          <router-link :to="{path:'/nuclearsign-center/using-detail',query:{eventName:item.eventName, action: item.action, from: '/nuclearsign-center', title: title}}">
-            <span class="doingColor fw-400 fs-14 pull-right mt-5 cursor-pointer" @click="enterDetail(item)">查看详情></span>
-          </router-link>
-        </div>
-        <div class="item-cen">
-          <div class="item-cen-cen fs-12 fw-400 text-grey-2 mt-15 letter-space-1">
-            {{ item.desc }}
-          </div>
-          <div class="item-bottom fs-12 fw-400 text-grey-3">
-            <div class="pull-left iconContainer">
-              <i class="icon iconfont iconmodel mr-5 fs-18 ver-middle" />{{ item.modelMsg }}
-              <i class="icon iconfont iconPlay mr-5 fs-18 ml-20 ver-middle" />{{ item.effectTime }}
-              <i class="icon iconfont iconchengyuan fs-18 mr-5 ml-20 ver-middle" />{{ item.head }}
-            </div>
-            <div class="pull-right">
-              <i class="icon iconfont iconHistory fs-18 mr-5 ver-middle" /><span class="ver-middle text-align-right">{{ item.submitTime }}</span>
-            </div>
-          </div>
-        </div>
+    <div class="modelTrace2">
+      <div class="bg-white border-radius-5 pt-10 pb-10 pl-20 pr-20">
+        <p class="fs-16 text-grey-0 fw-bold">模型请求次数趋势</p>
+        <el-select v-model="status" class="mr-15 ml-5" placeholder="请选择">
+          <el-option
+            v-for="item in statusList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <line-chart :line-chart="chartList[0].lineOptions" />
+      </div>
+      <div class="bg-white border-radius-5 pt-10 pb-10 pl-20 pr-20">
+        <p class="fs-16 text-grey-0 fw-bold">预测评分趋势</p>
+        <el-select v-model="status" class="mr-15 ml-5" placeholder="请选择">
+          <el-option
+            v-for="item in statusList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <bar-chart :bar-chat="chartList[1].barOptions" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import { getNuclearList } from '@/api/nuclearsign-center/nuclear-list'
-import PickerTime from '@/components/PickerTime/index'
+import { getModelTrace } from '@/api/model-market/model-trace'
+import { getSituation } from '@/api/project-library/using-event/situation-data'
+import BarChart from '@/components/Echats/BarChart'
+import PieChart from '@/components/Echats/PieChart'
+import LineChart from '@/components/Echats/LineChart'
 export default {
   name: 'TabOne',
-  components: { PickerTime },
+  components: { BarChart, PieChart, LineChart },
   props: {
     'activeName': {
       type: String,
@@ -121,7 +115,76 @@ export default {
       submitOne: '',
       nuclearList: [],
       title: null,
-      input: ''
+      input: '',
+      barOptions: {
+        title: '',
+        className: 'situationList',
+        headList: ['轻微', '一般', '严重'],
+        width: '100%',
+        height: '358px',
+        timeRange: ['轻微', '一般', '严重'],
+        interval: 250,
+        xShow: true,
+        yName: '',
+        series: []
+      },
+      pieChart: {
+        width: '100%',
+        height: '368px',
+        color: ['#5B8FF9', '#5AD8A6'],
+        responseType: ['配置中', '生效审核中', '已生效', '停用审核中', '已停用'],
+        successRate: '',
+        orient: 'bottom',
+        legend: {
+          orient: 'vertical',
+          right: 20,
+          itemWidth: 10,
+          itemHeight: 10,
+          icon: 'circle',
+          itemGap: 15,
+          padding: [5, 10],
+          top: 150,
+          textStyle: {
+            color: '#8C8C8C',
+            fontSize: 12
+          },
+          data: ['配置中', '生效审核中', '已生效', '停用审核中', '已停用']
+        },
+        requestRateList: [],
+        series: []
+      },
+      chartList: [
+        {
+          name: '请求次数趋势',
+          lineOptions: {
+            xShow: true,
+            title: '',
+            chartName: 'lineOptions',
+            width: '100%',
+            height: '308px',
+            legend: ['202001', '202002', '202003', '202004', '202005', '202006', '训练样本'],
+            timeRange: [],
+            yInterval: 3,
+            yName: '占比',
+            yAxis: null,
+            series: []
+          }
+        },
+        {
+          name: '预测评分趋势',
+          barOptions: {
+            title: '',
+            className: 'situationList',
+            headList: [],
+            width: '100%',
+            height: '308px',
+            timeRange: [],
+            interval: 250,
+            xShow: true,
+            yName: '',
+            series: []
+          }
+        }]
     }
   },
   mounted() {
@@ -129,95 +192,205 @@ export default {
   },
   methods: {
     initData() {
-      if (this.activeName === 'first') {
-        this.title = '我发起的'
-      }
-      if (this.activeName === 'second') {
-        this.title = '我核签的'
-      }
-      if (this.activeName === 'third') {
-        this.title = '我抄送的'
-      }
-      getNuclearList().then((response) => {
-        this.nuclearList = response.data.nuclearList
-        for (const item of this.nuclearList) {
-          if (item.status === '已通过') {
-            item.bgc = 'bg-green-0'
+      getModelTrace().then((response) => {
+        // 预警规则触发图
+        this.barOptions.series = [
+          {
+            name: '',
+            type: 'bar',
+            barWidth: 20,
+            data: [response.data.warningRuleTouch[0].value, response.data.warningRuleTouch[1].value, response.data.warningRuleTouch[2].value],
+            itemStyle: {
+              normal: {
+                color: function(params) {
+                  const colorList = ['#FFC800', '#FF7700', '#FF4949']
+                  return colorList[params.dataIndex]
+                }
+              }
+            }
           }
-          if (item.status === '审批中') {
-            item.bgc = 'bg-yellow-0'
+        ]
+        // 使用事件分布
+        this.pieChart.series = [{
+          type: 'pie',
+          radius: ['50%', '70%'],
+          center: ['40%', '50%'],
+          data: response.data.useEventStatus,
+          itemStyle: {
+
+            normal: {
+              color: function(params) {
+                // 自定义颜色
+                var colorList = [
+                  '#5B8FF9', '#5AD8A6', '#5D7092', '#FFCD3A', '#FF7453'
+                ]
+                return colorList[params.dataIndex]
+              }
+            }
+          },
+          label: {
+            normal: {
+              position: 'inner',
+              show: false
+            }
           }
-          if (item.status === '已拒绝') {
-            item.bgc = 'bg-red-0'
-          }
-          if (item.status === '已撤销') {
-            item.bgc = 'bg-grey-1'
-          }
-        }
+
+        }]
       })
-    },
-    enterDetail(params) {
-      console.log(params)
+      getSituation().then((res) => {
+        // 次数趋势
+        const seriesData = []
+        for (const item of res.data.situationList.trainData) {
+          this.chartList[0].lineOptions.timeRange.push(item.range)
+          seriesData.push(Number(item.ratio.replace('%', '')))
+        }
+        this.chartList[0].lineOptions.yAxis = {
+          show: true,
+          name: '',
+          type: 'value',
+          interval: 250,
+          axisLine: {
+            'show': false,
+            lineStyle: {
+              color: 'rgba(0,0,0,0.45)'
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: 'rgba(0,0,0,0.45)'
+            }
+          },
+          'axisTick': {
+            'show': false
+          },
+          textStyle: {
+            fontSize: 12,
+            color: 'rgba(0,0,0,0.45)'
+          },
+          splitLine: {
+            show: false
+          },
+          splitArea: { show: false }
+        }
+        this.chartList[0].lineOptions.series = [
+          {
+            name: '',
+            color: '#00A0E9',
+            type: 'line',
+            barWidth: 40,
+            smooth: false,
+            data: seriesData
+          }
+        ]
+        // 分数趋势
+        const seriesData1 = []
+        for (const item of res.data.situationList.actualData) {
+          this.chartList[1].barOptions.timeRange.push(item.range)
+          seriesData1.push(item.countNum)
+        }
+        this.chartList[1].barOptions.series = [
+          {
+            name: '',
+            color: '#00A0E9',
+            type: 'bar',
+            barWidth: 20,
+            data: seriesData1
+          }
+        ]
+      })
     }
   }
 
 }
 </script>
 <style lang="scss" scoped>
- .el-select >>> .el-input--medium .el-input__inner {
-      width: 124px;
-  }
-  .el-select{
-    vertical-align: middle;
-  }
-  .el-input--prefix{
-    width: 160px;
-    float: right;
-    vertical-align: middle;
-  }
-  .conCen{
-    height:94%;
-    padding-top: 10px;
-    overflow-y: auto;
-    div.conItem{
-      width: calc(100% - 40px);
-      margin-left: 20px;
-      height: 100px;
-      background: #FFFFFF;
-      border:1px solid #D9D9D9;
-      border-left:none;
-      border-radius: 3px;
-      padding: 10px;
+ .modelTrace1{
+   display: grid;
+   grid-template-columns:  69fr 50fr 71fr;
+   grid-column-gap: 20px;
+   height:52%;
+  width: 100%;
+   div.first-div{
+     display:grid;
+     grid-template-rows: 0.52fr 0.77fr;
+     grid-row-gap:20px;
+    div:nth-child(1){
+      height: 100%;
       position: relative;
-      span.border-right{
-        display: inline-block;
-        width: 4px;
-        height: 100px;
-        border-radius: 3px;
+      .iconfengchao{
         position: absolute;
-        top: -1px;
-        left: 0;
+        right: 30px;
+        top: 35px;
+        display: inline-block;
+        width: 80px;
+          height: 80px;
+          text-align: center;
+          line-height: 80px;
+          color:#fff;
+          font-size: 25px;
+          background: #00A0E9;
+          border-radius: 50%;
       }
-      .iconContainer{
-        width: 50%;
-        i:nth-child(2),i:last-child{
-          margin-left: 20% !important;
+      .mb-20{
+        position: absolute;
+        top:35px;
+      }
+      .fs-30{
+        font-size: 40px;
+        position: absolute;
+        top: 65px;
+      }
+    }
+    div:nth-child(2){
+      height:100%;
+      p{
+        position: relative;
+        height: 50%;
+        span{
+          position: absolute;
+          top:10px;
+          left:95px;
+        }
+        span:nth-child(3){
+          top: 35px;
         }
       }
-      .item-bottom{
-        height: 20px;
-        position: absolute;
-        width: 98%;
-        bottom: 10px;
-        font-size: 12px;
-        font-family: PingFangSC-Regular, PingFang SC;
-        font-weight: 400;
-        color: #999999;
-      }
-    }
-    div.conItem:hover{
-      box-shadow: 0px 0px 12px -3px rgba(0, 0, 0, 0.4);
-      cursor: pointer;
     }
   }
+   .iconguizeguanliquanjugongxiang,.iconshijiangongdanguanli{
+      display: inline-block;
+       width: 75px;
+        height: 75px;
+        text-align: center;
+        line-height: 75px;
+        color:#fff;
+        font-size: 20px;
+        border-radius: 50%;
+        position: absolute;
+   }
+   .iconguizeguanliquanjugongxiang{
+      background: #73DEB3;
+   }
+   .iconshijiangongdanguanli{
+    background: #73A0FA;
+   }
+ }
+ .modelTrace2{
+   display: grid;
+   grid-template-columns: repeat(2,1fr);
+   grid-column-gap: 20px;
+    height: calc(48% - 20px);
+   div{
+     display: inline-block;
+     width: 100%;
+     position: relative;
+   }
+   .el-select{
+     position: absolute;
+     top: 10px;
+     right: 20px;
+     width:160px;
+
+   }
+ }
 </style>

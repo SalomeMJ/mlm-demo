@@ -77,6 +77,9 @@ export default {
         xAxis: {
           type: 'value',
           show: false,
+          'axisTick': {
+            'show': false
+          },
           boundaryGap: [0, 0.01]
         },
         yAxis: {

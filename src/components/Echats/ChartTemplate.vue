@@ -73,17 +73,20 @@ export default {
           data: this.chartOptions.xAxisData,
           axisLine: {
             lineStyle: {
-              color: 'rgba(0,0,0,0.56)'
+              color: 'rgba(0,0,0,0.45)'
             }
           },
           axisLabel: {
             textStyle: {
-              color: 'rgba(0,0,0,0.56)'
+              color: 'rgba(0,0,0,0.45)'
             }
+          },
+          'axisTick': {
+            'show': false
           },
           textStyle: {
             fontSize: 12,
-            color: 'rgba(0,0,0,0.56)'
+            color: 'rgba(0,0,0,0.45)'
           }
         }],
         yAxis: this.chartOptions.yAxis,

@@ -1,7 +1,7 @@
 <template>
   <div class="con text-grey-0" style="height:300px;">
-    <div class="modelTabCon w100 mt-20 scoreDistribution mb-20">
-      <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">评分分布分析</div>
+    <div class="modelTabCon w100 mt-20 scoreDistribution border-d9 mb-20">
+      <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">评分分布分析</div>
       <div id="scoreDistribution" class="w100 conItem p-20">
         <div class="operating mb-10">
           <picker-time id="timetile" :time-title="timeTitle" />
@@ -15,8 +15,8 @@
         </div>
       </div>
     </div>
-    <div class="modelTabCon w100 mt-20 scoreDistribution">
-      <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">客群稳定性分析</div>
+    <div class="modelTabCon w100 mt-20 scoreDistribution border-d9">
+      <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">客群稳定性分析</div>
       <div id="scoreDistribution" class="w100 conItem p-20">
         <div class="operating mb-10">
           <picker-time id="timetile" :time-title="timeTitle" />
@@ -164,18 +164,22 @@ export default {
           type: 'value',
           interval: 3,
           axisLine: {
+            'show': false,
             lineStyle: {
-              color: 'rgba(0,0,0,0.56)'
+              color: 'rgba(0,0,0,0.45)'
             }
           },
           axisLabel: {
             textStyle: {
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             }
+          },
+          'axisTick': {
+            'show': false
           },
           textStyle: {
             fontSize: 12,
-            color: 'rgba(0,0,0,0.86)'
+            color: 'rgba(0,0,0,0.45)'
           },
           splitLine: {
             show: false
@@ -206,18 +210,22 @@ export default {
           type: 'value',
           interval: 0.03,
           axisLine: {
+            'show': false,
             lineStyle: {
-              color: 'rgba(0,0,0,0.56)'
+              color: 'rgba(0,0,0,0.45)'
             }
           },
           axisLabel: {
             textStyle: {
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             }
+          },
+          'axisTick': {
+            'show': false
           },
           textStyle: {
             fontSize: 12,
-            color: 'rgba(0,0,0,0.86)'
+            color: 'rgba(0,0,0,0.45)'
           },
           splitLine: {
             show: false
@@ -254,7 +262,6 @@ export default {
   .scoreDistribution{
     // height: 1220px;
     width: 100%;
-    border: 1px solid #eee;
     border-radius: 3px;
   }
   .el-tabs__content{

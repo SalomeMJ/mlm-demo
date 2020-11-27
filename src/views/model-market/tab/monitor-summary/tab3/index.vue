@@ -3,14 +3,11 @@
     <el-row :gutter="20">
       <el-col :span="24"><div class="grid-content bg-purple" />
         <div class="modelTabCon w100 mt-20  scoreDistribution ">
-          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">审批匹配度分析</div>
+          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">
+            <span class="fs-14 fw-bold text-grey-0">审批匹配度分析</span>
+            <span class="pull-right text-decoration doingColor">查看数据</span>
+          </div>
           <div id="scoreDistribution" class="w100 conItem p-20">
-            <div class="operating mb-10">
-              <picker-time id="timetile" :time-title="timeTitle" />
-              <div class="pull-right">
-                <el-button type="primary" plain>查看数据</el-button>
-              </div>
-            </div>
             <div class="w100  displayBlock chartCon">
               <chart-template :chart-options="chartOptions" />
             </div>
@@ -21,14 +18,11 @@
     <el-row :gutter="20">
       <el-col :span="12"><div class="grid-content bg-purple" />
         <div class="modelTabCon w100 mt-20 scoreDistribution ">
-          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">审批匹配度分析</div>
+          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">
+            <span class="fs-14 fw-bold text-grey-0">模型自动审批分析</span>
+            <span class="pull-right text-decoration doingColor">查看数据</span>
+          </div>
           <div id="scoreDistribution" class="w100 conItem p-20">
-            <div class="operating mb-10">
-              <picker-time id="timetile" :time-title="timeTitle" />
-              <div class="pull-right">
-                <el-button type="primary" plain>查看数据</el-button>
-              </div>
-            </div>
             <div class="w100  displayBlock chartCon">
               <chart-template :chart-options="modelApprovalOptions" />
             </div>
@@ -37,14 +31,11 @@
       </el-col>
       <el-col :span="12"><div class="grid-content bg-purple" />
         <div class="modelTabCon w100 mt-20 scoreDistribution ">
-          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">审批匹配度分析</div>
+          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">
+            <span class="fs-14 fw-bold text-grey-0">决策否决分析</span>
+            <span class="pull-right text-decoration doingColor">查看数据</span>
+          </div>
           <div id="scoreDistribution" class="w100 conItem p-20">
-            <div class="operating mb-10">
-              <picker-time id="timetile" :time-title="timeTitle" />
-              <div class="pull-right">
-                <el-button type="primary" plain>查看数据</el-button>
-              </div>
-            </div>
             <div class="w100  displayBlock chartCon">
               <chart-template :chart-options="DecisionVetoOptions" />
             </div>
@@ -55,13 +46,12 @@
   </div>
 </template>
 <script>
-import PickerTime from '@/components/PickerTime/index'
 import { getApprovalResult } from '@/api/model-market/approval-result'
 import ChartTemplate from '@/components/Echats/ChartTemplate'
 
 export default {
   name: 'MonitorCent',
-  components: { PickerTime, ChartTemplate },
+  components: { ChartTemplate },
   props: {
 
   },
@@ -75,7 +65,7 @@ export default {
         backgroundColor: '#fff',
         chartName: '',
         width: '100%',
-        height: '330px',
+        height: '370px',
         legend: ['批准数量', '拒绝数量', '批准比例'],
         xAxisData: [],
         yName: ['数量', '通过率'],
@@ -87,7 +77,7 @@ export default {
         backgroundColor: '#fff',
         chartName: '',
         width: '100%',
-        height: '330px',
+        height: '370px',
         legend: ['批准数量', '拒绝数量', '拒绝率'],
         xAxisData: [],
         yName: ['数量', '拒绝率'],
@@ -100,7 +90,7 @@ export default {
         backgroundColor: '#fff',
         chartName: '',
         width: '100%',
-        height: '330px',
+        height: '370px',
         legend: ['否决数量', '否决率'],
         xAxisData: [],
         yName: ['数量', '否决率'],
@@ -141,18 +131,22 @@ export default {
             name: '数量',
             type: 'value',
             axisLine: {
+              'show': false,
               lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
             },
             axisLabel: {
               textStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
+            },
+            'axisTick': {
+              'show': false
             },
             textStyle: {
               fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             },
             splitLine: {
               show: false
@@ -163,18 +157,22 @@ export default {
             name: '通过率',
             type: 'value',
             axisLine: {
+              'show': false,
               lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
             },
             axisLabel: {
               textStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
+            },
+            'axisTick': {
+              'show': false
             },
             textStyle: {
               fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             },
             splitLine: {
               show: false
@@ -224,18 +222,22 @@ export default {
             name: '数量',
             type: 'value',
             axisLine: {
+              'show': false,
               lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
             },
             axisLabel: {
               textStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
+            },
+            'axisTick': {
+              'show': false
             },
             textStyle: {
               fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             },
             splitLine: {
               show: false
@@ -246,18 +248,22 @@ export default {
             name: '拒绝率',
             type: 'value',
             axisLine: {
+              'show': false,
               lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
             },
             axisLabel: {
               textStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
+            },
+            'axisTick': {
+              'show': false
             },
             textStyle: {
               fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             },
             splitLine: {
               show: false
@@ -304,18 +310,22 @@ export default {
             type: 'value',
             interval: 3,
             axisLine: {
+              'show': false,
               lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
             },
             axisLabel: {
               textStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
+            },
+            'axisTick': {
+              'show': false
             },
             textStyle: {
               fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             },
             splitLine: {
               show: false
@@ -327,18 +337,22 @@ export default {
             type: 'value',
             interval: 0.1,
             axisLine: {
+              'show': false,
               lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
             },
             axisLabel: {
               textStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0,0,0,0.45)'
               }
+            },
+            'axisTick': {
+              'show': false
             },
             textStyle: {
               fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0,0,0,0.45)'
             },
             splitLine: {
               show: false
@@ -370,22 +384,24 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .pull-right{
+ .pull-right{
     float: right;
     position: relative;
     z-index: 2;
-    margin-top: -40px;
+    margin-top: -5px;
+    text-decoration: underline;
     width: 55%;
     height: 40px;
     line-height: 45px;
     font-size: 14px;
     text-align: right;
     padding-right: 20px;
+    cursor: pointer;
   }
   .scoreDistribution{
     height: 435px;
     width: 100%;
-    border: 1px solid #eee;
+    border: 1px solid #d9d9d9;
     border-radius: 3px;
   }
   .el-tabs__content{

@@ -54,7 +54,7 @@ export default {
       if (this.lineChart.timeRange === [] || this.lineChart.title === undefined ||
        this.lineChart.yName === undefined || this.lineChart.yInterval === undefined ||
        this.lineChart.yAxis === null || this.lineChart.xType === null ||
-        this.lineChart.legend.length === 0 || this.lineChart.series.length === 0) return
+        this.lineChart.legend === [] || this.lineChart.series.length === 0) return
 
       this.chart.setOption({
         title: {
@@ -72,21 +72,24 @@ export default {
           show: true,
           axisLine: {
             lineStyle: {
-              color: 'rgba(0,0,0,0.56)'
+              color: 'rgba(0,0,0,0.45)'
             }
           },
           axisLabel: {
             textStyle: {
-              color: 'rgba(0,0,0,0.56)'
+              color: 'rgba(0,0,0,0.45)'
             }
+          },
+          'axisTick': {
+            'show': false
           },
           textStyle: {
             fontSize: 12,
-            color: 'rgba(0,0,0,0.56)'
+            color: 'rgba(0,0,0,0.45)'
           }
         },
         grid: {
-          top: 30,
+          top: 60,
           left: '2%',
           right: '2%',
           bottom: '13%',

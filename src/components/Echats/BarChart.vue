@@ -82,29 +82,36 @@ export default {
           data: this.barChat.timeRange,
           axisLine: {
             lineStyle: {
-              color: 'rgba(0,0,0,1)'
+              color: 'rgba(0, 0, 0, 0.45)'
             }
+          },
+          'axisTick': {
+            'show': false
           }
         }],
         yAxis: [
           {
             name: this.barChat.yName,
             type: 'value',
-            data: this.barChat.yData,
+            // data: this.barChat.yData,
             interval: this.barChat.interval,
             axisLine: {
+              show: false,
               lineStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0, 0, 0, 0.45)'
               }
+            },
+            'axisTick': {
+              'show': false
             },
             axisLabel: {
               textStyle: {
-                color: 'rgba(0,0,0,0.86)'
+                color: 'rgba(0, 0, 0, 0.45)'
               }
             },
             textStyle: {
               fontSize: 12,
-              color: 'rgba(0,0,0,0.86)'
+              color: 'rgba(0, 0, 0, 0.45)'
             },
             splitLine: {
               show: false

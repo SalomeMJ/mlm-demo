@@ -3,14 +3,11 @@
     <el-row :gutter="20">
       <el-col :span="24">
         <div class="modelTabCon w100 mt-20  scoreDistribution ">
-          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">模型匹配度分析</div>
+          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">
+            <span class="fs-14 fw-bold text-grey-0">模型匹配度分析</span>
+            <span class="pull-right text-decoration doingColor">查看数据</span>
+          </div>
           <div id="scoreDistribution" class="w100 conItem p-20">
-            <div class="operating mb-10">
-              <picker-time id="timetile" :time-title="timeTitle" />
-              <div class="pull-right">
-                <el-button type="primary" plain>查看数据</el-button>
-              </div>
-            </div>
             <div class="w100  displayBlock chartCon">
               <line-chart :line-chart="lineOptions" />
             </div>
@@ -21,14 +18,11 @@
     <el-row :gutter="20" style="height:770px;">
       <el-col :span="24">
         <div class="modelTabCon w100 mt-20  scoreDistribution ">
-          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">模型排序能力分析</div>
+          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">
+            <span class="fs-14 fw-bold text-grey-0">模型排序能力分析</span>
+            <span class="pull-right text-decoration doingColor">查看数据</span>
+          </div>
           <div id="scoreDistribution" class="w100 conItem p-20">
-            <div class="operating mb-10">
-              <picker-time id="timetile" :time-title="timeTitle" />
-              <div class="pull-right">
-                <el-button type="primary" plain>查看数据</el-button>
-              </div>
-            </div>
             <div class="w100  displayBlock chartCon">
               <bar-chart :bar-chat="barOptions" />
               <line-chart :line-chart="lineOptions1" />
@@ -40,14 +34,11 @@
     <el-row :gutter="20" style="height:437px;">
       <el-col :span="24">
         <div class="modelTabCon w100 mt-20  scoreDistribution h100">
-          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">违约情况分析</div>
+          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">
+            <span class="fs-14 fw-bold text-grey-0">违约情况分析</span>
+            <span class="pull-right text-decoration doingColor">查看数据</span>
+          </div>
           <div id="scoreDistribution" class="w100 conItem p-20" style="height:437px;">
-            <div class="operating mb-10">
-              <picker-time id="timetile" :time-title="timeTitle" />
-              <div class="pull-right">
-                <el-button type="primary" plain>查看数据</el-button>
-              </div>
-            </div>
             <div class="w100  displayBlock chartCon">
               <div class="pie">
                 <pie-chart :pie-chart="pieChart" :width="pieChart.width" :height="pieChart.height" />
@@ -63,23 +54,20 @@
     <el-row :gutter="20" style="height:437px;">
       <el-col :span="24">
         <div class="modelTabCon w100 mt-20  scoreDistribution h100">
-          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">变量有效性分析</div>
-          <div id="scoreDistribution" class="w100 conItem p-20" style="height:437px;">
-            <div class="operating mb-10">
-              <picker-time id="timetile" :time-title="timeTitle" />
-              <div class="pull-right">
-                <el-button type="primary" plain>查看数据</el-button>
-              </div>
-            </div>
-            <div class="w100  displayBlock chartCon">
-              <div class="leftTab display-inlineblock  bg-black-4 ">
+          <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">
+            <span class="fs-14 fw-bold text-grey-0">变量有效性分析</span>
+            <span class="pull-right text-decoration doingColor">查看数据</span>
+          </div>
+          <div id="scoreDistribution" class="w100 conItem " style="height:437px;">
+            <div class="w100 h100 displayBlock chartCon">
+              <div class="leftTab h100 display-inlineblock  bg-black-4 ">
                 <ul class="scrollWidth h100">
                   <li v-for="(item, index) in featureList" :key="index" class="w100  fs-14 fw-400  text-grey-2 pl-20" :class="{'activeTabs':activeIndex===index}" @click="changeFeature(index)">
                     <span class="display-inline-block w100 h100 text-overflow-ellipsis">{{ item.featureName }}</span>
                   </li>
                 </ul>
               </div>
-              <div class="rightTab display-inlineblock pull-right mt-20">
+              <div class="rightTab h100 display-inlineblock pull-right mt-20 pl-30 pr-30">
                 <bar-chart v-if="!continuteFeature" :bar-chat="barOptions1" />
                 <line-chart v-if="continuteFeature" :line-chart="lineOptions2" />
               </div>
@@ -91,7 +79,6 @@
   </div>
 </template>
 <script>
-import PickerTime from '@/components/PickerTime/index'
 import { getModelResult } from '@/api/model-market/model-result'
 import { getFeatureAnalysis } from '@/api/model-market/feature-analysis'
 import ChartTemplate from '@/components/Echats/ChartTemplate'
@@ -101,7 +88,7 @@ import PieChart from '@/components/Echats/PieChart'
 
 export default {
   name: 'MonitorCent',
-  components: { PickerTime, ChartTemplate, BarChart, LineChart, PieChart },
+  components: { ChartTemplate, BarChart, LineChart, PieChart },
   props: {
 
   },
@@ -123,7 +110,7 @@ export default {
         backgroundColor: '#fff',
         chartName: '',
         width: '100%',
-        height: '338px',
+        height: '100%',
         legend: ['逾期违约', '正常还款', '违约率'],
         xAxisData: ['202001', '202002', '202003', '202004', '202005', '202006'],
         yName: ['数量', '通过率'],
@@ -201,7 +188,7 @@ export default {
         title: '模型总体评分正确性',
         chartName: 'lineOptions',
         width: '100%',
-        height: '350px',
+        height: '100%',
         xShow: true,
         legend: ['PSI', 'CSI'],
         timeRange: ['202001', '202002', '202003', '202004', '202005', '202006'],
@@ -622,18 +609,20 @@ export default {
     float: right;
     position: relative;
     z-index: 2;
-    margin-top: -40px;
+    margin-top: -5px;
+    text-decoration: underline;
     width: 55%;
     height: 40px;
     line-height: 45px;
     font-size: 14px;
     text-align: right;
     padding-right: 20px;
+    cursor: pointer;
   }
   .scoreDistribution{
     height: 100%;
     width: 100%;
-    border: 1px solid #eee;
+    border: 1px solid #d9d9d9;
     border-radius: 3px;
   }
   .el-tabs__content{
@@ -673,6 +662,9 @@ export default {
           color:#00a0e9;
           font-weight: 600;
           border-right:4px solid #00a0e9;
+        }
+        li:hover{
+          color:#00a0e9;
         }
       }
     }

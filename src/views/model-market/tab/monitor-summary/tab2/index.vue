@@ -1,23 +1,20 @@
 <template>
-  <div id="featureAnalysis" class="con text-grey-0" style="height:100%;">
-    <div class="modelTabCon mt-20 scoreDistribution mb-20">
-      <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-black-4">特征分析</div>
+  <div id="featureAnalysis" class="con text-grey-0 h100">
+    <div class="modelTabCon mt-20 scoreDistribution  h100">
+      <div class="modelConHead w100 h-32 lh-32  pl-20 bg-f6 border-bottom-d9">
+        <span class="fs-14 fw-bold text-grey-0">特征分析</span>
+        <span class="pull-right text-decoration doingColor">查看数据</span>
+      </div>
       <div id="scoreDistribution" class="w100 conItem ">
-        <div class="operating mb-10 p-20">
-          <picker-time id="timetile" :time-title="timeTitle" />
-          <div class="pull-right">
-            <el-button type="primary" plain>查看数据</el-button>
-          </div>
-        </div>
-        <div class="w100">
-          <div class="leftTab display-inlineblock  bg-black-4 ">
+        <div class="w100 h100">
+          <div class="leftTab display-inlineblock  bg-black-4 h100 border-right-d9">
             <ul class="scrollWidth h100">
               <li v-for="(item, index) in featureList" :key="index" class="w100  fs-14 fw-400  text-grey-2 pl-20" :class="{'activeTabs':activeIndex===index}" @click="changeFeature(index)">
                 <span class="display-inline-block w100 h100 text-overflow-ellipsis">{{ item.featureName }}</span>
               </li>
             </ul>
           </div>
-          <div class="rightTab display-inlineblock pull-right mt-20">
+          <div class="rightTab display-inlineblock pull-right mt-20 ">
             <bar-chart :bar-chat="barOptions" />
             <line-chart :line-chart="lineOptions" />
           </div>
@@ -28,7 +25,6 @@
   </div>
 </template>
 <script>
-import PickerTime from '@/components/PickerTime/index'
 import { getFeatureAnalysis } from '@/api/model-market/feature-analysis'
 
 import LineChart from '@/components/Echats/LineChart'
@@ -36,7 +32,7 @@ import BarChart from '@/components/Echats/BarChart'
 
 export default {
   name: 'MonitorCent',
-  components: { PickerTime, LineChart, BarChart },
+  components: { LineChart, BarChart },
   props: {
 
   },
@@ -58,10 +54,10 @@ export default {
         className: 'scoreOverview',
         headList: ['实际样本', '开发样本'],
         width: '100%',
-        height: '248px',
+        height: '50%',
         interval: 10,
         timeRange: [],
-        yName: '占比',
+        yName: '',
         xShow: true,
         series: []
       },
@@ -70,11 +66,11 @@ export default {
         title: '趋势对比',
         chartName: 'lineOptions',
         width: '100%',
-        height: '248px',
+        height: '50%',
         legend: ['PSI', 'CSI'],
         timeRange: ['202001', '202002', '202003', '202004', '202005', '202006'],
         yInterval: 0.01,
-        yName: 'PSI',
+        yName: '',
         yAxis: null,
         series: []
       }
@@ -120,42 +116,50 @@ export default {
       ]
       // 趋势对比
       this.lineOptions.yAxis = [{
-        name: 'PSI',
+        name: '',
         type: 'value',
         axisLine: {
+          'show': false,
           lineStyle: {
-            color: 'rgba(0,0,0,0.86)'
+            color: 'rgba(0,0,0,0.45)'
           }
         },
         axisLabel: {
           textStyle: {
-            color: 'rgba(0,0,0,0.86)'
+            color: 'rgba(0,0,0,0.45)'
           }
+        },
+        'axisTick': {
+          'show': false
         },
         textStyle: {
           fontSize: 12,
-          color: 'rgba(0,0,0,0.86)'
+          color: 'rgba(0,0,0,0.45)'
         },
         splitLine: {
           show: false
         },
         splitArea: { show: false }
       }, {
-        name: 'CSI',
+        name: '',
         type: 'value',
         axisLine: {
+          'show': false,
           lineStyle: {
-            color: 'rgba(0,0,0,0.86)'
+            color: 'rgba(0,0,0,0.45)'
           }
         },
         axisLabel: {
           textStyle: {
-            color: 'rgba(0,0,0,0.86)'
+            color: 'rgba(0,0,0,0.45)'
           }
+        },
+        'axisTick': {
+          'show': false
         },
         textStyle: {
           fontSize: 12,
-          color: 'rgba(0,0,0,0.86)'
+          color: 'rgba(0,0,0,0.45)'
         }
       }
       ]
@@ -204,18 +208,22 @@ export default {
     float: right;
     position: relative;
     z-index: 2;
-    margin-top: -40px;
+    margin-top: -5px;
+    text-decoration: underline;
     width: 55%;
     height: 40px;
     line-height: 45px;
     font-size: 14px;
     text-align: right;
     padding-right: 20px;
+    cursor: pointer;
+  }
+  #scoreDistribution{
+    height: calc(100% - 32px);
   }
   .scoreDistribution{
-    // height: 1220px;
     width: 100%;
-    border: 1px solid #eee;
+    border: 1px solid #d9d9d9;
     border-radius: 3px;
   }
   .el-tabs__content{
@@ -224,7 +232,7 @@ export default {
   }
     #featureAnalysis{
     .modelTabCon{
-      border:1px solid #EEEEEE;
+      border:1px solid #d9d9d9;
     }
     .leftTab{
       width: 18%;
@@ -246,12 +254,16 @@ export default {
           font-weight: 600;
           border-right:4px solid #00a0e9;
         }
+        li:hover{
+          color:#00a0e9;
+        }
       }
     }
     .rightTab{
-      height: 480px;
+      height:calc(100% - 20px);
       width: 82%;
       vertical-align: top;
+      padding: 0px 30px 0px 30px;
       .text-center{
         height: 50% !important;
       }
