@@ -198,7 +198,7 @@ export default {
           {
             name: '',
             type: 'bar',
-            barWidth: 20,
+            barWidth: 45,
             data: [response.data.warningRuleTouch[0].value, response.data.warningRuleTouch[1].value, response.data.warningRuleTouch[2].value],
             itemStyle: {
               normal: {
