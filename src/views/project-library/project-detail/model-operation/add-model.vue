@@ -28,7 +28,7 @@
                 v-if="child.type=='upload'"
                 class="upload-demo ver-middle"
                 action=""
-                multiple="true"
+                :multiple="multiple"
                 :on-change="handleChange"
                 :file-list="fileList"
               >
@@ -68,6 +68,7 @@ export default {
   components: { PickerTime, TimeLine },
   data() {
     return {
+      multiple: true,
       condetail: [
         {
           name: '模型基本信息',

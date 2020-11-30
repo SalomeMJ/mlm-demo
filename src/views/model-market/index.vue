@@ -107,10 +107,17 @@ export default {
     position: absolute;
     top: 0px;
     right: 0px;
+    width: 70%;
+    text-align: right;
+    .el-select{
+      width: 120px;
+    }
     #timetile{
       display: inline-block;
-      .el-range-editor.el-input__inner{
-      width: 220px !important;
+      // width: calc(70% - 260px);
+      vertical-align: middle;
+      >>> .el-date-editor--daterange.el-input__inner{
+        width: 230px !important;
       }
     }
   }

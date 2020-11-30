@@ -1,5 +1,5 @@
 <template>
-  <div class="border-radius-5 bg-white modelTab" :style="{'height':activeName=='first'?'calc(100% - 41px)':'100%'}">
+  <div class="border-radius-5 bg-white modelTab overflow-y-auto" :style="{'height':activeName=='first'?'calc(100% - 41px)':'100%'}">
     <el-tabs id="tabs" v-model="activeName" class="h100" type="border-card" @tab-click="handleClick">
       <el-select v-model="model" class="mr-15 ml-5" placeholder="请选择">
         <el-option

@@ -238,6 +238,7 @@ export default {
     },
     initData() {
       this.canEdit = getUrlParams().action !== '配置中'
+      console.log(this.canEdit)
       this.$refs.divider.style.height = '124px'
       getUsingEvent().then((res) => {
         for (const item of res.data.usingEvents) {

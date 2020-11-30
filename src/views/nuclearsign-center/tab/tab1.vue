@@ -38,7 +38,7 @@
           <router-link v-if="item.eventType=='使用事件'" :to="{path:'/nuclearsign-center/using-detail',query:{eventName:item.eventName, action: item.action, title: title}}">
             <span class="doingColor fw-400 fs-14 pull-right mt-5 cursor-pointer" @click="enterDetail(item)">查看详情></span>
           </router-link>
-          <router-link v-if="item.eventType=='预警规则'" :to="{path:'/nuclearsign-center/warning-rule',query:{projectName:item.projectName, modelName: item.modelName,ruleName: item.ruleName, action: item.action, title: title}}">
+          <router-link v-if="item.eventType=='预警规则'" :to="{path:'/nuclearsign-center/warning-rule',query:{ruleName: item.ruleName, action: item.action, title: title, status: item.status}}">
             <span class="doingColor fw-400 fs-14 pull-right mt-5 cursor-pointer" @click="enterDetail(item)">查看详情></span>
           </router-link>
         </div>
