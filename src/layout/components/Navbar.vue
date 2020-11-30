@@ -43,6 +43,9 @@ export default {
     getItem(params) {
       this.$store.commit('app/OUT_SYSTEM')
       this.$emit('system', this.$store.state.app.system)
+      if (params.path === '/nuclearsign-center') {
+        localStorage.setItem('activeTab', 0)
+      }
     }
   }
 }

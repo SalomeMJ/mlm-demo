@@ -15,7 +15,7 @@
                 </div>
               </span>
               <el-input v-if="child.type=='textarea'" v-model="child.value" type="textarea" :disabled="child.disabled" :readonly="child.disabled" resize="none" />
-              <el-select v-if="child.type=='select'" v-model="child.value" placeholder="请选择" :disabled="child.disabled">
+              <el-select v-if="child.type=='select'" v-model="child.value" placeholder="请选择" :multiple="child.multiple" :disabled="child.disabled">
                 <el-option
                   v-for="items in child.options"
                   :key="items.value"
@@ -26,16 +26,14 @@
               </el-select>
               <el-upload
                 v-if="child.type=='upload'"
-                action="#"
-                list-type="picture-card"
-                class="upload display-inlineblock ver-middle"
-                :auto-upload="false"
-                show-file-list="false"
+                class="upload-demo ver-middle"
+                action=""
+                multiple="true"
+                :on-change="handleChange"
+                :file-list="fileList"
               >
-                <i class="icon iconfont iconstrategyPlus  doingColor cursor-pointer addIcon" />
-                <div slot="file" slot-scope="" />
+                <span class="dis-inlineblock w100 h100 fs-14">请点击上传文件</span>
               </el-upload>
-              <i v-if="child.icon!=''" class="icon iconfont doingColor cursor-pointer addIcon" :class="child.icon" @click="addChild(child)" />
               <picker-time v-if="child.type=='time'" />
             </p>
           </div>
@@ -78,8 +76,8 @@ export default {
             { name: '模型描述', mustWrite: false, type: 'textarea', icon: '', value: '', disabled: false },
             { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: '田雨', label: '田雨', disabled: false }, { value: '黎簇', label: '黎簇', disabled: false }, { value: '王盟', label: '王盟', disabled: false }, { value: '于和伟', label: '于和伟', disabled: false }], disabled: false },
             { name: '模型注册渠道', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: '评分卡', label: '评分卡', disabled: true }, { value: 'PMML上传', label: 'PMML上传', disabled: false }, { value: '睿思导入', label: '睿思导入', disabled: true }], disabled: false },
-            { name: '所属模型组', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', value: '', releaseNum: [{ value: '' }], disabled: false },
-            { name: '上传PMML文件', mustWrite: true, type: 'input', icon: '', value: '', disabled: false },
+            { name: '所属模型组', mustWrite: false, type: 'select', multiple: true, value: '', options: [{ value: '自营车模型组', label: '自营车模型组' }, { value: '易速贷模型组', label: '易速贷模型组' }], disabled: false },
+            { name: '上传PMML文件', mustWrite: true, type: 'upload', icon: '', value: '', disabled: false },
             { name: '算法类型', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: 'LR XGboost', label: 'LR XGboost', disabled: false }, { value: 'GBDT', label: 'GBDT', disabled: false }, { value: 'RF', label: 'RF', disabled: false }, { value: 'SVM', label: 'SVM', disabled: false }, { value: '其他', label: '其他', disabled: false }], disabled: false },
             { name: '上传模型文档', mustWrite: false, type: 'upload', icon: '', value: '', releaseNum: [{ value: '' }], disabled: false }
           ]
@@ -87,10 +85,10 @@ export default {
         {
           name: '模型开发信息',
           child: [
-            { name: '上传特征信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', disabled: false, releaseNum: [{ value: '' }] },
-            { name: '上传数据信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', disabled: false, releaseNum: [{ value: '' }] },
-            { name: '上传算法信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', disabled: false, releaseNum: [{ value: '' }] },
-            { name: '上传测试信息', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', releaseNum: [{ value: '' }], disabled: false }
+            { name: '上传特征信息', mustWrite: false, type: 'upload', disabled: false, releaseNum: [{ value: '' }] },
+            { name: '上传数据信息', mustWrite: false, type: 'upload', disabled: false, releaseNum: [{ value: '' }] },
+            { name: '上传算法信息', mustWrite: false, type: 'upload', disabled: false, releaseNum: [{ value: '' }] },
+            { name: '上传测试信息', mustWrite: false, type: 'upload', releaseNum: [{ value: '' }], disabled: false }
           ]
         }
       ],
@@ -122,58 +120,19 @@ export default {
           icon: 'el-icon-s-check'
         }
       ],
-      dialogImageUrl: '',
-      dialogVisible: false,
-      disabled: false
+      fileList: []
     }
   },
   created() {
   },
   mounted() {
-    this.initData()
   },
   methods: {
-    handleRemove(file) {
-      console.log(file)
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url
-      this.dialogVisible = true
-    },
-    handleDownload(file) {
-      console.log(file)
+    handleChange(file, fileList) {
+      this.fileList = []
     },
     handleClick(tab, event) {
       // console.log(tab, event);
-    },
-    initData() {
-      // for (const item of this.condetail) {
-      //   for (const child in item.child) {
-      //     item.child[child].disabled = false
-      //   }
-      // }
-      // if (getUrlParams().action === 'add' || getUrlParams().action === '配置中') {
-      //   this.condetail[2].child[1].disabled = true
-      //   this.condetail[2].child[2].disabled = true
-      // } else {
-      //   this.condetail[1].child.splice(3, 1)
-      //   for (const item of this.condetail) {
-      //     for (const child in item.child) {
-      //       item.child[child].disabled = true
-      //     }
-      //   }
-      // }
-      // if (getUrlParams().action === '配置中' || getUrlParams().action === '生效审核中') {
-      //   this.condetail[0].child[0].value = getUrlParams().eventName
-      //   this.condetail[0].child[1].value = '用于贷前审批'
-      //   this.condetail[0].child[2].value = '黎簇'
-      //   this.condetail[1].child[0].value = getUrlParams().modelName
-      //   if (getUrlParams().action === '生效审核中') {
-      //     this.condetail.splice(2, 1)
-      //   }
-      //   this.condetail[1].child[1].value = '验证事件V11、验证事件V10'
-      //   this.condetail[1].child[2].value = 'DataSet.csv'
-      // }
     },
     goBack() {
       this.$router.push({ path: '/project-library/project-detail', query: { projectName: getUrlParams().projectName }})
@@ -275,20 +234,24 @@ padding: 20px 30px;
       width: 100%;
     }
   }
-  >>> .el-upload--picture-card{
-    width: 100%;
+  >>> .upload-demo{
+    width: 28%;
+    height: 32px;
+    display: inline-block;
     border:1px solid #d9d9d9;
     position: relative;
     border-radius: 2px;
     background-color: #fff;
-    i.addIcon{
-      position: absolute;
-      right: -25px;
-      top: 0;
+   .el-upload {
       display: inline-block;
-      height: 100%;
-      margin: 0;
-      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+      outline: none;
+      line-height: 32px;
+      text-indent: 4px;
+      font-weight: 400;
+      color: #999;
+      color: rgba(0, 0, 0, 0.25);
     }
   }
 }

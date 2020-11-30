@@ -28,7 +28,7 @@ export default {
   created() {
   },
   mounted() {
-    this.activeName = 'first'
+    this.getactiveName(Number(localStorage.getItem('activeTab')))
   },
   methods: {
     handleClick(tab, event) {
@@ -41,14 +41,22 @@ export default {
       }
     },
     getactiveName(e) {
-      // console.log(e)
-      // if (e === '我发起的') {
-      //   this.activeName = 'first'
-      // } else if (e === '我核签的') {
-      //   this.activeName = 'second'
-      // } if (e === '抄送我的') {
-      //   this.activeName = 'third'
-      // }
+      localStorage.setItem('activeTab', e)
+      if (e === null || e === 0) {
+        this.activeName = 'first'
+      }
+      if (e === 1) {
+        this.activeName = 'second'
+      }
+      if (e === 2) {
+        this.activeName = 'third'
+      }
+      if (e === 3) {
+        this.activeName = 'fourth'
+      }
+      if (e === 4) {
+        this.activeName = 'five'
+      }
     }
   }
 }

@@ -23,7 +23,7 @@
       <tab5 v-if="activeName=='five'" />
     </el-tabs>
     <div class="dropdown">
-      <el-dropdown :hide-on-click="false">
+      <el-dropdown :hide-on-click="hideonclick">
         <span class="el-dropdown-link">
           <i class="icon iconfont iconAdd doingColor" />
         </span>
@@ -31,8 +31,15 @@
           <el-dropdown-item><span @click="addModel()">新建模型</span></el-dropdown-item>
           <el-dropdown-item><span @click="addEvent()">新建使用事件</span></el-dropdown-item>
           <el-dropdown-item><span @click="addWarningRule()">新建预警规则</span></el-dropdown-item>
-          <el-dropdown-item><span>上传验证数据</span></el-dropdown-item>
-          <el-dropdown-item><span>新建验证记录</span></el-dropdown-item>
+          <el-dropdown-item> <el-upload
+            class="upload-demo"
+            action=""
+            :on-change="handleChange"
+            :file-list="fileList"
+          >
+            <span>上传验证数据</span>
+          </el-upload></el-dropdown-item>
+          <el-dropdown-item><span @click="addValidationEvent()">新建验证记录</span></el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -57,13 +64,22 @@ export default {
   components: { Tab1, Tab2, Tab3, Tab4, Tab5 },
   data() {
     return {
+      hideonclick: false,
       activeName: null,
       projectName: '',
       projectOptions: [],
       values: '',
       projectDetail: {},
       flag: false,
-      isShow: false
+      isShow: false,
+      child: [
+        { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },
+        { name: '验证模型', mustWrite: true, type: 'select', value: '易速贷申请', options: ['易速贷申请', '自营车审批', '新车审批'] },
+        { name: '负责人', mustWrite: true, type: 'select', value: '黎簇', options: ['黎簇', '王盟', '于和伟'] },
+        { name: '选择验证方式', mustWrite: true, type: 'select', value: '上传数据', options: ['上传数据', '选择数据'] },
+        { name: '上传数据', mustWrite: true, type: 'input', value: '' }
+      ],
+      fileList: []
     }
   },
   created() {
@@ -74,6 +90,9 @@ export default {
     // localStorage.removeItem('activeTab')
   },
   methods: {
+    handleChange(file, fileList) {
+      this.fileList = []
+    },
     handleClick(tab, event) {
       localStorage.setItem('activeTab', tab.index)
       this.$router.push({ path: '/project-library/project-detail', query: { projectName: this.projectName }})
@@ -142,6 +161,19 @@ export default {
     addEvent() {
       localStorage.setItem('activeTab', 2)
       this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: null, title: '使用事件', projectName: this.projectName, action: 'add' }})
+    },
+    addValidationEvent() {
+      this.hideonclick = true
+      this.$msgBox.showMsgBox({
+        title: '新建验证事件',
+        content: '',
+        contentData: this.child,
+        isShowInput: true
+      }).then(async(val) => {
+        // this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, eventName: val[0].value, projectName: getUrlParams().projectName }})
+      }).catch(() => {
+        // ...
+      })
     }
   }
 }

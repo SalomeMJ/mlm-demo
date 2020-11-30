@@ -47,8 +47,8 @@ export default {
       child: [
         { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },
         { name: '验证模型', mustWrite: true, type: 'select', value: '易速贷申请', options: ['易速贷申请', '自营车审批', '新车审批'] },
-        { name: '选择验证方式', mustWrite: true, type: 'select', value: '上传数据', options: ['上传数据'] },
         { name: '负责人', mustWrite: true, type: 'select', value: '黎簇', options: ['黎簇', '王盟', '于和伟'] },
+        { name: '选择验证方式', mustWrite: true, type: 'select', value: '上传数据', options: ['上传数据', '选择数据'] },
         { name: '上传数据', mustWrite: true, type: 'input', value: '' }
       ]
     }
@@ -77,7 +77,7 @@ export default {
         contentData: this.child,
         isShowInput: true
       }).then(async(val) => {
-        this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, eventName: val[0].value, projectName: getUrlParams().projectName }})
+        // this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, eventName: val[0].value, projectName: getUrlParams().projectName }})
       }).catch(() => {
         // ...
       })

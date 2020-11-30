@@ -151,7 +151,7 @@ export default {
       })
     },
     enterDetail(params) {
-      console.log(params)
+      localStorage.setItem('activeTab', 1)
     }
   }
 

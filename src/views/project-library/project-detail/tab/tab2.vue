@@ -202,7 +202,7 @@ export default {
   }
 }
 .conCen{
-height:94%;
+height: calc(100% - 52px);
 border-radius: 5px;
 border: 1px solid #D9D9D9;
 >>> .el-table__fixed::before,>>> .el-table::before{

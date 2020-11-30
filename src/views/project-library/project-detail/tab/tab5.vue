@@ -7,7 +7,14 @@
         placeholder="请输入搜索关键字"
         prefix-icon="el-icon-search"
       />
-      <el-button type="primary">上传验证数据</el-button>
+      <el-upload
+        class="upload-demo"
+        action=""
+        :on-change="handleChange"
+        :file-list="fileList"
+      >
+        <el-button type="primary">上传验证数据</el-button>
+      </el-upload>
     </div>
     <div class="conCen mt-20">
       <el-table
@@ -69,13 +76,17 @@ export default {
         { label: '操作', prop: '', sortable: false }
       ],
       tableData: [],
-      totalData: []
+      totalData: [],
+      fileList: []
     }
   },
   mounted() {
     this.initData()
   },
   methods: {
+    handleChange(file, fileList) {
+      // this.fileList = fileList.slice(-3)
+    },
     formatter(row, column) {
       return row.address
     },
@@ -130,39 +141,31 @@ export default {
     right:130px;
     top:0;
   }
-  >>> button{
+  >>> .upload-demo{
     position: absolute;
+    width: 100px;
+    height: 32px;
+    background: #00A0E9;
+    border-radius: 3px;
+    right: 0px;
+    top: 0;
   }
   >>> button.el-button--primary.el-button--medium{
-    width: 110px;
+    width: 100px;
     height: 32px;
-    right:0;
   }
   >>> button.el-button--primary.el-button--medium.is-plain{
-    width: 110px;
+    width: 100px;
     height: 32px;
-    right:110px;
   }
 }
 .conCen{
-  height: 94%;
+  height: calc(100% - 52px);
 border-radius: 5px;
 border: 1px solid #D9D9D9;
-// >>> .el-table{
-//   th:nth-child(7){
-//     text-indent: 5em;
-//   }
-//   td:nth-child(7){
-//     text-indent: 8em;
-//   }
-// }
 >>> .el-table__fixed::before,>>> .el-table::before{
   display: none;
 }
-// >>> td:nth-child(2) .cell span,>>> td:nth-child(1) .cell span{
-//   color:#00a0e9;
-//   text-decoration: underline;
-// }
 background-color: #fff;
 }
 
