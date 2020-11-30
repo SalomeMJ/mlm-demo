@@ -18,9 +18,8 @@
           <span v-if="activeTab=='first'" class="addValidationEvent" @click="addWorkflow()">新建工作流</span>
           <tab1 v-if="activeTab=='first'" />
           <el-tab-pane label="审批流配置" name="second" />
-          <span v-if="activeTab=='second'" class="addValidationEvent">新建审核流</span>
+          <span v-if="activeTab=='second'" class="addValidationEvent">新建审批流</span>
           <tab2 v-if="activeTab=='second'" />
-          <span v-if="activeTab=='second'" class="addValidationEvent">增加字段</span>
           <el-tab-pane label="模型注册配置" name="third" />
           <span v-if="activeTab=='third'" class="addValidationEvent" @click="addModelTemplate('模型注册')">新建模型注册模板</span>
           <tab3 v-if="activeTab=='third'" />
@@ -31,7 +30,7 @@
           <span v-if="activeTab=='five'" class="addValidationEvent" @click="addModelTemplate('使用事件')">新建使用事件模板</span>
           <tab5 v-if="activeTab=='five'" />
           <el-tab-pane label="项目字段配置" name="six" />
-          <span v-if="activeTab=='six'" class="addValidationEvent" @click="addField('增加')">增加字段</span>
+          <span v-if="activeTab=='six'" class="addValidationEvent" @click="addField('增加')">新建字段</span>
           <tab6 v-if="activeTab=='six'" />
         </el-tabs>
       </div>

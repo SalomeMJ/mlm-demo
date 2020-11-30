@@ -35,14 +35,18 @@
         <time-line :time-list="timeList" />
       </div>
     </div>
-    <div class="footer">
+    <div v-if="$route.query.title!='抄送我的'" class="footer">
+      <div v-if="$route.query.title=='我核签的'">
+        <el-button type="danger" plain @click="goBack()">拒绝</el-button>
+        <el-button type="primary" @click="goBack()">同意</el-button>
+      </div>
       <div v-if="$route.query.eventName!=null&&$route.query.action!='配置中'">
-        <el-button type="danger" plain>撤销</el-button>
-        <el-button type="primary">催办</el-button>
+        <el-button type="danger" plain @click="goBack()">撤销</el-button>
+        <el-button type="primary" @click="goBack()">催办</el-button>
       </div>
       <div v-if="$route.query.eventName==null||$route.query.action=='配置中'">
         <el-button type="primary" plain @click="goBack()">取消</el-button>
-        <el-button type="primary">提交审核</el-button>
+        <el-button type="primary" @click="goBack()">提交审核</el-button>
       </div>
     </div>
   </div>
@@ -155,7 +159,8 @@ export default {
       }
     },
     goBack() {
-      this.$router.push({ path: '/project-library/project-detail', query: { projectName: getUrlParams().projectName }})
+      // this.$emit('activeName', getUrlParams().title)
+      this.$router.go(-1)
     },
     addChild(params) {
       params.releaseNum.push({ value: '' })

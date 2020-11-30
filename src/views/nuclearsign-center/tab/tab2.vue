@@ -18,6 +18,14 @@
           :value="item.value"
         />
       </el-select>
+      <el-select v-model="submitOne" placeholder="请选择">
+        <el-option
+          v-for="item in submitOnes"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
       <el-input
         v-model="input"
         placeholder="请输入搜索关键字"
@@ -35,7 +43,7 @@
           <el-tag v-if="item.status=='审批中'" type="warning">审批中</el-tag>
           <el-tag v-if="item.status=='已拒绝'" type="danger">已拒绝</el-tag>
           <el-tag v-if="item.status=='已撤销'" type="info">已撤销</el-tag>
-          <router-link v-if="item.eventType=='使用事件'" :to="{path:'/nuclearsign-center/using-detail',query:{eventName:item.eventName, action: item.action, title: title}}">
+          <router-link v-if="item.eventType=='使用事件'" :to="{path:'/nuclearsign-center/using-detail',query:{eventName:item.eventName, action: item.action, from: '/nuclearsign-center', title: title}}">
             <span class="doingColor fw-400 fs-14 pull-right mt-5 cursor-pointer" @click="enterDetail(item)">查看详情></span>
           </router-link>
           <router-link v-if="item.eventType=='预警规则'" :to="{path:'/nuclearsign-center/warning-rule',query:{projectName:item.projectName, modelName: item.modelName,ruleName: item.ruleName, action: item.action, title: title}}">
@@ -115,7 +123,7 @@ export default {
         }],
       submitOne: '',
       nuclearList: [],
-      title: '我发起的',
+      title: '我核签的',
       input: ''
     }
   },

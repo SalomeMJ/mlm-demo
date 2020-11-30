@@ -18,11 +18,23 @@
               <el-select v-if="child.type=='select'" v-model="child.value" placeholder="请选择" :disabled="child.disabled">
                 <el-option
                   v-for="items in child.options"
-                  :key="items"
-                  :label="items"
-                  :value="items"
+                  :key="items.value"
+                  :label="items.value"
+                  :value="items.value"
+                  :disabled="items.disabled"
                 />
               </el-select>
+              <el-upload
+                v-if="child.type=='upload'"
+                action="#"
+                list-type="picture-card"
+                class="upload display-inlineblock ver-middle"
+                :auto-upload="false"
+                show-file-list="false"
+              >
+                <i class="icon iconfont iconstrategyPlus  doingColor cursor-pointer addIcon" />
+                <div slot="file" slot-scope="" />
+              </el-upload>
               <i v-if="child.icon!=''" class="icon iconfont doingColor cursor-pointer addIcon" :class="child.icon" @click="addChild(child)" />
               <picker-time v-if="child.type=='time'" />
             </p>
@@ -64,12 +76,12 @@ export default {
           child: [
             { name: '模型名称', mustWrite: true, type: 'input', icon: '', value: '', disabled: false },
             { name: '模型描述', mustWrite: false, type: 'textarea', icon: '', value: '', disabled: false },
-            { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '', options: ['田雨', '黎簇', '王盟', '于和伟'], disabled: false },
-            { name: '模型注册渠道', mustWrite: true, type: 'select', icon: '', value: '', disabled: false },
+            { name: '负责人', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: '田雨', label: '田雨', disabled: false }, { value: '黎簇', label: '黎簇', disabled: false }, { value: '王盟', label: '王盟', disabled: false }, { value: '于和伟', label: '于和伟', disabled: false }], disabled: false },
+            { name: '模型注册渠道', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: '评分卡', label: '评分卡', disabled: true }, { value: 'PMML上传', label: 'PMML上传', disabled: false }, { value: '睿思导入', label: '睿思导入', disabled: true }], disabled: false },
             { name: '所属模型组', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', value: '', releaseNum: [{ value: '' }], disabled: false },
             { name: '上传PMML文件', mustWrite: true, type: 'input', icon: '', value: '', disabled: false },
-            { name: '算法类型', mustWrite: true, type: 'select', icon: '', value: '', disabled: false },
-            { name: '上传模型文档', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', value: '', releaseNum: [{ value: '' }], disabled: false }
+            { name: '算法类型', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: 'LR XGboost', label: 'LR XGboost', disabled: false }, { value: 'GBDT', label: 'GBDT', disabled: false }, { value: 'RF', label: 'RF', disabled: false }, { value: 'SVM', label: 'SVM', disabled: false }, { value: '其他', label: '其他', disabled: false }], disabled: false },
+            { name: '上传模型文档', mustWrite: false, type: 'upload', icon: '', value: '', releaseNum: [{ value: '' }], disabled: false }
           ]
         },
         {
@@ -109,7 +121,10 @@ export default {
           color: '#00a0e9',
           icon: 'el-icon-s-check'
         }
-      ]
+      ],
+      dialogImageUrl: '',
+      dialogVisible: false,
+      disabled: false
     }
   },
   created() {
@@ -118,6 +133,16 @@ export default {
     this.initData()
   },
   methods: {
+    handleRemove(file) {
+      console.log(file)
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
+    handleDownload(file) {
+      console.log(file)
+    },
     handleClick(tab, event) {
       // console.log(tab, event);
     },
@@ -208,7 +233,7 @@ padding: 20px 30px;
       .el-input,.el-textarea,.el-select {
         width: 28%;
         height: 32px;
-        border-radius: 2px;
+        border-radius: 3px;
         >>> .el-select__tags {
           height: 30px;
           overflow: auto;
@@ -248,6 +273,22 @@ padding: 20px 30px;
     width: 28%;
     .el-input__inner{
       width: 100%;
+    }
+  }
+  >>> .el-upload--picture-card{
+    width: 100%;
+    border:1px solid #d9d9d9;
+    position: relative;
+    border-radius: 2px;
+    background-color: #fff;
+    i.addIcon{
+      position: absolute;
+      right: -25px;
+      top: 0;
+      display: inline-block;
+      height: 100%;
+      margin: 0;
+      line-height: 30px;
     }
   }
 }

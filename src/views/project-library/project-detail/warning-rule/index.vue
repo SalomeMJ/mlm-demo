@@ -4,17 +4,21 @@
     <add-rule v-if="$route.query.ruleName==null" />
     <rule-detail v-if="$route.query.action=='生效审核中'||$route.query.action=='配置中'" />
     <complate-rule-detail v-if="$route.query.action=='生效中'" />
-    <div class="footer">
+    <div v-if="$route.query.title!='抄送我的'" class="footer">
+      <div v-if="$route.query.title=='我核签的'">
+        <el-button type="danger" plain @click="goBack()">拒绝</el-button>
+        <el-button type="primary" @click="goBack()">同意</el-button>
+      </div>
       <div v-if="$route.query.action=='生效中'">
-        <el-button type="danger" plain>终止该事件</el-button>
+        <el-button type="danger" plain @click="goBack()">终止该事件</el-button>
       </div>
       <div v-if="$route.query.ruleName!=null&&$route.query.action=='生效审核中'">
-        <el-button type="danger" plain>撤销</el-button>
-        <el-button type="primary">催办</el-button>
+        <el-button type="danger" plain @click="goBack()">撤销</el-button>
+        <el-button type="primary" @click="goBack()">催办</el-button>
       </div>
       <div v-if="$route.query.ruleName==null||$route.query.action=='配置中'">
         <el-button type="primary" plain @click="goBack()">取消</el-button>
-        <el-button type="primary">提交审核</el-button>
+        <el-button type="primary" @click="goBack()">提交审核</el-button>
       </div>
     </div>
   </div>
@@ -47,7 +51,8 @@ export default {
       // console.log(tab, event);
     },
     goBack() {
-      this.$router.push({ path: this.src, query: this.query })
+      this.$emit('activeName', getUrlParams().title)
+      this.$router.go(-1)
     }
   }
 }

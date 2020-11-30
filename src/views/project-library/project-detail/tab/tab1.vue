@@ -29,7 +29,7 @@
         </el-steps>
       </div>
 
-      <div class="mt-30">
+      <div class="mt-20">
         <el-row :gutter="20">
           <el-col :span="14">
             <div class="grid-content bg-purple">
@@ -69,7 +69,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="mt-30">
+      <div class="mt-20">
         <el-row :gutter="20">
           <el-col :span="14">
             <div class="grid-content bg-white">
@@ -88,7 +88,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="mt-30">
+      <div class="mt-20">
         <el-row :gutter="20">
           <el-col :span="14">
             <div class="grid-content bg-white">

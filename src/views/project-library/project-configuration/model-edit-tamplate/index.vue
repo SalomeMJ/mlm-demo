@@ -15,7 +15,7 @@
       <div class="model-record bg-white border-radius-5 mt-20 fs-14">
         <p class="border-bottom-d9 h-32 lh-32 pl-30 pr-30">
           <span class="fs-14 text-grey-0 fw-bold">模板内容</span>
-          <span class="pull-right doingColor cursor-pointer ">模板内容</span>
+          <span class="pull-right doingColor cursor-pointer ">增加字段</span>
         </p>
         <div class="pl-30 pr-30 pt-20 pb-20 edit-model">
           <el-table

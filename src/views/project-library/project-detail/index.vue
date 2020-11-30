@@ -32,6 +32,7 @@
           <el-dropdown-item><span @click="addEvent()">新建使用事件</span></el-dropdown-item>
           <el-dropdown-item><span @click="addWarningRule()">新建预警规则</span></el-dropdown-item>
           <el-dropdown-item><span>上传验证数据</span></el-dropdown-item>
+          <el-dropdown-item><span>新建验证记录</span></el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -166,7 +167,7 @@ export default {
       padding: 0;
       position: fixed;
       top: 7px;
-      left: 400px;
+      left: 350px;
     }
     >>> .el-tabs__content{
       height: 100%;
@@ -185,7 +186,7 @@ export default {
   .dropdown{
     position: fixed;
     top:18px;
-    left:888px;
+    left:850px;
     z-index: 9999;
     cursor: pointer;
     .el-dropdown-menu{

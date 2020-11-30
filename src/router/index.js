@@ -88,6 +88,12 @@ export const constantRoutes = [
         meta: { title: 'nuclearsign-center', affix: true, activeMenu: '/nuclearsign-center' },
         children: [
           {
+            path: 'warning-rule',
+            component: () => import('@/views/project-library/project-detail/warning-rule'),
+            name: 'WarningRule',
+            meta: { title: 'warning-rule', affix: true, activeMenu: '/nuclearsign-center' }
+          },
+          {
             path: 'using-detail',
             component: () => import('@/views/project-library/project-detail/using-event'),
             name: 'UsingDetail',

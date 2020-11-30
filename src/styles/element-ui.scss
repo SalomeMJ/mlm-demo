@@ -301,3 +301,15 @@ font-weight: 400;
 .el-checkbox{
   color:#333;
 }
+.el-upload--picture-card{
+  height: 32px;
+}
+.upload{
+  width: 28%;
+}
+.el-input--medium .el-input__inner{
+  border-radius: 3px;
+}
+.el-input.is-disabled .el-input__inner,.el-textarea.is-disabled .el-textarea__inner{
+  color:#333;
+}

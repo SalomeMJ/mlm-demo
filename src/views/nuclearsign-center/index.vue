@@ -3,44 +3,58 @@
     <router-view />
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
       <el-tab-pane label="我发起的" name="first" />
+      <tab1 v-if="activeName=='first'" :active-name="activeName" />
       <el-tab-pane label="我核签的" name="second" />
+      <tab2 v-if="activeName=='second'" :active-name="activeName" />
       <el-tab-pane label="抄送我的" name="third" />
-      <tab :active-name="activeName" />
+      <tab3 v-if="activeName=='third'" :active-name="activeName" />
     </el-tabs>
   </div>
 </template>
 
 <script>
-import Tab from './tab/tab1'
+import Tab1 from './tab/tab1'
+import Tab2 from './tab/tab2'
+import Tab3 from './tab/tab3'
 
 export default {
   name: 'NuclearsignCenter',
-  components: { Tab },
+  components: { Tab1, Tab2, Tab3 },
   data() {
     return {
-      activeName: 'first'
+      activeName: null
     }
   },
   created() {
   },
   mounted() {
-    // localStorage.removeItem('activeTab')
+    this.activeName = 'first'
   },
   methods: {
     handleClick(tab, event) {
-      // console.log(tab)
+      if (tab.index === '0') {
+        this.activeName = 'first'
+      } else if (tab.index === '1') {
+        this.activeName = 'second'
+      } if (tab.index === '2') {
+        this.activeName = 'third'
+      }
+    },
+    getactiveName(e) {
+      // console.log(e)
+      // if (e === '我发起的') {
+      //   this.activeName = 'first'
+      // } else if (e === '我核签的') {
+      //   this.activeName = 'second'
+      // } if (e === '抄送我的') {
+      //   this.activeName = 'third'
+      // }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-// .coverParentView{
-//   height:calc(100% - 40px);
-//   width:100%;
-//   margin-top: 20px;
-//   border-radius: 5px;
-// }
  .el-tabs{
     height: 100%;
     .el-tabs__content{
