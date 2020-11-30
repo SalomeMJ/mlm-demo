@@ -23,7 +23,17 @@
                   :value="items"
                 />
               </el-select>
-              <i v-if="child.icon!=''" class="icon iconfont doingColor cursor-pointer addIcon" :class="child.icon" @click="addChild(child)" />
+              <el-upload
+                v-if="child.type=='upload'"
+                class="upload-demo ver-middle"
+                action=""
+                multiple="true"
+                :on-change="handleChange"
+                :file-list="fileList"
+              >
+                <span class="dis-inlineblock w100 h100 fs-14">请点击上传文件</span>
+              </el-upload>
+              <!-- <i v-if="child.icon!=''" class="icon iconfont doingColor cursor-pointer addIcon" :class="child.icon" @click="addChild(child)" /> -->
               <picker-time v-if="child.type=='time'" />
             </p>
           </div>
@@ -77,7 +87,7 @@ export default {
             { name: '使用模型', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['易速贷申请', '自营车审批', '新车审批', '二手车预审批', '易速贷反欺诈', '易速贷反欺诈2.0', '自营车预审批', '新车预审批', '新车催收', '二手车审批', '二手车审批2.0'] },
             { name: '验证记录', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['验证事件V11', '验证事件V10', '验证事件V9', '验证事件V8', '验证事件V7', '验证事件V6', '验证事件V5', '验证事件V4', '验证事件V3', '验证事件V2', '验证事件V1'] },
             { name: '模型文档', mustWrite: true, type: 'select', icon: '', disabled: false, options: ['DataSet.csv', 'Feature.xlsx', 'Algorithm.docx', 'Test.docx'] },
-            { name: '发布模型文档', mustWrite: false, type: 'input', icon: 'iconstrategyPlus', releaseNum: [{ value: '' }], disabled: false },
+            { name: '发布模型文档', mustWrite: false, type: 'upload', releaseNum: [{ value: '' }], disabled: false },
             { name: '使用时间生效时间', mustWrite: true, type: 'time', icon: '', disabled: false }
           ]
         },
@@ -117,7 +127,8 @@ export default {
           color: '#00a0e9',
           icon: 'el-icon-s-check'
         }
-      ]
+      ],
+      fileList: []
     }
   },
   created() {
@@ -126,6 +137,9 @@ export default {
     this.initData()
   },
   methods: {
+    handleChange(file, fileList) {
+      this.fileList = []
+    },
     handleClick(tab, event) {
       // console.log(tab, event);
     },

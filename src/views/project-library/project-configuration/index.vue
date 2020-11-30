@@ -14,24 +14,24 @@
       </div>
       <div class="model-record mt-20 fs-14">
         <el-tabs v-model="activeTab" type="card" @tab-click="handleClick">
-          <el-tab-pane label="工作流配置" name="first" />
-          <span v-if="activeTab=='first'" class="addValidationEvent" @click="addWorkflow()">新建工作流</span>
-          <tab1 v-if="activeTab=='first'" />
-          <el-tab-pane label="审批流配置" name="second" />
-          <span v-if="activeTab=='second'" class="addValidationEvent">新建审批流</span>
-          <tab2 v-if="activeTab=='second'" />
-          <el-tab-pane label="模型注册配置" name="third" />
-          <span v-if="activeTab=='third'" class="addValidationEvent" @click="addModelTemplate('模型注册')">新建模型注册模板</span>
-          <tab3 v-if="activeTab=='third'" />
-          <el-tab-pane label="验证事件配置" name="fourth" />
-          <span v-if="activeTab=='fourth'" class="addValidationEvent" @click="addModelTemplate('验证事件')">新建验证事件模板</span>
-          <tab4 v-if="activeTab=='fourth'" />
-          <el-tab-pane label="使用事件配置" name="five" />
-          <span v-if="activeTab=='five'" class="addValidationEvent" @click="addModelTemplate('使用事件')">新建使用事件模板</span>
-          <tab5 v-if="activeTab=='five'" />
-          <el-tab-pane label="项目字段配置" name="six" />
-          <span v-if="activeTab=='six'" class="addValidationEvent" @click="addField('增加')">新建字段</span>
-          <tab6 v-if="activeTab=='six'" />
+          <el-tab-pane label="工作流配置" name="0" />
+          <span v-if="activeTab=='0'" class="addValidationEvent" @click="addWorkflow()">新建工作流</span>
+          <tab1 v-if="activeTab=='0'" />
+          <el-tab-pane label="审批流配置" name="1" />
+          <span v-if="activeTab=='1'" class="addValidationEvent" @click="addWorkflow()">新建审批流</span>
+          <tab2 v-if="activeTab=='1'" />
+          <el-tab-pane label="模型注册配置" name="2" />
+          <span v-if="activeTab=='2'" class="addValidationEvent" @click="addModelTemplate('模型注册')">新建模型注册模板</span>
+          <tab3 v-if="activeTab=='2'" />
+          <el-tab-pane label="验证事件配置" name="3" />
+          <span v-if="activeTab=='3'" class="addValidationEvent" @click="addModelTemplate('验证事件')">新建验证事件模板</span>
+          <tab4 v-if="activeTab=='3'" />
+          <el-tab-pane label="使用事件配置" name="4" />
+          <span v-if="activeTab=='4'" class="addValidationEvent" @click="addModelTemplate('使用事件')">新建使用事件模板</span>
+          <tab5 v-if="activeTab=='4'" />
+          <el-tab-pane label="项目字段配置" name="5" />
+          <span v-if="activeTab=='5'" class="addValidationEvent" @click="addField('增加')">新建字段</span>
+          <tab6 v-if="activeTab=='5'" />
         </el-tabs>
       </div>
       <el-dialog title="编辑项目信息" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" width="480px">
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       back: true,
-      activeTab: 'first',
+      activeTab: null,
       dialogFormVisible: false,
       form: {
         name: '',
@@ -81,9 +81,11 @@ export default {
   },
   mounted() {
     this.form.name = getUrlParams().projectName
+    this.activeTab = localStorage.getItem('activeTab')
   },
   methods: {
     handleClick(tab, event) {
+      localStorage.setItem('activeTab', tab.index)
     },
     addModelTemplate(params) {
       this.$router.push({ path: '/project-library/project-configuration/model-edit-template', query: { projectName: getUrlParams().projectName, from: params }})

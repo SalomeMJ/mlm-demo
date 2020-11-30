@@ -234,25 +234,5 @@ padding: 20px 30px;
       width: 100%;
     }
   }
-  >>> .upload-demo{
-    width: 28%;
-    height: 32px;
-    display: inline-block;
-    border:1px solid #d9d9d9;
-    position: relative;
-    border-radius: 2px;
-    background-color: #fff;
-   .el-upload {
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-      outline: none;
-      line-height: 32px;
-      text-indent: 4px;
-      font-weight: 400;
-      color: #999;
-      color: rgba(0, 0, 0, 0.25);
-    }
-  }
 }
  </style>

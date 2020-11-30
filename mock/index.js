@@ -10,6 +10,7 @@ import projectDetail from './project-library/detail'
 import assetPool from './model-asset/asset-pool'
 import developRecord from './project-library/model-record/develop-record'
 import usingRecord from './project-library/model-record/using-record'
+import modelDocument from './project-library/model-record/model-document'
 import valitationRecord from './project-library/model-record/validation-record'
 import validationData from './project-library/validation-data/validation-data'
 import validationDetail from './project-library/validation-data/validation-detail'
@@ -58,6 +59,7 @@ const mocks = [
   assetPool,
   developRecord,
   usingRecord,
+  modelDocument,
   valitationRecord,
   validationData,
   validationDetail,

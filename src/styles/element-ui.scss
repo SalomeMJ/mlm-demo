@@ -276,10 +276,26 @@ font-weight: 400;
 }
 .el-tree-node__content{
   height: 42px;
+  .custom-tree-node{
+    i{
+
+      display: none;
+    }
+  }
 }
 .el-tree-node__content:hover{
   color:#00a0e9;
   background-color: #fff;
+  .custom-tree-node{
+    display: inline-block;
+    width: 88%;
+    i{
+      display: block;
+      color:#00a0e9;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
 }
 .el-tree-node.is-current.is-focusable{
   background-color: rgba(0,160,233,0.2);
@@ -291,6 +307,15 @@ font-weight: 400;
   background-color: rgba(0,160,233,.2);
   color:#00a0e9;
   font-weight: 600;
+  
+  .custom-tree-node{
+    display: inline-block;
+    width: 88%;
+    i{
+      display: block;
+      font-weight: 600;
+    }
+  }
 }
 .el-select .el-input.is-focus .el-input__inner{
   border-color: #00a0e9;;
@@ -312,4 +337,23 @@ font-weight: 400;
 }
 .el-input.is-disabled .el-input__inner,.el-textarea.is-disabled .el-textarea__inner{
   color:#333;
+}
+.upload-demo{
+  width: 28%;
+  height: 32px;
+  display: inline-block;
+  border:1px solid #d9d9d9;
+  position: relative;
+  border-radius: 2px;
+  background-color: #fff;
+ .el-upload {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    line-height: 32px;
+    font-weight: 400;
+    color: #999;
+    color: rgba(0, 0, 0, 0.25);
+  }
 }

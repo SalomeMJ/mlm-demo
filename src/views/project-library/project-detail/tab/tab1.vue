@@ -262,6 +262,7 @@ export default {
       this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.eventName, modelName: params.useModel, projectName: getUrlParams().projectName, action: params.status }})
     },
     projectConfiguration() {
+      localStorage.setItem('activeTab', 0)
       this.$router.push({ path: '/project-library/project-configuration', query: { projectName: getUrlParams().projectName }})
     }
   }

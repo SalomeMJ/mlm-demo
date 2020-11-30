@@ -21,8 +21,19 @@
           <el-tab-pane label="模型使用记录" name="third" />
           <span v-if="activeTab=='third'" class="addValidationEvent" @click="addUsingEvent()">新建使用事件</span>
           <using-record v-if="activeTab=='third'" />
-          <el-tab-pane label="模型操作日志" name="fourth" />
-          <el-tab-pane label="模型文档库" name="five" />
+          <!-- <el-tab-pane label="模型操作日志" name="fourth" /> -->
+          <el-tab-pane label="模型文档库" name="fourth" />
+          <el-upload
+            v-if="activeTab=='fourth'"
+            class="upload-demo addValidationEvent"
+            action=""
+            :multiple="multiple"
+            :on-change="handleChange"
+            :file-list="fileList"
+          >
+            <span class="dis-inlineblock w100 h100 fs-14 doingColor">上传文档</span>
+          </el-upload>
+          <model-document v-if="activeTab=='fourth'" />
         </el-tabs>
       </div>
     </div>
@@ -34,12 +45,13 @@ import HeadTitle from '@/components/HeadTitle'
 import DevelopRecord from './develop-record'
 import ValidationRecord from './validation-record'
 import UsingRecord from './using-record'
+import ModelDocument from './model-document'
 import { getUrlParams } from '@/utils/getUrlParams'
 import { getAssetPool } from '@/api/model-asset/asset-pool'
 
 export default {
   name: 'ModelRecord',
-  components: { HeadTitle, DevelopRecord, ValidationRecord, UsingRecord },
+  components: { HeadTitle, DevelopRecord, ValidationRecord, UsingRecord, ModelDocument },
   data() {
     return {
       back: true,
@@ -50,7 +62,9 @@ export default {
         { name: '负责人', mustWrite: true, type: 'select', value: '黎簇', options: ['黎簇', '王盟', '于和伟'] },
         { name: '选择验证方式', mustWrite: true, type: 'select', value: '上传数据', options: ['上传数据', '选择数据'] },
         { name: '上传数据', mustWrite: true, type: 'input', value: '' }
-      ]
+      ],
+      fileList: [],
+      multiple: true
     }
   },
   created() {
@@ -64,6 +78,9 @@ export default {
     })
   },
   methods: {
+    handleChange(file, fileList) {
+      this.fileList = []
+    },
     handleClick(tab, event) {
       // console.log(tab, event);
     },
@@ -150,14 +167,22 @@ export default {
   }
 }
 .addValidationEvent{
+  width: auto;
   border: none;
   background: #fff;
   text-decoration: underline;
   cursor: pointer;
   position: fixed;
-  top: 255px;
-  height: 20px;
+  top: 251px;
+  height: 25px;
+  line-height: 25px;
   right: 50px;
   color:#00a0e9;
+  span{
+    display: inline-block;
+   margin-top: -5px;
+   vertical-align: top;
+  text-decoration: underline;
+  }
 }
  </style>

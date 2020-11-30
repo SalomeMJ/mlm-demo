@@ -59,7 +59,8 @@ export default {
         label: 'label'
       },
       filterText: '',
-      selectNode: 0
+      selectNode: 0,
+      selectMember: []
     }
   },
 
@@ -77,16 +78,18 @@ export default {
     handleNodeClick(data, statu) {
       const getCheckeKeys = statu.checkedNodes
       const arr = []
+      this.selectMember = []
       for (const item in getCheckeKeys) {
         if (getCheckeKeys[item].level === '4') {
           arr.push(item)
+          this.selectMember.push(getCheckeKeys[item])
         }
       }
       this.selectNode = arr.length
     },
     confirmProject() {
       this.dialogVisible = false
-      this.$emit('addMember')
+      this.$emit('addMember', this.selectMember)
     },
     initData() {
       this.roots = this.root

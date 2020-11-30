@@ -26,7 +26,7 @@
                 :value="items.value"
               />
             </el-select>
-            <i class="icon iconfont" :class="[item.icon, item.color]" />
+            <i class="icon iconfont cursor-pointer" :class="[item.icon, item.color]" @click="addMember = true" />
           </div>
         </div>
       </div>
@@ -83,16 +83,17 @@
         </el-select>
       </p>
     </div>
-
+    <add-member v-if="addMember" :root="root" :add-member="addMember" @addMember="getaddMember" />
   </div>
 </template>
 
 <script>
 import { getUsingEvent } from '@/api/project-library/using-event/using-event'
-
+import AddMember from '../../../system/components/add-member'
+import { getRoot } from '@/api/system/root'
 export default {
   name: 'AddRule',
-  // components: { HeadTitle },
+  components: { AddMember },
   data() {
     return {
       useEvent: '',
@@ -125,7 +126,7 @@ export default {
             label: '年'
           }] },
         { name: '开始执行周期', type: 'input', icon: 'iconHistory', color: 'text-grey-3', value: '' },
-        { name: '预警人员', type: 'input', icon: 'iconPlus', color: 'doingColor', value: '', alerMsg: '灰色表示相关人员无相应权限，请联系系统管理员' },
+        { name: '预警人员', type: 'input', icon: 'iconPlus', color: 'doingColor', value: '12', alerMsg: '灰色表示相关人员无相应权限，请联系系统管理员' },
         { name: '预警提醒', type: 'input', icon: '', value: '' }
       ],
       ruleName: '',
@@ -161,7 +162,9 @@ export default {
         { name: '审批流', mustWrite: true, type: 'select', icon: '', value: '审批流一号', disabled: false, options: ['审批流一号', '审批流二号', '审批流三号'] },
         { name: '审批负责人', mustWrite: false, type: 'input', icon: '', value: '王盟；于和伟', disabled: false },
         { name: '审批类别', mustWrite: false, type: 'input', icon: '', value: '会签', disabled: false }
-      ]
+      ],
+      addMember: false,
+      root: []
     }
   },
   watch: {
@@ -182,6 +185,18 @@ export default {
           this.ruleList.push({ value: item.id, label: item.eventName })
         }
       })
+      getRoot().then((res) => {
+        this.root = this.setLabel(res.data.root)
+      })
+    },
+    setLabel(data) {
+      for (const item of data) {
+        item.label = item.name
+        if (item.children !== null) {
+          this.setLabel(item.children)
+        }
+      }
+      return data
     },
     addIndicators() {
       this.ruleExpression.push(
@@ -214,6 +229,16 @@ export default {
     },
     delIndicators(index) {
       this.ruleExpression.splice(index, 1)
+    },
+    getaddMember(e) {
+      console.log(e)
+      this.addMember = false
+      if (e.length !== 0) {
+        for (const item of e) {
+          this.msgDetail[4].value = this.msgDetail[4].value + item.name + '、'
+        }
+        console.log(this.msgDetail)
+      }
     }
   }
 }
