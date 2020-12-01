@@ -57,7 +57,7 @@ export default {
   methods: {
     // 点击节点
     clickNode(node) {
-      if (node.name !== '开始' && node.name !== '结束') {
+      if (node.name !== '开始' && node.name !== '结束' && node.name !== '审核结束') {
         this.$emit('clickNode', this.node.id)
       }
     },

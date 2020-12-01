@@ -399,6 +399,15 @@ export default {
     },
     clickNode(nodeId) {
       this.activeElement = nodeId
+      if (getUrlParams().flowName != null) {
+        if (getUrlParams().title === '审批') {
+          this.dataReload(getCheckflow())
+        } else {
+          this.dataReload(getWorkflow())
+        }
+      } else {
+        this.dataReload(getDataB())
+      }
       // this.activeElement.nodeId = nodeId
       // console.log(nodeId)
       // this.$refs.nodeForm.nodeInit(this.data, nodeId)
