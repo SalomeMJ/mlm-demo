@@ -25,7 +25,7 @@
               class="system-table"
               :data="tableData"
               style="width: 100%"
-              height="100%"
+              height="90%"
               :default-sort="{prop: 'name', order: 'descending'}"
               @selection-change="handleCurrentChange"
             >
@@ -57,12 +57,12 @@
       </el-tabs>
       <el-dialog title="复制模型" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" width="480">
         <span>复制到项目：</span>
-        <el-select v-model="values" placeholder="请选择">
+        <el-select v-model="project" placeholder="请选择">
           <el-option
-            v-for="item in headList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in projectLibrary"
+            :key="item.projectName"
+            :label="item.projectName"
+            :value="item.projectName"
           />
         </el-select>
         <p class="fs-14 fw-400 mt-20">说明：复制模型时仅复制模型文件以及模型的基本信息、开发信息。</p>
@@ -111,9 +111,8 @@ export default {
       tableData: [],
       totalData: [],
       projectList: [],
-      headList: [
-        { value: '黎簇', label: '黎簇' }
-      ],
+      projectLibrary: [],
+      project: null,
       dialogFormVisible: false
     }
   },
@@ -211,7 +210,10 @@ export default {
         this.pageChange({ page: 1, limit: 10 })
       })
       getProjectLibrary().then((res) => {
-        this.projectList = res.data.projectList
+        this.projectLibrary = res.data.projectList
+        this.project = this.projectLibrary[0].projectName
+        const data = JSON.parse(JSON.stringify(res.data.projectList))
+        this.projectList = data
         for (const item of this.projectList) {
           item.projectName = item.projectName + '(' + item.memberNum + ')'
         }

@@ -238,7 +238,6 @@ export default {
     },
     initData() {
       this.canEdit = getUrlParams().action !== '配置中'
-      console.log(this.canEdit)
       this.$refs.divider.style.height = '124px'
       getUsingEvent().then((res) => {
         for (const item of res.data.usingEvents) {
@@ -294,10 +293,10 @@ export default {
     }
     div:nth-child(3){
        >>> .el-input{
-        width: calc(85% - 180px);
+        width: 30%;
       }
       >>> .el-select {
-        width: calc(85% - 200px);
+        width: 30%;
         margin-left: -6px;
         .el-input{
           width: 100%;

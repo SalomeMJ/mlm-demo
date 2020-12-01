@@ -193,7 +193,7 @@ export default {
         left: 0;
       }
       .iconContainer{
-        width: 50%;
+        width: 70%;
         i:nth-child(2),i:last-child{
           margin-left: 20% !important;
         }

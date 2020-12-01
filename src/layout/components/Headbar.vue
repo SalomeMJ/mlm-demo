@@ -9,7 +9,7 @@
       <el-menu class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-submenu index="1">
           <template slot="title">
-            <i class="icon iconfont iconnan" style="vertival-align:top;" />
+            <i class="icon iconfont iconnan text-grey-0" style="vertival-align:top;" />
             <span>admin</span>
           </template>
           <el-menu-item index="1-1" @click="logout()">退出</el-menu-item>
