@@ -85,6 +85,7 @@ export default {
         this.dialog.form.name = params.name
         this.popmsg[0].label[0].value = params.name
       } else {
+        this.popmsg[1].label[0].value = params.name
         this.popmsg[1].label[1].options = []
         for (const item of params.attributeLines) {
           this.popmsg[1].label[1].options.push(
