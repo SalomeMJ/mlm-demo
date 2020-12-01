@@ -17,7 +17,7 @@ export default {
         className: 'barOptions',
         headList: ['批准率', '拒绝率'],
         width: '100%',
-        height: '465px',
+        height: '415px',
         interval: 20,
         xShow: true,
         timeRange: [],

@@ -6,8 +6,8 @@
       </div>
       <div class="ef-node-form-body">
         <div class="el-item p-20 pt-10">
-          <p class="fs-14 text-grey-1 fw-400">{{ node.name }}模板：</p>
-          <div class="el-item-cen border-radius-3 border-d9 mt-10">
+          <p class="fs-14 text-grey-1 fw-400">{{ node.type==='check'?('审核类型'):(node.name+'模板') }}：</p>
+          <div v-if="node.type!=='check'" class="el-item-cen border-radius-3 border-d9 mt-10">
             <el-select v-model="modeltamplate" class="w100 border-top-none" placeholder="请选择">
               <el-option
                 v-for="item in modelTeplates"
@@ -39,6 +39,23 @@
             </div>
 
           </div>
+          <el-select v-if="node.type==='check'" v-model="check" class="w100 border-top-none mt-10" placeholder="请选择">
+            <el-option
+              v-for="item in checkType"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+          <p v-if="node.type==='check'" class="fs-14 text-grey-1 fw-400 mt-20">审核成员：</p>
+          <el-select v-if="node.type==='check'" v-model="checkme" class="w100 border-top-none mt-10" multiple="true" placeholder="请选择">
+            <el-option
+              v-for="item in checkMember"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
         </div>
       </div>
     </div>
@@ -101,22 +118,17 @@ export default {
           color: '#00a0e9',
           icon: 'el-icon-s-check'
         }
+      ],
+      check: null,
+      checkme: null,
+      checkType: [
+        { value: '会签', lable: '会签' }
+      ],
+      checkMember: [
+        { value: '黎簇', lable: '黎簇' },
+        { value: '王盟', lable: '王盟' }
       ]
-      // line: {},
-      // data: {},
-      // stateList: [{
-      //   state: 'success',
-      //   label: '成功'
-      // }, {
-      //   state: 'warning',
-      //   label: '警告'
-      // }, {
-      //   state: 'error',
-      //   label: '错误'
-      // }, {
-      //   state: 'running',
-      //   label: '运行中'
-      // }]
+
     }
   },
   mounted() {
@@ -137,27 +149,8 @@ export default {
         }
       })
     },
-    // lineInit(line) {
-    //   this.type = 'line'
-    //   this.line = line
-    // },
-    // // 修改连线
-    // saveLine() {
-    //   this.$emit('setLineLabel', this.line.from, this.line.to, this.line.label)
-    // },
-    // save() {
-    //   this.data.nodeList.filter((node) => {
-    //     if (node.id === this.node.id) {
-    //       node.name = this.node.name
-    //       node.left = this.node.left
-    //       node.top = this.node.top
-    //       node.ico = this.node.ico
-    //       node.state = this.node.state
-    //       this.$emit('repaintEverything')
-    //     }
-    //   })
-    // },
     initData() {
+      // console.log(this.node)
       getModelRegister().then((res) => {
         for (const item of res.data.modelRegister) {
           this.modelTeplates.push({ label: item.modelName, value: item.id })

@@ -5,7 +5,7 @@ const dataB = {
       id: 'nodeA',
       name: '开始',
       type: 'task',
-      left: '0',
+      left: 'calc(50% - 87px)',
       top: '20px',
       ico: 'iconPlay'
     }

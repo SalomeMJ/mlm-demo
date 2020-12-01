@@ -352,8 +352,16 @@ font-weight: 400;
     cursor: pointer;
     outline: none;
     line-height: 32px;
-    font-weight: 400;
+    text-indent: 3px;
     color: #999;
     color: rgba(0, 0, 0, 0.25);
+    span.dis-inlineblock{
+
+      font-weight: 600;
+    }
   }
+}
+
+.el-tabs--left .el-tabs__nav-wrap.is-left.is-scrollable{
+  padding:0;
 }

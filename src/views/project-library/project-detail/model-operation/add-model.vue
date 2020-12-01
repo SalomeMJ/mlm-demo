@@ -52,7 +52,7 @@
       </div>
       <div v-if="$route.query.eventName==null||$route.query.action=='配置中'">
         <el-button type="primary" plain @click="goBack()">取消</el-button>
-        <el-button type="primary">提交审核</el-button>
+        <el-button type="primary" @click="goBack()">提交审核</el-button>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@ export default {
             { name: '模型注册渠道', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: '评分卡', label: '评分卡', disabled: true }, { value: 'PMML上传', label: 'PMML上传', disabled: false }, { value: '睿思导入', label: '睿思导入', disabled: true }], disabled: false },
             { name: '所属模型组', mustWrite: false, type: 'select', multiple: true, value: '', options: [{ value: '自营车模型组', label: '自营车模型组' }, { value: '易速贷模型组', label: '易速贷模型组' }], disabled: false },
             { name: '上传PMML文件', mustWrite: true, type: 'upload', icon: '', value: '', disabled: false },
-            { name: '算法类型', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: 'LR XGboost', label: 'LR XGboost', disabled: false }, { value: 'GBDT', label: 'GBDT', disabled: false }, { value: 'RF', label: 'RF', disabled: false }, { value: 'SVM', label: 'SVM', disabled: false }, { value: '其他', label: '其他', disabled: false }], disabled: false },
+            { name: '算法类型', mustWrite: true, type: 'select', icon: '', value: '', options: [{ value: 'LR', label: 'LR', disabled: false }, { value: 'XGboost', label: 'XGboost', disabled: false }, { value: 'GBDT', label: 'GBDT', disabled: false }, { value: 'RF', label: 'RF', disabled: false }, { value: 'SVM', label: 'SVM', disabled: false }, { value: '其他', label: '其他', disabled: false }], disabled: false },
             { name: '上传模型文档', mustWrite: false, type: 'upload', icon: '', value: '', releaseNum: [{ value: '' }], disabled: false }
           ]
         },

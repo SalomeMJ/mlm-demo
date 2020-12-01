@@ -1,7 +1,7 @@
 <template>
   <div ref="tool" class="flow-menu">
-    <div v-for="menu in test" :key="menu.id" class="mb-20">
-      <draggable v-model="test" :="draggableOptions" @end="end($event, menu)" @start="move($event, menu)">
+    <div v-for="menu in nodeList" :key="menu.id" class="mb-20">
+      <draggable v-model="nodeList" :="draggableOptions" @end="end($event, menu)" @start="move($event, menu)">
         <span class="fs-14 text-grey-0 cursor-pointer"> {{ menu.name }} </span>
       </draggable>
     </div>
@@ -19,6 +19,13 @@ export default {
   components: {
     draggable
   },
+  props: {
+    'nodeList': {
+      // 默认打开的左侧菜单的id
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
       activeNames: '1',
@@ -33,33 +40,6 @@ export default {
         // 拖拽的时候样式
         // fallbackClass: 'flow-node-draggable'
       },
-      // 默认打开的左侧菜单的id
-      test: [
-        {
-          id: 1,
-          name: '模型注册',
-          iconText: 'Z'
-        },
-        {
-          id: 2,
-          name: '模型验证',
-          iconText: 'Y'
-        },
-        {
-          id: 3,
-          name: '模型使用',
-          iconText: 'S'
-        },
-        {
-          id: 4,
-          name: '模型停止',
-          iconText: 'T'
-        },
-        {
-          id: 5,
-          name: '结束'
-        }
-      ],
       nodeMenu: {}
     }
   },

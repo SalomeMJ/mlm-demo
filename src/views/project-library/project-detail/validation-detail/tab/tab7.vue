@@ -1,16 +1,16 @@
 <template>
-  <div class="tabCon pb-20 mt-5">
+  <div class="tabCon">
     <el-table
       v-if="tableData.length!=0"
       class="system-table"
       :data="tableData"
       style="width: 100%"
-      height="100%"
+      height="80%"
       :default-sort="{prop: 'name', order: 'descending'}"
       @selection-change="handleCurrentChange"
     >
       <template v-for="(item,index) in headArr">
-        <el-table-column :key="index" :prop="item.prop" :fixed="item.fixed" :label="item.label" align="left" :render-header="labelHead" show-overflow-tooltip="true">
+        <el-table-column :key="index" :prop="item.prop" :fixed="item.fixed" :width="item.fixed?'200':'auto'" :label="item.label" align="left" :render-header="labelHead" show-overflow-tooltip="true">
           <template slot-scope="scope">
             <span>
               {{ scope.row[item.prop] }}
@@ -99,19 +99,20 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tabCon{
-  height: 94%;
-  padding: 20px;
+  height: 100%;
+  border:1px solid #d9d9d9;
+  border-radius: 5px;
   >>> .el-table__fixed-body-wrapper{
     top: 28px !important;
   }
 }
 .pagination-container {
-    width: 99%;
+    width: calc(100% - 62px);
     background: #fff;
     padding: 23px 12px;
     margin: 0;
     position: absolute;
-    bottom: 7px;
-    right: 0;
+    bottom: 23px;
+    right: 31px;
 }
 </style>

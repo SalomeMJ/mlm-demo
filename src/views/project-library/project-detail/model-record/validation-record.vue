@@ -105,6 +105,7 @@ export default {
       this.currpage = x
     },
     enterDetail(params) {
+      localStorage.setItem('activeIndex', 1)
       this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, title: '模型资产池', eventName: params.eventName, projectName: getUrlParams().projectName }})
     }
   }

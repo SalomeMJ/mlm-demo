@@ -247,5 +247,12 @@ export default {
         font-weight: 600 !important;
       }
     }
+    >>>.el-tabs--left .el-tabs__nav-wrap.is-left.is-scrollable{
+      padding-top: 0;
+      padding-bottom: 0;
+      .el-tabs__nav-scroll{
+        margin-top: 0;
+      }
+    }
 }
 </style>

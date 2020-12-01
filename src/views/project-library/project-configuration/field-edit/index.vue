@@ -21,7 +21,7 @@
     </div>
     <div class="footer">
       <div>
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="confirmProject()">取 消</el-button>
         <el-button type="primary" @click="confirmProject()">保存</el-button>
       </div>
     </div>
@@ -55,7 +55,9 @@ export default {
     this.form.fieldValue = getUrlParams().fieldValue
   },
   methods: {
-
+    confirmProject() {
+      this.$router.go(-1)
+    }
   }
 }
 </script>

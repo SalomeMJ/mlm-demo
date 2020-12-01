@@ -1,24 +1,24 @@
 <template>
   <div class="h100 bg-white border-radius-5 coverParentView">
-    <head-title :title="$route.query.projectName+'>'+'项目配置>工作流配置>'+($route.query.workflowName==null?'新建工作流':'编辑工作流')" :back="back" />
+    <head-title :title="$route.query.projectName+'>'+'项目配置>工作流配置>'+($route.query.flowName==null?('新建'+$route.query.title+'流'):('编辑'+$route.query.title+'流'))" :back="back" />
     <div class="conCen ">
       <div class="modelMsg bg-white w100">
         <p>
-          <span class="fs-14 text-grey-0 fw-400">工作流名称：</span>
-          <el-input v-model="$route.query.workflowName" class="mb-20" placeholder="请输入" />
+          <span class="fs-14 text-grey-0 fw-400">{{ $route.query.title }}流名称：</span>
+          <el-input v-model="$route.query.flowName" class="mb-20" placeholder="请输入" />
         </p>
         <p>
-          <span class="fs-14 text-grey-0 fw-400">工作流描述：</span>
+          <span class="fs-14 text-grey-0 fw-400">{{ $route.query.title }}流描述：</span>
           <el-input v-model="$route.query.workflowDesc" placeholder="请输入" />
         </p>
       </div>
       <div class="model-record bg-white border-radius-5 mt-20 fs-14">
         <p class="border-bottom-d9 h-32 lh-32 pl-30 pr-30">
-          <span class="fs-14 text-grey-0 fw-bold">工作流编辑</span>
+          <span class="fs-14 text-grey-0 fw-bold">{{ $route.query.title }}流编辑</span>
         </p>
         <div class="pl-30 pr-30 pt-20 pb-20 edit-model">
           <div class="h100 border-d9 border-radius-5 bg-grey-4">
-            <flow-panel :show-flow="$route.query.workflowName==null" />
+            <flow-panel :show-flow="$route.query.flowName==null" :node-list="nodeList" />
           </div>
         </div>
       </div>
@@ -29,19 +29,76 @@
 <script>
 import HeadTitle from '@/components/HeadTitle'
 import FlowPanel from '@/components/ef/panel'
+import { getUrlParams } from '@/utils/getUrlParams'
 export default {
-  name: 'AddEditWorkflow',
+  name: 'AddEditflow',
   components: { HeadTitle, FlowPanel },
   data() {
     return {
-      back: true
+      back: true,
+      nodeList: []
     }
   },
   created() {
   },
   mounted() {
+    this.initData()
   },
   methods: {
+    initData() {
+      const workflow = [
+        {
+          id: 1,
+          name: '模型注册',
+          iconText: 'Z'
+        },
+        {
+          id: 2,
+          name: '模型验证',
+          iconText: 'Y'
+        },
+        {
+          id: 3,
+          name: '模型使用',
+          iconText: 'S'
+        },
+        {
+          id: 4,
+          name: '模型停止',
+          iconText: 'T'
+        },
+        {
+          id: 5,
+          name: '结束'
+        }
+      ]
+      const checkflow = [
+        {
+          id: 1,
+          name: '直接上级审核',
+          type: 'check',
+          iconText: 'Z'
+        },
+        {
+          id: 2,
+          name: '指定成员审核',
+          type: 'check',
+          iconText: 'Z'
+        },
+        {
+          id: 3,
+          name: '抄送',
+          type: 'check',
+          iconText: 'C'
+        },
+        {
+          id: 4,
+          type: 'check',
+          name: '审核结束'
+        }
+      ]
+      this.nodeList = getUrlParams().title === '工作' ? workflow : checkflow
+    }
   }
 }
 </script>

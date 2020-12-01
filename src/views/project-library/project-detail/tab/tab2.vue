@@ -157,6 +157,8 @@ export default {
     },
     // 模型记录
     enterModelRecord(params) {
+      localStorage.setItem('activeIndex', 0)
+      localStorage.setItem('activeTab', 1)
       this.$router.push({ path: '/project-library/project-detail/model-record', query: { modelName: params.modelName, title: '模型资产池', projectName: this.projectName }})
     },
     // 模型组

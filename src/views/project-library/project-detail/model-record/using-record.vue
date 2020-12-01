@@ -102,7 +102,8 @@ export default {
       this.currpage = x
     },
     enterDetail(params) {
-      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.evenName, modelName: getUrlParams().modelName, projectName: getUrlParams().projectName, action: params.status }})
+      localStorage.setItem('activeIndex', 2)
+      this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: params.evenName, modelName: getUrlParams().modelName, projectName: getUrlParams().projectName, title: '模型资产池', action: params.status }})
     }
   }
 }

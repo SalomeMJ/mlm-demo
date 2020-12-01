@@ -4,7 +4,7 @@
     class="flow-elment"
     :style="nodeContainerStyle"
     :class="nodeContainerClass"
-    @click="clickNode"
+    @click="clickNode(node)"
     @mouseup="changeNodeSite"
   >
     <span v-if="node.name!=='开始'" class=" ef-node-left-ico flow-node-drag enticon" />
@@ -56,8 +56,8 @@ export default {
   },
   methods: {
     // 点击节点
-    clickNode(e) {
-      if (e.toElement.innerHTML !== '开始' && e.toElement.innerHTML !== '结束') {
+    clickNode(node) {
+      if (node.name !== '开始' && node.name !== '结束') {
         this.$emit('clickNode', this.node.id)
       }
     },

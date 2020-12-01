@@ -13,18 +13,18 @@
       </div>
       <div class="model-record mt-20 fs-14">
         <el-tabs v-model="activeTab" type="card" @tab-click="handleClick">
-          <el-tab-pane label="模型开发记录" name="first" />
-          <develop-record v-if="activeTab=='first'" />
-          <el-tab-pane label="模型验证记录" name="second" />
-          <span v-if="activeTab=='second'" class="addValidationEvent" @click="addValidationEvent()">新建验证事件</span>
-          <validation-record v-if="activeTab=='second'" />
-          <el-tab-pane label="模型使用记录" name="third" />
-          <span v-if="activeTab=='third'" class="addValidationEvent" @click="addUsingEvent()">新建使用事件</span>
-          <using-record v-if="activeTab=='third'" />
+          <el-tab-pane label="模型开发记录" name="0" />
+          <develop-record v-if="activeTab=='0'" />
+          <el-tab-pane label="模型验证记录" name="1" />
+          <span v-if="activeTab=='1'" class="addValidationEvent" @click="addValidationEvent()">新建验证事件</span>
+          <validation-record v-if="activeTab=='1'" />
+          <el-tab-pane label="模型使用记录" name="2" />
+          <span v-if="activeTab=='2'" class="addValidationEvent" @click="addUsingEvent()">新建使用事件</span>
+          <using-record v-if="activeTab=='2'" />
           <!-- <el-tab-pane label="模型操作日志" name="fourth" /> -->
-          <el-tab-pane label="模型文档库" name="fourth" />
+          <el-tab-pane label="模型文档库" name="3" />
           <el-upload
-            v-if="activeTab=='fourth'"
+            v-if="activeTab=='3'"
             class="upload-demo addValidationEvent"
             action=""
             :multiple="multiple"
@@ -33,7 +33,7 @@
           >
             <span class="dis-inlineblock w100 h100 fs-14 doingColor">上传文档</span>
           </el-upload>
-          <model-document v-if="activeTab=='fourth'" />
+          <model-document v-if="activeTab=='3'" />
         </el-tabs>
       </div>
     </div>
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       back: true,
-      activeTab: 'first',
+      activeTab: null,
       child: [
         { name: '验证事件名称', mustWrite: true, type: 'input', value: '' },
         { name: '验证模型', mustWrite: true, type: 'select', value: '易速贷申请', options: ['易速贷申请', '自营车审批', '新车审批'] },
@@ -76,6 +76,7 @@ export default {
         this.child[1].options.push(item.modelName)
       }
     })
+    this.activeTab = localStorage.getItem('activeIndex')
   },
   methods: {
     handleChange(file, fileList) {
@@ -94,13 +95,13 @@ export default {
         contentData: this.child,
         isShowInput: true
       }).then(async(val) => {
-        // this.$router.push({ path: '/project-library/project-detail/validation-detail', query: { modelName: getUrlParams().modelName, eventName: val[0].value, projectName: getUrlParams().projectName }})
+        localStorage.setItem('activeIndex', 1)
       }).catch(() => {
         // ...
       })
     },
     addUsingEvent() {
-      localStorage.setItem('activeTab', 2)
+      localStorage.setItem('activeIndex', 2)
       this.$router.push({ path: '/project-library/project-detail/using-detail', query: { eventName: null, projectName: getUrlParams().projectName, action: 'add' }})
     }
   }
@@ -110,7 +111,7 @@ export default {
 <style lang="scss" scoped>
 .conCen{
   width: 100%;
-  height: 94%;
+  height: calc(100% - 42px);
   // padding:20px 30px;
   background:#eee;
   .modelMsg{
@@ -130,7 +131,7 @@ export default {
     border-radius: 5px;
   }
   >>> .pagination-container{
-   width: 100%;
+  //  width: 100%;
     padding: 32px 20px;
   }
   >>> .el-tabs{

@@ -15,10 +15,10 @@
       <div class="model-record mt-20 fs-14">
         <el-tabs v-model="activeTab" type="card" @tab-click="handleClick">
           <el-tab-pane label="工作流配置" name="0" />
-          <span v-if="activeTab=='0'" class="addValidationEvent" @click="addWorkflow()">新建工作流</span>
+          <span v-if="activeTab=='0'" class="addValidationEvent" @click="addflow('工作')">新建工作流</span>
           <tab1 v-if="activeTab=='0'" />
           <el-tab-pane label="审批流配置" name="1" />
-          <span v-if="activeTab=='1'" class="addValidationEvent" @click="addWorkflow()">新建审批流</span>
+          <span v-if="activeTab=='1'" class="addValidationEvent" @click="addflow('审批')">新建审批流</span>
           <tab2 v-if="activeTab=='1'" />
           <el-tab-pane label="模型注册配置" name="2" />
           <span v-if="activeTab=='2'" class="addValidationEvent" @click="addModelTemplate('模型注册')">新建模型注册模板</span>
@@ -97,8 +97,8 @@ export default {
       this.dialogFormVisible = false
       this.$router.push({ path: '/project-library/project-configuration', query: { projectName: this.form.name }})
     },
-    addWorkflow(params) {
-      this.$router.push({ path: '/project-library/project-configuration/workflow-edit', query: { projectName: getUrlParams().projectName }})
+    addflow(params) {
+      this.$router.push({ path: '/project-library/project-configuration/flow-edit', query: { projectName: getUrlParams().projectName, title: params }})
     },
     addField(params) {
       this.$router.push({ path: '/project-library/project-configuration/field-edit', query: { projectName: getUrlParams().projectName, from: params }})

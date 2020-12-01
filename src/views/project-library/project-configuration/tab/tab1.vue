@@ -23,8 +23,8 @@
               />
             </span>
             <span v-if="item.prop=='operate'">
-              <i class="icon iconfont doingColor mr-10 icontable-edit" @click="editWorkflow(scope.row)" />
-              <i class="icon iconfont doingColor mr-10 iconeye1" @click="scanWorkflow(scope.row)" />
+              <i class="icon iconfont doingColor mr-10 icontable-edit" @click="editflow(scope.row)" />
+              <i class="icon iconfont doingColor mr-10 iconeye1" @click="scanFlow(scope.row)" />
               <i class="icon iconfont doingColor mr-10 iconCopy" />
               <i class="icon iconfont text-red-0 iconDelete fs-15" />
             </span>
@@ -33,6 +33,43 @@
       </template>
     </el-table>
     <pagi-nation :pagination-data="paginationData" @pagination="pageChange" />
+    <el-dialog title="查看工作流" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" width="826px">
+      <div class="el-body">
+        <div class="modelMsg bg-white w100">
+          <span class="fs-16 text-grey-0 fw-bold">{{ currentFlow }}</span>
+          <p class="fs-12 fw-400 text-grey-2 mb-10 mt-10">用于贷前审批</p>
+          <p class="fs-14 fw-400 text-grey-2">
+            <span>创建人：黎簇</span>
+            <span class="ml-50">创建时间：2020.08.09-12:00:09</span>
+            <span class="ml-50">修改人：黎簇</span>
+            <span class="ml-50">修改时间：2020.08.09-12:00:09</span>
+          </p>
+        </div>
+        <div class="mt-20">
+          <p class="fs-14 text-grey-0 fw-bold mb-10">工作流内容</p>
+          <div class="border-d9 border-radius-5 checkCon">
+            <div class="checkflow border-bottom-d9">
+              <el-steps>
+                <el-step title="1.开始" class="cursor-nodrop" simple />
+                <el-step title="2.模型注册" class="cursor-pointer doingColor" simple />
+                <el-step title="3.模型验证" class="cursor-pointer" simple />
+                <el-step title="4.模型使用" class="cursor-pointer" simple />
+                <el-step title="5.模型停止" class="cursor-nodrop" simple />
+                <el-step title="6.结束" class="cursor-nodrop" simple />
+              </el-steps>
+            </div>
+            <div class="check bg-f6 p-20 fs-14">
+              <p class="mb-20 fs-14">模型注册模板: <span class="doingColor text-decoration-undeline cursor-pointer ml-5" @click="enterModel()">电商打假模型</span></p>
+              <p class="mb-20 fs-14">审核流： <span class="doingColor text-decoration-undeline cursor-pointer ml-5" @click="enterFlow()">审批流1号</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -71,6 +108,7 @@ export default {
       ],
       tableData: [],
       totalData: [],
+      currentFlow: null,
       form: {
         name: '',
         desc: ''
@@ -103,13 +141,18 @@ export default {
         this.pageChange({ page: 1, limit: 10 })
       })
     },
-    editWorkflow(params) {
+    editflow(params) {
       this.dialogFormVisible = true
-      // this.form.name = params.workflowName
-      // this.form.desc = params.workflowDesc
-      this.$router.push({ path: '/project-library/project-configuration/workflow-edit', query: { projectName: getUrlParams().projectName, workflowName: params.workflowName, workflowDesc: params.workflowDesc }})
+      this.$router.push({ path: '/project-library/project-configuration/flow-edit', query: { projectName: getUrlParams().projectName, flowName: params.workflowName, workflowDesc: params.workflowDesc, title: '工作' }})
     },
-    scanWorkflow(params) {
+    scanFlow(params) {
+      this.dialogFormVisible = true
+      this.currentFlow = params.approvalName
+    },
+    enterModel() {
+
+    },
+    enterFlow() {
 
     }
   }
@@ -153,9 +196,79 @@ border: 1px solid #D9D9D9;
 }
 background-color: #fff;
 }
-.el-dialog__wrapper{
-  >>> .el-dialog{
-    height: 280px;
+
+>>>.el-dialog{
+  height: 555px;
+  .el-dialog__body{
+    .el-body{
+      .modelMsg{
+        height: 87px;
+      border-bottom:1px solid rgba(0, 0, 0, 0.06);
+      }
+      .checkCon{
+        height: 266px;
+        .checkflow{
+          height: 54px;
+          line-height: 54px;
+          padding-left: 20px;
+          padding-right: 10px;
+          .el-step {
+            padding-top: 15px;
+            flex-basis:20% !important;
+             .el-step__line{
+              height:1px;
+            }
+            .el-step__main {
+              background: #fff;
+              margin: 0;
+              margin-top: -7px;
+              padding: 0;
+              position: absolute;
+              z-index: 1;
+              padding-right: 10px;
+              // width: 130px;
+              font-size: 14px;
+              font-family: PingFangSC-Regular, PingFang SC;
+              font-weight: 400;
+              // color: #999999;
+            }
+            .el-step__head{
+              width: 94%;
+            }
+            .el-step__icon.is-text{
+              border:1px solid;
+              display: none;
+            }
+            .el-step__title.is-wait{
+              font-size: 14px;
+              color: rgba(0, 0, 0, 0.25);
+            }
+             .el-step.is-horizontal {
+                flex-basis:20% !important;
+            }
+             .el-step.is-horizontal:last-child{
+              flex-basis:9% !important;
+              max-width:none;
+            }
+          }
+          .el-step.cursor-pointer {
+            .el-step__title.is-wait{
+              color: rgba(0, 0, 0, 0.65);
+            }
+          }
+          .el-step.doingColor {
+            .el-step__title.is-wait{
+              color: #00a0e9;
+            }
+          }
+        }
+        .check{
+          height:calc(100% - 54px);
+          border-radius: 0 0 5px 5px;
+          color:#666;
+        }
+      }
+    }
   }
 }
 </style>

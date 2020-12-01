@@ -1,5 +1,5 @@
 <template>
-  <div class="p-50">
+  <div class="p-30 pt-20">
     <line-chart :line-chart="lineChart" :width="lineChart.width" :height="lineChart.height" />
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
         title: '',
         chartName: 'lineOptions',
         width: '100%',
-        height: '430px',
+        height: '415px',
         legend: ['正负样本差距', '正样本', '负样本'],
         xType: 'category',
         timeRange: [],

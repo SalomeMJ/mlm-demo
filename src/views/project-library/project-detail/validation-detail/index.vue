@@ -1,7 +1,7 @@
 <template>
   <div class="h100 border-radius-5 coverParentView">
     <head-title :title="$route.query.projectName+'>'+$route.query.title+'>'+$route.query.modelName+'>'+$route.query.eventName" :back="back" />
-    <div class="conCen ">
+    <div class="conCen overflow-y-auto">
       <div class="modelMsg bg-white w100">
         <span class="fs-16 text-grey-0 fw-bold">{{ $route.query.modelName }}</span>
         <el-tag class="ml-20" type="primary">PMML</el-tag>
@@ -91,7 +91,7 @@ export default {
   width: 100%;
   height: calc(100% - 42px);
   // padding:20px 30px;
-  background:#eee;
+  // background:#eee;
   .modelMsg{
     width: 100%;
     height: 246px;
@@ -135,13 +135,26 @@ export default {
   }
   >>> .el-tabs{
     height: 100%;
-    background-color: #f8f8f8;
     .el-tabs__content{
-      height: 100%;
+      height: calc(100% - 32px);
+      padding: 20px 30px;
+      overflow-y: auto;
     }
     .el-tabs__header{
       margin: 0;
     }
+  }
+  >>> .left-tab{
+      border-radius: 5px;
+      border: 1px solid #d9d9d9;
+     .el-tabs__content{
+       height: 100%;
+       border-left:none;
+       padding: 0;
+     }
+     .el-tabs__header{
+       border:none;
+     }
   }
   >>> .el-tabs__nav{
     border-top:none;

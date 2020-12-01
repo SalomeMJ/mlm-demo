@@ -2,7 +2,7 @@
   <div v-if="easyFlowVisible" class="h100">
     <div style="display: flex;" class="h100">
       <div class="bg-white h100 pl-20 pt-20" style="width: 200px;border-right: 1px solid #d9d9d9;border-radius:5px 0 0 5px">
-        <node-menu ref="nodeMenu" @addNode="addNode" />
+        <node-menu ref="nodeMenu" :node-list="nodeList" @addNode="addNode" />
       </div>
       <div id="efContainer" ref="efContainer" v-flowDrag class="container overflow-y-auto">
         <template v-for="node in data.nodeList">
@@ -45,6 +45,7 @@ import FlowNodeForm from './node_form'
 import lodash from 'lodash'
 import { getDataB } from './data_B'
 import { getWorkflow } from './workflow'
+import { getCheckflow } from './checkflow'
 import { getUrlParams } from '@/utils/getUrlParams'
 export default {
   components: {
@@ -89,6 +90,12 @@ export default {
   },
   // 一些基础配置移动该文件中
   mixins: [easyFlowMixin],
+  props: {
+    'nodeList': {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
       // jsPlumb 实例
@@ -119,8 +126,12 @@ export default {
     this.jsPlumb = jsPlumb.jsPlumb.getInstance()
     this.$nextTick(() => {
       // 默认加载流程A的数据、在这里可以根据具体的业务返回符合流程数据格式的数据即可
-      if (getUrlParams().workflowName != null) {
-        this.dataReload(getWorkflow())
+      if (getUrlParams().flowName != null) {
+        if (getUrlParams().title === '审批') {
+          this.dataReload(getCheckflow())
+        } else {
+          this.dataReload(getWorkflow())
+        }
       } else {
         this.dataReload(getDataB())
       }
@@ -244,36 +255,6 @@ export default {
         this.loadEasyFlowFinish = true
       })
     },
-    // 锚点
-    // createPoint(type) {
-    //   const overlays = type === 'target' ? null : [
-    //     ['Label', {
-    //       location: [0.5, 2]
-    //     }]
-    //   ]
-
-    //   return {
-    //     endpoint: ['Dot', { radius: 5 }], // 端点的形状
-    //     connectorStyle: connectorPaintStyle, // 连接线的颜色，大小样式
-    //     connectorHoverStyle: connectorHoverStyle,
-    //     paintStyle: {
-    //       stroke: '#d7d7d7',
-    //       fill: '#fff',
-    //       radius: 5,
-    //       strokeWidth: 1
-    //     }, // 端点的颜色样式
-    //     // anchor: "AutoDefault",
-    //     // parameters: { label: label },
-    //     isSource: type === 'source', // 是否可以拖动（作为连线起点）
-    //     connector: ['Bezier', { curviness: 50 }], // 连接线的样式种类有[Bezier],[Flowchart],[StateMachine ],[Straight ]
-    //     isTarget: type === 'target', // 是否可以放置（连线终点）
-    //     maxConnections: type === 'source' ? 1 : -1, // 设置连接点最多可以连接几条线
-    //     connectorOverlays: [
-    //       ['Arrow', { width: 5, length: 5, location: 1 }]
-    //     ],
-    //     overlays: overlays
-    //   }
-    // },
     // 设置连线条件
     setLineLabel(from, to, label) {
       const conn = this.jsPlumb.getConnections({
@@ -382,7 +363,7 @@ export default {
           containment: 'parent',
           stop: function(el) {
             // 拖拽节点结束后的对调
-            console.log('拖拽结束: ', el)
+            // console.log('拖拽结束: ', el)
           }
         })
       })
@@ -419,6 +400,7 @@ export default {
     clickNode(nodeId) {
       this.activeElement.type = 'node'
       this.activeElement.nodeId = nodeId
+      console.log(this.$refs.nodeForm)
       this.$refs.nodeForm.nodeInit(this.data, nodeId)
     },
     // 是否具有该线

@@ -158,10 +158,10 @@ export const constantRoutes = [
                 meta: { title: 'model-edit-template', affix: true, activeMenu: '/project-library' }
               },
               {
-                path: 'workflow-edit',
-                component: () => import('@/views/project-library/project-configuration/workflow-edit'),
-                name: 'AddEditWorkflow',
-                meta: { title: 'model-edit-template', affix: true, activeMenu: '/project-library' }
+                path: 'flow-edit',
+                component: () => import('@/views/project-library/project-configuration/flow-edit'),
+                name: 'AddEditflow',
+                meta: { title: 'flow-edit', affix: true, activeMenu: '/project-library' }
               },
               {
                 path: 'field-edit',

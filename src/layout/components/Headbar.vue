@@ -53,6 +53,7 @@ export default {
       this.$store.commit('app/TOGGLE_SYSTEM', this.edit)
       this.$emit('system', this.edit)
       if (this.edit) {
+        localStorage.setItem('systemIndex', 0)
         this.$router.push({ path: '/system' })
       }
     },

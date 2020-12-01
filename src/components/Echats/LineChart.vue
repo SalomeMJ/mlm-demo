@@ -70,10 +70,14 @@ export default {
           data: lineChart.timeRange,
           type: lineChart.xType,
           show: true,
+          splitArea: { show: false },
           axisLine: {
             lineStyle: {
               color: 'rgba(0,0,0,0.45)'
             }
+          },
+          splitLine: {
+            show: false
           },
           axisLabel: {
             textStyle: {

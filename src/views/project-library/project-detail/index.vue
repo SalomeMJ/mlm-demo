@@ -32,7 +32,7 @@
           <el-dropdown-item><span @click="addEvent()">新建使用事件</span></el-dropdown-item>
           <el-dropdown-item><span @click="addWarningRule()">新建预警规则</span></el-dropdown-item>
           <el-dropdown-item> <el-upload
-            class="upload-demo"
+            class="upload-demo w100"
             action=""
             :on-change="handleChange"
             :file-list="fileList"
@@ -226,4 +226,14 @@ export default {
       top: 20px;
     }
   }
+    .upload-demo{
+      border:none;
+      >>>.el-upload{
+      color:#333;
+      }
+      >>>.el-upload:hover{
+        background-color: #e8f4ff;
+    color: #46a6ff;
+      }
+    }
  </style>

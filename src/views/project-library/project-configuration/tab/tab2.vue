@@ -16,8 +16,8 @@
               {{ scope.row[item.prop] }}
             </span>
             <span v-if="item.prop=='operate'">
-              <i class="icon iconfont doingColor mr-10 icontable-edit" />
-              <i class="icon iconfont doingColor mr-10 iconeye1" @click="dialogFormVisible = true" />
+              <i class="icon iconfont doingColor mr-10 icontable-edit" @click="editflow(scope.row)" />
+              <i class="icon iconfont doingColor mr-10 iconeye1" @click="scanFlow(scope.row)" />
               <i class="icon iconfont doingColor mr-10 iconCopy" />
               <i class="icon iconfont text-red-0 iconDelete fs-15" />
             </span>
@@ -29,7 +29,7 @@
     <el-dialog title="查看审核流" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" width="826px">
       <div class="el-body">
         <div class="modelMsg bg-white w100">
-          <span class="fs-16 text-grey-0 fw-bold">{{ $route.query.projectName }}</span>
+          <span class="fs-16 text-grey-0 fw-bold">{{ currentFlow }}</span>
           <p class="fs-12 fw-400 text-grey-2 mb-10 mt-10">用于贷前审批</p>
           <p class="fs-14 fw-400 text-grey-2">
             <span>创建人：黎簇</span>
@@ -58,7 +58,7 @@
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="confirmProject()">确 定</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -66,7 +66,7 @@
 <script>
 import { getApprovalfow } from '@/api/project-library/project-configuration/approvalflow'
 import PagiNation from '@/components/Pagination/index'
-
+import { getUrlParams } from '@/utils/getUrlParams'
 export default {
   name: 'TabTwo',
   components: { PagiNation },
@@ -97,7 +97,8 @@ export default {
         { label: '操作', prop: 'operate', sortable: false }
       ],
       tableData: [],
-      totalData: []
+      totalData: [],
+      currentFlow: null
     }
   },
   mounted() {
@@ -124,6 +125,14 @@ export default {
         this.totalData = this.tableData
         this.pageChange({ page: 1, limit: 10 })
       })
+    },
+    editflow(params) {
+      this.dialogFormVisible = true
+      this.$router.push({ path: '/project-library/project-configuration/flow-edit', query: { projectName: getUrlParams().projectName, flowName: params.approvalName, workflowDesc: params.approvalDesc, title: '审批' }})
+    },
+    scanFlow(params) {
+      this.dialogFormVisible = true
+      this.currentFlow = params.approvalName
     }
   }
 
