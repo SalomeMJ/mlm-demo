@@ -13,7 +13,7 @@
             :active-element="activeElement"
             @changeNodeSite="changeNodeSite"
             @nodeRightMenu="nodeRightMenu"
-            @clickNode="clickNode"
+            @clickNode="clickNode(node)"
           />
         </template>
         <!-- 给画布一个默认的宽度和高度 -->
@@ -21,7 +21,7 @@
       </div>
       <!-- 右侧表单 -->
       <div v-if="activeElement.type!=undefined" style="width: 360px;border-left: 1px solid #dce3e8;background-color: #FBFBFB">
-        <flow-node-form ref="nodeForm" @setLineLabel="setLineLabel" @repaintEverything="repaintEverything" />
+        <flow-node-form v-if="activeElement.type!=undefined" ref="nodeForm" :active-element="activeElement" @setLineLabel="setLineLabel" @repaintEverything="repaintEverything" />
       </div>
     </div>
     <!-- 流程数据详情 -->
@@ -398,10 +398,10 @@ export default {
       return true
     },
     clickNode(nodeId) {
-      this.activeElement.type = 'node'
-      this.activeElement.nodeId = nodeId
-      console.log(this.$refs.nodeForm)
-      this.$refs.nodeForm.nodeInit(this.data, nodeId)
+      this.activeElement = nodeId
+      // this.activeElement.nodeId = nodeId
+      // console.log(nodeId)
+      // this.$refs.nodeForm.nodeInit(this.data, nodeId)
     },
     // 是否具有该线
     hasLine(from, to) {

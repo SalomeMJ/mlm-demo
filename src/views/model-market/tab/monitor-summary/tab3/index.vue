@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 653px;overflow-y: auto;overflow-x: hidden;">
+  <div class=" overflow-hidden">
     <el-row :gutter="20">
       <el-col :span="24"><div class="grid-content bg-purple" />
         <div class="modelTabCon w100 mt-20  scoreDistribution ">

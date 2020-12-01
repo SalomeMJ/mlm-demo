@@ -13,7 +13,15 @@
         >
           <span slot-scope="{ data }" class="custom-tree-node">
             {{ data.name }}
-            <i class="icon iconfont iconxiangqing pull-right" @click="editDocument(data)" />
+            <el-popover
+              v-model="data.visible"
+              placement="right"
+              width="80"
+              trigger="hover"
+            >
+              <i slot="reference" class="icon iconfont iconxiangqing pull-right" @click="editDocument(data)" />
+              <p v-for="(item, index) in data.popmsg" :key="index" class="cursor-pointer fs-14 mb-5" @click="popClick(data, item)">{{ item.name }}</p>
+            </el-popover>
           </span>
         </el-tree>
       </div>
@@ -48,14 +56,16 @@
         </div>
       </div>
     </div>
+    <el-dialogtemplate v-if="dialogFormVisible" :dialog="dialog" @dialogVisible="getdialogVisible()" />
   </div>
 </template>
 <script>
 import PagiNation from '@/components/Pagination/index'
 import { getModelDocument } from '@/api/project-library/model-record/model-document'
+import ElDialogtemplate from '@/components/el-dialog'
 export default {
   name: 'TabOne',
-  components: { PagiNation },
+  components: { PagiNation, ElDialogtemplate },
   data() {
     return {
       input: '',
@@ -88,7 +98,17 @@ export default {
         label: 'label'
       },
       defaultKeys: null,
-      addMember: false
+      addMember: false,
+      dialogFormVisible: false,
+      dialog: {
+        title: '新建文件夹',
+        width: '480px',
+        label: '',
+        formLabelWidth: '',
+        form: {
+          name: ''
+        }
+      }
     }
   },
   mounted() {
@@ -118,6 +138,24 @@ export default {
         this.paginationData.total = this.tableData.length
         this.root = this.setLabel(res.data.modelDocument, true)
         this.roots = this.setLabel(res.data.modelDocument, false)
+        for (const item of this.root) {
+          if (item.type === 'ALL') {
+            item.popmsg = [{ type: 'add', name: '新建文件夹',
+              label: [
+                { name: '文件夹名称', type: 'input', value: '' }
+              ]
+            }]
+          } else {
+            item.popmsg = [
+              { type: 'rename', name: '重命名', label: [
+                { name: '文件夹名称', type: 'input', value: '' }
+              ] },
+              { type: 'add', name: '新建文件夹', label: [
+                { name: '文件夹名称', type: 'input', value: '' }
+              ] },
+              { type: 'delete', name: '删除' }]
+          }
+        }
       })
     },
     // 递归为权限组添加label
@@ -155,6 +193,20 @@ export default {
     },
     editDocument(params) {
       console.log(params)
+    },
+    // 文件删除重命名等点击事件
+    popClick(params, type) {
+      params.visible = false
+      this.dialogFormVisible = true
+      this.dialog.title = type.name
+      this.dialog.label = type.label
+      if (type.type === 'rename') {
+        this.dialog.form.name = params.name
+      }
+      this.dialog.formLabelWidth = '95px'
+    },
+    getdialogVisible() {
+      this.dialogFormVisible = false
     }
   }
 

@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="modelTabCon w100 mt-20 scoreDistribution border-d9">
-      <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6 border-bottom-d9">客群稳定性分析</div>
+      <div class="modelConHead w100 h-32 lh-32 fs-14 fw-bold text-grey-0 pl-20 bg-f6">客群稳定性分析</div>
       <div id="scoreDistribution" class="w100 conItem p-20">
         <div class="operating mb-10">
           <picker-time id="timetile" :time-title="timeTitle" />
@@ -164,22 +164,18 @@ export default {
           type: 'value',
           interval: 3,
           axisLine: {
-            'show': false,
             lineStyle: {
-              color: 'rgba(0,0,0,0.45)'
+              color: 'rgba(0,0,0,0.56)'
             }
           },
           axisLabel: {
             textStyle: {
-              color: 'rgba(0,0,0,0.45)'
+              color: 'rgba(0,0,0,0.86)'
             }
-          },
-          'axisTick': {
-            'show': false
           },
           textStyle: {
             fontSize: 12,
-            color: 'rgba(0,0,0,0.45)'
+            color: 'rgba(0,0,0,0.86)'
           },
           splitLine: {
             show: false
@@ -210,22 +206,18 @@ export default {
           type: 'value',
           interval: 0.03,
           axisLine: {
-            'show': false,
             lineStyle: {
-              color: 'rgba(0,0,0,0.45)'
+              color: 'rgba(0,0,0,0.56)'
             }
           },
           axisLabel: {
             textStyle: {
-              color: 'rgba(0,0,0,0.45)'
+              color: 'rgba(0,0,0,0.86)'
             }
-          },
-          'axisTick': {
-            'show': false
           },
           textStyle: {
             fontSize: 12,
-            color: 'rgba(0,0,0,0.45)'
+            color: 'rgba(0,0,0,0.86)'
           },
           splitLine: {
             show: false

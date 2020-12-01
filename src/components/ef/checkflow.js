@@ -11,38 +11,34 @@ const checkflow = {
     },
     {
       id: 'nodeB',
-      name: '模型注册',
+      name: '直接上级审核',
+      type: 'check',
       left: 'calc(50% - 87px)',
       top: '93px',
       iconText: 'Z'
     },
     {
       id: 'nodeC',
-      name: '直接上级审核',
+      name: '指定成员审核',
       left: 'calc(50% - 87px)',
       top: '165px',
+      type: 'check',
       iconText: 'Z'
     },
     {
       id: 'nodeD',
-      name: '指定成员审核',
-      left: 'calc(50% - 87px)',
-      top: '238px',
-      iconText: 'Z'
-    },
-    {
-      id: 'nodeE',
       name: '抄送',
       left: 'calc(50% - 87px)',
-      top: '308px',
+      top: '238px',
+      type: 'check',
       iconText: 'C'
     },
     {
-      id: 'nodeF',
+      id: 'nodeE',
       name: '审核结束',
       type: 'task',
       left: 'calc(50% - 87px)',
-      top: '380px',
+      top: '318px',
       ico: 'iconPlay'
     }
   ],

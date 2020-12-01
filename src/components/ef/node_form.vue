@@ -48,7 +48,7 @@
             />
           </el-select>
           <p v-if="node.type==='check'" class="fs-14 text-grey-1 fw-400 mt-20">审核成员：</p>
-          <el-select v-if="node.type==='check'" v-model="checkme" class="w100 border-top-none mt-10" multiple="true" placeholder="请选择">
+          <el-select v-if="node.type==='check'" v-model="checkme" class="w100 border-top-none mt-10" multiple="multiple" placeholder="请选择">
             <el-option
               v-for="item in checkMember"
               :key="item.value"
@@ -70,6 +70,12 @@ import { getApprovalfow } from '@/api/project-library/project-configuration/appr
 import TimeLine from '@/components/TimeLine'
 export default {
   components: { TimeLine },
+  props: {
+    'activeElement': {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       visible: true,
@@ -127,8 +133,13 @@ export default {
       checkMember: [
         { value: '黎簇', lable: '黎簇' },
         { value: '王盟', lable: '王盟' }
-      ]
-
+      ],
+      multiple: true
+    }
+  },
+  watch: {
+    'activeElement': function(newVal) {
+      this.node = this.activeElement
     }
   },
   mounted() {
@@ -150,7 +161,7 @@ export default {
       })
     },
     initData() {
-      // console.log(this.node)
+      this.node = this.activeElement
       getModelRegister().then((res) => {
         for (const item of res.data.modelRegister) {
           this.modelTeplates.push({ label: item.modelName, value: item.id })

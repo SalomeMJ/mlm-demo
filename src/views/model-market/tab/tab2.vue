@@ -1,5 +1,5 @@
 <template>
-  <div class="border-radius-5 bg-white modelTab overflow-y-auto" :style="{'height':activeName=='first'?'calc(100% - 41px)':'100%'}">
+  <div class="border-radius-5 bg-white modelTab overflow-y-auto h100">
     <el-tabs id="tabs" v-model="activeName" class="h100" type="border-card" @tab-click="handleClick">
       <el-select v-model="model" class="mr-15 ml-5" placeholder="请选择">
         <el-option
@@ -18,7 +18,6 @@
       <el-tab-pane label="模型效果分析" name="four" />
       <div v-if="activeName=='four'" class="tabCon"><tab4 /></div>
     </el-tabs>
-    <!-- <p v-if="model===''" class="noData">请先选择策略、模型</p> -->
   </div>
 </template>
 
@@ -135,12 +134,26 @@ p.noData{
   height: calc(100% - 52px);
   >>>.el-tabs__content{
     height: calc(100% - 52px);
-    // border: 1px solid red;
-    overflow-y: auto;
     padding-bottom: 10px;
     padding-top: 20px;
     .tabCon{
-      height: calc(100% - 52px);
+      height: 700px!important;
+       overflow-y: auto;
+    }
+     @media only screen and (min-width:1280px) and (max-width:1440px) {
+      .tabCon{
+          height: 480px!important;
+        }
+      }
+    @media only screen and (min-width:1440px) and (max-width:1920px) {
+    .tabCon{
+        height: 480px!important;
+      }
+    }
+     @media only screen and (min-width:1920px) {
+    .tabCon{
+        height: 700px!important;
+      }
     }
   }
 }

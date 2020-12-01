@@ -8,7 +8,16 @@
       <div class="h100 w-200 display-inlineblock border-right-d9 tabContainer">
         <el-tabs v-model="activeTab" type="card" :tab-position="tabPosition" class="h100 left-tab" @tab-click="handleClick">
           <el-tab-pane v-for="(item, index) in roleList" :key="index" :label="item.roleName" :name="index.toString()" />
-          <i class="icon iconfont iconxiangqing" />
+          <!-- <i class="icon iconfont iconxiangqing" /> -->
+          <el-popover
+            v-model="visible"
+            placement="right"
+            width="80"
+            trigger="hover"
+          >
+            <i slot="reference" class="icon iconfont iconxiangqing pull-right" @click="editDocument()" />
+            <p v-for="(item, index) in popmsg" :key="index" class="cursor-pointer fs-14 mb-5" @click="popClick()">{{ item.name }}</p>
+          </el-popover>
         </el-tabs>
       </div>
       <div class="h100 bg-grey-4 pull-right pt-10 pb-10 pl-20 pr-20">
@@ -115,7 +124,18 @@ export default {
       formLabelWidth: '93px',
       editJustrify: false,
       addMember: false,
-      root: []
+      root: [],
+      dialog: {
+        title: '新建文件夹',
+        width: '480px',
+        label: '',
+        formLabelWidth: '',
+        form: {
+          name: ''
+        }
+      },
+      visible: true,
+      popmsg: [{ type: 'add', name: '新建文件夹', label: '文件夹名称' }]
     }
   },
   mounted() {
@@ -172,6 +192,19 @@ export default {
     },
     getaddMember(e) {
       this.addMember = false
+    },
+    // 文件删除重命名等点击事件
+    popClick(params, type) {
+      this.dialogFormVisible = true
+      this.dialog.title = type.name
+      this.dialog.label = type.label
+      if (type.type === 'rename') {
+        this.dialog.form.name = params.name
+      }
+      this.dialog.formLabelWidth = '95px'
+    },
+    getdialogVisible() {
+      this.dialogFormVisible = false
     }
   }
 

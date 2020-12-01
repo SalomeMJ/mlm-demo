@@ -1,5 +1,5 @@
 <template>
-  <div id="featureAnalysis" class="con text-grey-0 h100">
+  <div id="featureAnalysis" class="con text-grey-0 h100 overflow-x-hidden">
     <div class="modelTabCon mt-20 scoreDistribution  h100">
       <div class="modelConHead w100 h-32 lh-32  pl-20 bg-f6 border-bottom-d9">
         <span class="fs-14 fw-bold text-grey-0">特征分析</span>

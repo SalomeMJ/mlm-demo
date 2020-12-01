@@ -14,6 +14,7 @@ const workflow = {
       name: '模型注册',
       left: 'calc(50% - 87px)',
       top: '93px',
+      type: 'model',
       iconText: 'Z'
     },
     {
@@ -21,6 +22,7 @@ const workflow = {
       name: '模型验证',
       left: 'calc(50% - 87px)',
       top: '165px',
+      type: 'model',
       iconText: 'Y'
     },
     {
@@ -28,6 +30,7 @@ const workflow = {
       name: '模型使用',
       left: 'calc(50% - 87px)',
       top: '238px',
+      type: 'model',
       iconText: 'S'
     },
     {
@@ -35,6 +38,7 @@ const workflow = {
       name: '模型停止',
       left: 'calc(50% - 87px)',
       top: '308px',
+      type: 'model',
       iconText: 'T'
     },
     {

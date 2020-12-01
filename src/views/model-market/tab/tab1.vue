@@ -121,7 +121,7 @@ export default {
         className: 'situationList',
         headList: ['轻微', '一般', '严重'],
         width: '100%',
-        height: '100%',
+        height: '90%',
         timeRange: ['轻微', '一般', '严重'],
         interval: 250,
         xShow: true,
@@ -130,7 +130,7 @@ export default {
       },
       pieChart: {
         width: '100%',
-        height: '100%',
+        height: '90%',
         color: ['#5B8FF9', '#5AD8A6'],
         responseType: ['配置中', '生效审核中', '已生效', '停用审核中', '已停用'],
         successRate: '',
@@ -143,7 +143,7 @@ export default {
           icon: 'circle',
           itemGap: 15,
           padding: [5, 10],
-          top: 130,
+          top: 60,
           textStyle: {
             color: '#8C8C8C',
             fontSize: 12
@@ -161,7 +161,7 @@ export default {
             title: '',
             chartName: 'lineOptions',
             width: '100%',
-            height: '100%',
+            height: '90%',
             legend: ['202001', '202002', '202003', '202004', '202005', '202006', '训练样本'],
             timeRange: [],
             yInterval: 3,
@@ -177,7 +177,7 @@ export default {
             className: 'situationList',
             headList: [],
             width: '100%',
-            height: '100%',
+            height: '90%',
             timeRange: [],
             interval: 250,
             xShow: true,
@@ -214,7 +214,7 @@ export default {
         this.pieChart.series = [{
           type: 'pie',
           radius: ['50%', '70%'],
-          center: ['32%', '50%'],
+          center: ['30%', '50%'],
           data: response.data.useEventStatus,
           itemStyle: {
 
@@ -320,7 +320,7 @@ export default {
       .iconfengchao{
         position: absolute;
         right: 30px;
-        top: 35px;
+        top: calc(50% - 40px);
         display: inline-block;
         width: 80px;
           height: 80px;
@@ -333,12 +333,12 @@ export default {
       }
       .mb-20{
         position: absolute;
-        top:35px;
+        top: calc(50% - 20px);
       }
       .fs-30{
         font-size: 40px;
         position: absolute;
-        top: 65px;
+        top: calc(50% - 0px);
       }
     }
     div:nth-child(2){
@@ -359,10 +359,10 @@ export default {
   }
    .iconguizeguanliquanjugongxiang,.iconshijiangongdanguanli{
       display: inline-block;
-       width: 75px;
-        height: 75px;
+       width:65px;
+        height: 65px;
         text-align: center;
-        line-height: 75px;
+        line-height:65px;
         color:#fff;
         font-size: 20px;
         border-radius: 50%;
