@@ -108,6 +108,9 @@ export default {
         { label: '正在使用事件数量', prop: 'useEventNum', sortable: false },
         { label: '操作', prop: 'operate', sortable: false }
       ],
+      headList: [
+        { value: '黎簇', label: '黎簇' }
+      ],
       tableData: [],
       totalData: [],
       projectList: [],
