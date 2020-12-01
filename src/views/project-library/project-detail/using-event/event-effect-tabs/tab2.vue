@@ -117,7 +117,8 @@ export default {
       this.currpage = x
     },
     editWarningRule(params) {
-      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, modelName: getUrlParams().modelName, ruleName: params.warningName, action: 'scan' }})
+      localStorage.setItem('activeName', 1)
+      this.$router.push({ path: '/project-library/project-detail/warning-rule', query: { projectName: getUrlParams().projectName, modelName: getUrlParams().modelName, ruleName: params.warningName, action: '生效中', title: params.warningName }})
     }
   }
 

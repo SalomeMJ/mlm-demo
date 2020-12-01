@@ -21,10 +21,10 @@
           <tab1 v-if="activeName=='first'" />
           <el-tab-pane label="预警触发记录" name="second" />
           <tab2 v-if="activeName=='second'" />
-          <el-tab-pane label="操作日志" name="third" />
-          <tab3 v-if="activeName=='third'" />
-          <el-tab-pane label="配置详情" name="fourth" />
-          <tab4 v-if="activeName=='fourth'" />
+          <!-- <el-tab-pane label="操作日志" name="third" />
+          <tab3 v-if="activeName=='third'" /> -->
+          <el-tab-pane label="配置详情" name="third" />
+          <tab4 v-if="activeName=='third'" />
         </el-tabs>
       </div>
     </div>
@@ -35,13 +35,13 @@
 import HeadTitle from '@/components/HeadTitle'
 import Tab1 from './tab/tab1'
 import Tab2 from './tab/tab2'
-import Tab3 from './tab/tab3'
+// import Tab3 from './tab/tab3'
 import Tab4 from './tab/tab4'
 // import { getUrlParams } from '@/utils/getUrlParams'
 
 export default {
   name: 'ComplateRuleDetail',
-  components: { HeadTitle, Tab1, Tab2, Tab3, Tab4 },
+  components: { HeadTitle, Tab1, Tab2, Tab4 },
   data() {
     return {
       back: true,

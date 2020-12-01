@@ -24,16 +24,16 @@
     </div>
     <div class="conMiddle bg-white">
       <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-        <el-tab-pane label="调用情况" name="first" />
-        <tab1 v-if="activeName=='first'" />
-        <el-tab-pane label="预警触发" name="second" />
-        <tab2 v-if="activeName=='second'" />
-        <el-tab-pane label="配置详情" name="third" />
-        <tab3 v-if="activeName=='third'" />
+        <el-tab-pane label="调用情况" name="0" />
+        <tab1 v-if="activeName=='0'" />
+        <el-tab-pane label="预警触发" name="1" />
+        <tab2 v-if="activeName=='1'" />
+        <el-tab-pane label="配置详情" name="2" />
+        <tab3 v-if="activeName=='2'" />
       </el-tabs>
     </div>
     <div class="footer">
-      <el-button type="danger" plain>终止该事件</el-button>
+      <el-button type="danger" plain @click="stopEvent()">终止该事件</el-button>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
   components: { Tab1, Tab2, Tab3 },
   data() {
     return {
-      activeName: 'first',
+      activeName: null,
       eventName: null,
       action: null,
       modelName: null
@@ -61,10 +61,14 @@ export default {
     this.action = getUrlParams().action
     this.modelName = getUrlParams().modelName
     this.eventName = getUrlParams().eventName
+    this.activeName = localStorage.getItem('activeName')
   },
   methods: {
     handleClick(tab, event) {
       // console.log(tab, event)
+    },
+    stopEvent() {
+      this.$router.go(-1)
     }
   }
 }
